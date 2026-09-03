@@ -1,0 +1,73 @@
+import type { AuthSchemes } from "../auth-schemes.js";
+import type { ApiPromise } from "../core/api-promise.js";
+import type { RequestOptions } from "../core/api-request.js";
+import type { RawClient } from "../core/raw-client.js";
+import { ResponseError, type Declared, type ErrorDecoders } from "../core/response-error.js";
+import * as s from "../core/validation/index.js";
+import { contentTypeSchema, type ContentType } from "../models/content-type.js";
+import { defaulterrortemplate1Schema, type Defaulterrortemplate1 } from "../models/defaulterrortemplate1.js";
+import {
+  defaultsuccesstemplateSchema,
+  type Defaultsuccesstemplate,
+} from "../models/defaultsuccesstemplate.js";
+import type { Servers } from "../servers.js";
+
+export class OauthV2 {
+  readonly #rawClient: RawClient;
+  readonly #servers: Servers;
+  readonly #auth: AuthSchemes;
+
+  constructor(rawClient: RawClient, servers: Servers, auth: AuthSchemes) {
+    this.#rawClient = rawClient;
+    this.#servers = servers;
+    this.#auth = auth;
+  }
+
+  oauthV2Access(
+    request: OauthV2.OauthV2AccessRequest,
+    options?: RequestOptions,
+  ): ApiPromise<Defaultsuccesstemplate, OauthV2.OauthV2AccessError> {
+    return this.#rawClient.execute(
+      {
+        method: "GET",
+        url: this.#servers.default("/oauth.v2.access"),
+        auth: this.#auth.slackAuth,
+        query: [
+          { name: "code", value: request.code, schema: s.string() },
+          { name: "client_id", value: request.clientId, schema: s.optional(s.string()) },
+          { name: "client_secret", value: request.clientSecret, schema: s.optional(s.string()) },
+          { name: "redirect_uri", value: request.redirectUri, schema: s.optional(s.string()) },
+        ],
+        headers: [{ name: "Content-Type", value: request.contentType, schema: contentTypeSchema }],
+        body: { kind: "empty" },
+      },
+      {
+        success: { kind: "json", schema: defaultsuccesstemplateSchema },
+        errorFactory: OauthV2.OauthV2AccessError,
+      },
+      options,
+    );
+  }
+}
+
+export namespace OauthV2 {
+  export type OauthV2AccessRequest = {
+    code: string;
+    clientId?: string;
+    clientSecret?: string;
+    redirectUri?: string;
+    contentType: ContentType;
+  };
+
+  export class OauthV2AccessError extends ResponseError<
+    Declared<"defaulterrortemplate1", Defaulterrortemplate1>
+  > {
+    static readonly errors: ErrorDecoders<OauthV2AccessError> = [
+      {
+        on: [400, 599],
+        kind: "defaulterrortemplate1",
+        decode: { kind: "json", schema: defaulterrortemplate1Schema },
+      },
+    ];
+  }
+}
