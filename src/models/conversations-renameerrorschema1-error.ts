@@ -5,11 +5,13 @@ import {
   type ConversationsRenameErrorEnum,
 } from "./conversations-rename-error-enum.js";
 
+/** Schema for error response from conversations.rename method */
 export type ConversationsRenameerrorschema1Error = {
+  /** Note: PHP callstack is only visible in dev/qa */
   callstack?: string;
   error: ConversationsRenameErrorEnum;
   needed?: string;
-  ok: "False";
+  ok: boolean;
   provided?: string;
 };
 
@@ -18,6 +20,6 @@ export const conversationsRenameerrorschema1ErrorSchema: Schema<ConversationsRen
     callstack: s.optional(s.string()),
     error: conversationsRenameErrorEnumSchema,
     needed: s.optional(s.string()),
-    ok: s.literal("False"),
+    ok: s.boolean(),
     provided: s.optional(s.string()),
   });

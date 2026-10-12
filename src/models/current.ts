@@ -7,7 +7,7 @@ export type Current = {
 };
 
 export const currentSchema: Schema<Current> = s.object<Current>({
-  dateStarted: s.number(),
+  dateStarted: s.int(),
   teamId: s.string(),
   _keysMap: {
     dateStarted: "date_started",

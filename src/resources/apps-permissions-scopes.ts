@@ -1,8 +1,8 @@
 import type { AuthSchemes } from "../auth-schemes.js";
+import { ApiError, type Declared, type ErrorDecoders, type ErrorPayload } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import type { RawClient } from "../core/raw-client.js";
-import { ResponseError, type Declared, type ErrorDecoders } from "../core/response-error.js";
 import * as s from "../core/validation/index.js";
 import {
   apiPermissionsScopesListsuccessschemaSchema,
@@ -26,6 +26,21 @@ export class AppsPermissionsScopes {
     this.#auth = auth;
   }
 
+  /**
+   * apps_permissions_scopes_list
+   *
+   * @remarks
+   * Returns list of scopes this app has on a team.
+   *
+   * @returns Typical successful paginated response
+   *
+   * @throws {@link AppsPermissionsScopes.AppsPermissionsScopesListError} when the API answers with
+   * an error status — narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   appsPermissionsScopesList(
     request: AppsPermissionsScopes.AppsPermissionsScopesListRequest,
     options?: RequestOptions,
@@ -33,8 +48,9 @@ export class AppsPermissionsScopes {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/apps.permissions.scopes.list"),
+        urlTemplate: this.#servers.default("/apps.permissions.scopes.list"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
         query: [{ name: "token", value: request.token, schema: s.string() }],
         headers: [{ name: "Content-Type", value: request.contentType, schema: contentTypeSchema }],
         body: { kind: "empty" },
@@ -50,16 +66,19 @@ export class AppsPermissionsScopes {
 
 export namespace AppsPermissionsScopes {
   export type AppsPermissionsScopesListRequest = {
+    /** Authentication token. Requires scope: `none` */
     token: string;
     contentType: ContentType;
   };
 
-  export class AppsPermissionsScopesListError extends ResponseError<
-    Declared<"appsPermissionsScopesListerrorschema1", AppsPermissionsScopesListerrorschema1>
-  > {
+  export class AppsPermissionsScopesListError extends ApiError {
+    declare readonly payload: ErrorPayload<
+      Declared<"appsPermissionsScopesListerrorschema1", AppsPermissionsScopesListerrorschema1>
+    >;
+
     static readonly errors: ErrorDecoders<AppsPermissionsScopesListError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "appsPermissionsScopesListerrorschema1",
         decode: { kind: "json", schema: appsPermissionsScopesListerrorschema1Schema },
       },

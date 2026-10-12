@@ -1,8 +1,9 @@
 import type { AuthSchemes } from "../auth-schemes.js";
+import { ApiError, type Declared, type ErrorDecoders, type ErrorPayload } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import type { RawClient } from "../core/raw-client.js";
-import { ResponseError, type Declared, type ErrorDecoders } from "../core/response-error.js";
+import { uuid } from "../core/uuid.js";
 import * as s from "../core/validation/index.js";
 import { contentTypeSchema, type ContentType } from "../models/content-type.js";
 import { defaulterrortemplate1Schema, type Defaulterrortemplate1 } from "../models/defaulterrortemplate1.js";
@@ -23,6 +24,21 @@ export class AdminTeams {
     this.#auth = auth;
   }
 
+  /**
+   * admin_teams_create
+   *
+   * @remarks
+   * Create an Enterprise team.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link AdminTeams.AdminTeamsCreateError} when the API answers with an error status —
+   * narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminTeamsCreate(
     request: AdminTeams.AdminTeamsCreateRequest,
     options?: RequestOptions,
@@ -30,11 +46,14 @@ export class AdminTeams {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/admin.teams.create"),
+        urlTemplate: this.#servers.default("/admin.teams.create"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "formUrlEncoded",
@@ -58,6 +77,21 @@ export class AdminTeams {
     );
   }
 
+  /**
+   * admin_teams_list
+   *
+   * @remarks
+   * List all teams on an Enterprise organization
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link AdminTeams.AdminTeamsListError} when the API answers with an error status —
+   * narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminTeamsList(
     request: AdminTeams.AdminTeamsListRequest,
     options?: RequestOptions,
@@ -65,10 +99,11 @@ export class AdminTeams {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/admin.teams.list"),
+        urlTemplate: this.#servers.default("/admin.teams.list"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
         query: [
-          { name: "limit", value: request.limit, schema: s.optional(s.number()) },
+          { name: "limit", value: request.limit, schema: s.optional(s.int()) },
           { name: "cursor", value: request.cursor, schema: s.optional(s.string()) },
         ],
         headers: [
@@ -88,20 +123,28 @@ export class AdminTeams {
 
 export namespace AdminTeams {
   export type AdminTeamsCreateRequest = {
+    /** Authentication token. Requires scope: `admin.teams:write` */
     token: string;
     contentType: ContentType;
+    /** Team domain (for example, slacksoftballteam). */
     teamDomain: string;
+    /** Team name (for example, Slack Softball Team). */
     teamName: string;
+    /** Description for the team. */
     teamDescription?: string;
+    /**
+     * Who can join the team. A team's discoverability can be `open`, `closed`, `invite_only`, or
+     * `unlisted`.
+     */
     teamDiscoverability?: string;
   };
 
-  export class AdminTeamsCreateError extends ResponseError<
-    Declared<"defaulterrortemplate1", Defaulterrortemplate1>
-  > {
+  export class AdminTeamsCreateError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
+
     static readonly errors: ErrorDecoders<AdminTeamsCreateError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "defaulterrortemplate1",
         decode: { kind: "json", schema: defaulterrortemplate1Schema },
       },
@@ -109,18 +152,23 @@ export namespace AdminTeams {
   }
 
   export type AdminTeamsListRequest = {
+    /** The maximum number of items to return. Must be between 1 - 100 both inclusive. */
     limit?: number;
+    /**
+     * Set `cursor` to `next_cursor` returned by the previous call to list items in the next page.
+     */
     cursor?: string;
+    /** Authentication token. Requires scope: `admin.teams:read` */
     token: string;
     contentType: ContentType;
   };
 
-  export class AdminTeamsListError extends ResponseError<
-    Declared<"defaulterrortemplate1", Defaulterrortemplate1>
-  > {
+  export class AdminTeamsListError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
+
     static readonly errors: ErrorDecoders<AdminTeamsListError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "defaulterrortemplate1",
         decode: { kind: "json", schema: defaulterrortemplate1Schema },
       },

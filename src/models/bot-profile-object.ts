@@ -19,7 +19,7 @@ export const botProfileObjectSchema: Schema<BotProfileObject> = s.object<BotProf
   id: s.string(),
   name: s.string(),
   teamId: s.string(),
-  updated: s.number(),
+  updated: s.int(),
   _keysMap: {
     appId: "app_id",
     teamId: "team_id",

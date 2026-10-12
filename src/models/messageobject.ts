@@ -11,6 +11,10 @@ import { reactionobjectSchema, type Reactionobject } from "./reactionobject.js";
 
 export type Messageobject = {
   attachments?: Attachment[];
+  /**
+   * This is a very loose definition, in the future, we'll populate this with deeper schema in this
+   * definition namespace.
+   */
   blocks?: BlockKitblock[];
   botId?: Record<string, unknown>;
   botProfile?: BotProfileObject;
@@ -77,9 +81,9 @@ export const messageobjectSchema: Schema<Messageobject> = s.object<Messageobject
   pinnedTo: s.optional(s.array(s.string())),
   purpose: s.optional(s.string()),
   reactions: s.optional(s.array(s.lazy(() => reactionobjectSchema))),
-  replyCount: s.optional(s.number()),
+  replyCount: s.optional(s.int()),
   replyUsers: s.optional(s.array(s.string())),
-  replyUsersCount: s.optional(s.number()),
+  replyUsersCount: s.optional(s.int()),
   sourceTeam: s.optional(s.string()),
   subscribed: s.optional(s.boolean()),
   subtype: s.optional(s.string()),
@@ -89,7 +93,7 @@ export const messageobjectSchema: Schema<Messageobject> = s.object<Messageobject
   topic: s.optional(s.string()),
   ts: s.string(),
   type: s.string(),
-  unreadCount: s.optional(s.number()),
+  unreadCount: s.optional(s.int()),
   upload: s.optional(s.boolean()),
   user: s.optional(s.string()),
   userProfile: s.optional(s.lazy(() => objsUserProfileShortSchema)),

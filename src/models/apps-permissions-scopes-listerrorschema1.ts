@@ -5,15 +5,17 @@ import {
   type AppsPermissionsInfoErrorEnum,
 } from "./apps-permissions-info-error-enum.js";
 
+/** Schema for error response from apps.permissions.scopes.list method */
 export type AppsPermissionsScopesListerrorschema1 = {
+  /** Note: PHP callstack is only visible in dev/qa */
   callstack?: string;
   error: AppsPermissionsInfoErrorEnum;
-  ok: "False";
+  ok: boolean;
 };
 
 export const appsPermissionsScopesListerrorschema1Schema: Schema<AppsPermissionsScopesListerrorschema1> =
   s.object<AppsPermissionsScopesListerrorschema1>({
     callstack: s.optional(s.string()),
     error: appsPermissionsInfoErrorEnumSchema,
-    ok: s.literal("False"),
+    ok: s.boolean(),
   });

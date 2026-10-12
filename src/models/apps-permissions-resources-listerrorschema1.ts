@@ -5,15 +5,17 @@ import {
   type AppsPermissionsResourcesListErrorEnum,
 } from "./apps-permissions-resources-list-error-enum.js";
 
+/** Schema for error response from apps.permissions.resources.list method */
 export type AppsPermissionsResourcesListerrorschema1 = {
+  /** Note: PHP callstack is only visible in dev/qa */
   callstack?: string;
   error: AppsPermissionsResourcesListErrorEnum;
-  ok: "False";
+  ok: boolean;
 };
 
 export const appsPermissionsResourcesListerrorschema1Schema: Schema<AppsPermissionsResourcesListerrorschema1> =
   s.object<AppsPermissionsResourcesListerrorschema1>({
     callstack: s.optional(s.string()),
     error: appsPermissionsResourcesListErrorEnumSchema,
-    ok: s.literal("False"),
+    ok: s.boolean(),
   });

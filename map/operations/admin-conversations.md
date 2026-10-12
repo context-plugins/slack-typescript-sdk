@@ -4,7 +4,7 @@
 
 Accessor: `client.adminConversations` · Source: `src/resources/admin-conversations.ts` · 13 operations · Request and error types: namespace `AdminConversations`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `slack-web-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `slack-web-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### adminConversationsArchive
 
@@ -12,9 +12,10 @@ Accessor: `client.adminConversations` · Source: `src/resources/admin-conversati
 - **Wire**: `POST /admin.conversations.archive`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `AdminConversationsArchiveschema`
-- **Error**: `AdminConversations.AdminConversationsArchiveError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"adminConversationsArchiveerrorschema1"` [400–599] `AdminConversationsArchiveerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `AdminConversations.AdminConversationsArchiveError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"adminConversationsArchiveerrorschema1"` [default — any status no arm above covers] `AdminConversationsArchiveerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `AdminConversationsArchiveerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `AdminConversations.AdminConversationsArchiveRequest` (3):
 
@@ -36,9 +37,10 @@ Accessor: `client.adminConversations` · Source: `src/resources/admin-conversati
 - **Wire**: `POST /admin.conversations.convertToPrivate`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `AdminConversationsConvertToPrivateschema`
-- **Error**: `AdminConversations.AdminConversationsConvertToPrivateError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"adminConversationsConvertToPrivateerrorschema1"` [400–599] `AdminConversationsConvertToPrivateerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `AdminConversations.AdminConversationsConvertToPrivateError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"adminConversationsConvertToPrivateerrorschema1"` [default — any status no arm above covers] `AdminConversationsConvertToPrivateerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `AdminConversationsConvertToPrivateerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `AdminConversations.AdminConversationsConvertToPrivateRequest` (3):
 
@@ -60,9 +62,10 @@ Accessor: `client.adminConversations` · Source: `src/resources/admin-conversati
 - **Wire**: `POST /admin.conversations.create`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `AdminConversationsCreateschema`
-- **Error**: `AdminConversations.AdminConversationsCreateError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"adminConversationsCreateerrorschema1"` [400–599] `AdminConversationsCreateerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `AdminConversations.AdminConversationsCreateError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"adminConversationsCreateerrorschema1"` [default — any status no arm above covers] `AdminConversationsCreateerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `AdminConversationsCreateerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `AdminConversations.AdminConversationsCreateRequest` (7):
 
@@ -88,9 +91,10 @@ Accessor: `client.adminConversations` · Source: `src/resources/admin-conversati
 - **Wire**: `POST /admin.conversations.delete`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `AdminConversationsDeleteschema`
-- **Error**: `AdminConversations.AdminConversationsDeleteError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"adminConversationsDeleteerrorschema1"` [400–599] `AdminConversationsDeleteerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `AdminConversations.AdminConversationsDeleteError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"adminConversationsDeleteerrorschema1"` [default — any status no arm above covers] `AdminConversationsDeleteerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `AdminConversationsDeleteerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `AdminConversations.AdminConversationsDeleteRequest` (3):
 
@@ -112,9 +116,10 @@ Accessor: `client.adminConversations` · Source: `src/resources/admin-conversati
 - **Wire**: `POST /admin.conversations.disconnectShared`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `AdminConversationsRenameschema`
-- **Error**: `AdminConversations.AdminConversationsDisconnectSharedError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"adminConversationsDisconnectSharederrorschema1"` [400–599] `AdminConversationsDisconnectSharederrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `AdminConversations.AdminConversationsDisconnectSharedError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"adminConversationsDisconnectSharederrorschema1"` [default — any status no arm above covers] `AdminConversationsDisconnectSharederrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `AdminConversationsDisconnectSharederrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `AdminConversations.AdminConversationsDisconnectSharedRequest` (4):
 
@@ -138,8 +143,8 @@ Accessor: `client.adminConversations` · Source: `src/resources/admin-conversati
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `AdminConversationsGetConversationPrefsschema`
-- **Error**: `AdminConversations.AdminConversationsGetConversationPrefsError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"adminConversationsUnarchiveerrorschema1"` [400–599] `AdminConversationsUnarchiveerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `AdminConversations.AdminConversationsGetConversationPrefsError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"adminConversationsUnarchiveerrorschema1"` [default — any status no arm above covers] `AdminConversationsUnarchiveerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `AdminConversationsUnarchiveerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `AdminConversations.AdminConversationsGetConversationPrefsRequest` (3):
 
@@ -162,8 +167,8 @@ Accessor: `client.adminConversations` · Source: `src/resources/admin-conversati
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `AdminConversationsGetTeamsschema`
-- **Error**: `AdminConversations.AdminConversationsGetTeamsError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"adminConversationsGetTeamserrorschema1"` [400–599] `AdminConversationsGetTeamserrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `AdminConversations.AdminConversationsGetTeamsError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"adminConversationsGetTeamserrorschema1"` [default — any status no arm above covers] `AdminConversationsGetTeamserrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `AdminConversationsGetTeamserrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `AdminConversations.AdminConversationsGetTeamsRequest` (5):
 
@@ -187,9 +192,10 @@ Accessor: `client.adminConversations` · Source: `src/resources/admin-conversati
 - **Wire**: `POST /admin.conversations.invite`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `AdminConversationsInviteschema`
-- **Error**: `AdminConversations.AdminConversationsInviteError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"adminConversationsInviteerrorschema1"` [400–599] `AdminConversationsInviteerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `AdminConversations.AdminConversationsInviteError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"adminConversationsInviteerrorschema1"` [default — any status no arm above covers] `AdminConversationsInviteerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `AdminConversationsInviteerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `AdminConversations.AdminConversationsInviteRequest` (4):
 
@@ -212,9 +218,10 @@ Accessor: `client.adminConversations` · Source: `src/resources/admin-conversati
 - **Wire**: `POST /admin.conversations.rename`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `AdminConversationsRenameschema1`
-- **Error**: `AdminConversations.AdminConversationsRenameError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"adminConversationsUnarchiveerrorschema21"` [400–599] `AdminConversationsUnarchiveerrorschema21` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `AdminConversations.AdminConversationsRenameError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"adminConversationsUnarchiveerrorschema21"` [default — any status no arm above covers] `AdminConversationsUnarchiveerrorschema21` · `"undeclared"` [a `default`-matched body that did not fit `AdminConversationsUnarchiveerrorschema21`] `rawBody: ArrayBuffer`
 
 **Fields** — `AdminConversations.AdminConversationsRenameRequest` (4):
 
@@ -238,8 +245,8 @@ Accessor: `client.adminConversations` · Source: `src/resources/admin-conversati
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `AdminConversationsSearchschema`
-- **Error**: `AdminConversations.AdminConversationsSearchError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"adminConversationsSearcherrorschema1"` [400–599] `AdminConversationsSearcherrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `AdminConversations.AdminConversationsSearchError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"adminConversationsSearcherrorschema1"` [default — any status no arm above covers] `AdminConversationsSearcherrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `AdminConversationsSearcherrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `AdminConversations.AdminConversationsSearchRequest` (9):
 
@@ -267,9 +274,10 @@ Accessor: `client.adminConversations` · Source: `src/resources/admin-conversati
 - **Wire**: `POST /admin.conversations.setConversationPrefs`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `AdminConversationsSetConversationPrefsschema`
-- **Error**: `AdminConversations.AdminConversationsSetConversationPrefsError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"adminConversationsSetConversationPrefserrorschema1"` [400–599] `AdminConversationsSetConversationPrefserrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `AdminConversations.AdminConversationsSetConversationPrefsError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"adminConversationsSetConversationPrefserrorschema1"` [default — any status no arm above covers] `AdminConversationsSetConversationPrefserrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `AdminConversationsSetConversationPrefserrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `AdminConversations.AdminConversationsSetConversationPrefsRequest` (4):
 
@@ -292,9 +300,10 @@ Accessor: `client.adminConversations` · Source: `src/resources/admin-conversati
 - **Wire**: `POST /admin.conversations.setTeams`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Defaultsuccesstemplate`
-- **Error**: `AdminConversations.AdminConversationsSetTeamsError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"defaulterrortemplate1"` [400–599] `Defaulterrortemplate1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `AdminConversations.AdminConversationsSetTeamsError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"defaulterrortemplate1"` [default — any status no arm above covers] `Defaulterrortemplate1` · `"undeclared"` [a `default`-matched body that did not fit `Defaulterrortemplate1`] `rawBody: ArrayBuffer`
 
 **Fields** — `AdminConversations.AdminConversationsSetTeamsRequest` (6):
 
@@ -319,9 +328,10 @@ Accessor: `client.adminConversations` · Source: `src/resources/admin-conversati
 - **Wire**: `POST /admin.conversations.unarchive`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `AdminConversationsUnarchiveschema`
-- **Error**: `AdminConversations.AdminConversationsUnarchiveError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"adminConversationsUnarchiveerrorschema31"` [400–599] `AdminConversationsUnarchiveerrorschema31` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `AdminConversations.AdminConversationsUnarchiveError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"adminConversationsUnarchiveerrorschema31"` [default — any status no arm above covers] `AdminConversationsUnarchiveerrorschema31` · `"undeclared"` [a `default`-matched body that did not fit `AdminConversationsUnarchiveerrorschema31`] `rawBody: ArrayBuffer`
 
 **Fields** — `AdminConversations.AdminConversationsUnarchiveRequest` (3):
 

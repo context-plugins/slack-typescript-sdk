@@ -5,11 +5,13 @@ import {
   type ConversationsRepliesErrorEnum,
 } from "./conversations-replies-error-enum.js";
 
+/** Schema for error response from conversations.replies method */
 export type ConversationsReplieserrorschema1Error = {
+  /** Note: PHP callstack is only visible in dev/qa */
   callstack?: string;
   error: ConversationsRepliesErrorEnum;
   needed?: string;
-  ok: "False";
+  ok: boolean;
   provided?: string;
 };
 
@@ -18,6 +20,6 @@ export const conversationsReplieserrorschema1ErrorSchema: Schema<ConversationsRe
     callstack: s.optional(s.string()),
     error: conversationsRepliesErrorEnumSchema,
     needed: s.optional(s.string()),
-    ok: s.literal("False"),
+    ok: s.boolean(),
     provided: s.optional(s.string()),
   });

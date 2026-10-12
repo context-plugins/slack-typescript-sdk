@@ -1,8 +1,8 @@
 import type { AuthSchemes } from "../auth-schemes.js";
+import { ApiError, type Declared, type ErrorDecoders, type ErrorPayload } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import type { RawClient } from "../core/raw-client.js";
-import { ResponseError, type Declared, type ErrorDecoders } from "../core/response-error.js";
 import * as s from "../core/validation/index.js";
 import { contentTypeSchema, type ContentType } from "../models/content-type.js";
 import { defaulterrortemplate1Schema, type Defaulterrortemplate1 } from "../models/defaulterrortemplate1.js";
@@ -46,6 +46,21 @@ export class TeamApi {
     this.#auth = auth;
   }
 
+  /**
+   * team_accessLogs
+   *
+   * @remarks
+   * Gets the access logs for the current team.
+   *
+   * @returns This response demonstrates pagination and two access log entries.
+   *
+   * @throws {@link TeamApi.TeamAccessLogsError} when the API answers with an error status — narrow
+   * on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   teamAccessLogs(
     request: TeamApi.TeamAccessLogsRequest,
     options?: RequestOptions,
@@ -53,8 +68,9 @@ export class TeamApi {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/team.accessLogs"),
+        urlTemplate: this.#servers.default("/team.accessLogs"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
         query: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "before", value: request.before, schema: s.optional(s.string()) },
@@ -72,6 +88,21 @@ export class TeamApi {
     );
   }
 
+  /**
+   * team_billableInfo
+   *
+   * @remarks
+   * Gets billable users information for the current team.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link TeamApi.TeamBillableInfoError} when the API answers with an error status —
+   * narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   teamBillableInfo(
     request: TeamApi.TeamBillableInfoRequest,
     options?: RequestOptions,
@@ -79,8 +110,9 @@ export class TeamApi {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/team.billableInfo"),
+        urlTemplate: this.#servers.default("/team.billableInfo"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
         query: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "user", value: request.user, schema: s.optional(s.string()) },
@@ -96,6 +128,21 @@ export class TeamApi {
     );
   }
 
+  /**
+   * team_info
+   *
+   * @remarks
+   * Gets information about the current team.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link TeamApi.TeamInfoError} when the API answers with an error status — narrow on
+   * `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   teamInfo(
     request: TeamApi.TeamInfoRequest,
     options?: RequestOptions,
@@ -103,8 +150,9 @@ export class TeamApi {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/team.info"),
+        urlTemplate: this.#servers.default("/team.info"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
         query: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "team", value: request.team, schema: s.optional(s.string()) },
@@ -120,6 +168,21 @@ export class TeamApi {
     );
   }
 
+  /**
+   * team_integrationLogs
+   *
+   * @remarks
+   * Gets the integration logs for the current team.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link TeamApi.TeamIntegrationLogsError} when the API answers with an error status —
+   * narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   teamIntegrationLogs(
     request: TeamApi.TeamIntegrationLogsRequest,
     options?: RequestOptions,
@@ -127,8 +190,9 @@ export class TeamApi {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/team.integrationLogs"),
+        urlTemplate: this.#servers.default("/team.integrationLogs"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
         query: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "app_id", value: request.appId, schema: s.optional(s.string()) },
@@ -149,6 +213,21 @@ export class TeamApi {
     );
   }
 
+  /**
+   * team_profile_get
+   *
+   * @remarks
+   * Retrieve a team's profile.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link TeamApi.TeamProfileGetError} when the API answers with an error status — narrow
+   * on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   teamProfileGet(
     request: TeamApi.TeamProfileGetRequest,
     options?: RequestOptions,
@@ -156,8 +235,9 @@ export class TeamApi {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/team.profile.get"),
+        urlTemplate: this.#servers.default("/team.profile.get"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
         query: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "visibility", value: request.visibility, schema: s.optional(s.string()) },
@@ -176,19 +256,23 @@ export class TeamApi {
 
 export namespace TeamApi {
   export type TeamAccessLogsRequest = {
+    /** Authentication token. Requires scope: `admin` */
     token: string;
+    /** End of time range of logs to include in results (inclusive). */
     before?: string;
     count?: string;
     page?: string;
     contentType: ContentType;
   };
 
-  export class TeamAccessLogsError extends ResponseError<
-    Declared<"teamAccessLogserrorschema1", TeamAccessLogserrorschema1>
-  > {
+  export class TeamAccessLogsError extends ApiError {
+    declare readonly payload: ErrorPayload<
+      Declared<"teamAccessLogserrorschema1", TeamAccessLogserrorschema1>
+    >;
+
     static readonly errors: ErrorDecoders<TeamAccessLogsError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "teamAccessLogserrorschema1",
         decode: { kind: "json", schema: teamAccessLogserrorschema1Schema },
       },
@@ -196,17 +280,19 @@ export namespace TeamApi {
   }
 
   export type TeamBillableInfoRequest = {
+    /** Authentication token. Requires scope: `admin` */
     token: string;
+    /** A user to retrieve the billable information for. Defaults to all users. */
     user?: string;
     contentType: ContentType;
   };
 
-  export class TeamBillableInfoError extends ResponseError<
-    Declared<"defaulterrortemplate1", Defaulterrortemplate1>
-  > {
+  export class TeamBillableInfoError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
+
     static readonly errors: ErrorDecoders<TeamBillableInfoError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "defaulterrortemplate1",
         decode: { kind: "json", schema: defaulterrortemplate1Schema },
       },
@@ -214,15 +300,22 @@ export namespace TeamApi {
   }
 
   export type TeamInfoRequest = {
+    /** Authentication token. Requires scope: `team:read` */
     token: string;
+    /**
+     * Team to get info on, if omitted, will return information about the current team. Will only
+     * return team that the authenticated token is allowed to see through external shared channels
+     */
     team?: string;
     contentType: ContentType;
   };
 
-  export class TeamInfoError extends ResponseError<Declared<"teamInfoerrorschema1", TeamInfoerrorschema1>> {
+  export class TeamInfoError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"teamInfoerrorschema1", TeamInfoerrorschema1>>;
+
     static readonly errors: ErrorDecoders<TeamInfoError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "teamInfoerrorschema1",
         decode: { kind: "json", schema: teamInfoerrorschema1Schema },
       },
@@ -230,22 +323,29 @@ export namespace TeamApi {
   }
 
   export type TeamIntegrationLogsRequest = {
+    /** Authentication token. Requires scope: `admin` */
     token: string;
+    /** Filter logs to this Slack app. Defaults to all logs. */
     appId?: string;
+    /** Filter logs with this change type. Defaults to all logs. */
     changeType?: string;
     count?: string;
     page?: string;
+    /** Filter logs to this service. Defaults to all logs. */
     serviceId?: string;
+    /** Filter logs generated by this user’s actions. Defaults to all logs. */
     user?: string;
     contentType: ContentType;
   };
 
-  export class TeamIntegrationLogsError extends ResponseError<
-    Declared<"teamIntegrationLogserrorschema1", TeamIntegrationLogserrorschema1>
-  > {
+  export class TeamIntegrationLogsError extends ApiError {
+    declare readonly payload: ErrorPayload<
+      Declared<"teamIntegrationLogserrorschema1", TeamIntegrationLogserrorschema1>
+    >;
+
     static readonly errors: ErrorDecoders<TeamIntegrationLogsError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "teamIntegrationLogserrorschema1",
         decode: { kind: "json", schema: teamIntegrationLogserrorschema1Schema },
       },
@@ -253,17 +353,21 @@ export namespace TeamApi {
   }
 
   export type TeamProfileGetRequest = {
+    /** Authentication token. Requires scope: `users.profile:read` */
     token: string;
+    /** Filter by visibility. */
     visibility?: string;
     contentType: ContentType;
   };
 
-  export class TeamProfileGetError extends ResponseError<
-    Declared<"teamProfileGeterrorschema1", TeamProfileGeterrorschema1>
-  > {
+  export class TeamProfileGetError extends ApiError {
+    declare readonly payload: ErrorPayload<
+      Declared<"teamProfileGeterrorschema1", TeamProfileGeterrorschema1>
+    >;
+
     static readonly errors: ErrorDecoders<TeamProfileGetError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "teamProfileGeterrorschema1",
         decode: { kind: "json", schema: teamProfileGeterrorschema1Schema },
       },

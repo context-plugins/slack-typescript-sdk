@@ -11,9 +11,9 @@ export type ScheduledMessage = {
 
 export const scheduledMessageSchema: Schema<ScheduledMessage> = s.object<ScheduledMessage>({
   channelId: s.string(),
-  dateCreated: s.number(),
+  dateCreated: s.int(),
   id: s.string(),
-  postAt: s.number(),
+  postAt: s.int(),
   text: s.optional(s.string()),
   _keysMap: {
     channelId: "channel_id",

@@ -1,18 +1,19 @@
 import * as s from "../core/validation/index.js";
 import type { Schema } from "../core/validation/schema.js";
 
+/** Schema for successful response from dnd.setSnooze method */
 export type DndSetSnoozeschema = {
-  ok: "True";
+  ok: boolean;
   snoozeEnabled: boolean;
   snoozeEndtime: number;
   snoozeRemaining: number;
 };
 
 export const dndSetSnoozeschemaSchema: Schema<DndSetSnoozeschema> = s.object<DndSetSnoozeschema>({
-  ok: s.literal("True"),
+  ok: s.boolean(),
   snoozeEnabled: s.boolean(),
-  snoozeEndtime: s.number(),
-  snoozeRemaining: s.number(),
+  snoozeEndtime: s.int(),
+  snoozeRemaining: s.int(),
   _keysMap: {
     snoozeEnabled: "snooze_enabled",
     snoozeEndtime: "snooze_endtime",

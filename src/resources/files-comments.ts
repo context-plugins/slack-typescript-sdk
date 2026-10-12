@@ -1,8 +1,9 @@
 import type { AuthSchemes } from "../auth-schemes.js";
+import { ApiError, type Declared, type ErrorDecoders, type ErrorPayload } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import type { RawClient } from "../core/raw-client.js";
-import { ResponseError, type Declared, type ErrorDecoders } from "../core/response-error.js";
+import { uuid } from "../core/uuid.js";
 import * as s from "../core/validation/index.js";
 import { contentTypeSchema, type ContentType } from "../models/content-type.js";
 import {
@@ -26,6 +27,21 @@ export class FilesComments {
     this.#auth = auth;
   }
 
+  /**
+   * files_comments_delete
+   *
+   * @remarks
+   * Deletes an existing comment on a file.
+   *
+   * @returns Standard success response is very simple
+   *
+   * @throws {@link FilesComments.FilesCommentsDeleteError} when the API answers with an error
+   * status — narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   filesCommentsDelete(
     request: FilesComments.FilesCommentsDeleteRequest,
     options?: RequestOptions,
@@ -33,11 +49,14 @@ export class FilesComments {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/files.comments.delete"),
+        urlTemplate: this.#servers.default("/files.comments.delete"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
           { name: "token", value: request.token, schema: s.optional(s.string()) },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "formUrlEncoded",
@@ -59,17 +78,22 @@ export class FilesComments {
 export namespace FilesComments {
   export type FilesCommentsDeleteRequest = {
     contentType: ContentType;
+    /** Authentication token. Requires scope: `files:write:user` */
     token?: string;
+    /** File to delete a comment from. */
     file?: string;
+    /** The comment to delete. */
     id?: string;
   };
 
-  export class FilesCommentsDeleteError extends ResponseError<
-    Declared<"filesCommentsDeleteerrorschema1", FilesCommentsDeleteerrorschema1>
-  > {
+  export class FilesCommentsDeleteError extends ApiError {
+    declare readonly payload: ErrorPayload<
+      Declared<"filesCommentsDeleteerrorschema1", FilesCommentsDeleteerrorschema1>
+    >;
+
     static readonly errors: ErrorDecoders<FilesCommentsDeleteError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "filesCommentsDeleteerrorschema1",
         decode: { kind: "json", schema: filesCommentsDeleteerrorschema1Schema },
       },

@@ -5,13 +5,14 @@ import {
   type AdminConversationsInviteErrorEnum,
 } from "./admin-conversations-invite-error-enum.js";
 
+/** Schema for error response from admin.conversations.invite */
 export type AdminConversationsInviteerrorschema1Error = {
   error: AdminConversationsInviteErrorEnum;
-  ok: "False";
+  ok: boolean;
 };
 
 export const adminConversationsInviteerrorschema1ErrorSchema: Schema<AdminConversationsInviteerrorschema1Error> =
   s.object<AdminConversationsInviteerrorschema1Error>({
     error: adminConversationsInviteErrorEnumSchema,
-    ok: s.literal("False"),
+    ok: s.boolean(),
   });

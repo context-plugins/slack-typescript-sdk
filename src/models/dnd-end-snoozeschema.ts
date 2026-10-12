@@ -1,19 +1,20 @@
 import * as s from "../core/validation/index.js";
 import type { Schema } from "../core/validation/schema.js";
 
+/** Schema for successful response from dnd.endSnooze method */
 export type DndEndSnoozeschema = {
   dndEnabled: boolean;
   nextDndEndTs: number;
   nextDndStartTs: number;
-  ok: "True";
+  ok: boolean;
   snoozeEnabled: boolean;
 };
 
 export const dndEndSnoozeschemaSchema: Schema<DndEndSnoozeschema> = s.object<DndEndSnoozeschema>({
   dndEnabled: s.boolean(),
-  nextDndEndTs: s.number(),
-  nextDndStartTs: s.number(),
-  ok: s.literal("True"),
+  nextDndEndTs: s.int(),
+  nextDndStartTs: s.int(),
+  ok: s.boolean(),
   snoozeEnabled: s.boolean(),
   _keysMap: {
     dndEnabled: "dnd_enabled",

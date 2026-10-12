@@ -9,7 +9,7 @@ export type Topic = {
 
 export const topicSchema: Schema<Topic> = s.object<Topic>({
   creator: s.string(),
-  lastSet: s.number(),
+  lastSet: s.int(),
   value: s.string(),
   _keysMap: {
     lastSet: "last_set",

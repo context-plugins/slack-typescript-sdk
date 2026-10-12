@@ -3,15 +3,16 @@ import type { Schema } from "../core/validation/schema.js";
 import { responseMetadataSchema, type ResponseMetadata } from "./response-metadata.js";
 import { scheduledMessageSchema, type ScheduledMessage } from "./scheduled-message.js";
 
+/** Schema for successful response from chat.scheduledMessages.list method */
 export type ChatScheduledMessagesListschema = {
-  ok: "True";
+  ok: boolean;
   responseMetadata: ResponseMetadata;
   scheduledMessages: ScheduledMessage[];
 };
 
 export const chatScheduledMessagesListschemaSchema: Schema<ChatScheduledMessagesListschema> =
   s.object<ChatScheduledMessagesListschema>({
-    ok: s.literal("True"),
+    ok: s.boolean(),
     responseMetadata: responseMetadataSchema,
     scheduledMessages: s.array(s.lazy(() => scheduledMessageSchema)),
     _keysMap: {

@@ -5,15 +5,17 @@ import {
   type FilesRevokePublicUrlErrorEnum,
 } from "./files-revoke-public-url-error-enum.js";
 
+/** Schema for error response from files.revokePublicURL method */
 export type FilesRevokePublicUrLerrorschema1 = {
+  /** Note: PHP callstack is only visible in dev/qa */
   callstack?: string;
   error: FilesRevokePublicUrlErrorEnum;
-  ok: "False";
+  ok: boolean;
 };
 
 export const filesRevokePublicUrLerrorschema1Schema: Schema<FilesRevokePublicUrLerrorschema1> =
   s.object<FilesRevokePublicUrLerrorschema1>({
     callstack: s.optional(s.string()),
     error: filesRevokePublicUrlErrorEnumSchema,
-    ok: s.literal("False"),
+    ok: s.boolean(),
   });

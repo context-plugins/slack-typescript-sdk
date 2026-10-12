@@ -4,7 +4,7 @@
 
 Accessor: `client.adminEmoji` · Source: `src/resources/admin-emoji.ts` · 5 operations · Request and error types: namespace `AdminEmoji`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `slack-web-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `slack-web-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### adminEmojiAdd
 
@@ -12,9 +12,10 @@ Accessor: `client.adminEmoji` · Source: `src/resources/admin-emoji.ts` · 5 ope
 - **Wire**: `POST /admin.emoji.add`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Defaultsuccesstemplate`
-- **Error**: `AdminEmoji.AdminEmojiAddError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"defaulterrortemplate1"` [400–599] `Defaulterrortemplate1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `AdminEmoji.AdminEmojiAddError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"defaulterrortemplate1"` [default — any status no arm above covers] `Defaulterrortemplate1` · `"undeclared"` [a `default`-matched body that did not fit `Defaulterrortemplate1`] `rawBody: ArrayBuffer`
 
 **Fields** — `AdminEmoji.AdminEmojiAddRequest` (4):
 
@@ -37,9 +38,10 @@ Accessor: `client.adminEmoji` · Source: `src/resources/admin-emoji.ts` · 5 ope
 - **Wire**: `POST /admin.emoji.addAlias`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Defaultsuccesstemplate`
-- **Error**: `AdminEmoji.AdminEmojiAddAliasError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"defaulterrortemplate1"` [400–599] `Defaulterrortemplate1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `AdminEmoji.AdminEmojiAddAliasError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"defaulterrortemplate1"` [default — any status no arm above covers] `Defaulterrortemplate1` · `"undeclared"` [a `default`-matched body that did not fit `Defaulterrortemplate1`] `rawBody: ArrayBuffer`
 
 **Fields** — `AdminEmoji.AdminEmojiAddAliasRequest` (4):
 
@@ -63,8 +65,8 @@ Accessor: `client.adminEmoji` · Source: `src/resources/admin-emoji.ts` · 5 ope
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Defaultsuccesstemplate`
-- **Error**: `AdminEmoji.AdminEmojiListError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"defaulterrortemplate1"` [400–599] `Defaulterrortemplate1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `AdminEmoji.AdminEmojiListError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"defaulterrortemplate1"` [default — any status no arm above covers] `Defaulterrortemplate1` · `"undeclared"` [a `default`-matched body that did not fit `Defaulterrortemplate1`] `rawBody: ArrayBuffer`
 
 **Fields** — `AdminEmoji.AdminEmojiListRequest` (4):
 
@@ -87,9 +89,10 @@ Accessor: `client.adminEmoji` · Source: `src/resources/admin-emoji.ts` · 5 ope
 - **Wire**: `POST /admin.emoji.remove`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Defaultsuccesstemplate`
-- **Error**: `AdminEmoji.AdminEmojiRemoveError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"defaulterrortemplate1"` [400–599] `Defaulterrortemplate1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `AdminEmoji.AdminEmojiRemoveError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"defaulterrortemplate1"` [default — any status no arm above covers] `Defaulterrortemplate1` · `"undeclared"` [a `default`-matched body that did not fit `Defaulterrortemplate1`] `rawBody: ArrayBuffer`
 
 **Fields** — `AdminEmoji.AdminEmojiRemoveRequest` (3):
 
@@ -111,9 +114,10 @@ Accessor: `client.adminEmoji` · Source: `src/resources/admin-emoji.ts` · 5 ope
 - **Wire**: `POST /admin.emoji.rename`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Defaultsuccesstemplate`
-- **Error**: `AdminEmoji.AdminEmojiRenameError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"defaulterrortemplate1"` [400–599] `Defaulterrortemplate1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `AdminEmoji.AdminEmojiRenameError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"defaulterrortemplate1"` [default — any status no arm above covers] `Defaulterrortemplate1` · `"undeclared"` [a `default`-matched body that did not fit `Defaulterrortemplate1`] `rawBody: ArrayBuffer`
 
 **Fields** — `AdminEmoji.AdminEmojiRenameRequest` (4):
 

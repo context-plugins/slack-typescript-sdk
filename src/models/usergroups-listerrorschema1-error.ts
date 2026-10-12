@@ -5,15 +5,17 @@ import {
   type UsergroupsEnableErrorEnum,
 } from "./usergroups-enable-error-enum.js";
 
+/** Schema for error response from usergroups.list method */
 export type UsergroupsListerrorschema1Error = {
+  /** Note: PHP callstack is only visible in dev/qa */
   callstack?: string;
   error: UsergroupsEnableErrorEnum;
-  ok: "False";
+  ok: boolean;
 };
 
 export const usergroupsListerrorschema1ErrorSchema: Schema<UsergroupsListerrorschema1Error> =
   s.object<UsergroupsListerrorschema1Error>({
     callstack: s.optional(s.string()),
     error: usergroupsEnableErrorEnumSchema,
-    ok: s.literal("False"),
+    ok: s.boolean(),
   });

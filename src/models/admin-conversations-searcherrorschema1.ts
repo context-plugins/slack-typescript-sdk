@@ -5,13 +5,14 @@ import {
   type AdminConversationsSearchErrorEnum,
 } from "./admin-conversations-search-error-enum.js";
 
+/** Schema for error response from admin.conversations.search */
 export type AdminConversationsSearcherrorschema1 = {
   error: AdminConversationsSearchErrorEnum;
-  ok: "False";
+  ok: boolean;
 };
 
 export const adminConversationsSearcherrorschema1Schema: Schema<AdminConversationsSearcherrorschema1> =
   s.object<AdminConversationsSearcherrorschema1>({
     error: adminConversationsSearchErrorEnumSchema,
-    ok: s.literal("False"),
+    ok: s.boolean(),
   });

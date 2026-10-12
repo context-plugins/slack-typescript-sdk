@@ -5,15 +5,17 @@ import {
   type MigrationExchangeErrorEnum,
 } from "./migration-exchange-error-enum.js";
 
+/** Schema for error response from migration.exchange method */
 export type MigrationExchangeerrorschema1Error = {
+  /** Note: PHP callstack is only visible in dev/qa */
   callstack?: string;
   error: MigrationExchangeErrorEnum;
-  ok: "False";
+  ok: boolean;
 };
 
 export const migrationExchangeerrorschema1ErrorSchema: Schema<MigrationExchangeerrorschema1Error> =
   s.object<MigrationExchangeerrorschema1Error>({
     callstack: s.optional(s.string()),
     error: migrationExchangeErrorEnumSchema,
-    ok: s.literal("False"),
+    ok: s.boolean(),
   });

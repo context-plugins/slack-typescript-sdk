@@ -4,7 +4,7 @@
 
 Accessor: `client.apps` · Source: `src/resources/apps.ts` · 8 operations · Request and error types: namespace `Apps`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `slack-web-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `slack-web-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### appsEventAuthorizationsList
 
@@ -13,8 +13,8 @@ Accessor: `client.apps` · Source: `src/resources/apps.ts` · 8 operations · Re
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Defaultsuccesstemplate`
-- **Error**: `Apps.AppsEventAuthorizationsListError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"defaulterrortemplate1"` [400–599] `Defaulterrortemplate1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Apps.AppsEventAuthorizationsListError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"defaulterrortemplate1"` [default — any status no arm above covers] `Defaulterrortemplate1` · `"undeclared"` [a `default`-matched body that did not fit `Defaulterrortemplate1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Apps.AppsEventAuthorizationsListRequest` (5):
 
@@ -39,8 +39,8 @@ Accessor: `client.apps` · Source: `src/resources/apps.ts` · 8 operations · Re
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `AppsPermissionsInfoschema`
-- **Error**: `Apps.AppsPermissionsInfoError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"appsPermissionsInfoerrorschema1"` [400–599] `AppsPermissionsInfoerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Apps.AppsPermissionsInfoError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"appsPermissionsInfoerrorschema1"` [default — any status no arm above covers] `AppsPermissionsInfoerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `AppsPermissionsInfoerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Apps.AppsPermissionsInfoRequest` (2):
 
@@ -62,8 +62,8 @@ Accessor: `client.apps` · Source: `src/resources/apps.ts` · 8 operations · Re
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `AppsPermissionsRequestschema`
-- **Error**: `Apps.AppsPermissionsRequestError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"appsPermissionsRequesterrorschema1"` [400–599] `AppsPermissionsRequesterrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Apps.AppsPermissionsRequestError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"appsPermissionsRequesterrorschema1"` [default — any status no arm above covers] `AppsPermissionsRequesterrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `AppsPermissionsRequesterrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Apps.AppsPermissionsRequestRequest` (4):
 
@@ -87,8 +87,8 @@ Accessor: `client.apps` · Source: `src/resources/apps.ts` · 8 operations · Re
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `AppsPermissionsResourcesListsuccessschema`
-- **Error**: `Apps.AppsPermissionsResourcesListError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"appsPermissionsResourcesListerrorschema1"` [400–599] `AppsPermissionsResourcesListerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Apps.AppsPermissionsResourcesListError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"appsPermissionsResourcesListerrorschema1"` [default — any status no arm above covers] `AppsPermissionsResourcesListerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `AppsPermissionsResourcesListerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Apps.AppsPermissionsResourcesListRequest` (4):
 
@@ -112,8 +112,8 @@ Accessor: `client.apps` · Source: `src/resources/apps.ts` · 8 operations · Re
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `ApiPermissionsScopesListsuccessschema`
-- **Error**: `Apps.AppsPermissionsScopesListError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"appsPermissionsScopesListerrorschema1"` [400–599] `AppsPermissionsScopesListerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Apps.AppsPermissionsScopesListError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"appsPermissionsScopesListerrorschema1"` [default — any status no arm above covers] `AppsPermissionsScopesListerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `AppsPermissionsScopesListerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Apps.AppsPermissionsScopesListRequest` (2):
 
@@ -135,8 +135,8 @@ Accessor: `client.apps` · Source: `src/resources/apps.ts` · 8 operations · Re
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Defaultsuccesstemplate`
-- **Error**: `Apps.AppsPermissionsUsersListError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"defaulterrortemplate1"` [400–599] `Defaulterrortemplate1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Apps.AppsPermissionsUsersListError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"defaulterrortemplate1"` [default — any status no arm above covers] `Defaulterrortemplate1` · `"undeclared"` [a `default`-matched body that did not fit `Defaulterrortemplate1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Apps.AppsPermissionsUsersListRequest` (4):
 
@@ -160,8 +160,8 @@ Accessor: `client.apps` · Source: `src/resources/apps.ts` · 8 operations · Re
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Defaultsuccesstemplate`
-- **Error**: `Apps.AppsPermissionsUsersRequestError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"defaulterrortemplate1"` [400–599] `Defaulterrortemplate1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Apps.AppsPermissionsUsersRequestError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"defaulterrortemplate1"` [default — any status no arm above covers] `Defaulterrortemplate1` · `"undeclared"` [a `default`-matched body that did not fit `Defaulterrortemplate1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Apps.AppsPermissionsUsersRequestRequest` (5):
 
@@ -186,8 +186,8 @@ Accessor: `client.apps` · Source: `src/resources/apps.ts` · 8 operations · Re
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `AppsUninstallschema`
-- **Error**: `Apps.AppsUninstallError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"appsUninstallerrorschema1"` [400–599] `AppsUninstallerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Apps.AppsUninstallError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"appsUninstallerrorschema1"` [default — any status no arm above covers] `AppsUninstallerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `AppsUninstallerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Apps.AppsUninstallRequest` (4):
 

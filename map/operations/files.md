@@ -4,7 +4,7 @@
 
 Accessor: `client.files` · Source: `src/resources/files.ts` · 13 operations · Request and error types: namespace `Files`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `slack-web-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `slack-web-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### filesCommentsDelete
 
@@ -12,9 +12,10 @@ Accessor: `client.files` · Source: `src/resources/files.ts` · 13 operations ·
 - **Wire**: `POST /files.comments.delete`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `FilesCommentsDeleteschema`
-- **Error**: `Files.FilesCommentsDeleteError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"filesCommentsDeleteerrorschema1"` [400–599] `FilesCommentsDeleteerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Files.FilesCommentsDeleteError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"filesCommentsDeleteerrorschema1"` [default — any status no arm above covers] `FilesCommentsDeleteerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `FilesCommentsDeleteerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Files.FilesCommentsDeleteRequest` (4):
 
@@ -37,9 +38,10 @@ Accessor: `client.files` · Source: `src/resources/files.ts` · 13 operations ·
 - **Wire**: `POST /files.delete`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `FilesDeleteschema`
-- **Error**: `Files.FilesDeleteError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"filesDeleteerrorschema1"` [400–599] `FilesDeleteerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Files.FilesDeleteError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"filesDeleteerrorschema1"` [default — any status no arm above covers] `FilesDeleteerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `FilesDeleteerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Files.FilesDeleteRequest` (3):
 
@@ -62,8 +64,8 @@ Accessor: `client.files` · Source: `src/resources/files.ts` · 13 operations ·
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `FilesInfoschema`
-- **Error**: `Files.FilesInfoError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"filesInfoerrorschema1"` [400–599] `FilesInfoerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Files.FilesInfoError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"filesInfoerrorschema1"` [default — any status no arm above covers] `FilesInfoerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `FilesInfoerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Files.FilesInfoRequest` (7):
 
@@ -90,8 +92,8 @@ Accessor: `client.files` · Source: `src/resources/files.ts` · 13 operations ·
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `FilesListschema`
-- **Error**: `Files.FilesListError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"filesListerrorschema1"` [400–599] `FilesListerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Files.FilesListError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"filesListerrorschema1"` [default — any status no arm above covers] `FilesListerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `FilesListerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Files.FilesListRequest` (10):
 
@@ -120,9 +122,10 @@ Accessor: `client.files` · Source: `src/resources/files.ts` · 13 operations ·
 - **Wire**: `POST /files.remote.add`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Defaultsuccesstemplate`
-- **Error**: `Files.FilesRemoteAddError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"defaulterrortemplate1"` [400–599] `Defaulterrortemplate1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Files.FilesRemoteAddError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"defaulterrortemplate1"` [default — any status no arm above covers] `Defaulterrortemplate1` · `"undeclared"` [a `default`-matched body that did not fit `Defaulterrortemplate1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Files.FilesRemoteAddRequest` (8):
 
@@ -150,8 +153,8 @@ Accessor: `client.files` · Source: `src/resources/files.ts` · 13 operations ·
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Defaultsuccesstemplate`
-- **Error**: `Files.FilesRemoteInfoError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"defaulterrortemplate1"` [400–599] `Defaulterrortemplate1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Files.FilesRemoteInfoError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"defaulterrortemplate1"` [default — any status no arm above covers] `Defaulterrortemplate1` · `"undeclared"` [a `default`-matched body that did not fit `Defaulterrortemplate1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Files.FilesRemoteInfoRequest` (4):
 
@@ -175,8 +178,8 @@ Accessor: `client.files` · Source: `src/resources/files.ts` · 13 operations ·
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Defaultsuccesstemplate`
-- **Error**: `Files.FilesRemoteListError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"defaulterrortemplate1"` [400–599] `Defaulterrortemplate1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Files.FilesRemoteListError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"defaulterrortemplate1"` [default — any status no arm above covers] `Defaulterrortemplate1` · `"undeclared"` [a `default`-matched body that did not fit `Defaulterrortemplate1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Files.FilesRemoteListRequest` (7):
 
@@ -202,9 +205,10 @@ Accessor: `client.files` · Source: `src/resources/files.ts` · 13 operations ·
 - **Wire**: `POST /files.remote.remove`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Defaultsuccesstemplate`
-- **Error**: `Files.FilesRemoteRemoveError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"defaulterrortemplate1"` [400–599] `Defaulterrortemplate1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Files.FilesRemoteRemoveError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"defaulterrortemplate1"` [default — any status no arm above covers] `Defaulterrortemplate1` · `"undeclared"` [a `default`-matched body that did not fit `Defaulterrortemplate1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Files.FilesRemoteRemoveRequest` (4):
 
@@ -228,8 +232,8 @@ Accessor: `client.files` · Source: `src/resources/files.ts` · 13 operations ·
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Defaultsuccesstemplate`
-- **Error**: `Files.FilesRemoteShareError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"defaulterrortemplate1"` [400–599] `Defaulterrortemplate1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Files.FilesRemoteShareError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"defaulterrortemplate1"` [default — any status no arm above covers] `Defaulterrortemplate1` · `"undeclared"` [a `default`-matched body that did not fit `Defaulterrortemplate1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Files.FilesRemoteShareRequest` (5):
 
@@ -253,9 +257,10 @@ Accessor: `client.files` · Source: `src/resources/files.ts` · 13 operations ·
 - **Wire**: `POST /files.remote.update`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Defaultsuccesstemplate`
-- **Error**: `Files.FilesRemoteUpdateError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"defaulterrortemplate1"` [400–599] `Defaulterrortemplate1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Files.FilesRemoteUpdateError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"defaulterrortemplate1"` [default — any status no arm above covers] `Defaulterrortemplate1` · `"undeclared"` [a `default`-matched body that did not fit `Defaulterrortemplate1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Files.FilesRemoteUpdateRequest` (9):
 
@@ -283,9 +288,10 @@ Accessor: `client.files` · Source: `src/resources/files.ts` · 13 operations ·
 - **Wire**: `POST /files.revokePublicURL`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `FilesRevokePublicUrLschema`
-- **Error**: `Files.FilesRevokePublicUrlError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"filesRevokePublicUrLerrorschema1"` [400–599] `FilesRevokePublicUrLerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Files.FilesRevokePublicUrlError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"filesRevokePublicUrLerrorschema1"` [default — any status no arm above covers] `FilesRevokePublicUrLerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `FilesRevokePublicUrLerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Files.FilesRevokePublicUrlRequest` (3):
 
@@ -307,9 +313,10 @@ Accessor: `client.files` · Source: `src/resources/files.ts` · 13 operations ·
 - **Wire**: `POST /files.sharedPublicURL`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `FilesSharedPublicUrLschema`
-- **Error**: `Files.FilesSharedPublicUrlError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"filesSharedPublicUrLerrorschema1"` [400–599] `FilesSharedPublicUrLerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Files.FilesSharedPublicUrlError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"filesSharedPublicUrLerrorschema1"` [default — any status no arm above covers] `FilesSharedPublicUrLerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `FilesSharedPublicUrLerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Files.FilesSharedPublicUrlRequest` (3):
 
@@ -331,9 +338,10 @@ Accessor: `client.files` · Source: `src/resources/files.ts` · 13 operations ·
 - **Wire**: `POST /files.upload`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `FilesUploadschema`
-- **Error**: `Files.FilesUploadError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"filesUploaderrorschema1"` [400–599] `FilesUploaderrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Files.FilesUploadError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"filesUploaderrorschema1"` [default — any status no arm above covers] `FilesUploaderrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `FilesUploaderrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Files.FilesUploadRequest` (10):
 

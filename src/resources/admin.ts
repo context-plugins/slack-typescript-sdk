@@ -1,8 +1,9 @@
 import type { AuthSchemes } from "../auth-schemes.js";
+import { ApiError, type Declared, type ErrorDecoders, type ErrorPayload } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import type { RawClient } from "../core/raw-client.js";
-import { ResponseError, type Declared, type ErrorDecoders } from "../core/response-error.js";
+import { uuid } from "../core/uuid.js";
 import * as s from "../core/validation/index.js";
 import {
   adminConversationsArchiveerrorschema1Schema,
@@ -119,6 +120,21 @@ export class Admin {
     this.#auth = auth;
   }
 
+  /**
+   * admin_apps_approve
+   *
+   * @remarks
+   * Approve an app for installation on a workspace.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Admin.AdminAppsApproveError} when the API answers with an error status — narrow
+   * on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminAppsApprove(
     request: Admin.AdminAppsApproveRequest,
     options?: RequestOptions,
@@ -126,11 +142,14 @@ export class Admin {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/admin.apps.approve"),
+        urlTemplate: this.#servers.default("/admin.apps.approve"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "formUrlEncoded",
@@ -149,6 +168,21 @@ export class Admin {
     );
   }
 
+  /**
+   * admin_apps_approved_list
+   *
+   * @remarks
+   * List approved apps for an org or workspace.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Admin.AdminAppsApprovedListError} when the API answers with an error status —
+   * narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminAppsApprovedList(
     request: Admin.AdminAppsApprovedListRequest,
     options?: RequestOptions,
@@ -156,11 +190,12 @@ export class Admin {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/admin.apps.approved.list"),
+        urlTemplate: this.#servers.default("/admin.apps.approved.list"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
         query: [
           { name: "token", value: request.token, schema: s.string() },
-          { name: "limit", value: request.limit, schema: s.optional(s.number()) },
+          { name: "limit", value: request.limit, schema: s.optional(s.int()) },
           { name: "cursor", value: request.cursor, schema: s.optional(s.string()) },
           { name: "team_id", value: request.teamId, schema: s.optional(s.string()) },
           { name: "enterprise_id", value: request.enterpriseId, schema: s.optional(s.string()) },
@@ -176,6 +211,21 @@ export class Admin {
     );
   }
 
+  /**
+   * admin_apps_requests_list
+   *
+   * @remarks
+   * List app requests for a team/workspace.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Admin.AdminAppsRequestsListError} when the API answers with an error status —
+   * narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminAppsRequestsList(
     request: Admin.AdminAppsRequestsListRequest,
     options?: RequestOptions,
@@ -183,11 +233,12 @@ export class Admin {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/admin.apps.requests.list"),
+        urlTemplate: this.#servers.default("/admin.apps.requests.list"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
         query: [
           { name: "token", value: request.token, schema: s.string() },
-          { name: "limit", value: request.limit, schema: s.optional(s.number()) },
+          { name: "limit", value: request.limit, schema: s.optional(s.int()) },
           { name: "cursor", value: request.cursor, schema: s.optional(s.string()) },
           { name: "team_id", value: request.teamId, schema: s.optional(s.string()) },
         ],
@@ -202,6 +253,21 @@ export class Admin {
     );
   }
 
+  /**
+   * admin_apps_restrict
+   *
+   * @remarks
+   * Restrict an app for installation on a workspace.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Admin.AdminAppsRestrictError} when the API answers with an error status — narrow
+   * on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminAppsRestrict(
     request: Admin.AdminAppsRestrictRequest,
     options?: RequestOptions,
@@ -209,11 +275,14 @@ export class Admin {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/admin.apps.restrict"),
+        urlTemplate: this.#servers.default("/admin.apps.restrict"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "formUrlEncoded",
@@ -232,6 +301,21 @@ export class Admin {
     );
   }
 
+  /**
+   * admin_apps_restricted_list
+   *
+   * @remarks
+   * List restricted apps for an org or workspace.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Admin.AdminAppsRestrictedListError} when the API answers with an error status —
+   * narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminAppsRestrictedList(
     request: Admin.AdminAppsRestrictedListRequest,
     options?: RequestOptions,
@@ -239,11 +323,12 @@ export class Admin {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/admin.apps.restricted.list"),
+        urlTemplate: this.#servers.default("/admin.apps.restricted.list"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
         query: [
           { name: "token", value: request.token, schema: s.string() },
-          { name: "limit", value: request.limit, schema: s.optional(s.number()) },
+          { name: "limit", value: request.limit, schema: s.optional(s.int()) },
           { name: "cursor", value: request.cursor, schema: s.optional(s.string()) },
           { name: "team_id", value: request.teamId, schema: s.optional(s.string()) },
           { name: "enterprise_id", value: request.enterpriseId, schema: s.optional(s.string()) },
@@ -259,6 +344,21 @@ export class Admin {
     );
   }
 
+  /**
+   * admin_conversations_archive
+   *
+   * @remarks
+   * Archive a public or private channel.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Admin.AdminConversationsArchiveError} when the API answers with an error status
+   * — narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminConversationsArchive(
     request: Admin.AdminConversationsArchiveRequest,
     options?: RequestOptions,
@@ -266,11 +366,14 @@ export class Admin {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/admin.conversations.archive"),
+        urlTemplate: this.#servers.default("/admin.conversations.archive"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "formUrlEncoded",
@@ -285,6 +388,21 @@ export class Admin {
     );
   }
 
+  /**
+   * admin_conversations_convertToPrivate
+   *
+   * @remarks
+   * Convert a public channel to a private channel.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Admin.AdminConversationsConvertToPrivateError} when the API answers with an
+   * error status — narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminConversationsConvertToPrivate(
     request: Admin.AdminConversationsConvertToPrivateRequest,
     options?: RequestOptions,
@@ -292,11 +410,14 @@ export class Admin {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/admin.conversations.convertToPrivate"),
+        urlTemplate: this.#servers.default("/admin.conversations.convertToPrivate"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "formUrlEncoded",
@@ -311,6 +432,21 @@ export class Admin {
     );
   }
 
+  /**
+   * admin_conversations_create
+   *
+   * @remarks
+   * Create a public or private channel-based conversation.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Admin.AdminConversationsCreateError} when the API answers with an error status —
+   * narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminConversationsCreate(
     request: Admin.AdminConversationsCreateRequest,
     options?: RequestOptions,
@@ -318,11 +454,14 @@ export class Admin {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/admin.conversations.create"),
+        urlTemplate: this.#servers.default("/admin.conversations.create"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "formUrlEncoded",
@@ -343,6 +482,21 @@ export class Admin {
     );
   }
 
+  /**
+   * admin_conversations_delete
+   *
+   * @remarks
+   * Delete a public or private channel.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Admin.AdminConversationsDeleteError} when the API answers with an error status —
+   * narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminConversationsDelete(
     request: Admin.AdminConversationsDeleteRequest,
     options?: RequestOptions,
@@ -350,11 +504,14 @@ export class Admin {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/admin.conversations.delete"),
+        urlTemplate: this.#servers.default("/admin.conversations.delete"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "formUrlEncoded",
@@ -369,6 +526,21 @@ export class Admin {
     );
   }
 
+  /**
+   * admin_conversations_disconnectShared
+   *
+   * @remarks
+   * Disconnect a connected channel from one or more workspaces.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Admin.AdminConversationsDisconnectSharedError} when the API answers with an
+   * error status — narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminConversationsDisconnectShared(
     request: Admin.AdminConversationsDisconnectSharedRequest,
     options?: RequestOptions,
@@ -376,11 +548,14 @@ export class Admin {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/admin.conversations.disconnectShared"),
+        urlTemplate: this.#servers.default("/admin.conversations.disconnectShared"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "formUrlEncoded",
@@ -398,6 +573,22 @@ export class Admin {
     );
   }
 
+  /**
+   * admin_conversations_ekm_listOriginalConnectedChannelInfo
+   *
+   * @remarks
+   * List all disconnected channels—i.e., channels that were once connected to other workspaces and
+   * then disconnected—and the corresponding original channel IDs for key revocation with EKM.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Admin.AdminConversationsEkmListOriginalConnectedChannelInfoError} when the API
+   * answers with an error status — narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminConversationsEkmListOriginalConnectedChannelInfo(
     request: Admin.AdminConversationsEkmListOriginalConnectedChannelInfoRequest,
     options?: RequestOptions,
@@ -405,13 +596,14 @@ export class Admin {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/admin.conversations.ekm.listOriginalConnectedChannelInfo"),
+        urlTemplate: this.#servers.default("/admin.conversations.ekm.listOriginalConnectedChannelInfo"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
         query: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "channel_ids", value: request.channelIds, schema: s.optional(s.string()) },
           { name: "team_ids", value: request.teamIds, schema: s.optional(s.string()) },
-          { name: "limit", value: request.limit, schema: s.optional(s.number()) },
+          { name: "limit", value: request.limit, schema: s.optional(s.int()) },
           { name: "cursor", value: request.cursor, schema: s.optional(s.string()) },
         ],
         headers: [{ name: "Content-Type", value: request.contentType, schema: contentTypeSchema }],
@@ -425,6 +617,21 @@ export class Admin {
     );
   }
 
+  /**
+   * admin_conversations_getConversationPrefs
+   *
+   * @remarks
+   * Get conversation preferences for a public or private channel.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Admin.AdminConversationsGetConversationPrefsError} when the API answers with an
+   * error status — narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminConversationsGetConversationPrefs(
     request: Admin.AdminConversationsGetConversationPrefsRequest,
     options?: RequestOptions,
@@ -435,8 +642,9 @@ export class Admin {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/admin.conversations.getConversationPrefs"),
+        urlTemplate: this.#servers.default("/admin.conversations.getConversationPrefs"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
         query: [{ name: "channel_id", value: request.channelId, schema: s.string() }],
         headers: [
           { name: "token", value: request.token, schema: s.string() },
@@ -452,6 +660,22 @@ export class Admin {
     );
   }
 
+  /**
+   * admin_conversations_getTeams
+   *
+   * @remarks
+   * Get all the workspaces a given public or private channel is connected to within this Enterprise
+   * org.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Admin.AdminConversationsGetTeamsError} when the API answers with an error status
+   * — narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminConversationsGetTeams(
     request: Admin.AdminConversationsGetTeamsRequest,
     options?: RequestOptions,
@@ -459,12 +683,13 @@ export class Admin {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/admin.conversations.getTeams"),
+        urlTemplate: this.#servers.default("/admin.conversations.getTeams"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
         query: [
           { name: "channel_id", value: request.channelId, schema: s.string() },
           { name: "cursor", value: request.cursor, schema: s.optional(s.string()) },
-          { name: "limit", value: request.limit, schema: s.optional(s.number()) },
+          { name: "limit", value: request.limit, schema: s.optional(s.int()) },
         ],
         headers: [
           { name: "token", value: request.token, schema: s.string() },
@@ -480,6 +705,21 @@ export class Admin {
     );
   }
 
+  /**
+   * admin_conversations_invite
+   *
+   * @remarks
+   * Invite a user to a public or private channel.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Admin.AdminConversationsInviteError} when the API answers with an error status —
+   * narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminConversationsInvite(
     request: Admin.AdminConversationsInviteRequest,
     options?: RequestOptions,
@@ -487,11 +727,14 @@ export class Admin {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/admin.conversations.invite"),
+        urlTemplate: this.#servers.default("/admin.conversations.invite"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "formUrlEncoded",
@@ -509,6 +752,21 @@ export class Admin {
     );
   }
 
+  /**
+   * admin_conversations_rename
+   *
+   * @remarks
+   * Rename a public or private channel.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Admin.AdminConversationsRenameError} when the API answers with an error status —
+   * narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminConversationsRename(
     request: Admin.AdminConversationsRenameRequest,
     options?: RequestOptions,
@@ -516,11 +774,14 @@ export class Admin {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/admin.conversations.rename"),
+        urlTemplate: this.#servers.default("/admin.conversations.rename"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "formUrlEncoded",
@@ -538,6 +799,21 @@ export class Admin {
     );
   }
 
+  /**
+   * admin_conversations_restrictAccess_addGroup
+   *
+   * @remarks
+   * Add an allowlist of IDP groups for accessing a channel
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Admin.AdminConversationsRestrictAccessAddGroupError} when the API answers with
+   * an error status — narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminConversationsRestrictAccessAddGroup(
     request: Admin.AdminConversationsRestrictAccessAddGroupRequest,
     options?: RequestOptions,
@@ -545,9 +821,14 @@ export class Admin {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/admin.conversations.restrictAccess.addGroup"),
+        urlTemplate: this.#servers.default("/admin.conversations.restrictAccess.addGroup"),
         auth: this.#auth.slackAuth,
-        headers: [{ name: "Content-Type", value: request.contentType, schema: contentTypeSchema }],
+        pathParams: [],
+        query: [],
+        headers: [
+          { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
+        ],
         body: {
           kind: "formUrlEncoded",
           value: [
@@ -566,6 +847,21 @@ export class Admin {
     );
   }
 
+  /**
+   * admin_conversations_restrictAccess_listGroups
+   *
+   * @remarks
+   * List all IDP Groups linked to a channel
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Admin.AdminConversationsRestrictAccessListGroupsError} when the API answers with
+   * an error status — narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminConversationsRestrictAccessListGroups(
     request: Admin.AdminConversationsRestrictAccessListGroupsRequest,
     options?: RequestOptions,
@@ -573,8 +869,9 @@ export class Admin {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/admin.conversations.restrictAccess.listGroups"),
+        urlTemplate: this.#servers.default("/admin.conversations.restrictAccess.listGroups"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
         query: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "channel_id", value: request.channelId, schema: s.string() },
@@ -591,6 +888,21 @@ export class Admin {
     );
   }
 
+  /**
+   * admin_conversations_restrictAccess_removeGroup
+   *
+   * @remarks
+   * Remove a linked IDP group linked from a private channel
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Admin.AdminConversationsRestrictAccessRemoveGroupError} when the API answers
+   * with an error status — narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminConversationsRestrictAccessRemoveGroup(
     request: Admin.AdminConversationsRestrictAccessRemoveGroupRequest,
     options?: RequestOptions,
@@ -598,9 +910,14 @@ export class Admin {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/admin.conversations.restrictAccess.removeGroup"),
+        urlTemplate: this.#servers.default("/admin.conversations.restrictAccess.removeGroup"),
         auth: this.#auth.slackAuth,
-        headers: [{ name: "Content-Type", value: request.contentType, schema: contentTypeSchema }],
+        pathParams: [],
+        query: [],
+        headers: [
+          { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
+        ],
         body: {
           kind: "formUrlEncoded",
           value: [
@@ -619,6 +936,21 @@ export class Admin {
     );
   }
 
+  /**
+   * admin_conversations_search
+   *
+   * @remarks
+   * Search for public or private channels in an Enterprise organization.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Admin.AdminConversationsSearchError} when the API answers with an error status —
+   * narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminConversationsSearch(
     request: Admin.AdminConversationsSearchRequest,
     options?: RequestOptions,
@@ -626,12 +958,13 @@ export class Admin {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/admin.conversations.search"),
+        urlTemplate: this.#servers.default("/admin.conversations.search"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
         query: [
           { name: "team_ids", value: request.teamIds, schema: s.optional(s.string()) },
           { name: "query", value: request.query, schema: s.optional(s.string()) },
-          { name: "limit", value: request.limit, schema: s.optional(s.number()) },
+          { name: "limit", value: request.limit, schema: s.optional(s.int()) },
           { name: "cursor", value: request.cursor, schema: s.optional(s.string()) },
           { name: "search_channel_types", value: request.searchChannelTypes, schema: s.optional(s.string()) },
           { name: "sort", value: request.sort, schema: s.optional(s.string()) },
@@ -651,6 +984,21 @@ export class Admin {
     );
   }
 
+  /**
+   * admin_conversations_setConversationPrefs
+   *
+   * @remarks
+   * Set the posting permissions for a public or private channel.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Admin.AdminConversationsSetConversationPrefsError} when the API answers with an
+   * error status — narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminConversationsSetConversationPrefs(
     request: Admin.AdminConversationsSetConversationPrefsRequest,
     options?: RequestOptions,
@@ -661,11 +1009,14 @@ export class Admin {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/admin.conversations.setConversationPrefs"),
+        urlTemplate: this.#servers.default("/admin.conversations.setConversationPrefs"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "formUrlEncoded",
@@ -683,6 +1034,21 @@ export class Admin {
     );
   }
 
+  /**
+   * admin_conversations_setTeams
+   *
+   * @remarks
+   * Set the workspaces in an Enterprise grid org that connect to a public or private channel.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Admin.AdminConversationsSetTeamsError} when the API answers with an error status
+   * — narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminConversationsSetTeams(
     request: Admin.AdminConversationsSetTeamsRequest,
     options?: RequestOptions,
@@ -690,11 +1056,14 @@ export class Admin {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/admin.conversations.setTeams"),
+        urlTemplate: this.#servers.default("/admin.conversations.setTeams"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "formUrlEncoded",
@@ -714,6 +1083,21 @@ export class Admin {
     );
   }
 
+  /**
+   * admin_conversations_unarchive
+   *
+   * @remarks
+   * Unarchive a public or private channel.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Admin.AdminConversationsUnarchiveError} when the API answers with an error
+   * status — narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminConversationsUnarchive(
     request: Admin.AdminConversationsUnarchiveRequest,
     options?: RequestOptions,
@@ -721,11 +1105,14 @@ export class Admin {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/admin.conversations.unarchive"),
+        urlTemplate: this.#servers.default("/admin.conversations.unarchive"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "formUrlEncoded",
@@ -740,6 +1127,21 @@ export class Admin {
     );
   }
 
+  /**
+   * admin_emoji_add
+   *
+   * @remarks
+   * Add an emoji.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Admin.AdminEmojiAddError} when the API answers with an error status — narrow on
+   * `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminEmojiAdd(
     request: Admin.AdminEmojiAddRequest,
     options?: RequestOptions,
@@ -747,9 +1149,14 @@ export class Admin {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/admin.emoji.add"),
+        urlTemplate: this.#servers.default("/admin.emoji.add"),
         auth: this.#auth.slackAuth,
-        headers: [{ name: "Content-Type", value: request.contentType, schema: contentTypeSchema }],
+        pathParams: [],
+        query: [],
+        headers: [
+          { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
+        ],
         body: {
           kind: "formUrlEncoded",
           value: [
@@ -767,6 +1174,21 @@ export class Admin {
     );
   }
 
+  /**
+   * admin_emoji_addAlias
+   *
+   * @remarks
+   * Add an emoji alias.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Admin.AdminEmojiAddAliasError} when the API answers with an error status —
+   * narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminEmojiAddAlias(
     request: Admin.AdminEmojiAddAliasRequest,
     options?: RequestOptions,
@@ -774,9 +1196,14 @@ export class Admin {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/admin.emoji.addAlias"),
+        urlTemplate: this.#servers.default("/admin.emoji.addAlias"),
         auth: this.#auth.slackAuth,
-        headers: [{ name: "Content-Type", value: request.contentType, schema: contentTypeSchema }],
+        pathParams: [],
+        query: [],
+        headers: [
+          { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
+        ],
         body: {
           kind: "formUrlEncoded",
           value: [
@@ -794,6 +1221,21 @@ export class Admin {
     );
   }
 
+  /**
+   * admin_emoji_list
+   *
+   * @remarks
+   * List emoji for an Enterprise Grid organization.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Admin.AdminEmojiListError} when the API answers with an error status — narrow on
+   * `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminEmojiList(
     request: Admin.AdminEmojiListRequest,
     options?: RequestOptions,
@@ -801,12 +1243,13 @@ export class Admin {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/admin.emoji.list"),
+        urlTemplate: this.#servers.default("/admin.emoji.list"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
         query: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "cursor", value: request.cursor, schema: s.optional(s.string()) },
-          { name: "limit", value: request.limit, schema: s.optional(s.number()) },
+          { name: "limit", value: request.limit, schema: s.optional(s.int()) },
         ],
         headers: [{ name: "Content-Type", value: request.contentType, schema: contentTypeSchema }],
         body: { kind: "empty" },
@@ -819,6 +1262,21 @@ export class Admin {
     );
   }
 
+  /**
+   * admin_emoji_remove
+   *
+   * @remarks
+   * Remove an emoji across an Enterprise Grid organization
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Admin.AdminEmojiRemoveError} when the API answers with an error status — narrow
+   * on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminEmojiRemove(
     request: Admin.AdminEmojiRemoveRequest,
     options?: RequestOptions,
@@ -826,9 +1284,14 @@ export class Admin {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/admin.emoji.remove"),
+        urlTemplate: this.#servers.default("/admin.emoji.remove"),
         auth: this.#auth.slackAuth,
-        headers: [{ name: "Content-Type", value: request.contentType, schema: contentTypeSchema }],
+        pathParams: [],
+        query: [],
+        headers: [
+          { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
+        ],
         body: {
           kind: "formUrlEncoded",
           value: [
@@ -845,6 +1308,21 @@ export class Admin {
     );
   }
 
+  /**
+   * admin_emoji_rename
+   *
+   * @remarks
+   * Rename an emoji.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Admin.AdminEmojiRenameError} when the API answers with an error status — narrow
+   * on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminEmojiRename(
     request: Admin.AdminEmojiRenameRequest,
     options?: RequestOptions,
@@ -852,9 +1330,14 @@ export class Admin {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/admin.emoji.rename"),
+        urlTemplate: this.#servers.default("/admin.emoji.rename"),
         auth: this.#auth.slackAuth,
-        headers: [{ name: "Content-Type", value: request.contentType, schema: contentTypeSchema }],
+        pathParams: [],
+        query: [],
+        headers: [
+          { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
+        ],
         body: {
           kind: "formUrlEncoded",
           value: [
@@ -872,6 +1355,21 @@ export class Admin {
     );
   }
 
+  /**
+   * admin_inviteRequests_approve
+   *
+   * @remarks
+   * Approve a workspace invite request.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Admin.AdminInviteRequestsApproveError} when the API answers with an error status
+   * — narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminInviteRequestsApprove(
     request: Admin.AdminInviteRequestsApproveRequest,
     options?: RequestOptions,
@@ -879,11 +1377,14 @@ export class Admin {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/admin.inviteRequests.approve"),
+        urlTemplate: this.#servers.default("/admin.inviteRequests.approve"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "formUrlEncoded",
@@ -901,6 +1402,21 @@ export class Admin {
     );
   }
 
+  /**
+   * admin_inviteRequests_approved_list
+   *
+   * @remarks
+   * List all approved workspace invite requests.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Admin.AdminInviteRequestsApprovedListError} when the API answers with an error
+   * status — narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminInviteRequestsApprovedList(
     request: Admin.AdminInviteRequestsApprovedListRequest,
     options?: RequestOptions,
@@ -908,12 +1424,13 @@ export class Admin {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/admin.inviteRequests.approved.list"),
+        urlTemplate: this.#servers.default("/admin.inviteRequests.approved.list"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
         query: [
           { name: "team_id", value: request.teamId, schema: s.optional(s.string()) },
           { name: "cursor", value: request.cursor, schema: s.optional(s.string()) },
-          { name: "limit", value: request.limit, schema: s.optional(s.number()) },
+          { name: "limit", value: request.limit, schema: s.optional(s.int()) },
         ],
         headers: [
           { name: "token", value: request.token, schema: s.string() },
@@ -929,6 +1446,21 @@ export class Admin {
     );
   }
 
+  /**
+   * admin_inviteRequests_denied_list
+   *
+   * @remarks
+   * List all denied workspace invite requests.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Admin.AdminInviteRequestsDeniedListError} when the API answers with an error
+   * status — narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminInviteRequestsDeniedList(
     request: Admin.AdminInviteRequestsDeniedListRequest,
     options?: RequestOptions,
@@ -936,12 +1468,13 @@ export class Admin {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/admin.inviteRequests.denied.list"),
+        urlTemplate: this.#servers.default("/admin.inviteRequests.denied.list"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
         query: [
           { name: "team_id", value: request.teamId, schema: s.optional(s.string()) },
           { name: "cursor", value: request.cursor, schema: s.optional(s.string()) },
-          { name: "limit", value: request.limit, schema: s.optional(s.number()) },
+          { name: "limit", value: request.limit, schema: s.optional(s.int()) },
         ],
         headers: [
           { name: "token", value: request.token, schema: s.string() },
@@ -957,6 +1490,21 @@ export class Admin {
     );
   }
 
+  /**
+   * admin_inviteRequests_deny
+   *
+   * @remarks
+   * Deny a workspace invite request.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Admin.AdminInviteRequestsDenyError} when the API answers with an error status —
+   * narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminInviteRequestsDeny(
     request: Admin.AdminInviteRequestsDenyRequest,
     options?: RequestOptions,
@@ -964,11 +1512,14 @@ export class Admin {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/admin.inviteRequests.deny"),
+        urlTemplate: this.#servers.default("/admin.inviteRequests.deny"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "formUrlEncoded",
@@ -986,6 +1537,21 @@ export class Admin {
     );
   }
 
+  /**
+   * admin_inviteRequests_list
+   *
+   * @remarks
+   * List all pending workspace invite requests.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Admin.AdminInviteRequestsListError} when the API answers with an error status —
+   * narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminInviteRequestsList(
     request: Admin.AdminInviteRequestsListRequest,
     options?: RequestOptions,
@@ -993,12 +1559,13 @@ export class Admin {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/admin.inviteRequests.list"),
+        urlTemplate: this.#servers.default("/admin.inviteRequests.list"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
         query: [
           { name: "team_id", value: request.teamId, schema: s.optional(s.string()) },
           { name: "cursor", value: request.cursor, schema: s.optional(s.string()) },
-          { name: "limit", value: request.limit, schema: s.optional(s.number()) },
+          { name: "limit", value: request.limit, schema: s.optional(s.int()) },
         ],
         headers: [
           { name: "token", value: request.token, schema: s.string() },
@@ -1014,6 +1581,21 @@ export class Admin {
     );
   }
 
+  /**
+   * admin_teams_admins_list
+   *
+   * @remarks
+   * List all of the admins on a given workspace.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Admin.AdminTeamsAdminsListError} when the API answers with an error status —
+   * narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminTeamsAdminsList(
     request: Admin.AdminTeamsAdminsListRequest,
     options?: RequestOptions,
@@ -1021,12 +1603,13 @@ export class Admin {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/admin.teams.admins.list"),
+        urlTemplate: this.#servers.default("/admin.teams.admins.list"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
         query: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "team_id", value: request.teamId, schema: s.string() },
-          { name: "limit", value: request.limit, schema: s.optional(s.number()) },
+          { name: "limit", value: request.limit, schema: s.optional(s.int()) },
           { name: "cursor", value: request.cursor, schema: s.optional(s.string()) },
         ],
         headers: [{ name: "Content-Type", value: request.contentType, schema: contentTypeSchema }],
@@ -1040,6 +1623,21 @@ export class Admin {
     );
   }
 
+  /**
+   * admin_teams_create
+   *
+   * @remarks
+   * Create an Enterprise team.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Admin.AdminTeamsCreateError} when the API answers with an error status — narrow
+   * on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminTeamsCreate(
     request: Admin.AdminTeamsCreateRequest,
     options?: RequestOptions,
@@ -1047,11 +1645,14 @@ export class Admin {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/admin.teams.create"),
+        urlTemplate: this.#servers.default("/admin.teams.create"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "formUrlEncoded",
@@ -1075,6 +1676,21 @@ export class Admin {
     );
   }
 
+  /**
+   * admin_teams_list
+   *
+   * @remarks
+   * List all teams on an Enterprise organization
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Admin.AdminTeamsListError} when the API answers with an error status — narrow on
+   * `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminTeamsList(
     request: Admin.AdminTeamsListRequest,
     options?: RequestOptions,
@@ -1082,10 +1698,11 @@ export class Admin {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/admin.teams.list"),
+        urlTemplate: this.#servers.default("/admin.teams.list"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
         query: [
-          { name: "limit", value: request.limit, schema: s.optional(s.number()) },
+          { name: "limit", value: request.limit, schema: s.optional(s.int()) },
           { name: "cursor", value: request.cursor, schema: s.optional(s.string()) },
         ],
         headers: [
@@ -1102,6 +1719,21 @@ export class Admin {
     );
   }
 
+  /**
+   * admin_teams_owners_list
+   *
+   * @remarks
+   * List all of the owners on a given workspace.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Admin.AdminTeamsOwnersListError} when the API answers with an error status —
+   * narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminTeamsOwnersList(
     request: Admin.AdminTeamsOwnersListRequest,
     options?: RequestOptions,
@@ -1109,12 +1741,13 @@ export class Admin {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/admin.teams.owners.list"),
+        urlTemplate: this.#servers.default("/admin.teams.owners.list"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
         query: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "team_id", value: request.teamId, schema: s.string() },
-          { name: "limit", value: request.limit, schema: s.optional(s.number()) },
+          { name: "limit", value: request.limit, schema: s.optional(s.int()) },
           { name: "cursor", value: request.cursor, schema: s.optional(s.string()) },
         ],
         headers: [{ name: "Content-Type", value: request.contentType, schema: contentTypeSchema }],
@@ -1128,6 +1761,21 @@ export class Admin {
     );
   }
 
+  /**
+   * admin_teams_settings_info
+   *
+   * @remarks
+   * Fetch information about settings in a workspace
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Admin.AdminTeamsSettingsInfoError} when the API answers with an error status —
+   * narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminTeamsSettingsInfo(
     request: Admin.AdminTeamsSettingsInfoRequest,
     options?: RequestOptions,
@@ -1135,8 +1783,9 @@ export class Admin {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/admin.teams.settings.info"),
+        urlTemplate: this.#servers.default("/admin.teams.settings.info"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
         query: [{ name: "team_id", value: request.teamId, schema: s.string() }],
         headers: [
           { name: "token", value: request.token, schema: s.string() },
@@ -1152,6 +1801,21 @@ export class Admin {
     );
   }
 
+  /**
+   * admin_teams_settings_setDefaultChannels
+   *
+   * @remarks
+   * Set the default channels of a workspace.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Admin.AdminTeamsSettingsSetDefaultChannelsError} when the API answers with an
+   * error status — narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminTeamsSettingsSetDefaultChannels(
     request: Admin.AdminTeamsSettingsSetDefaultChannelsRequest,
     options?: RequestOptions,
@@ -1159,9 +1823,14 @@ export class Admin {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/admin.teams.settings.setDefaultChannels"),
+        urlTemplate: this.#servers.default("/admin.teams.settings.setDefaultChannels"),
         auth: this.#auth.slackAuth,
-        headers: [{ name: "Content-Type", value: request.contentType, schema: contentTypeSchema }],
+        pathParams: [],
+        query: [],
+        headers: [
+          { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
+        ],
         body: {
           kind: "formUrlEncoded",
           value: [
@@ -1179,6 +1848,21 @@ export class Admin {
     );
   }
 
+  /**
+   * admin_teams_settings_setDescription
+   *
+   * @remarks
+   * Set the description of a given workspace.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Admin.AdminTeamsSettingsSetDescriptionError} when the API answers with an error
+   * status — narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminTeamsSettingsSetDescription(
     request: Admin.AdminTeamsSettingsSetDescriptionRequest,
     options?: RequestOptions,
@@ -1186,11 +1870,14 @@ export class Admin {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/admin.teams.settings.setDescription"),
+        urlTemplate: this.#servers.default("/admin.teams.settings.setDescription"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "formUrlEncoded",
@@ -1208,6 +1895,21 @@ export class Admin {
     );
   }
 
+  /**
+   * admin_teams_settings_setDiscoverability
+   *
+   * @remarks
+   * An API method that allows admins to set the discoverability of a given workspace
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Admin.AdminTeamsSettingsSetDiscoverabilityError} when the API answers with an
+   * error status — narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminTeamsSettingsSetDiscoverability(
     request: Admin.AdminTeamsSettingsSetDiscoverabilityRequest,
     options?: RequestOptions,
@@ -1215,11 +1917,14 @@ export class Admin {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/admin.teams.settings.setDiscoverability"),
+        urlTemplate: this.#servers.default("/admin.teams.settings.setDiscoverability"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "formUrlEncoded",
@@ -1237,6 +1942,21 @@ export class Admin {
     );
   }
 
+  /**
+   * admin_teams_settings_setIcon
+   *
+   * @remarks
+   * Sets the icon of a workspace.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Admin.AdminTeamsSettingsSetIconError} when the API answers with an error status
+   * — narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminTeamsSettingsSetIcon(
     request: Admin.AdminTeamsSettingsSetIconRequest,
     options?: RequestOptions,
@@ -1244,9 +1964,14 @@ export class Admin {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/admin.teams.settings.setIcon"),
+        urlTemplate: this.#servers.default("/admin.teams.settings.setIcon"),
         auth: this.#auth.slackAuth,
-        headers: [{ name: "Content-Type", value: request.contentType, schema: contentTypeSchema }],
+        pathParams: [],
+        query: [],
+        headers: [
+          { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
+        ],
         body: {
           kind: "formUrlEncoded",
           value: [
@@ -1264,6 +1989,21 @@ export class Admin {
     );
   }
 
+  /**
+   * admin_teams_settings_setName
+   *
+   * @remarks
+   * Set the name of a given workspace.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Admin.AdminTeamsSettingsSetNameError} when the API answers with an error status
+   * — narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminTeamsSettingsSetName(
     request: Admin.AdminTeamsSettingsSetNameRequest,
     options?: RequestOptions,
@@ -1271,11 +2011,14 @@ export class Admin {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/admin.teams.settings.setName"),
+        urlTemplate: this.#servers.default("/admin.teams.settings.setName"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "formUrlEncoded",
@@ -1293,6 +2036,21 @@ export class Admin {
     );
   }
 
+  /**
+   * admin_usergroups_addChannels
+   *
+   * @remarks
+   * Add one or more default channels to an IDP group.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Admin.AdminUsergroupsAddChannelsError} when the API answers with an error status
+   * — narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminUsergroupsAddChannels(
     request: Admin.AdminUsergroupsAddChannelsRequest,
     options?: RequestOptions,
@@ -1300,11 +2058,14 @@ export class Admin {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/admin.usergroups.addChannels"),
+        urlTemplate: this.#servers.default("/admin.usergroups.addChannels"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "formUrlEncoded",
@@ -1323,6 +2084,21 @@ export class Admin {
     );
   }
 
+  /**
+   * admin_usergroups_addTeams
+   *
+   * @remarks
+   * Associate one or more default workspaces with an organization-wide IDP group.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Admin.AdminUsergroupsAddTeamsError} when the API answers with an error status —
+   * narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminUsergroupsAddTeams(
     request: Admin.AdminUsergroupsAddTeamsRequest,
     options?: RequestOptions,
@@ -1330,11 +2106,14 @@ export class Admin {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/admin.usergroups.addTeams"),
+        urlTemplate: this.#servers.default("/admin.usergroups.addTeams"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "formUrlEncoded",
@@ -1353,6 +2132,21 @@ export class Admin {
     );
   }
 
+  /**
+   * admin_usergroups_listChannels
+   *
+   * @remarks
+   * List the channels linked to an org-level IDP group (user group).
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Admin.AdminUsergroupsListChannelsError} when the API answers with an error
+   * status — narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminUsergroupsListChannels(
     request: Admin.AdminUsergroupsListChannelsRequest,
     options?: RequestOptions,
@@ -1360,8 +2154,9 @@ export class Admin {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/admin.usergroups.listChannels"),
+        urlTemplate: this.#servers.default("/admin.usergroups.listChannels"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
         query: [
           { name: "usergroup_id", value: request.usergroupId, schema: s.string() },
           { name: "team_id", value: request.teamId, schema: s.optional(s.string()) },
@@ -1381,6 +2176,21 @@ export class Admin {
     );
   }
 
+  /**
+   * admin_usergroups_removeChannels
+   *
+   * @remarks
+   * Remove one or more default channels from an org-level IDP group (user group).
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Admin.AdminUsergroupsRemoveChannelsError} when the API answers with an error
+   * status — narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminUsergroupsRemoveChannels(
     request: Admin.AdminUsergroupsRemoveChannelsRequest,
     options?: RequestOptions,
@@ -1388,11 +2198,14 @@ export class Admin {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/admin.usergroups.removeChannels"),
+        urlTemplate: this.#servers.default("/admin.usergroups.removeChannels"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "formUrlEncoded",
@@ -1410,6 +2223,21 @@ export class Admin {
     );
   }
 
+  /**
+   * admin_users_assign
+   *
+   * @remarks
+   * Add an Enterprise user to a workspace.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Admin.AdminUsersAssignError} when the API answers with an error status — narrow
+   * on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminUsersAssign(
     request: Admin.AdminUsersAssignRequest,
     options?: RequestOptions,
@@ -1417,11 +2245,14 @@ export class Admin {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/admin.users.assign"),
+        urlTemplate: this.#servers.default("/admin.users.assign"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "formUrlEncoded",
@@ -1446,6 +2277,21 @@ export class Admin {
     );
   }
 
+  /**
+   * admin_users_invite
+   *
+   * @remarks
+   * Invite a user to a workspace.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Admin.AdminUsersInviteError} when the API answers with an error status — narrow
+   * on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminUsersInvite(
     request: Admin.AdminUsersInviteRequest,
     options?: RequestOptions,
@@ -1453,11 +2299,14 @@ export class Admin {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/admin.users.invite"),
+        urlTemplate: this.#servers.default("/admin.users.invite"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "formUrlEncoded",
@@ -1486,6 +2335,21 @@ export class Admin {
     );
   }
 
+  /**
+   * admin_users_list
+   *
+   * @remarks
+   * List users on a workspace
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Admin.AdminUsersListError} when the API answers with an error status — narrow on
+   * `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminUsersList(
     request: Admin.AdminUsersListRequest,
     options?: RequestOptions,
@@ -1493,12 +2357,13 @@ export class Admin {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/admin.users.list"),
+        urlTemplate: this.#servers.default("/admin.users.list"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
         query: [
           { name: "team_id", value: request.teamId, schema: s.string() },
           { name: "cursor", value: request.cursor, schema: s.optional(s.string()) },
-          { name: "limit", value: request.limit, schema: s.optional(s.number()) },
+          { name: "limit", value: request.limit, schema: s.optional(s.int()) },
         ],
         headers: [
           { name: "token", value: request.token, schema: s.string() },
@@ -1514,6 +2379,21 @@ export class Admin {
     );
   }
 
+  /**
+   * admin_users_remove
+   *
+   * @remarks
+   * Remove a user from a workspace.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Admin.AdminUsersRemoveError} when the API answers with an error status — narrow
+   * on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminUsersRemove(
     request: Admin.AdminUsersRemoveRequest,
     options?: RequestOptions,
@@ -1521,11 +2401,14 @@ export class Admin {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/admin.users.remove"),
+        urlTemplate: this.#servers.default("/admin.users.remove"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "formUrlEncoded",
@@ -1543,6 +2426,21 @@ export class Admin {
     );
   }
 
+  /**
+   * admin_users_session_invalidate
+   *
+   * @remarks
+   * Invalidate a single session for a user by session_id
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Admin.AdminUsersSessionInvalidateError} when the API answers with an error
+   * status — narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminUsersSessionInvalidate(
     request: Admin.AdminUsersSessionInvalidateRequest,
     options?: RequestOptions,
@@ -1550,17 +2448,20 @@ export class Admin {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/admin.users.session.invalidate"),
+        urlTemplate: this.#servers.default("/admin.users.session.invalidate"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "formUrlEncoded",
           value: [
             { name: "team_id", value: request.teamId, schema: s.string() },
-            { name: "session_id", value: request.sessionId, schema: s.number() },
+            { name: "session_id", value: request.sessionId, schema: s.int() },
           ],
         },
       },
@@ -1572,6 +2473,21 @@ export class Admin {
     );
   }
 
+  /**
+   * admin_users_session_reset
+   *
+   * @remarks
+   * Wipes all valid sessions on all devices for a given user
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Admin.AdminUsersSessionResetError} when the API answers with an error status —
+   * narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminUsersSessionReset(
     request: Admin.AdminUsersSessionResetRequest,
     options?: RequestOptions,
@@ -1579,11 +2495,14 @@ export class Admin {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/admin.users.session.reset"),
+        urlTemplate: this.#servers.default("/admin.users.session.reset"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "formUrlEncoded",
@@ -1602,6 +2521,21 @@ export class Admin {
     );
   }
 
+  /**
+   * admin_users_setAdmin
+   *
+   * @remarks
+   * Set an existing guest, regular user, or owner to be an admin user.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Admin.AdminUsersSetAdminError} when the API answers with an error status —
+   * narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminUsersSetAdmin(
     request: Admin.AdminUsersSetAdminRequest,
     options?: RequestOptions,
@@ -1609,11 +2543,14 @@ export class Admin {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/admin.users.setAdmin"),
+        urlTemplate: this.#servers.default("/admin.users.setAdmin"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "formUrlEncoded",
@@ -1631,6 +2568,21 @@ export class Admin {
     );
   }
 
+  /**
+   * admin_users_setExpiration
+   *
+   * @remarks
+   * Set an expiration for a guest user
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Admin.AdminUsersSetExpirationError} when the API answers with an error status —
+   * narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminUsersSetExpiration(
     request: Admin.AdminUsersSetExpirationRequest,
     options?: RequestOptions,
@@ -1638,18 +2590,21 @@ export class Admin {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/admin.users.setExpiration"),
+        urlTemplate: this.#servers.default("/admin.users.setExpiration"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "formUrlEncoded",
           value: [
             { name: "team_id", value: request.teamId, schema: s.string() },
             { name: "user_id", value: request.userId, schema: s.string() },
-            { name: "expiration_ts", value: request.expirationTs, schema: s.number() },
+            { name: "expiration_ts", value: request.expirationTs, schema: s.int() },
           ],
         },
       },
@@ -1661,6 +2616,21 @@ export class Admin {
     );
   }
 
+  /**
+   * admin_users_setOwner
+   *
+   * @remarks
+   * Set an existing guest, regular user, or admin user to be a workspace owner.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Admin.AdminUsersSetOwnerError} when the API answers with an error status —
+   * narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminUsersSetOwner(
     request: Admin.AdminUsersSetOwnerRequest,
     options?: RequestOptions,
@@ -1668,11 +2638,14 @@ export class Admin {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/admin.users.setOwner"),
+        urlTemplate: this.#servers.default("/admin.users.setOwner"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "formUrlEncoded",
@@ -1690,6 +2663,21 @@ export class Admin {
     );
   }
 
+  /**
+   * admin_users_setRegular
+   *
+   * @remarks
+   * Set an existing guest user, admin user, or owner to be a regular user.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Admin.AdminUsersSetRegularError} when the API answers with an error status —
+   * narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminUsersSetRegular(
     request: Admin.AdminUsersSetRegularRequest,
     options?: RequestOptions,
@@ -1697,11 +2685,14 @@ export class Admin {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/admin.users.setRegular"),
+        urlTemplate: this.#servers.default("/admin.users.setRegular"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "formUrlEncoded",
@@ -1722,19 +2713,22 @@ export class Admin {
 
 export namespace Admin {
   export type AdminAppsApproveRequest = {
+    /** Authentication token. Requires scope: `admin.apps:write` */
     token: string;
     contentType: ContentType;
+    /** The id of the app to approve. */
     appId?: string;
+    /** The id of the request to approve. */
     requestId?: string;
     teamId?: string;
   };
 
-  export class AdminAppsApproveError extends ResponseError<
-    Declared<"defaulterrortemplate1", Defaulterrortemplate1>
-  > {
+  export class AdminAppsApproveError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
+
     static readonly errors: ErrorDecoders<AdminAppsApproveError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "defaulterrortemplate1",
         decode: { kind: "json", schema: defaulterrortemplate1Schema },
       },
@@ -1742,20 +2736,25 @@ export namespace Admin {
   }
 
   export type AdminAppsApprovedListRequest = {
+    /** Authentication token. Requires scope: `admin.apps:read` */
     token: string;
+    /** The maximum number of items to return. Must be between 1 - 1000 both inclusive. */
     limit?: number;
+    /**
+     * Set `cursor` to `next_cursor` returned by the previous call to list items in the next page
+     */
     cursor?: string;
     teamId?: string;
     enterpriseId?: string;
     contentType: ContentType;
   };
 
-  export class AdminAppsApprovedListError extends ResponseError<
-    Declared<"defaulterrortemplate1", Defaulterrortemplate1>
-  > {
+  export class AdminAppsApprovedListError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
+
     static readonly errors: ErrorDecoders<AdminAppsApprovedListError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "defaulterrortemplate1",
         decode: { kind: "json", schema: defaulterrortemplate1Schema },
       },
@@ -1763,19 +2762,24 @@ export namespace Admin {
   }
 
   export type AdminAppsRequestsListRequest = {
+    /** Authentication token. Requires scope: `admin.apps:read` */
     token: string;
+    /** The maximum number of items to return. Must be between 1 - 1000 both inclusive. */
     limit?: number;
+    /**
+     * Set `cursor` to `next_cursor` returned by the previous call to list items in the next page
+     */
     cursor?: string;
     teamId?: string;
     contentType: ContentType;
   };
 
-  export class AdminAppsRequestsListError extends ResponseError<
-    Declared<"defaulterrortemplate1", Defaulterrortemplate1>
-  > {
+  export class AdminAppsRequestsListError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
+
     static readonly errors: ErrorDecoders<AdminAppsRequestsListError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "defaulterrortemplate1",
         decode: { kind: "json", schema: defaulterrortemplate1Schema },
       },
@@ -1783,19 +2787,22 @@ export namespace Admin {
   }
 
   export type AdminAppsRestrictRequest = {
+    /** Authentication token. Requires scope: `admin.apps:write` */
     token: string;
     contentType: ContentType;
+    /** The id of the app to restrict. */
     appId?: string;
+    /** The id of the request to restrict. */
     requestId?: string;
     teamId?: string;
   };
 
-  export class AdminAppsRestrictError extends ResponseError<
-    Declared<"defaulterrortemplate1", Defaulterrortemplate1>
-  > {
+  export class AdminAppsRestrictError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
+
     static readonly errors: ErrorDecoders<AdminAppsRestrictError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "defaulterrortemplate1",
         decode: { kind: "json", schema: defaulterrortemplate1Schema },
       },
@@ -1803,20 +2810,25 @@ export namespace Admin {
   }
 
   export type AdminAppsRestrictedListRequest = {
+    /** Authentication token. Requires scope: `admin.apps:read` */
     token: string;
+    /** The maximum number of items to return. Must be between 1 - 1000 both inclusive. */
     limit?: number;
+    /**
+     * Set `cursor` to `next_cursor` returned by the previous call to list items in the next page
+     */
     cursor?: string;
     teamId?: string;
     enterpriseId?: string;
     contentType: ContentType;
   };
 
-  export class AdminAppsRestrictedListError extends ResponseError<
-    Declared<"defaulterrortemplate1", Defaulterrortemplate1>
-  > {
+  export class AdminAppsRestrictedListError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
+
     static readonly errors: ErrorDecoders<AdminAppsRestrictedListError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "defaulterrortemplate1",
         decode: { kind: "json", schema: defaulterrortemplate1Schema },
       },
@@ -1824,17 +2836,21 @@ export namespace Admin {
   }
 
   export type AdminConversationsArchiveRequest = {
+    /** Authentication token. Requires scope: `admin.conversations:write` */
     token: string;
     contentType: ContentType;
+    /** The channel to archive. */
     channelId: string;
   };
 
-  export class AdminConversationsArchiveError extends ResponseError<
-    Declared<"adminConversationsArchiveerrorschema1", AdminConversationsArchiveerrorschema1>
-  > {
+  export class AdminConversationsArchiveError extends ApiError {
+    declare readonly payload: ErrorPayload<
+      Declared<"adminConversationsArchiveerrorschema1", AdminConversationsArchiveerrorschema1>
+    >;
+
     static readonly errors: ErrorDecoders<AdminConversationsArchiveError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "adminConversationsArchiveerrorschema1",
         decode: { kind: "json", schema: adminConversationsArchiveerrorschema1Schema },
       },
@@ -1842,17 +2858,24 @@ export namespace Admin {
   }
 
   export type AdminConversationsConvertToPrivateRequest = {
+    /** Authentication token. Requires scope: `admin.conversations:write` */
     token: string;
     contentType: ContentType;
+    /** The channel to convert to private. */
     channelId: string;
   };
 
-  export class AdminConversationsConvertToPrivateError extends ResponseError<
-    Declared<"adminConversationsConvertToPrivateerrorschema1", AdminConversationsConvertToPrivateerrorschema1>
-  > {
+  export class AdminConversationsConvertToPrivateError extends ApiError {
+    declare readonly payload: ErrorPayload<
+      Declared<
+        "adminConversationsConvertToPrivateerrorschema1",
+        AdminConversationsConvertToPrivateerrorschema1
+      >
+    >;
+
     static readonly errors: ErrorDecoders<AdminConversationsConvertToPrivateError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "adminConversationsConvertToPrivateerrorschema1",
         decode: { kind: "json", schema: adminConversationsConvertToPrivateerrorschema1Schema },
       },
@@ -1860,21 +2883,35 @@ export namespace Admin {
   }
 
   export type AdminConversationsCreateRequest = {
+    /** Authentication token. Requires scope: `admin.conversations:write` */
     token: string;
     contentType: ContentType;
+    /** Name of the public or private channel to create. */
     name: string;
+    /** When `true`, creates a private channel instead of a public channel */
     isPrivate: boolean;
+    /** Description of the public or private channel to create. */
     description?: string;
+    /**
+     * When `true`, the channel will be available org-wide. Note: if the channel is not
+     * `org_wide=true`, you must specify a `team_id` for this channel
+     */
     orgWide?: boolean;
+    /**
+     * The workspace to create the channel in. Note: this argument is required unless you set
+     * `org_wide=true`.
+     */
     teamId?: string;
   };
 
-  export class AdminConversationsCreateError extends ResponseError<
-    Declared<"adminConversationsCreateerrorschema1", AdminConversationsCreateerrorschema1>
-  > {
+  export class AdminConversationsCreateError extends ApiError {
+    declare readonly payload: ErrorPayload<
+      Declared<"adminConversationsCreateerrorschema1", AdminConversationsCreateerrorschema1>
+    >;
+
     static readonly errors: ErrorDecoders<AdminConversationsCreateError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "adminConversationsCreateerrorschema1",
         decode: { kind: "json", schema: adminConversationsCreateerrorschema1Schema },
       },
@@ -1882,17 +2919,21 @@ export namespace Admin {
   }
 
   export type AdminConversationsDeleteRequest = {
+    /** Authentication token. Requires scope: `admin.conversations:write` */
     token: string;
     contentType: ContentType;
+    /** The channel to delete. */
     channelId: string;
   };
 
-  export class AdminConversationsDeleteError extends ResponseError<
-    Declared<"adminConversationsDeleteerrorschema1", AdminConversationsDeleteerrorschema1>
-  > {
+  export class AdminConversationsDeleteError extends ApiError {
+    declare readonly payload: ErrorPayload<
+      Declared<"adminConversationsDeleteerrorschema1", AdminConversationsDeleteerrorschema1>
+    >;
+
     static readonly errors: ErrorDecoders<AdminConversationsDeleteError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "adminConversationsDeleteerrorschema1",
         decode: { kind: "json", schema: adminConversationsDeleteerrorschema1Schema },
       },
@@ -1900,18 +2941,28 @@ export namespace Admin {
   }
 
   export type AdminConversationsDisconnectSharedRequest = {
+    /** Authentication token. Requires scope: `admin.conversations:write` */
     token: string;
     contentType: ContentType;
+    /** The channel to be disconnected from some workspaces. */
     channelId: string;
+    /**
+     * The team to be removed from the channel. Currently only a single team id can be specified.
+     */
     leavingTeamIds?: string;
   };
 
-  export class AdminConversationsDisconnectSharedError extends ResponseError<
-    Declared<"adminConversationsDisconnectSharederrorschema1", AdminConversationsDisconnectSharederrorschema1>
-  > {
+  export class AdminConversationsDisconnectSharedError extends ApiError {
+    declare readonly payload: ErrorPayload<
+      Declared<
+        "adminConversationsDisconnectSharederrorschema1",
+        AdminConversationsDisconnectSharederrorschema1
+      >
+    >;
+
     static readonly errors: ErrorDecoders<AdminConversationsDisconnectSharedError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "adminConversationsDisconnectSharederrorschema1",
         decode: { kind: "json", schema: adminConversationsDisconnectSharederrorschema1Schema },
       },
@@ -1919,20 +2970,30 @@ export namespace Admin {
   }
 
   export type AdminConversationsEkmListOriginalConnectedChannelInfoRequest = {
+    /** Authentication token. Requires scope: `admin.conversations:read` */
     token: string;
+    /** A comma-separated list of channels to filter to. */
     channelIds?: string;
+    /**
+     * A comma-separated list of the workspaces to which the channels you would like returned
+     * belong.
+     */
     teamIds?: string;
+    /** The maximum number of items to return. Must be between 1 - 1000 both inclusive. */
     limit?: number;
+    /**
+     * Set `cursor` to `next_cursor` returned by the previous call to list items in the next page.
+     */
     cursor?: string;
     contentType: ContentType;
   };
 
-  export class AdminConversationsEkmListOriginalConnectedChannelInfoError extends ResponseError<
-    Declared<"defaulterrortemplate1", Defaulterrortemplate1>
-  > {
+  export class AdminConversationsEkmListOriginalConnectedChannelInfoError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
+
     static readonly errors: ErrorDecoders<AdminConversationsEkmListOriginalConnectedChannelInfoError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "defaulterrortemplate1",
         decode: { kind: "json", schema: defaulterrortemplate1Schema },
       },
@@ -1940,17 +3001,21 @@ export namespace Admin {
   }
 
   export type AdminConversationsGetConversationPrefsRequest = {
+    /** The channel to get preferences for. */
     channelId: string;
+    /** Authentication token. Requires scope: `admin.conversations:read` */
     token: string;
     contentType: ContentType;
   };
 
-  export class AdminConversationsGetConversationPrefsError extends ResponseError<
-    Declared<"adminConversationsUnarchiveerrorschema1", AdminConversationsUnarchiveerrorschema1>
-  > {
+  export class AdminConversationsGetConversationPrefsError extends ApiError {
+    declare readonly payload: ErrorPayload<
+      Declared<"adminConversationsUnarchiveerrorschema1", AdminConversationsUnarchiveerrorschema1>
+    >;
+
     static readonly errors: ErrorDecoders<AdminConversationsGetConversationPrefsError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "adminConversationsUnarchiveerrorschema1",
         decode: { kind: "json", schema: adminConversationsUnarchiveerrorschema1Schema },
       },
@@ -1958,19 +3023,27 @@ export namespace Admin {
   }
 
   export type AdminConversationsGetTeamsRequest = {
+    /** The channel to determine connected workspaces within the organization for. */
     channelId: string;
+    /**
+     * Set `cursor` to `next_cursor` returned by the previous call to list items in the next page
+     */
     cursor?: string;
+    /** The maximum number of items to return. Must be between 1 - 1000 both inclusive. */
     limit?: number;
+    /** Authentication token. Requires scope: `admin.conversations:read` */
     token: string;
     contentType: ContentType;
   };
 
-  export class AdminConversationsGetTeamsError extends ResponseError<
-    Declared<"adminConversationsGetTeamserrorschema1", AdminConversationsGetTeamserrorschema1>
-  > {
+  export class AdminConversationsGetTeamsError extends ApiError {
+    declare readonly payload: ErrorPayload<
+      Declared<"adminConversationsGetTeamserrorschema1", AdminConversationsGetTeamserrorschema1>
+    >;
+
     static readonly errors: ErrorDecoders<AdminConversationsGetTeamsError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "adminConversationsGetTeamserrorschema1",
         decode: { kind: "json", schema: adminConversationsGetTeamserrorschema1Schema },
       },
@@ -1978,18 +3051,23 @@ export namespace Admin {
   }
 
   export type AdminConversationsInviteRequest = {
+    /** Authentication token. Requires scope: `admin.conversations:write` */
     token: string;
     contentType: ContentType;
+    /** The users to invite. */
     userIds: string;
+    /** The channel that the users will be invited to. */
     channelId: string;
   };
 
-  export class AdminConversationsInviteError extends ResponseError<
-    Declared<"adminConversationsInviteerrorschema1", AdminConversationsInviteerrorschema1>
-  > {
+  export class AdminConversationsInviteError extends ApiError {
+    declare readonly payload: ErrorPayload<
+      Declared<"adminConversationsInviteerrorschema1", AdminConversationsInviteerrorschema1>
+    >;
+
     static readonly errors: ErrorDecoders<AdminConversationsInviteError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "adminConversationsInviteerrorschema1",
         decode: { kind: "json", schema: adminConversationsInviteerrorschema1Schema },
       },
@@ -1997,18 +3075,22 @@ export namespace Admin {
   }
 
   export type AdminConversationsRenameRequest = {
+    /** Authentication token. Requires scope: `admin.conversations:write` */
     token: string;
     contentType: ContentType;
+    /** The channel to rename. */
     channelId: string;
     name: string;
   };
 
-  export class AdminConversationsRenameError extends ResponseError<
-    Declared<"adminConversationsUnarchiveerrorschema21", AdminConversationsUnarchiveerrorschema21>
-  > {
+  export class AdminConversationsRenameError extends ApiError {
+    declare readonly payload: ErrorPayload<
+      Declared<"adminConversationsUnarchiveerrorschema21", AdminConversationsUnarchiveerrorschema21>
+    >;
+
     static readonly errors: ErrorDecoders<AdminConversationsRenameError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "adminConversationsUnarchiveerrorschema21",
         decode: { kind: "json", schema: adminConversationsUnarchiveerrorschema21Schema },
       },
@@ -2017,18 +3099,29 @@ export namespace Admin {
 
   export type AdminConversationsRestrictAccessAddGroupRequest = {
     contentType: ContentType;
+    /** Authentication token. Requires scope: `admin.conversations:write` */
     token: string;
+    /**
+     * The [IDP
+     * Group](https://slack.com/help/articles/115001435788-Connect-identity-provider-groups-to-your-Enterprise-Grid-org)
+     * ID to be an allowlist for the private channel.
+     */
     groupId: string;
+    /** The channel to link this group to. */
     channelId: string;
+    /**
+     * The workspace where the channel exists. This argument is required for channels only tied to
+     * one workspace, and optional for channels that are shared across an organization.
+     */
     teamId?: string;
   };
 
-  export class AdminConversationsRestrictAccessAddGroupError extends ResponseError<
-    Declared<"defaulterrortemplate1", Defaulterrortemplate1>
-  > {
+  export class AdminConversationsRestrictAccessAddGroupError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
+
     static readonly errors: ErrorDecoders<AdminConversationsRestrictAccessAddGroupError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "defaulterrortemplate1",
         decode: { kind: "json", schema: defaulterrortemplate1Schema },
       },
@@ -2036,18 +3129,23 @@ export namespace Admin {
   }
 
   export type AdminConversationsRestrictAccessListGroupsRequest = {
+    /** Authentication token. Requires scope: `admin.conversations:read` */
     token: string;
     channelId: string;
+    /**
+     * The workspace where the channel exists. This argument is required for channels only tied to
+     * one workspace, and optional for channels that are shared across an organization.
+     */
     teamId?: string;
     contentType: ContentType;
   };
 
-  export class AdminConversationsRestrictAccessListGroupsError extends ResponseError<
-    Declared<"defaulterrortemplate1", Defaulterrortemplate1>
-  > {
+  export class AdminConversationsRestrictAccessListGroupsError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
+
     static readonly errors: ErrorDecoders<AdminConversationsRestrictAccessListGroupsError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "defaulterrortemplate1",
         decode: { kind: "json", schema: defaulterrortemplate1Schema },
       },
@@ -2056,18 +3154,29 @@ export namespace Admin {
 
   export type AdminConversationsRestrictAccessRemoveGroupRequest = {
     contentType: ContentType;
+    /** Authentication token. Requires scope: `admin.conversations:write` */
     token: string;
+    /**
+     * The workspace where the channel exists. This argument is required for channels only tied to
+     * one workspace, and optional for channels that are shared across an organization.
+     */
     teamId: string;
+    /**
+     * The [IDP
+     * Group](https://slack.com/help/articles/115001435788-Connect-identity-provider-groups-to-your-Enterprise-Grid-org)
+     * ID to remove from the private channel.
+     */
     groupId: string;
+    /** The channel to remove the linked group from. */
     channelId: string;
   };
 
-  export class AdminConversationsRestrictAccessRemoveGroupError extends ResponseError<
-    Declared<"defaulterrortemplate1", Defaulterrortemplate1>
-  > {
+  export class AdminConversationsRestrictAccessRemoveGroupError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
+
     static readonly errors: ErrorDecoders<AdminConversationsRestrictAccessRemoveGroupError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "defaulterrortemplate1",
         decode: { kind: "json", schema: defaulterrortemplate1Schema },
       },
@@ -2075,23 +3184,48 @@ export namespace Admin {
   }
 
   export type AdminConversationsSearchRequest = {
+    /** Comma separated string of team IDs, signifying the workspaces to search through. */
     teamIds?: string;
+    /** Name of the the channel to query by. */
     query?: string;
+    /**
+     * Maximum number of items to be returned. Must be between 1 - 20 both inclusive. Default is 10.
+     */
     limit?: number;
+    /**
+     * Set `cursor` to `next_cursor` returned by the previous call to list items in the next page.
+     */
     cursor?: string;
+    /**
+     * The type of channel to include or exclude in the search. For example `private` will search
+     * private channels, while `private_exclude` will exclude them. For a full list of types, check
+     * the [Types section](#types).
+     */
     searchChannelTypes?: string;
+    /**
+     * Possible values are `relevant` (search ranking based on what we think is closest), `name`
+     * (alphabetical), `member_count` (number of users in the channel), and `created` (date channel
+     * was created). You can optionally pair this with the `sort_dir` arg to change how it is sorted
+     */
     sort?: string;
+    /**
+     * Sort direction. Possible values are `asc` for ascending order like (1, 2, 3) or (a, b, c),
+     * and `desc` for descending order like (3, 2, 1) or (c, b, a)
+     */
     sortDir?: string;
+    /** Authentication token. Requires scope: `admin.conversations:read` */
     token: string;
     contentType: ContentType;
   };
 
-  export class AdminConversationsSearchError extends ResponseError<
-    Declared<"adminConversationsSearcherrorschema1", AdminConversationsSearcherrorschema1>
-  > {
+  export class AdminConversationsSearchError extends ApiError {
+    declare readonly payload: ErrorPayload<
+      Declared<"adminConversationsSearcherrorschema1", AdminConversationsSearcherrorschema1>
+    >;
+
     static readonly errors: ErrorDecoders<AdminConversationsSearchError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "adminConversationsSearcherrorschema1",
         decode: { kind: "json", schema: adminConversationsSearcherrorschema1Schema },
       },
@@ -2099,21 +3233,26 @@ export namespace Admin {
   }
 
   export type AdminConversationsSetConversationPrefsRequest = {
+    /** Authentication token. Requires scope: `admin.conversations:write` */
     token: string;
     contentType: ContentType;
+    /** The channel to set the prefs for */
     channelId: string;
+    /** The prefs for this channel in a stringified JSON format. */
     prefs: string;
   };
 
-  export class AdminConversationsSetConversationPrefsError extends ResponseError<
-    Declared<
-      "adminConversationsSetConversationPrefserrorschema1",
-      AdminConversationsSetConversationPrefserrorschema1
-    >
-  > {
+  export class AdminConversationsSetConversationPrefsError extends ApiError {
+    declare readonly payload: ErrorPayload<
+      Declared<
+        "adminConversationsSetConversationPrefserrorschema1",
+        AdminConversationsSetConversationPrefserrorschema1
+      >
+    >;
+
     static readonly errors: ErrorDecoders<AdminConversationsSetConversationPrefsError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "adminConversationsSetConversationPrefserrorschema1",
         decode: { kind: "json", schema: adminConversationsSetConversationPrefserrorschema1Schema },
       },
@@ -2121,20 +3260,31 @@ export namespace Admin {
   }
 
   export type AdminConversationsSetTeamsRequest = {
+    /** Authentication token. Requires scope: `admin.conversations:write` */
     token: string;
     contentType: ContentType;
+    /** The encoded `channel_id` to add or remove to workspaces. */
     channelId: string;
+    /**
+     * The workspace to which the channel belongs. Omit this argument if the channel is a
+     * cross-workspace shared channel.
+     */
     teamId?: string;
+    /**
+     * A comma-separated list of workspaces to which the channel should be shared. Not required if
+     * the channel is being shared org-wide.
+     */
     targetTeamIds?: string;
+    /** True if channel has to be converted to an org channel */
     orgChannel?: boolean;
   };
 
-  export class AdminConversationsSetTeamsError extends ResponseError<
-    Declared<"defaulterrortemplate1", Defaulterrortemplate1>
-  > {
+  export class AdminConversationsSetTeamsError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
+
     static readonly errors: ErrorDecoders<AdminConversationsSetTeamsError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "defaulterrortemplate1",
         decode: { kind: "json", schema: defaulterrortemplate1Schema },
       },
@@ -2142,17 +3292,21 @@ export namespace Admin {
   }
 
   export type AdminConversationsUnarchiveRequest = {
+    /** Authentication token. Requires scope: `admin.conversations:write` */
     token: string;
     contentType: ContentType;
+    /** The channel to unarchive. */
     channelId: string;
   };
 
-  export class AdminConversationsUnarchiveError extends ResponseError<
-    Declared<"adminConversationsUnarchiveerrorschema31", AdminConversationsUnarchiveerrorschema31>
-  > {
+  export class AdminConversationsUnarchiveError extends ApiError {
+    declare readonly payload: ErrorPayload<
+      Declared<"adminConversationsUnarchiveerrorschema31", AdminConversationsUnarchiveerrorschema31>
+    >;
+
     static readonly errors: ErrorDecoders<AdminConversationsUnarchiveError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "adminConversationsUnarchiveerrorschema31",
         decode: { kind: "json", schema: adminConversationsUnarchiveerrorschema31Schema },
       },
@@ -2161,17 +3315,26 @@ export namespace Admin {
 
   export type AdminEmojiAddRequest = {
     contentType: ContentType;
+    /** Authentication token. Requires scope: `admin.teams:write` */
     token: string;
+    /**
+     * The name of the emoji to be removed. Colons (`:myemoji:`) around the value are not required,
+     * although they may be included.
+     */
     name: string;
+    /**
+     * The URL of a file to use as an image for the emoji. Square images under 128KB and with
+     * transparent backgrounds work best.
+     */
     url: string;
   };
 
-  export class AdminEmojiAddError extends ResponseError<
-    Declared<"defaulterrortemplate1", Defaulterrortemplate1>
-  > {
+  export class AdminEmojiAddError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
+
     static readonly errors: ErrorDecoders<AdminEmojiAddError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "defaulterrortemplate1",
         decode: { kind: "json", schema: defaulterrortemplate1Schema },
       },
@@ -2180,17 +3343,23 @@ export namespace Admin {
 
   export type AdminEmojiAddAliasRequest = {
     contentType: ContentType;
+    /** Authentication token. Requires scope: `admin.teams:write` */
     token: string;
+    /**
+     * The name of the emoji to be aliased. Colons (`:myemoji:`) around the value are not required,
+     * although they may be included.
+     */
     name: string;
+    /** The alias of the emoji. */
     aliasFor: string;
   };
 
-  export class AdminEmojiAddAliasError extends ResponseError<
-    Declared<"defaulterrortemplate1", Defaulterrortemplate1>
-  > {
+  export class AdminEmojiAddAliasError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
+
     static readonly errors: ErrorDecoders<AdminEmojiAddAliasError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "defaulterrortemplate1",
         decode: { kind: "json", schema: defaulterrortemplate1Schema },
       },
@@ -2198,18 +3367,23 @@ export namespace Admin {
   }
 
   export type AdminEmojiListRequest = {
+    /** Authentication token. Requires scope: `admin.teams:read` */
     token: string;
+    /**
+     * Set `cursor` to `next_cursor` returned by the previous call to list items in the next page
+     */
     cursor?: string;
+    /** The maximum number of items to return. Must be between 1 - 1000 both inclusive. */
     limit?: number;
     contentType: ContentType;
   };
 
-  export class AdminEmojiListError extends ResponseError<
-    Declared<"defaulterrortemplate1", Defaulterrortemplate1>
-  > {
+  export class AdminEmojiListError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
+
     static readonly errors: ErrorDecoders<AdminEmojiListError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "defaulterrortemplate1",
         decode: { kind: "json", schema: defaulterrortemplate1Schema },
       },
@@ -2218,16 +3392,21 @@ export namespace Admin {
 
   export type AdminEmojiRemoveRequest = {
     contentType: ContentType;
+    /** Authentication token. Requires scope: `admin.teams:write` */
     token: string;
+    /**
+     * The name of the emoji to be removed. Colons (`:myemoji:`) around the value are not required,
+     * although they may be included.
+     */
     name: string;
   };
 
-  export class AdminEmojiRemoveError extends ResponseError<
-    Declared<"defaulterrortemplate1", Defaulterrortemplate1>
-  > {
+  export class AdminEmojiRemoveError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
+
     static readonly errors: ErrorDecoders<AdminEmojiRemoveError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "defaulterrortemplate1",
         decode: { kind: "json", schema: defaulterrortemplate1Schema },
       },
@@ -2236,17 +3415,23 @@ export namespace Admin {
 
   export type AdminEmojiRenameRequest = {
     contentType: ContentType;
+    /** Authentication token. Requires scope: `admin.teams:write` */
     token: string;
+    /**
+     * The name of the emoji to be renamed. Colons (`:myemoji:`) around the value are not required,
+     * although they may be included.
+     */
     name: string;
+    /** The new name of the emoji. */
     newName: string;
   };
 
-  export class AdminEmojiRenameError extends ResponseError<
-    Declared<"defaulterrortemplate1", Defaulterrortemplate1>
-  > {
+  export class AdminEmojiRenameError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
+
     static readonly errors: ErrorDecoders<AdminEmojiRenameError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "defaulterrortemplate1",
         decode: { kind: "json", schema: defaulterrortemplate1Schema },
       },
@@ -2254,18 +3439,21 @@ export namespace Admin {
   }
 
   export type AdminInviteRequestsApproveRequest = {
+    /** Authentication token. Requires scope: `admin.invites:write` */
     token: string;
     contentType: ContentType;
+    /** ID of the request to invite. */
     inviteRequestId: string;
+    /** ID for the workspace where the invite request was made. */
     teamId?: string;
   };
 
-  export class AdminInviteRequestsApproveError extends ResponseError<
-    Declared<"defaulterrortemplate1", Defaulterrortemplate1>
-  > {
+  export class AdminInviteRequestsApproveError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
+
     static readonly errors: ErrorDecoders<AdminInviteRequestsApproveError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "defaulterrortemplate1",
         decode: { kind: "json", schema: defaulterrortemplate1Schema },
       },
@@ -2273,19 +3461,26 @@ export namespace Admin {
   }
 
   export type AdminInviteRequestsApprovedListRequest = {
+    /** ID for the workspace where the invite requests were made. */
     teamId?: string;
+    /** Value of the `next_cursor` field sent as part of the previous API response */
     cursor?: string;
+    /**
+     * The number of results that will be returned by the API on each invocation. Must be between 1
+     * - 1000, both inclusive
+     */
     limit?: number;
+    /** Authentication token. Requires scope: `admin.invites:read` */
     token: string;
     contentType: ContentType;
   };
 
-  export class AdminInviteRequestsApprovedListError extends ResponseError<
-    Declared<"defaulterrortemplate1", Defaulterrortemplate1>
-  > {
+  export class AdminInviteRequestsApprovedListError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
+
     static readonly errors: ErrorDecoders<AdminInviteRequestsApprovedListError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "defaulterrortemplate1",
         decode: { kind: "json", schema: defaulterrortemplate1Schema },
       },
@@ -2293,19 +3488,26 @@ export namespace Admin {
   }
 
   export type AdminInviteRequestsDeniedListRequest = {
+    /** ID for the workspace where the invite requests were made. */
     teamId?: string;
+    /** Value of the `next_cursor` field sent as part of the previous api response */
     cursor?: string;
+    /**
+     * The number of results that will be returned by the API on each invocation. Must be between 1
+     * - 1000 both inclusive
+     */
     limit?: number;
+    /** Authentication token. Requires scope: `admin.invites:read` */
     token: string;
     contentType: ContentType;
   };
 
-  export class AdminInviteRequestsDeniedListError extends ResponseError<
-    Declared<"defaulterrortemplate1", Defaulterrortemplate1>
-  > {
+  export class AdminInviteRequestsDeniedListError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
+
     static readonly errors: ErrorDecoders<AdminInviteRequestsDeniedListError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "defaulterrortemplate1",
         decode: { kind: "json", schema: defaulterrortemplate1Schema },
       },
@@ -2313,18 +3515,21 @@ export namespace Admin {
   }
 
   export type AdminInviteRequestsDenyRequest = {
+    /** Authentication token. Requires scope: `admin.invites:write` */
     token: string;
     contentType: ContentType;
+    /** ID of the request to invite. */
     inviteRequestId: string;
+    /** ID for the workspace where the invite request was made. */
     teamId?: string;
   };
 
-  export class AdminInviteRequestsDenyError extends ResponseError<
-    Declared<"defaulterrortemplate1", Defaulterrortemplate1>
-  > {
+  export class AdminInviteRequestsDenyError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
+
     static readonly errors: ErrorDecoders<AdminInviteRequestsDenyError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "defaulterrortemplate1",
         decode: { kind: "json", schema: defaulterrortemplate1Schema },
       },
@@ -2332,19 +3537,26 @@ export namespace Admin {
   }
 
   export type AdminInviteRequestsListRequest = {
+    /** ID for the workspace where the invite requests were made. */
     teamId?: string;
+    /** Value of the `next_cursor` field sent as part of the previous API response */
     cursor?: string;
+    /**
+     * The number of results that will be returned by the API on each invocation. Must be between 1
+     * - 1000, both inclusive
+     */
     limit?: number;
+    /** Authentication token. Requires scope: `admin.invites:read` */
     token: string;
     contentType: ContentType;
   };
 
-  export class AdminInviteRequestsListError extends ResponseError<
-    Declared<"defaulterrortemplate1", Defaulterrortemplate1>
-  > {
+  export class AdminInviteRequestsListError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
+
     static readonly errors: ErrorDecoders<AdminInviteRequestsListError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "defaulterrortemplate1",
         decode: { kind: "json", schema: defaulterrortemplate1Schema },
       },
@@ -2352,19 +3564,24 @@ export namespace Admin {
   }
 
   export type AdminTeamsAdminsListRequest = {
+    /** Authentication token. Requires scope: `admin.teams:read` */
     token: string;
     teamId: string;
+    /** The maximum number of items to return. */
     limit?: number;
+    /**
+     * Set `cursor` to `next_cursor` returned by the previous call to list items in the next page.
+     */
     cursor?: string;
     contentType: ContentType;
   };
 
-  export class AdminTeamsAdminsListError extends ResponseError<
-    Declared<"defaulterrortemplate1", Defaulterrortemplate1>
-  > {
+  export class AdminTeamsAdminsListError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
+
     static readonly errors: ErrorDecoders<AdminTeamsAdminsListError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "defaulterrortemplate1",
         decode: { kind: "json", schema: defaulterrortemplate1Schema },
       },
@@ -2372,20 +3589,28 @@ export namespace Admin {
   }
 
   export type AdminTeamsCreateRequest = {
+    /** Authentication token. Requires scope: `admin.teams:write` */
     token: string;
     contentType: ContentType;
+    /** Team domain (for example, slacksoftballteam). */
     teamDomain: string;
+    /** Team name (for example, Slack Softball Team). */
     teamName: string;
+    /** Description for the team. */
     teamDescription?: string;
+    /**
+     * Who can join the team. A team's discoverability can be `open`, `closed`, `invite_only`, or
+     * `unlisted`.
+     */
     teamDiscoverability?: string;
   };
 
-  export class AdminTeamsCreateError extends ResponseError<
-    Declared<"defaulterrortemplate1", Defaulterrortemplate1>
-  > {
+  export class AdminTeamsCreateError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
+
     static readonly errors: ErrorDecoders<AdminTeamsCreateError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "defaulterrortemplate1",
         decode: { kind: "json", schema: defaulterrortemplate1Schema },
       },
@@ -2393,18 +3618,23 @@ export namespace Admin {
   }
 
   export type AdminTeamsListRequest = {
+    /** The maximum number of items to return. Must be between 1 - 100 both inclusive. */
     limit?: number;
+    /**
+     * Set `cursor` to `next_cursor` returned by the previous call to list items in the next page.
+     */
     cursor?: string;
+    /** Authentication token. Requires scope: `admin.teams:read` */
     token: string;
     contentType: ContentType;
   };
 
-  export class AdminTeamsListError extends ResponseError<
-    Declared<"defaulterrortemplate1", Defaulterrortemplate1>
-  > {
+  export class AdminTeamsListError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
+
     static readonly errors: ErrorDecoders<AdminTeamsListError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "defaulterrortemplate1",
         decode: { kind: "json", schema: defaulterrortemplate1Schema },
       },
@@ -2412,19 +3642,24 @@ export namespace Admin {
   }
 
   export type AdminTeamsOwnersListRequest = {
+    /** Authentication token. Requires scope: `admin.teams:read` */
     token: string;
     teamId: string;
+    /** The maximum number of items to return. Must be between 1 - 1000 both inclusive. */
     limit?: number;
+    /**
+     * Set `cursor` to `next_cursor` returned by the previous call to list items in the next page.
+     */
     cursor?: string;
     contentType: ContentType;
   };
 
-  export class AdminTeamsOwnersListError extends ResponseError<
-    Declared<"defaulterrortemplate1", Defaulterrortemplate1>
-  > {
+  export class AdminTeamsOwnersListError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
+
     static readonly errors: ErrorDecoders<AdminTeamsOwnersListError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "defaulterrortemplate1",
         decode: { kind: "json", schema: defaulterrortemplate1Schema },
       },
@@ -2433,16 +3668,17 @@ export namespace Admin {
 
   export type AdminTeamsSettingsInfoRequest = {
     teamId: string;
+    /** Authentication token. Requires scope: `admin.teams:read` */
     token: string;
     contentType: ContentType;
   };
 
-  export class AdminTeamsSettingsInfoError extends ResponseError<
-    Declared<"defaulterrortemplate1", Defaulterrortemplate1>
-  > {
+  export class AdminTeamsSettingsInfoError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
+
     static readonly errors: ErrorDecoders<AdminTeamsSettingsInfoError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "defaulterrortemplate1",
         decode: { kind: "json", schema: defaulterrortemplate1Schema },
       },
@@ -2451,17 +3687,20 @@ export namespace Admin {
 
   export type AdminTeamsSettingsSetDefaultChannelsRequest = {
     contentType: ContentType;
+    /** Authentication token. Requires scope: `admin.teams:write` */
     token: string;
+    /** ID for the workspace to set the default channel for. */
     teamId: string;
+    /** An array of channel IDs. */
     channelIds: string;
   };
 
-  export class AdminTeamsSettingsSetDefaultChannelsError extends ResponseError<
-    Declared<"defaulterrortemplate1", Defaulterrortemplate1>
-  > {
+  export class AdminTeamsSettingsSetDefaultChannelsError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
+
     static readonly errors: ErrorDecoders<AdminTeamsSettingsSetDefaultChannelsError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "defaulterrortemplate1",
         decode: { kind: "json", schema: defaulterrortemplate1Schema },
       },
@@ -2469,18 +3708,21 @@ export namespace Admin {
   }
 
   export type AdminTeamsSettingsSetDescriptionRequest = {
+    /** Authentication token. Requires scope: `admin.teams:write` */
     token: string;
     contentType: ContentType;
+    /** ID for the workspace to set the description for. */
     teamId: string;
+    /** The new description for the workspace. */
     description: string;
   };
 
-  export class AdminTeamsSettingsSetDescriptionError extends ResponseError<
-    Declared<"defaulterrortemplate1", Defaulterrortemplate1>
-  > {
+  export class AdminTeamsSettingsSetDescriptionError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
+
     static readonly errors: ErrorDecoders<AdminTeamsSettingsSetDescriptionError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "defaulterrortemplate1",
         decode: { kind: "json", schema: defaulterrortemplate1Schema },
       },
@@ -2488,18 +3730,24 @@ export namespace Admin {
   }
 
   export type AdminTeamsSettingsSetDiscoverabilityRequest = {
+    /** Authentication token. Requires scope: `admin.teams:write` */
     token: string;
     contentType: ContentType;
+    /** The ID of the workspace to set discoverability on. */
     teamId: string;
+    /**
+     * This workspace's discovery setting. It must be set to one of `open`, `invite_only`, `closed`,
+     * or `unlisted`.
+     */
     discoverability: string;
   };
 
-  export class AdminTeamsSettingsSetDiscoverabilityError extends ResponseError<
-    Declared<"defaulterrortemplate1", Defaulterrortemplate1>
-  > {
+  export class AdminTeamsSettingsSetDiscoverabilityError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
+
     static readonly errors: ErrorDecoders<AdminTeamsSettingsSetDiscoverabilityError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "defaulterrortemplate1",
         decode: { kind: "json", schema: defaulterrortemplate1Schema },
       },
@@ -2508,17 +3756,20 @@ export namespace Admin {
 
   export type AdminTeamsSettingsSetIconRequest = {
     contentType: ContentType;
+    /** Authentication token. Requires scope: `admin.teams:write` */
     token: string;
+    /** Image URL for the icon */
     imageUrl: string;
+    /** ID for the workspace to set the icon for. */
     teamId: string;
   };
 
-  export class AdminTeamsSettingsSetIconError extends ResponseError<
-    Declared<"defaulterrortemplate1", Defaulterrortemplate1>
-  > {
+  export class AdminTeamsSettingsSetIconError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
+
     static readonly errors: ErrorDecoders<AdminTeamsSettingsSetIconError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "defaulterrortemplate1",
         decode: { kind: "json", schema: defaulterrortemplate1Schema },
       },
@@ -2526,18 +3777,21 @@ export namespace Admin {
   }
 
   export type AdminTeamsSettingsSetNameRequest = {
+    /** Authentication token. Requires scope: `admin.teams:write` */
     token: string;
     contentType: ContentType;
+    /** ID for the workspace to set the name for. */
     teamId: string;
+    /** The new name of the workspace. */
     name: string;
   };
 
-  export class AdminTeamsSettingsSetNameError extends ResponseError<
-    Declared<"defaulterrortemplate1", Defaulterrortemplate1>
-  > {
+  export class AdminTeamsSettingsSetNameError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
+
     static readonly errors: ErrorDecoders<AdminTeamsSettingsSetNameError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "defaulterrortemplate1",
         decode: { kind: "json", schema: defaulterrortemplate1Schema },
       },
@@ -2545,19 +3799,23 @@ export namespace Admin {
   }
 
   export type AdminUsergroupsAddChannelsRequest = {
+    /** Authentication token. Requires scope: `admin.usergroups:write` */
     token: string;
     contentType: ContentType;
+    /** ID of the IDP group to add default channels for. */
     usergroupId: string;
+    /** Comma separated string of channel IDs. */
     channelIds: string;
+    /** The workspace to add default channels in. */
     teamId?: string;
   };
 
-  export class AdminUsergroupsAddChannelsError extends ResponseError<
-    Declared<"defaulterrortemplate1", Defaulterrortemplate1>
-  > {
+  export class AdminUsergroupsAddChannelsError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
+
     static readonly errors: ErrorDecoders<AdminUsergroupsAddChannelsError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "defaulterrortemplate1",
         decode: { kind: "json", schema: defaulterrortemplate1Schema },
       },
@@ -2565,19 +3823,29 @@ export namespace Admin {
   }
 
   export type AdminUsergroupsAddTeamsRequest = {
+    /** Authentication token. Requires scope: `admin.teams:write` */
     token: string;
     contentType: ContentType;
+    /** An encoded usergroup (IDP Group) ID. */
     usergroupId: string;
+    /**
+     * A comma separated list of encoded team (workspace) IDs. Each workspace *MUST* belong to the
+     * organization associated with the token.
+     */
     teamIds: string;
+    /**
+     * When `true`, this method automatically creates new workspace accounts for the IDP group
+     * members.
+     */
     autoProvision?: boolean;
   };
 
-  export class AdminUsergroupsAddTeamsError extends ResponseError<
-    Declared<"defaulterrortemplate1", Defaulterrortemplate1>
-  > {
+  export class AdminUsergroupsAddTeamsError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
+
     static readonly errors: ErrorDecoders<AdminUsergroupsAddTeamsError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "defaulterrortemplate1",
         decode: { kind: "json", schema: defaulterrortemplate1Schema },
       },
@@ -2585,19 +3853,23 @@ export namespace Admin {
   }
 
   export type AdminUsergroupsListChannelsRequest = {
+    /** ID of the IDP group to list default channels for. */
     usergroupId: string;
+    /** ID of the the workspace. */
     teamId?: string;
+    /** Flag to include or exclude the count of members per channel. */
     includeNumMembers?: boolean;
+    /** Authentication token. Requires scope: `admin.usergroups:read` */
     token: string;
     contentType: ContentType;
   };
 
-  export class AdminUsergroupsListChannelsError extends ResponseError<
-    Declared<"defaulterrortemplate1", Defaulterrortemplate1>
-  > {
+  export class AdminUsergroupsListChannelsError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
+
     static readonly errors: ErrorDecoders<AdminUsergroupsListChannelsError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "defaulterrortemplate1",
         decode: { kind: "json", schema: defaulterrortemplate1Schema },
       },
@@ -2605,18 +3877,21 @@ export namespace Admin {
   }
 
   export type AdminUsergroupsRemoveChannelsRequest = {
+    /** Authentication token. Requires scope: `admin.usergroups:write` */
     token: string;
     contentType: ContentType;
+    /** ID of the IDP Group */
     usergroupId: string;
+    /** Comma-separated string of channel IDs */
     channelIds: string;
   };
 
-  export class AdminUsergroupsRemoveChannelsError extends ResponseError<
-    Declared<"defaulterrortemplate1", Defaulterrortemplate1>
-  > {
+  export class AdminUsergroupsRemoveChannelsError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
+
     static readonly errors: ErrorDecoders<AdminUsergroupsRemoveChannelsError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "defaulterrortemplate1",
         decode: { kind: "json", schema: defaulterrortemplate1Schema },
       },
@@ -2624,21 +3899,27 @@ export namespace Admin {
   }
 
   export type AdminUsersAssignRequest = {
+    /** Authentication token. Requires scope: `admin.users:write` */
     token: string;
     contentType: ContentType;
+    /** The ID (`T1234`) of the workspace. */
     teamId: string;
+    /** The ID of the user to add to the workspace. */
     userId: string;
+    /** True if user should be added to the workspace as a guest. */
     isRestricted?: boolean;
+    /** True if user should be added to the workspace as a single-channel guest. */
     isUltraRestricted?: boolean;
+    /** Comma separated values of channel IDs to add user in the new workspace. */
     channelIds?: string;
   };
 
-  export class AdminUsersAssignError extends ResponseError<
-    Declared<"defaulterrortemplate1", Defaulterrortemplate1>
-  > {
+  export class AdminUsersAssignError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
+
     static readonly errors: ErrorDecoders<AdminUsersAssignError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "defaulterrortemplate1",
         decode: { kind: "json", schema: defaulterrortemplate1Schema },
       },
@@ -2646,25 +3927,44 @@ export namespace Admin {
   }
 
   export type AdminUsersInviteRequest = {
+    /** Authentication token. Requires scope: `admin.users:write` */
     token: string;
     contentType: ContentType;
+    /** The ID (`T1234`) of the workspace. */
     teamId: string;
+    /** The email address of the person to invite. */
     email: string;
+    /**
+     * A comma-separated list of `channel_id`s for this user to join. At least one channel is
+     * required.
+     */
     channelIds: string;
+    /** An optional message to send to the user in the invite email. */
     customMessage?: string;
+    /** Full name of the user. */
     realName?: string;
+    /**
+     * Allow this invite to be resent in the future if a user has not signed up yet. (default:
+     * false)
+     */
     resend?: boolean;
+    /** Is this user a multi-channel guest user? (default: false) */
     isRestricted?: boolean;
+    /** Is this user a single channel guest user? (default: false) */
     isUltraRestricted?: boolean;
+    /**
+     * Timestamp when guest account should be disabled. Only include this timestamp if you are
+     * inviting a guest user and you want their account to expire on a certain date.
+     */
     guestExpirationTs?: string;
   };
 
-  export class AdminUsersInviteError extends ResponseError<
-    Declared<"defaulterrortemplate1", Defaulterrortemplate1>
-  > {
+  export class AdminUsersInviteError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
+
     static readonly errors: ErrorDecoders<AdminUsersInviteError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "defaulterrortemplate1",
         decode: { kind: "json", schema: defaulterrortemplate1Schema },
       },
@@ -2672,19 +3972,25 @@ export namespace Admin {
   }
 
   export type AdminUsersListRequest = {
+    /** The ID (`T1234`) of the workspace. */
     teamId: string;
+    /**
+     * Set `cursor` to `next_cursor` returned by the previous call to list items in the next page.
+     */
     cursor?: string;
+    /** Limit for how many users to be retrieved per page */
     limit?: number;
+    /** Authentication token. Requires scope: `admin.users:read` */
     token: string;
     contentType: ContentType;
   };
 
-  export class AdminUsersListError extends ResponseError<
-    Declared<"defaulterrortemplate1", Defaulterrortemplate1>
-  > {
+  export class AdminUsersListError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
+
     static readonly errors: ErrorDecoders<AdminUsersListError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "defaulterrortemplate1",
         decode: { kind: "json", schema: defaulterrortemplate1Schema },
       },
@@ -2692,18 +3998,21 @@ export namespace Admin {
   }
 
   export type AdminUsersRemoveRequest = {
+    /** Authentication token. Requires scope: `admin.users:write` */
     token: string;
     contentType: ContentType;
+    /** The ID (`T1234`) of the workspace. */
     teamId: string;
+    /** The ID of the user to remove. */
     userId: string;
   };
 
-  export class AdminUsersRemoveError extends ResponseError<
-    Declared<"defaulterrortemplate1", Defaulterrortemplate1>
-  > {
+  export class AdminUsersRemoveError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
+
     static readonly errors: ErrorDecoders<AdminUsersRemoveError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "defaulterrortemplate1",
         decode: { kind: "json", schema: defaulterrortemplate1Schema },
       },
@@ -2711,18 +4020,20 @@ export namespace Admin {
   }
 
   export type AdminUsersSessionInvalidateRequest = {
+    /** Authentication token. Requires scope: `admin.users:write` */
     token: string;
     contentType: ContentType;
+    /** ID of the team that the session belongs to */
     teamId: string;
     sessionId: number;
   };
 
-  export class AdminUsersSessionInvalidateError extends ResponseError<
-    Declared<"defaulterrortemplate1", Defaulterrortemplate1>
-  > {
+  export class AdminUsersSessionInvalidateError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
+
     static readonly errors: ErrorDecoders<AdminUsersSessionInvalidateError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "defaulterrortemplate1",
         decode: { kind: "json", schema: defaulterrortemplate1Schema },
       },
@@ -2730,19 +4041,23 @@ export namespace Admin {
   }
 
   export type AdminUsersSessionResetRequest = {
+    /** Authentication token. Requires scope: `admin.users:write` */
     token: string;
     contentType: ContentType;
+    /** The ID of the user to wipe sessions for */
     userId: string;
+    /** Only expire mobile sessions (default: false) */
     mobileOnly?: boolean;
+    /** Only expire web sessions (default: false) */
     webOnly?: boolean;
   };
 
-  export class AdminUsersSessionResetError extends ResponseError<
-    Declared<"defaulterrortemplate1", Defaulterrortemplate1>
-  > {
+  export class AdminUsersSessionResetError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
+
     static readonly errors: ErrorDecoders<AdminUsersSessionResetError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "defaulterrortemplate1",
         decode: { kind: "json", schema: defaulterrortemplate1Schema },
       },
@@ -2750,18 +4065,21 @@ export namespace Admin {
   }
 
   export type AdminUsersSetAdminRequest = {
+    /** Authentication token. Requires scope: `admin.users:write` */
     token: string;
     contentType: ContentType;
+    /** The ID (`T1234`) of the workspace. */
     teamId: string;
+    /** The ID of the user to designate as an admin. */
     userId: string;
   };
 
-  export class AdminUsersSetAdminError extends ResponseError<
-    Declared<"defaulterrortemplate1", Defaulterrortemplate1>
-  > {
+  export class AdminUsersSetAdminError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
+
     static readonly errors: ErrorDecoders<AdminUsersSetAdminError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "defaulterrortemplate1",
         decode: { kind: "json", schema: defaulterrortemplate1Schema },
       },
@@ -2769,19 +4087,23 @@ export namespace Admin {
   }
 
   export type AdminUsersSetExpirationRequest = {
+    /** Authentication token. Requires scope: `admin.users:write` */
     token: string;
     contentType: ContentType;
+    /** The ID (`T1234`) of the workspace. */
     teamId: string;
+    /** The ID of the user to set an expiration for. */
     userId: string;
+    /** Timestamp when guest account should be disabled. */
     expirationTs: number;
   };
 
-  export class AdminUsersSetExpirationError extends ResponseError<
-    Declared<"defaulterrortemplate1", Defaulterrortemplate1>
-  > {
+  export class AdminUsersSetExpirationError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
+
     static readonly errors: ErrorDecoders<AdminUsersSetExpirationError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "defaulterrortemplate1",
         decode: { kind: "json", schema: defaulterrortemplate1Schema },
       },
@@ -2789,18 +4111,21 @@ export namespace Admin {
   }
 
   export type AdminUsersSetOwnerRequest = {
+    /** Authentication token. Requires scope: `admin.users:write` */
     token: string;
     contentType: ContentType;
+    /** The ID (`T1234`) of the workspace. */
     teamId: string;
+    /** Id of the user to promote to owner. */
     userId: string;
   };
 
-  export class AdminUsersSetOwnerError extends ResponseError<
-    Declared<"defaulterrortemplate1", Defaulterrortemplate1>
-  > {
+  export class AdminUsersSetOwnerError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
+
     static readonly errors: ErrorDecoders<AdminUsersSetOwnerError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "defaulterrortemplate1",
         decode: { kind: "json", schema: defaulterrortemplate1Schema },
       },
@@ -2808,18 +4133,21 @@ export namespace Admin {
   }
 
   export type AdminUsersSetRegularRequest = {
+    /** Authentication token. Requires scope: `admin.users:write` */
     token: string;
     contentType: ContentType;
+    /** The ID (`T1234`) of the workspace. */
     teamId: string;
+    /** The ID of the user to designate as a regular user. */
     userId: string;
   };
 
-  export class AdminUsersSetRegularError extends ResponseError<
-    Declared<"defaulterrortemplate1", Defaulterrortemplate1>
-  > {
+  export class AdminUsersSetRegularError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
+
     static readonly errors: ErrorDecoders<AdminUsersSetRegularError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "defaulterrortemplate1",
         decode: { kind: "json", schema: defaulterrortemplate1Schema },
       },

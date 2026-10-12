@@ -4,7 +4,7 @@
 
 Accessor: `client.auth2` · Source: `src/resources/auth.ts` · 2 operations · Request and error types: namespace `Auth`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `slack-web-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `slack-web-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### authRevoke
 
@@ -13,8 +13,8 @@ Accessor: `client.auth2` · Source: `src/resources/auth.ts` · 2 operations · R
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `AuthRevokeschema`
-- **Error**: `Auth.AuthRevokeError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"authRevokeerrorschema1"` [400–599] `AuthRevokeerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Auth.AuthRevokeError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"authRevokeerrorschema1"` [default — any status no arm above covers] `AuthRevokeerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `AuthRevokeerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Auth.AuthRevokeRequest` (3):
 
@@ -37,8 +37,8 @@ Accessor: `client.auth2` · Source: `src/resources/auth.ts` · 2 operations · R
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `AuthTestsuccessschema`
-- **Error**: `Auth.AuthTestError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"authTesterrorschema1"` [400–599] `AuthTesterrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Auth.AuthTestError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"authTesterrorschema1"` [default — any status no arm above covers] `AuthTesterrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `AuthTesterrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Auth.AuthTestRequest` (2):
 

@@ -9,7 +9,7 @@ export type Purpose = {
 
 export const purposeSchema: Schema<Purpose> = s.object<Purpose>({
   creator: s.string(),
-  lastSet: s.number(),
+  lastSet: s.int(),
   value: s.string(),
   _keysMap: {
     lastSet: "last_set",

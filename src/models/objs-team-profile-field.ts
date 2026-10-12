@@ -21,7 +21,7 @@ export const objsTeamProfileFieldSchema: Schema<ObjsTeamProfileField> = s.object
   isHidden: s.optional(s.boolean()),
   label: s.string(),
   options: s.optional(s.record(s.string(), s.unknown())),
-  ordering: s.number(),
+  ordering: s.float64(),
   possibleValues: s.optionalNullable(s.array(s.string())),
   type: typeSchema,
   _keysMap: {

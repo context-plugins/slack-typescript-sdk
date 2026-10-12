@@ -4,7 +4,7 @@
 
 Accessor: `client.reminders` · Source: `src/resources/reminders.ts` · 5 operations · Request and error types: namespace `Reminders`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `slack-web-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `slack-web-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### remindersAdd
 
@@ -12,9 +12,10 @@ Accessor: `client.reminders` · Source: `src/resources/reminders.ts` · 5 operat
 - **Wire**: `POST /reminders.add`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `RemindersAddschema`
-- **Error**: `Reminders.RemindersAddError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"remindersAdderrorschema1"` [400–599] `RemindersAdderrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Reminders.RemindersAddError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"remindersAdderrorschema1"` [default — any status no arm above covers] `RemindersAdderrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `RemindersAdderrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Reminders.RemindersAddRequest` (5):
 
@@ -38,9 +39,10 @@ Accessor: `client.reminders` · Source: `src/resources/reminders.ts` · 5 operat
 - **Wire**: `POST /reminders.complete`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `RemindersCompleteschema`
-- **Error**: `Reminders.RemindersCompleteError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"remindersCompleteerrorschema1"` [400–599] `RemindersCompleteerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Reminders.RemindersCompleteError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"remindersCompleteerrorschema1"` [default — any status no arm above covers] `RemindersCompleteerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `RemindersCompleteerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Reminders.RemindersCompleteRequest` (3):
 
@@ -62,9 +64,10 @@ Accessor: `client.reminders` · Source: `src/resources/reminders.ts` · 5 operat
 - **Wire**: `POST /reminders.delete`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `RemindersDeleteschema`
-- **Error**: `Reminders.RemindersDeleteError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"remindersDeleteerrorschema1"` [400–599] `RemindersDeleteerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Reminders.RemindersDeleteError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"remindersDeleteerrorschema1"` [default — any status no arm above covers] `RemindersDeleteerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `RemindersDeleteerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Reminders.RemindersDeleteRequest` (3):
 
@@ -87,8 +90,8 @@ Accessor: `client.reminders` · Source: `src/resources/reminders.ts` · 5 operat
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `RemindersInfoschema`
-- **Error**: `Reminders.RemindersInfoError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"remindersInfoerrorschema1"` [400–599] `RemindersInfoerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Reminders.RemindersInfoError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"remindersInfoerrorschema1"` [default — any status no arm above covers] `RemindersInfoerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `RemindersInfoerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Reminders.RemindersInfoRequest` (3):
 
@@ -111,8 +114,8 @@ Accessor: `client.reminders` · Source: `src/resources/reminders.ts` · 5 operat
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `RemindersListschema`
-- **Error**: `Reminders.RemindersListError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"remindersListerrorschema1"` [400–599] `RemindersListerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Reminders.RemindersListError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"remindersListerrorschema1"` [default — any status no arm above covers] `RemindersListerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `RemindersListerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Reminders.RemindersListRequest` (2):
 

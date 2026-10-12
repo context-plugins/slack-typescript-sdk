@@ -5,11 +5,13 @@ import {
   type ConversationsSetPurposeErrorEnum,
 } from "./conversations-set-purpose-error-enum.js";
 
+/** Schema for error response from conversations.setPurpose method */
 export type ConversationsSetPurposeerrorschema1 = {
+  /** Note: PHP callstack is only visible in dev/qa */
   callstack?: string;
   error: ConversationsSetPurposeErrorEnum;
   needed?: string;
-  ok: "False";
+  ok: boolean;
   provided?: string;
 };
 
@@ -18,6 +20,6 @@ export const conversationsSetPurposeerrorschema1Schema: Schema<ConversationsSetP
     callstack: s.optional(s.string()),
     error: conversationsSetPurposeErrorEnumSchema,
     needed: s.optional(s.string()),
-    ok: s.literal("False"),
+    ok: s.boolean(),
     provided: s.optional(s.string()),
   });

@@ -4,7 +4,7 @@
 
 Accessor: `client.appsPermissions` · Source: `src/resources/apps-permissions.ts` · 2 operations · Request and error types: namespace `AppsPermissions`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `slack-web-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `slack-web-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### appsPermissionsInfo
 
@@ -13,8 +13,8 @@ Accessor: `client.appsPermissions` · Source: `src/resources/apps-permissions.ts
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `AppsPermissionsInfoschema`
-- **Error**: `AppsPermissions.AppsPermissionsInfoError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"appsPermissionsInfoerrorschema1"` [400–599] `AppsPermissionsInfoerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `AppsPermissions.AppsPermissionsInfoError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"appsPermissionsInfoerrorschema1"` [default — any status no arm above covers] `AppsPermissionsInfoerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `AppsPermissionsInfoerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `AppsPermissions.AppsPermissionsInfoRequest` (2):
 
@@ -36,8 +36,8 @@ Accessor: `client.appsPermissions` · Source: `src/resources/apps-permissions.ts
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `AppsPermissionsRequestschema`
-- **Error**: `AppsPermissions.AppsPermissionsRequestError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"appsPermissionsRequesterrorschema1"` [400–599] `AppsPermissionsRequesterrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `AppsPermissions.AppsPermissionsRequestError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"appsPermissionsRequesterrorschema1"` [default — any status no arm above covers] `AppsPermissionsRequesterrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `AppsPermissionsRequesterrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `AppsPermissions.AppsPermissionsRequestRequest` (4):
 

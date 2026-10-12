@@ -5,15 +5,17 @@ import {
   type FilesSharedPublicUrlErrorEnum,
 } from "./files-shared-public-url-error-enum.js";
 
+/** Schema for error response from files.sharedPublicURL method */
 export type FilesSharedPublicUrLerrorschema1 = {
+  /** Note: PHP callstack is only visible in dev/qa */
   callstack?: string;
   error: FilesSharedPublicUrlErrorEnum;
-  ok: "False";
+  ok: boolean;
 };
 
 export const filesSharedPublicUrLerrorschema1Schema: Schema<FilesSharedPublicUrLerrorschema1> =
   s.object<FilesSharedPublicUrLerrorschema1>({
     callstack: s.optional(s.string()),
     error: filesSharedPublicUrlErrorEnumSchema,
-    ok: s.literal("False"),
+    ok: s.boolean(),
   });

@@ -5,15 +5,17 @@ import {
   type TeamAccessLogsErrorEnum,
 } from "./team-access-logs-error-enum.js";
 
+/** Schema for error response from team.accessLogs method */
 export type TeamAccessLogserrorschema1Error = {
+  /** Note: PHP callstack is only visible in dev/qa */
   callstack?: string;
   error: TeamAccessLogsErrorEnum;
-  ok: "False";
+  ok: boolean;
 };
 
 export const teamAccessLogserrorschema1ErrorSchema: Schema<TeamAccessLogserrorschema1Error> =
   s.object<TeamAccessLogserrorschema1Error>({
     callstack: s.optional(s.string()),
     error: teamAccessLogsErrorEnumSchema,
-    ok: s.literal("False"),
+    ok: s.boolean(),
   });

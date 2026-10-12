@@ -4,7 +4,7 @@
 
 Accessor: `client.teamApi` · Source: `src/resources/team-api.ts` · 5 operations · Request and error types: namespace `TeamApi`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `slack-web-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `slack-web-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### teamAccessLogs
 
@@ -13,8 +13,8 @@ Accessor: `client.teamApi` · Source: `src/resources/team-api.ts` · 5 operation
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `TeamAccessLogsschema`
-- **Error**: `TeamApi.TeamAccessLogsError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"teamAccessLogserrorschema1"` [400–599] `TeamAccessLogserrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `TeamApi.TeamAccessLogsError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"teamAccessLogserrorschema1"` [default — any status no arm above covers] `TeamAccessLogserrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `TeamAccessLogserrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `TeamApi.TeamAccessLogsRequest` (5):
 
@@ -39,8 +39,8 @@ Accessor: `client.teamApi` · Source: `src/resources/team-api.ts` · 5 operation
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Defaultsuccesstemplate`
-- **Error**: `TeamApi.TeamBillableInfoError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"defaulterrortemplate1"` [400–599] `Defaulterrortemplate1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `TeamApi.TeamBillableInfoError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"defaulterrortemplate1"` [default — any status no arm above covers] `Defaulterrortemplate1` · `"undeclared"` [a `default`-matched body that did not fit `Defaulterrortemplate1`] `rawBody: ArrayBuffer`
 
 **Fields** — `TeamApi.TeamBillableInfoRequest` (3):
 
@@ -63,8 +63,8 @@ Accessor: `client.teamApi` · Source: `src/resources/team-api.ts` · 5 operation
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `TeamInfoschema`
-- **Error**: `TeamApi.TeamInfoError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"teamInfoerrorschema1"` [400–599] `TeamInfoerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `TeamApi.TeamInfoError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"teamInfoerrorschema1"` [default — any status no arm above covers] `TeamInfoerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `TeamInfoerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `TeamApi.TeamInfoRequest` (3):
 
@@ -87,8 +87,8 @@ Accessor: `client.teamApi` · Source: `src/resources/team-api.ts` · 5 operation
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `TeamIntegrationLogsschema`
-- **Error**: `TeamApi.TeamIntegrationLogsError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"teamIntegrationLogserrorschema1"` [400–599] `TeamIntegrationLogserrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `TeamApi.TeamIntegrationLogsError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"teamIntegrationLogserrorschema1"` [default — any status no arm above covers] `TeamIntegrationLogserrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `TeamIntegrationLogserrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `TeamApi.TeamIntegrationLogsRequest` (8):
 
@@ -116,8 +116,8 @@ Accessor: `client.teamApi` · Source: `src/resources/team-api.ts` · 5 operation
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `TeamProfileGetsuccessschema`
-- **Error**: `TeamApi.TeamProfileGetError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"teamProfileGeterrorschema1"` [400–599] `TeamProfileGeterrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `TeamApi.TeamProfileGetError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"teamProfileGeterrorschema1"` [default — any status no arm above covers] `TeamProfileGeterrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `TeamProfileGeterrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `TeamApi.TeamProfileGetRequest` (3):
 

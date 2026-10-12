@@ -18,15 +18,15 @@ export type FileCommentObject = {
 
 export const fileCommentObjectSchema: Schema<FileCommentObject> = s.object<FileCommentObject>({
   comment: s.string(),
-  created: s.number(),
+  created: s.int(),
   id: s.string(),
   isIntro: s.boolean(),
   isStarred: s.optional(s.boolean()),
-  numStars: s.optional(s.number()),
+  numStars: s.optional(s.int()),
   pinnedInfo: s.optional(s.record(s.string(), s.unknown())),
   pinnedTo: s.optional(s.array(s.string())),
   reactions: s.optional(s.array(s.lazy(() => reactionobjectSchema))),
-  timestamp: s.number(),
+  timestamp: s.int(),
   user: s.string(),
   _keysMap: {
     isIntro: "is_intro",

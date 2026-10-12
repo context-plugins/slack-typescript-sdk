@@ -1,10 +1,11 @@
 import * as s from "../core/validation/index.js";
 import type { Schema } from "../core/validation/schema.js";
 
+/** Schema for successful response from migration.exchange method */
 export type MigrationExchangesuccessschema = {
   enterpriseId: string;
   invalidUserIds?: string[];
-  ok: "True";
+  ok: boolean;
   teamId: string;
   userIdMap?: Record<string, unknown>;
 };
@@ -13,7 +14,7 @@ export const migrationExchangesuccessschemaSchema: Schema<MigrationExchangesucce
   s.object<MigrationExchangesuccessschema>({
     enterpriseId: s.string(),
     invalidUserIds: s.optional(s.array(s.string())),
-    ok: s.literal("True"),
+    ok: s.boolean(),
     teamId: s.string(),
     userIdMap: s.optional(s.record(s.string(), s.unknown())),
     _keysMap: {

@@ -5,13 +5,14 @@ import {
   type AdminConversationsDisconnectSharedErrorEnum,
 } from "./admin-conversations-disconnect-shared-error-enum.js";
 
+/** Schema for error response from admin.conversations.disconnectShared */
 export type AdminConversationsDisconnectSharederrorschema1 = {
   error: AdminConversationsDisconnectSharedErrorEnum;
-  ok: "False";
+  ok: boolean;
 };
 
 export const adminConversationsDisconnectSharederrorschema1Schema: Schema<AdminConversationsDisconnectSharederrorschema1> =
   s.object<AdminConversationsDisconnectSharederrorschema1>({
     error: adminConversationsDisconnectSharedErrorEnumSchema,
-    ok: s.literal("False"),
+    ok: s.boolean(),
   });

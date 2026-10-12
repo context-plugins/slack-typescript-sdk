@@ -4,7 +4,7 @@
 
 Accessor: `client.users` · Source: `src/resources/users.ts` · 12 operations · Request and error types: namespace `Users`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `slack-web-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `slack-web-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### usersConversations
 
@@ -13,8 +13,8 @@ Accessor: `client.users` · Source: `src/resources/users.ts` · 12 operations ·
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `UsersConversationssuccessschema`
-- **Error**: `Users.UsersConversationsError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"usersConversationserrorschema1"` [400–599] `UsersConversationserrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Users.UsersConversationsError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"usersConversationserrorschema1"` [default — any status no arm above covers] `UsersConversationserrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `UsersConversationserrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Users.UsersConversationsRequest` (7):
 
@@ -40,9 +40,10 @@ Accessor: `client.users` · Source: `src/resources/users.ts` · 12 operations ·
 - **Wire**: `POST /users.deletePhoto`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `UsersDeletePhotoschema`
-- **Error**: `Users.UsersDeletePhotoError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"usersDeletePhotoerrorschema1"` [400–599] `UsersDeletePhotoerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Users.UsersDeletePhotoError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"usersDeletePhotoerrorschema1"` [default — any status no arm above covers] `UsersDeletePhotoerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `UsersDeletePhotoerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Users.UsersDeletePhotoRequest` (2):
 
@@ -64,8 +65,8 @@ Accessor: `client.users` · Source: `src/resources/users.ts` · 12 operations ·
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `ApImethodusersGetPresence`
-- **Error**: `Users.UsersGetPresenceError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"usersCountserrorschema1"` [400–599] `UsersCountserrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Users.UsersGetPresenceError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"usersCountserrorschema1"` [default — any status no arm above covers] `UsersCountserrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `UsersCountserrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Users.UsersGetPresenceRequest` (3):
 
@@ -88,8 +89,8 @@ Accessor: `client.users` · Source: `src/resources/users.ts` · 12 operations ·
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Record<string, unknown>` — a bare `application/json` map; the success type *is* the map
-- **Error**: `Users.UsersIdentityError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"usersIdentityerrorschema1"` [400–599] `UsersIdentityerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Users.UsersIdentityError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"usersIdentityerrorschema1"` [default — any status no arm above covers] `UsersIdentityerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `UsersIdentityerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Users.UsersIdentityRequest` (2):
 
@@ -110,8 +111,8 @@ Accessor: `client.users` · Source: `src/resources/users.ts` · 12 operations ·
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `UsersInfosuccessschema`
-- **Error**: `Users.UsersInfoError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"usersInfoerrorschema1"` [400–599] `UsersInfoerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Users.UsersInfoError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"usersInfoerrorschema1"` [default — any status no arm above covers] `UsersInfoerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `UsersInfoerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Users.UsersInfoRequest` (4):
 
@@ -135,8 +136,8 @@ Accessor: `client.users` · Source: `src/resources/users.ts` · 12 operations ·
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `UsersListschema`
-- **Error**: `Users.UsersListError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"usersListerrorschema1"` [400–599] `UsersListerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Users.UsersListError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"usersListerrorschema1"` [default — any status no arm above covers] `UsersListerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `UsersListerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Users.UsersListRequest` (5):
 
@@ -161,8 +162,8 @@ Accessor: `client.users` · Source: `src/resources/users.ts` · 12 operations ·
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `UsersLookupByEmailsuccessschema`
-- **Error**: `Users.UsersLookupByEmailError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"usersLookupByEmailerrorschema1"` [400–599] `UsersLookupByEmailerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Users.UsersLookupByEmailError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"usersLookupByEmailerrorschema1"` [default — any status no arm above covers] `UsersLookupByEmailerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `UsersLookupByEmailerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Users.UsersLookupByEmailRequest` (3):
 
@@ -185,8 +186,8 @@ Accessor: `client.users` · Source: `src/resources/users.ts` · 12 operations ·
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `UsersProfileGetschema`
-- **Error**: `Users.UsersProfileGetError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"usersProfileGeterrorschema1"` [400–599] `UsersProfileGeterrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Users.UsersProfileGetError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"usersProfileGeterrorschema1"` [default — any status no arm above covers] `UsersProfileGeterrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `UsersProfileGeterrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Users.UsersProfileGetRequest` (4):
 
@@ -209,9 +210,10 @@ Accessor: `client.users` · Source: `src/resources/users.ts` · 12 operations ·
 - **Wire**: `POST /users.profile.set`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `UsersProfileSetschema`
-- **Error**: `Users.UsersProfileSetError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"usersProfileSeterrorschema1"` [400–599] `UsersProfileSeterrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Users.UsersProfileSetError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"usersProfileSeterrorschema1"` [default — any status no arm above covers] `UsersProfileSeterrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `UsersProfileSeterrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Users.UsersProfileSetRequest` (6):
 
@@ -236,9 +238,10 @@ Accessor: `client.users` · Source: `src/resources/users.ts` · 12 operations ·
 - **Wire**: `POST /users.setActive`
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `UsersSetActiveschema`
-- **Error**: `Users.UsersSetActiveError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"usersSetActiveerrorschema1"` [400–599] `UsersSetActiveerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Users.UsersSetActiveError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"usersSetActiveerrorschema1"` [default — any status no arm above covers] `UsersSetActiveerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `UsersSetActiveerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Users.UsersSetActiveRequest` (2):
 
@@ -259,9 +262,10 @@ Accessor: `client.users` · Source: `src/resources/users.ts` · 12 operations ·
 - **Wire**: `POST /users.setPhoto`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `UsersSetPhotoschema`
-- **Error**: `Users.UsersSetPhotoError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"usersSetPhotoerrorschema1"` [400–599] `UsersSetPhotoerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Users.UsersSetPhotoError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"usersSetPhotoerrorschema1"` [default — any status no arm above covers] `UsersSetPhotoerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `UsersSetPhotoerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Users.UsersSetPhotoRequest` (6):
 
@@ -286,9 +290,10 @@ Accessor: `client.users` · Source: `src/resources/users.ts` · 12 operations ·
 - **Wire**: `POST /users.setPresence`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `UsersSetPresenceschema`
-- **Error**: `Users.UsersSetPresenceError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"usersSetPresenceerrorschema1"` [400–599] `UsersSetPresenceerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Users.UsersSetPresenceError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"usersSetPresenceerrorschema1"` [default — any status no arm above covers] `UsersSetPresenceerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `UsersSetPresenceerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Users.UsersSetPresenceRequest` (3):
 

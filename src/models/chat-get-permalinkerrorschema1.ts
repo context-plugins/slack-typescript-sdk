@@ -5,15 +5,17 @@ import {
   type ChatGetPermalinkErrorEnum,
 } from "./chat-get-permalink-error-enum.js";
 
+/** Schema for error response from chat.getPermalink method */
 export type ChatGetPermalinkerrorschema1 = {
+  /** Note: PHP callstack is only visible in dev/qa */
   callstack?: string;
   error: ChatGetPermalinkErrorEnum;
-  ok: "False";
+  ok: boolean;
 };
 
 export const chatGetPermalinkerrorschema1Schema: Schema<ChatGetPermalinkerrorschema1> =
   s.object<ChatGetPermalinkerrorschema1>({
     callstack: s.optional(s.string()),
     error: chatGetPermalinkErrorEnumSchema,
-    ok: s.literal("False"),
+    ok: s.boolean(),
   });

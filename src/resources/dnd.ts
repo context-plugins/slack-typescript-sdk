@@ -1,8 +1,9 @@
 import type { AuthSchemes } from "../auth-schemes.js";
+import { ApiError, type Declared, type ErrorDecoders, type ErrorPayload } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import type { RawClient } from "../core/raw-client.js";
-import { ResponseError, type Declared, type ErrorDecoders } from "../core/response-error.js";
+import { uuid } from "../core/uuid.js";
 import * as s from "../core/validation/index.js";
 import { contentTypeSchema, type ContentType } from "../models/content-type.js";
 import { defaulterrortemplate1Schema, type Defaulterrortemplate1 } from "../models/defaulterrortemplate1.js";
@@ -40,6 +41,21 @@ export class Dnd {
     this.#auth = auth;
   }
 
+  /**
+   * dnd_endDnd
+   *
+   * @remarks
+   * Ends the current user's Do Not Disturb session immediately.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Dnd.DndEndDndError} when the API answers with an error status — narrow on
+   * `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   dndEndDnd(
     request: Dnd.DndEndDndRequest,
     options?: RequestOptions,
@@ -47,11 +63,14 @@ export class Dnd {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/dnd.endDnd"),
+        urlTemplate: this.#servers.default("/dnd.endDnd"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: { kind: "empty" },
       },
@@ -63,6 +82,21 @@ export class Dnd {
     );
   }
 
+  /**
+   * dnd_endSnooze
+   *
+   * @remarks
+   * Ends the current user's snooze mode immediately.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Dnd.DndEndSnoozeError} when the API answers with an error status — narrow on
+   * `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   dndEndSnooze(
     request: Dnd.DndEndSnoozeRequest,
     options?: RequestOptions,
@@ -70,11 +104,14 @@ export class Dnd {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/dnd.endSnooze"),
+        urlTemplate: this.#servers.default("/dnd.endSnooze"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: { kind: "empty" },
       },
@@ -86,6 +123,21 @@ export class Dnd {
     );
   }
 
+  /**
+   * dnd_info
+   *
+   * @remarks
+   * Retrieves a user's current Do Not Disturb status.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Dnd.DndInfoError} when the API answers with an error status — narrow on
+   * `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   dndInfo(
     request: Dnd.DndInfoRequest,
     options?: RequestOptions,
@@ -93,8 +145,9 @@ export class Dnd {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/dnd.info"),
+        urlTemplate: this.#servers.default("/dnd.info"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
         query: [
           { name: "token", value: request.token, schema: s.optional(s.string()) },
           { name: "user", value: request.user, schema: s.optional(s.string()) },
@@ -110,6 +163,21 @@ export class Dnd {
     );
   }
 
+  /**
+   * dnd_setSnooze
+   *
+   * @remarks
+   * Turns on Do Not Disturb mode for the current user, or changes its duration.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Dnd.DndSetSnoozeError} when the API answers with an error status — narrow on
+   * `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   dndSetSnooze(
     request: Dnd.DndSetSnoozeRequest,
     options?: RequestOptions,
@@ -117,9 +185,14 @@ export class Dnd {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/dnd.setSnooze"),
+        urlTemplate: this.#servers.default("/dnd.setSnooze"),
         auth: this.#auth.slackAuth,
-        headers: [{ name: "Content-Type", value: request.contentType, schema: contentTypeSchema }],
+        pathParams: [],
+        query: [],
+        headers: [
+          { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
+        ],
         body: {
           kind: "formUrlEncoded",
           value: [
@@ -136,6 +209,21 @@ export class Dnd {
     );
   }
 
+  /**
+   * dnd_teamInfo
+   *
+   * @remarks
+   * Retrieves the Do Not Disturb status for up to 50 users on a team.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Dnd.DndTeamInfoError} when the API answers with an error status — narrow on
+   * `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   dndTeamInfo(
     request: Dnd.DndTeamInfoRequest,
     options?: RequestOptions,
@@ -143,8 +231,9 @@ export class Dnd {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/dnd.teamInfo"),
+        urlTemplate: this.#servers.default("/dnd.teamInfo"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
         query: [
           { name: "token", value: request.token, schema: s.optional(s.string()) },
           { name: "users", value: request.users, schema: s.optional(s.string()) },
@@ -163,16 +252,17 @@ export class Dnd {
 
 export namespace Dnd {
   export type DndEndDndRequest = {
+    /** Authentication token. Requires scope: `dnd:write` */
     token: string;
     contentType: ContentType;
   };
 
-  export class DndEndDndError extends ResponseError<
-    Declared<"dndEndDnderrorschema1", DndEndDnderrorschema1>
-  > {
+  export class DndEndDndError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"dndEndDnderrorschema1", DndEndDnderrorschema1>>;
+
     static readonly errors: ErrorDecoders<DndEndDndError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "dndEndDnderrorschema1",
         decode: { kind: "json", schema: dndEndDnderrorschema1Schema },
       },
@@ -180,16 +270,17 @@ export namespace Dnd {
   }
 
   export type DndEndSnoozeRequest = {
+    /** Authentication token. Requires scope: `dnd:write` */
     token: string;
     contentType: ContentType;
   };
 
-  export class DndEndSnoozeError extends ResponseError<
-    Declared<"dndEndSnoozeerrorschema1", DndEndSnoozeerrorschema1>
-  > {
+  export class DndEndSnoozeError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"dndEndSnoozeerrorschema1", DndEndSnoozeerrorschema1>>;
+
     static readonly errors: ErrorDecoders<DndEndSnoozeError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "dndEndSnoozeerrorschema1",
         decode: { kind: "json", schema: dndEndSnoozeerrorschema1Schema },
       },
@@ -197,15 +288,19 @@ export namespace Dnd {
   }
 
   export type DndInfoRequest = {
+    /** Authentication token. Requires scope: `dnd:read` */
     token?: string;
+    /** User to fetch status for (defaults to current user) */
     user?: string;
     contentType: ContentType;
   };
 
-  export class DndInfoError extends ResponseError<Declared<"dndInfoerrorschema1", DndInfoerrorschema1>> {
+  export class DndInfoError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"dndInfoerrorschema1", DndInfoerrorschema1>>;
+
     static readonly errors: ErrorDecoders<DndInfoError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "dndInfoerrorschema1",
         decode: { kind: "json", schema: dndInfoerrorschema1Schema },
       },
@@ -214,16 +309,18 @@ export namespace Dnd {
 
   export type DndSetSnoozeRequest = {
     contentType: ContentType;
+    /** Authentication token. Requires scope: `dnd:write` */
     token: string;
+    /** Number of minutes, from now, to snooze until. */
     numMinutes: string;
   };
 
-  export class DndSetSnoozeError extends ResponseError<
-    Declared<"dndSetSnoozeerrorschema1", DndSetSnoozeerrorschema1>
-  > {
+  export class DndSetSnoozeError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"dndSetSnoozeerrorschema1", DndSetSnoozeerrorschema1>>;
+
     static readonly errors: ErrorDecoders<DndSetSnoozeError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "dndSetSnoozeerrorschema1",
         decode: { kind: "json", schema: dndSetSnoozeerrorschema1Schema },
       },
@@ -231,17 +328,19 @@ export namespace Dnd {
   }
 
   export type DndTeamInfoRequest = {
+    /** Authentication token. Requires scope: `dnd:read` */
     token?: string;
+    /** Comma-separated list of users to fetch Do Not Disturb status for */
     users?: string;
     contentType: ContentType;
   };
 
-  export class DndTeamInfoError extends ResponseError<
-    Declared<"defaulterrortemplate1", Defaulterrortemplate1>
-  > {
+  export class DndTeamInfoError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
+
     static readonly errors: ErrorDecoders<DndTeamInfoError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "defaulterrortemplate1",
         decode: { kind: "json", schema: defaulterrortemplate1Schema },
       },

@@ -1,11 +1,12 @@
 import * as s from "../core/validation/index.js";
 import type { Schema } from "../core/validation/schema.js";
 
+/** Schema for successful response from dnd.info method */
 export type DndInfoschema = {
   dndEnabled: boolean;
   nextDndEndTs: number;
   nextDndStartTs: number;
-  ok: "True";
+  ok: boolean;
   snoozeEnabled?: boolean;
   snoozeEndtime?: number;
   snoozeRemaining?: number;
@@ -13,12 +14,12 @@ export type DndInfoschema = {
 
 export const dndInfoschemaSchema: Schema<DndInfoschema> = s.object<DndInfoschema>({
   dndEnabled: s.boolean(),
-  nextDndEndTs: s.number(),
-  nextDndStartTs: s.number(),
-  ok: s.literal("True"),
+  nextDndEndTs: s.int(),
+  nextDndStartTs: s.int(),
+  ok: s.boolean(),
   snoozeEnabled: s.optional(s.boolean()),
-  snoozeEndtime: s.optional(s.number()),
-  snoozeRemaining: s.optional(s.number()),
+  snoozeEndtime: s.optional(s.int()),
+  snoozeRemaining: s.optional(s.int()),
   _keysMap: {
     dndEnabled: "dnd_enabled",
     nextDndEndTs: "next_dnd_end_ts",

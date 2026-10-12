@@ -1,8 +1,8 @@
 import type { AuthSchemes } from "../auth-schemes.js";
+import { ApiError, type Declared, type ErrorDecoders, type ErrorPayload } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import type { RawClient } from "../core/raw-client.js";
-import { ResponseError, type Declared, type ErrorDecoders } from "../core/response-error.js";
 import * as s from "../core/validation/index.js";
 import { contentTypeSchema, type ContentType } from "../models/content-type.js";
 import {
@@ -23,6 +23,21 @@ export class Rtm {
     this.#auth = auth;
   }
 
+  /**
+   * rtm_connect
+   *
+   * @remarks
+   * Starts a Real Time Messaging session.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Rtm.RtmConnectError} when the API answers with an error status — narrow on
+   * `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   rtmConnect(
     request: Rtm.RtmConnectRequest,
     options?: RequestOptions,
@@ -30,8 +45,9 @@ export class Rtm {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/rtm.connect"),
+        urlTemplate: this.#servers.default("/rtm.connect"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
         query: [
           { name: "token", value: request.token, schema: s.string() },
           {
@@ -55,18 +71,24 @@ export class Rtm {
 
 export namespace Rtm {
   export type RtmConnectRequest = {
+    /** Authentication token. Requires scope: `rtm:stream` */
     token: string;
+    /**
+     * Batch presence deliveries via subscription. Enabling changes the shape of `presence_change`
+     * events.
+     */
     batchPresenceAware?: boolean;
+    /** Only deliver presence events when requested by subscription */
     presenceSub?: boolean;
     contentType: ContentType;
   };
 
-  export class RtmConnectError extends ResponseError<
-    Declared<"rtmConnecterrorschema1", RtmConnecterrorschema1>
-  > {
+  export class RtmConnectError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"rtmConnecterrorschema1", RtmConnecterrorschema1>>;
+
     static readonly errors: ErrorDecoders<RtmConnectError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "rtmConnecterrorschema1",
         decode: { kind: "json", schema: rtmConnecterrorschema1Schema },
       },

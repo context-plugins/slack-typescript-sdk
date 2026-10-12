@@ -5,15 +5,17 @@ import {
   type UsersLookupByEmailErrorEnum,
 } from "./users-lookup-by-email-error-enum.js";
 
+/** Schema for error response from users.lookupByEmail method */
 export type UsersLookupByEmailerrorschema1 = {
+  /** Note: PHP callstack is only visible in dev/qa */
   callstack?: string;
   error: UsersLookupByEmailErrorEnum;
-  ok: "False";
+  ok: boolean;
 };
 
 export const usersLookupByEmailerrorschema1Schema: Schema<UsersLookupByEmailerrorschema1> =
   s.object<UsersLookupByEmailerrorschema1>({
     callstack: s.optional(s.string()),
     error: usersLookupByEmailErrorEnumSchema,
-    ok: s.literal("False"),
+    ok: s.boolean(),
   });

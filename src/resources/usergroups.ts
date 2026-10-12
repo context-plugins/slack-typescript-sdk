@@ -1,8 +1,9 @@
 import type { AuthSchemes } from "../auth-schemes.js";
+import { ApiError, type Declared, type ErrorDecoders, type ErrorPayload } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import type { RawClient } from "../core/raw-client.js";
-import { ResponseError, type Declared, type ErrorDecoders } from "../core/response-error.js";
+import { uuid } from "../core/uuid.js";
 import * as s from "../core/validation/index.js";
 import { contentTypeSchema, type ContentType } from "../models/content-type.js";
 import {
@@ -71,6 +72,21 @@ export class Usergroups {
     this.#auth = auth;
   }
 
+  /**
+   * usergroups_create
+   *
+   * @remarks
+   * Create a User Group
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Usergroups.UsergroupsCreateError} when the API answers with an error status —
+   * narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   usergroupsCreate(
     request: Usergroups.UsergroupsCreateRequest,
     options?: RequestOptions,
@@ -78,11 +94,14 @@ export class Usergroups {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/usergroups.create"),
+        urlTemplate: this.#servers.default("/usergroups.create"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "formUrlEncoded",
@@ -103,6 +122,21 @@ export class Usergroups {
     );
   }
 
+  /**
+   * usergroups_disable
+   *
+   * @remarks
+   * Disable an existing User Group
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Usergroups.UsergroupsDisableError} when the API answers with an error status —
+   * narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   usergroupsDisable(
     request: Usergroups.UsergroupsDisableRequest,
     options?: RequestOptions,
@@ -110,11 +144,14 @@ export class Usergroups {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/usergroups.disable"),
+        urlTemplate: this.#servers.default("/usergroups.disable"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "formUrlEncoded",
@@ -132,6 +169,21 @@ export class Usergroups {
     );
   }
 
+  /**
+   * usergroups_enable
+   *
+   * @remarks
+   * Enable a User Group
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Usergroups.UsergroupsEnableError} when the API answers with an error status —
+   * narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   usergroupsEnable(
     request: Usergroups.UsergroupsEnableRequest,
     options?: RequestOptions,
@@ -139,11 +191,14 @@ export class Usergroups {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/usergroups.enable"),
+        urlTemplate: this.#servers.default("/usergroups.enable"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "formUrlEncoded",
@@ -161,6 +216,21 @@ export class Usergroups {
     );
   }
 
+  /**
+   * usergroups_list
+   *
+   * @remarks
+   * List all User Groups for a team
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Usergroups.UsergroupsListError} when the API answers with an error status —
+   * narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   usergroupsList(
     request: Usergroups.UsergroupsListRequest,
     options?: RequestOptions,
@@ -168,8 +238,9 @@ export class Usergroups {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/usergroups.list"),
+        urlTemplate: this.#servers.default("/usergroups.list"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
         query: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "include_users", value: request.includeUsers, schema: s.optional(s.boolean()) },
@@ -187,6 +258,21 @@ export class Usergroups {
     );
   }
 
+  /**
+   * usergroups_update
+   *
+   * @remarks
+   * Update an existing User Group
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Usergroups.UsergroupsUpdateError} when the API answers with an error status —
+   * narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   usergroupsUpdate(
     request: Usergroups.UsergroupsUpdateRequest,
     options?: RequestOptions,
@@ -194,11 +280,14 @@ export class Usergroups {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/usergroups.update"),
+        urlTemplate: this.#servers.default("/usergroups.update"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "formUrlEncoded",
@@ -220,6 +309,21 @@ export class Usergroups {
     );
   }
 
+  /**
+   * usergroups_users_list
+   *
+   * @remarks
+   * List all users in a User Group
+   *
+   * @returns Standard success response when used with a user token
+   *
+   * @throws {@link Usergroups.UsergroupsUsersListError} when the API answers with an error status —
+   * narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   usergroupsUsersList(
     request: Usergroups.UsergroupsUsersListRequest,
     options?: RequestOptions,
@@ -227,8 +331,9 @@ export class Usergroups {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/usergroups.users.list"),
+        urlTemplate: this.#servers.default("/usergroups.users.list"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
         query: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "usergroup", value: request.usergroup, schema: s.string() },
@@ -245,6 +350,21 @@ export class Usergroups {
     );
   }
 
+  /**
+   * usergroups_users_update
+   *
+   * @remarks
+   * Update the list of users for a User Group
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Usergroups.UsergroupsUsersUpdateError} when the API answers with an error status
+   * — narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   usergroupsUsersUpdate(
     request: Usergroups.UsergroupsUsersUpdateRequest,
     options?: RequestOptions,
@@ -252,11 +372,14 @@ export class Usergroups {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/usergroups.users.update"),
+        urlTemplate: this.#servers.default("/usergroups.users.update"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "formUrlEncoded",
@@ -278,21 +401,31 @@ export class Usergroups {
 
 export namespace Usergroups {
   export type UsergroupsCreateRequest = {
+    /** Authentication token. Requires scope: `usergroups:write` */
     token: string;
     contentType: ContentType;
+    /** A name for the User Group. Must be unique among User Groups. */
     name: string;
+    /**
+     * A comma separated string of encoded channel IDs for which the User Group uses as a default.
+     */
     channels?: string;
+    /** A short description of the User Group. */
     description?: string;
+    /** A mention handle. Must be unique among channels, users and User Groups. */
     handle?: string;
+    /** Include the number of users in each User Group. */
     includeCount?: boolean;
   };
 
-  export class UsergroupsCreateError extends ResponseError<
-    Declared<"usergroupsCreateerrorschema1", UsergroupsCreateerrorschema1>
-  > {
+  export class UsergroupsCreateError extends ApiError {
+    declare readonly payload: ErrorPayload<
+      Declared<"usergroupsCreateerrorschema1", UsergroupsCreateerrorschema1>
+    >;
+
     static readonly errors: ErrorDecoders<UsergroupsCreateError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "usergroupsCreateerrorschema1",
         decode: { kind: "json", schema: usergroupsCreateerrorschema1Schema },
       },
@@ -300,18 +433,23 @@ export namespace Usergroups {
   }
 
   export type UsergroupsDisableRequest = {
+    /** Authentication token. Requires scope: `usergroups:write` */
     token: string;
     contentType: ContentType;
+    /** The encoded ID of the User Group to disable. */
     usergroup: string;
+    /** Include the number of users in the User Group. */
     includeCount?: boolean;
   };
 
-  export class UsergroupsDisableError extends ResponseError<
-    Declared<"usergroupsDisableerrorschema1", UsergroupsDisableerrorschema1>
-  > {
+  export class UsergroupsDisableError extends ApiError {
+    declare readonly payload: ErrorPayload<
+      Declared<"usergroupsDisableerrorschema1", UsergroupsDisableerrorschema1>
+    >;
+
     static readonly errors: ErrorDecoders<UsergroupsDisableError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "usergroupsDisableerrorschema1",
         decode: { kind: "json", schema: usergroupsDisableerrorschema1Schema },
       },
@@ -319,18 +457,23 @@ export namespace Usergroups {
   }
 
   export type UsergroupsEnableRequest = {
+    /** Authentication token. Requires scope: `usergroups:write` */
     token: string;
     contentType: ContentType;
+    /** The encoded ID of the User Group to enable. */
     usergroup: string;
+    /** Include the number of users in the User Group. */
     includeCount?: boolean;
   };
 
-  export class UsergroupsEnableError extends ResponseError<
-    Declared<"usergroupsEnableerrorschema1", UsergroupsEnableerrorschema1>
-  > {
+  export class UsergroupsEnableError extends ApiError {
+    declare readonly payload: ErrorPayload<
+      Declared<"usergroupsEnableerrorschema1", UsergroupsEnableerrorschema1>
+    >;
+
     static readonly errors: ErrorDecoders<UsergroupsEnableError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "usergroupsEnableerrorschema1",
         decode: { kind: "json", schema: usergroupsEnableerrorschema1Schema },
       },
@@ -338,19 +481,25 @@ export namespace Usergroups {
   }
 
   export type UsergroupsListRequest = {
+    /** Authentication token. Requires scope: `usergroups:read` */
     token: string;
+    /** Include the list of users for each User Group. */
     includeUsers?: boolean;
+    /** Include the number of users in each User Group. */
     includeCount?: boolean;
+    /** Include disabled User Groups. */
     includeDisabled?: boolean;
     contentType: ContentType;
   };
 
-  export class UsergroupsListError extends ResponseError<
-    Declared<"usergroupsListerrorschema1", UsergroupsListerrorschema1>
-  > {
+  export class UsergroupsListError extends ApiError {
+    declare readonly payload: ErrorPayload<
+      Declared<"usergroupsListerrorschema1", UsergroupsListerrorschema1>
+    >;
+
     static readonly errors: ErrorDecoders<UsergroupsListError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "usergroupsListerrorschema1",
         decode: { kind: "json", schema: usergroupsListerrorschema1Schema },
       },
@@ -358,22 +507,33 @@ export namespace Usergroups {
   }
 
   export type UsergroupsUpdateRequest = {
+    /** Authentication token. Requires scope: `usergroups:write` */
     token: string;
     contentType: ContentType;
+    /** The encoded ID of the User Group to update. */
     usergroup: string;
+    /** A mention handle. Must be unique among channels, users and User Groups. */
     handle?: string;
+    /** A short description of the User Group. */
     description?: string;
+    /**
+     * A comma separated string of encoded channel IDs for which the User Group uses as a default.
+     */
     channels?: string;
+    /** Include the number of users in the User Group. */
     includeCount?: boolean;
+    /** A name for the User Group. Must be unique among User Groups. */
     name?: string;
   };
 
-  export class UsergroupsUpdateError extends ResponseError<
-    Declared<"usergroupsUpdateerrorschema1", UsergroupsUpdateerrorschema1>
-  > {
+  export class UsergroupsUpdateError extends ApiError {
+    declare readonly payload: ErrorPayload<
+      Declared<"usergroupsUpdateerrorschema1", UsergroupsUpdateerrorschema1>
+    >;
+
     static readonly errors: ErrorDecoders<UsergroupsUpdateError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "usergroupsUpdateerrorschema1",
         decode: { kind: "json", schema: usergroupsUpdateerrorschema1Schema },
       },
@@ -381,18 +541,23 @@ export namespace Usergroups {
   }
 
   export type UsergroupsUsersListRequest = {
+    /** Authentication token. Requires scope: `usergroups:read` */
     token: string;
+    /** The encoded ID of the User Group to update. */
     usergroup: string;
+    /** Allow results that involve disabled User Groups. */
     includeDisabled?: boolean;
     contentType: ContentType;
   };
 
-  export class UsergroupsUsersListError extends ResponseError<
-    Declared<"usergroupsUsersListerrorschema1", UsergroupsUsersListerrorschema1>
-  > {
+  export class UsergroupsUsersListError extends ApiError {
+    declare readonly payload: ErrorPayload<
+      Declared<"usergroupsUsersListerrorschema1", UsergroupsUsersListerrorschema1>
+    >;
+
     static readonly errors: ErrorDecoders<UsergroupsUsersListError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "usergroupsUsersListerrorschema1",
         decode: { kind: "json", schema: usergroupsUsersListerrorschema1Schema },
       },
@@ -400,19 +565,28 @@ export namespace Usergroups {
   }
 
   export type UsergroupsUsersUpdateRequest = {
+    /** Authentication token. Requires scope: `usergroups:write` */
     token: string;
     contentType: ContentType;
+    /** The encoded ID of the User Group to update. */
     usergroup: string;
+    /**
+     * A comma separated string of encoded user IDs that represent the entire list of users for the
+     * User Group.
+     */
     users: string;
+    /** Include the number of users in the User Group. */
     includeCount?: boolean;
   };
 
-  export class UsergroupsUsersUpdateError extends ResponseError<
-    Declared<"usergroupsUsersUpdateerrorschema1", UsergroupsUsersUpdateerrorschema1>
-  > {
+  export class UsergroupsUsersUpdateError extends ApiError {
+    declare readonly payload: ErrorPayload<
+      Declared<"usergroupsUsersUpdateerrorschema1", UsergroupsUsersUpdateerrorschema1>
+    >;
+
     static readonly errors: ErrorDecoders<UsergroupsUsersUpdateError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "usergroupsUsersUpdateerrorschema1",
         decode: { kind: "json", schema: usergroupsUsersUpdateerrorschema1Schema },
       },

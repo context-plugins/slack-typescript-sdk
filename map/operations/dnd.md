@@ -4,7 +4,7 @@
 
 Accessor: `client.dnd` · Source: `src/resources/dnd.ts` · 5 operations · Request and error types: namespace `Dnd`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `slack-web-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `slack-web-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### dndEndDnd
 
@@ -12,9 +12,10 @@ Accessor: `client.dnd` · Source: `src/resources/dnd.ts` · 5 operations · Requ
 - **Wire**: `POST /dnd.endDnd`
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `DndEndDndschema`
-- **Error**: `Dnd.DndEndDndError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"dndEndDnderrorschema1"` [400–599] `DndEndDnderrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Dnd.DndEndDndError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"dndEndDnderrorschema1"` [default — any status no arm above covers] `DndEndDnderrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `DndEndDnderrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Dnd.DndEndDndRequest` (2):
 
@@ -35,9 +36,10 @@ Accessor: `client.dnd` · Source: `src/resources/dnd.ts` · 5 operations · Requ
 - **Wire**: `POST /dnd.endSnooze`
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `DndEndSnoozeschema`
-- **Error**: `Dnd.DndEndSnoozeError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"dndEndSnoozeerrorschema1"` [400–599] `DndEndSnoozeerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Dnd.DndEndSnoozeError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"dndEndSnoozeerrorschema1"` [default — any status no arm above covers] `DndEndSnoozeerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `DndEndSnoozeerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Dnd.DndEndSnoozeRequest` (2):
 
@@ -59,8 +61,8 @@ Accessor: `client.dnd` · Source: `src/resources/dnd.ts` · 5 operations · Requ
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `DndInfoschema`
-- **Error**: `Dnd.DndInfoError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"dndInfoerrorschema1"` [400–599] `DndInfoerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Dnd.DndInfoError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"dndInfoerrorschema1"` [default — any status no arm above covers] `DndInfoerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `DndInfoerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Dnd.DndInfoRequest` (3):
 
@@ -82,9 +84,10 @@ Accessor: `client.dnd` · Source: `src/resources/dnd.ts` · 5 operations · Requ
 - **Wire**: `POST /dnd.setSnooze`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `DndSetSnoozeschema`
-- **Error**: `Dnd.DndSetSnoozeError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"dndSetSnoozeerrorschema1"` [400–599] `DndSetSnoozeerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Dnd.DndSetSnoozeError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"dndSetSnoozeerrorschema1"` [default — any status no arm above covers] `DndSetSnoozeerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `DndSetSnoozeerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Dnd.DndSetSnoozeRequest` (3):
 
@@ -107,8 +110,8 @@ Accessor: `client.dnd` · Source: `src/resources/dnd.ts` · 5 operations · Requ
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Defaultsuccesstemplate`
-- **Error**: `Dnd.DndTeamInfoError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"defaulterrortemplate1"` [400–599] `Defaulterrortemplate1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Dnd.DndTeamInfoError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"defaulterrortemplate1"` [default — any status no arm above covers] `Defaulterrortemplate1` · `"undeclared"` [a `default`-matched body that did not fit `Defaulterrortemplate1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Dnd.DndTeamInfoRequest` (3):
 

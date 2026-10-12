@@ -4,7 +4,7 @@
 
 Accessor: `client.conversations` · Source: `src/resources/conversations.ts` · 18 operations · Request and error types: namespace `Conversations`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `slack-web-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `slack-web-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### conversationsArchive
 
@@ -12,9 +12,10 @@ Accessor: `client.conversations` · Source: `src/resources/conversations.ts` · 
 - **Wire**: `POST /conversations.archive`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `ConversationsArchivesuccessschema`
-- **Error**: `Conversations.ConversationsArchiveError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"conversationsArchiveerrorschema1"` [400–599] `ConversationsArchiveerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Conversations.ConversationsArchiveError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"conversationsArchiveerrorschema1"` [default — any status no arm above covers] `ConversationsArchiveerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `ConversationsArchiveerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Conversations.ConversationsArchiveRequest` (3):
 
@@ -36,9 +37,10 @@ Accessor: `client.conversations` · Source: `src/resources/conversations.ts` · 
 - **Wire**: `POST /conversations.close`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `ConversationsClosesuccessschema`
-- **Error**: `Conversations.ConversationsCloseError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"conversationsCloseerrorschema1"` [400–599] `ConversationsCloseerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Conversations.ConversationsCloseError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"conversationsCloseerrorschema1"` [default — any status no arm above covers] `ConversationsCloseerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `ConversationsCloseerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Conversations.ConversationsCloseRequest` (3):
 
@@ -60,9 +62,10 @@ Accessor: `client.conversations` · Source: `src/resources/conversations.ts` · 
 - **Wire**: `POST /conversations.create`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `ConversationsCreatesuccessschema`
-- **Error**: `Conversations.ConversationsCreateError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"conversationsCreateerrorschema1"` [400–599] `ConversationsCreateerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Conversations.ConversationsCreateError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"conversationsCreateerrorschema1"` [default — any status no arm above covers] `ConversationsCreateerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `ConversationsCreateerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Conversations.ConversationsCreateRequest` (4):
 
@@ -86,8 +89,8 @@ Accessor: `client.conversations` · Source: `src/resources/conversations.ts` · 
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `ConversationsHistorysuccessschema`
-- **Error**: `Conversations.ConversationsHistoryError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"conversationsHistoryerrorschema1"` [400–599] `ConversationsHistoryerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Conversations.ConversationsHistoryError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"conversationsHistoryerrorschema1"` [default — any status no arm above covers] `ConversationsHistoryerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `ConversationsHistoryerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Conversations.ConversationsHistoryRequest` (8):
 
@@ -115,8 +118,8 @@ Accessor: `client.conversations` · Source: `src/resources/conversations.ts` · 
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `ConversationsInfosuccessschema`
-- **Error**: `Conversations.ConversationsInfoError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"conversationsInfoerrorschema1"` [400–599] `ConversationsInfoerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Conversations.ConversationsInfoError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"conversationsInfoerrorschema1"` [default — any status no arm above covers] `ConversationsInfoerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `ConversationsInfoerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Conversations.ConversationsInfoRequest` (5):
 
@@ -140,9 +143,10 @@ Accessor: `client.conversations` · Source: `src/resources/conversations.ts` · 
 - **Wire**: `POST /conversations.invite`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `ConversationsInviteerrorschema`
-- **Error**: `Conversations.ConversationsInviteError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"conversationsInviteerrorschema11"` [400–599] `ConversationsInviteerrorschema11` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Conversations.ConversationsInviteError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"conversationsInviteerrorschema11"` [default — any status no arm above covers] `ConversationsInviteerrorschema11` · `"undeclared"` [a `default`-matched body that did not fit `ConversationsInviteerrorschema11`] `rawBody: ArrayBuffer`
 
 **Fields** — `Conversations.ConversationsInviteRequest` (4):
 
@@ -165,9 +169,10 @@ Accessor: `client.conversations` · Source: `src/resources/conversations.ts` · 
 - **Wire**: `POST /conversations.join`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `ConversationsJoinsuccessschema`
-- **Error**: `Conversations.ConversationsJoinError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"conversationsJoinerrorschema1"` [400–599] `ConversationsJoinerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Conversations.ConversationsJoinError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"conversationsJoinerrorschema1"` [default — any status no arm above covers] `ConversationsJoinerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `ConversationsJoinerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Conversations.ConversationsJoinRequest` (3):
 
@@ -189,9 +194,10 @@ Accessor: `client.conversations` · Source: `src/resources/conversations.ts` · 
 - **Wire**: `POST /conversations.kick`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `ConversationsKicksuccessschema`
-- **Error**: `Conversations.ConversationsKickError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"conversationsKickerrorschema1"` [400–599] `ConversationsKickerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Conversations.ConversationsKickError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"conversationsKickerrorschema1"` [default — any status no arm above covers] `ConversationsKickerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `ConversationsKickerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Conversations.ConversationsKickRequest` (4):
 
@@ -214,9 +220,10 @@ Accessor: `client.conversations` · Source: `src/resources/conversations.ts` · 
 - **Wire**: `POST /conversations.leave`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `ConversationsLeavesuccessschema`
-- **Error**: `Conversations.ConversationsLeaveError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"conversationsLeaveerrorschema1"` [400–599] `ConversationsLeaveerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Conversations.ConversationsLeaveError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"conversationsLeaveerrorschema1"` [default — any status no arm above covers] `ConversationsLeaveerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `ConversationsLeaveerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Conversations.ConversationsLeaveRequest` (3):
 
@@ -239,8 +246,8 @@ Accessor: `client.conversations` · Source: `src/resources/conversations.ts` · 
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `ConversationsListsuccessschema`
-- **Error**: `Conversations.ConversationsListError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"conversationsListerrorschema1"` [400–599] `ConversationsListerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Conversations.ConversationsListError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"conversationsListerrorschema1"` [default — any status no arm above covers] `ConversationsListerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `ConversationsListerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Conversations.ConversationsListRequest` (6):
 
@@ -265,9 +272,10 @@ Accessor: `client.conversations` · Source: `src/resources/conversations.ts` · 
 - **Wire**: `POST /conversations.mark`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `ConversationsMarksuccessschema`
-- **Error**: `Conversations.ConversationsMarkError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"conversationsMarkerrorschema1"` [400–599] `ConversationsMarkerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Conversations.ConversationsMarkError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"conversationsMarkerrorschema1"` [default — any status no arm above covers] `ConversationsMarkerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `ConversationsMarkerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Conversations.ConversationsMarkRequest` (4):
 
@@ -291,8 +299,8 @@ Accessor: `client.conversations` · Source: `src/resources/conversations.ts` · 
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `ConversationsMemberssuccessschema`
-- **Error**: `Conversations.ConversationsMembersError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"conversationsMemberserrorschema1"` [400–599] `ConversationsMemberserrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Conversations.ConversationsMembersError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"conversationsMemberserrorschema1"` [default — any status no arm above covers] `ConversationsMemberserrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `ConversationsMemberserrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Conversations.ConversationsMembersRequest` (5):
 
@@ -316,9 +324,10 @@ Accessor: `client.conversations` · Source: `src/resources/conversations.ts` · 
 - **Wire**: `POST /conversations.open`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `ConversationsOpensuccessschema`
-- **Error**: `Conversations.ConversationsOpenError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"conversationsOpenerrorschema1"` [400–599] `ConversationsOpenerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Conversations.ConversationsOpenError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"conversationsOpenerrorschema1"` [default — any status no arm above covers] `ConversationsOpenerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `ConversationsOpenerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Conversations.ConversationsOpenRequest` (5):
 
@@ -342,9 +351,10 @@ Accessor: `client.conversations` · Source: `src/resources/conversations.ts` · 
 - **Wire**: `POST /conversations.rename`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `ConversationsRenamesuccessschema`
-- **Error**: `Conversations.ConversationsRenameError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"conversationsRenameerrorschema1"` [400–599] `ConversationsRenameerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Conversations.ConversationsRenameError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"conversationsRenameerrorschema1"` [default — any status no arm above covers] `ConversationsRenameerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `ConversationsRenameerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Conversations.ConversationsRenameRequest` (4):
 
@@ -368,8 +378,8 @@ Accessor: `client.conversations` · Source: `src/resources/conversations.ts` · 
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `ConversationsRepliessuccessschema`
-- **Error**: `Conversations.ConversationsRepliesError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"conversationsReplieserrorschema1"` [400–599] `ConversationsReplieserrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Conversations.ConversationsRepliesError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"conversationsReplieserrorschema1"` [default — any status no arm above covers] `ConversationsReplieserrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `ConversationsReplieserrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Conversations.ConversationsRepliesRequest` (9):
 
@@ -397,9 +407,10 @@ Accessor: `client.conversations` · Source: `src/resources/conversations.ts` · 
 - **Wire**: `POST /conversations.setPurpose`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `ConversationsSetPurposesuccessschema`
-- **Error**: `Conversations.ConversationsSetPurposeError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"conversationsSetPurposeerrorschema1"` [400–599] `ConversationsSetPurposeerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Conversations.ConversationsSetPurposeError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"conversationsSetPurposeerrorschema1"` [default — any status no arm above covers] `ConversationsSetPurposeerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `ConversationsSetPurposeerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Conversations.ConversationsSetPurposeRequest` (4):
 
@@ -422,9 +433,10 @@ Accessor: `client.conversations` · Source: `src/resources/conversations.ts` · 
 - **Wire**: `POST /conversations.setTopic`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `ConversationsSetTopicsuccessschema`
-- **Error**: `Conversations.ConversationsSetTopicError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"conversationsSetTopicerrorschema1"` [400–599] `ConversationsSetTopicerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Conversations.ConversationsSetTopicError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"conversationsSetTopicerrorschema1"` [default — any status no arm above covers] `ConversationsSetTopicerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `ConversationsSetTopicerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Conversations.ConversationsSetTopicRequest` (4):
 
@@ -447,9 +459,10 @@ Accessor: `client.conversations` · Source: `src/resources/conversations.ts` · 
 - **Wire**: `POST /conversations.unarchive`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `ConversationsUnarchivesuccessschema`
-- **Error**: `Conversations.ConversationsUnarchiveError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"conversationsUnarchiveerrorschema1"` [400–599] `ConversationsUnarchiveerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Conversations.ConversationsUnarchiveError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"conversationsUnarchiveerrorschema1"` [default — any status no arm above covers] `ConversationsUnarchiveerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `ConversationsUnarchiveerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Conversations.ConversationsUnarchiveRequest` (3):
 

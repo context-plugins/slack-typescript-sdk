@@ -5,11 +5,13 @@ import {
   type ConversationsLeaveErrorEnum,
 } from "./conversations-leave-error-enum.js";
 
+/** Schema for error response from conversations.leave method */
 export type ConversationsLeaveerrorschema1Error = {
+  /** Note: PHP callstack is only visible in dev/qa */
   callstack?: string;
   error: ConversationsLeaveErrorEnum;
   needed?: string;
-  ok: "False";
+  ok: boolean;
   provided?: string;
 };
 
@@ -18,6 +20,6 @@ export const conversationsLeaveerrorschema1ErrorSchema: Schema<ConversationsLeav
     callstack: s.optional(s.string()),
     error: conversationsLeaveErrorEnumSchema,
     needed: s.optional(s.string()),
-    ok: s.literal("False"),
+    ok: s.boolean(),
     provided: s.optional(s.string()),
   });

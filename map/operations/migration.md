@@ -4,7 +4,7 @@
 
 Accessor: `client.migration` · Source: `src/resources/migration.ts` · 1 operation · Request and error types: namespace `Migration`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `slack-web-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `slack-web-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### migrationExchange
 
@@ -13,8 +13,8 @@ Accessor: `client.migration` · Source: `src/resources/migration.ts` · 1 operat
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `MigrationExchangesuccessschema`
-- **Error**: `Migration.MigrationExchangeError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"migrationExchangeerrorschema1"` [400–599] `MigrationExchangeerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Migration.MigrationExchangeError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"migrationExchangeerrorschema1"` [default — any status no arm above covers] `MigrationExchangeerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `MigrationExchangeerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Migration.MigrationExchangeRequest` (5):
 

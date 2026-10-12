@@ -7,13 +7,13 @@ import {
 
 export type Errorsisreturnedwhenanerrorassociatesanuser = {
   error: ConversationsInviteErrorEnum;
-  ok: "False";
+  ok: boolean;
   user?: string;
 };
 
 export const errorsisreturnedwhenanerrorassociatesanuserSchema: Schema<Errorsisreturnedwhenanerrorassociatesanuser> =
   s.object<Errorsisreturnedwhenanerrorassociatesanuser>({
     error: conversationsInviteErrorEnumSchema,
-    ok: s.literal("False"),
+    ok: s.boolean(),
     user: s.optional(s.string()),
   });

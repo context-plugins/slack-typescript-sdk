@@ -9,7 +9,7 @@ export type ExternalOrgMigrations = {
 
 export const externalOrgMigrationsSchema: Schema<ExternalOrgMigrations> = s.object<ExternalOrgMigrations>({
   current: s.array(s.lazy(() => currentSchema)),
-  dateUpdated: s.number(),
+  dateUpdated: s.int(),
   _keysMap: {
     dateUpdated: "date_updated",
   },

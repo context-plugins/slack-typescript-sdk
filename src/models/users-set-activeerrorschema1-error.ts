@@ -5,15 +5,17 @@ import {
   type UsersSetActiveErrorEnum,
 } from "./users-set-active-error-enum.js";
 
+/** Schema for error response from users.setActive method */
 export type UsersSetActiveerrorschema1Error = {
+  /** Note: PHP callstack is only visible in dev/qa */
   callstack?: string;
   error: UsersSetActiveErrorEnum;
-  ok: "False";
+  ok: boolean;
 };
 
 export const usersSetActiveerrorschema1ErrorSchema: Schema<UsersSetActiveerrorschema1Error> =
   s.object<UsersSetActiveerrorschema1Error>({
     callstack: s.optional(s.string()),
     error: usersSetActiveErrorEnumSchema,
-    ok: s.literal("False"),
+    ok: s.boolean(),
   });

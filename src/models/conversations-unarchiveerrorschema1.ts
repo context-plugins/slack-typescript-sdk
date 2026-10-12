@@ -5,11 +5,13 @@ import {
   type ConversationsUnarchiveErrorEnum,
 } from "./conversations-unarchive-error-enum.js";
 
+/** Schema for error response from conversations.unarchive method */
 export type ConversationsUnarchiveerrorschema1 = {
+  /** Note: PHP callstack is only visible in dev/qa */
   callstack?: string;
   error: ConversationsUnarchiveErrorEnum;
   needed?: string;
-  ok: "False";
+  ok: boolean;
   provided?: string;
 };
 
@@ -18,6 +20,6 @@ export const conversationsUnarchiveerrorschema1Schema: Schema<ConversationsUnarc
     callstack: s.optional(s.string()),
     error: conversationsUnarchiveErrorEnumSchema,
     needed: s.optional(s.string()),
-    ok: s.literal("False"),
+    ok: s.boolean(),
     provided: s.optional(s.string()),
   });

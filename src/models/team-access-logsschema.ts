@@ -3,14 +3,15 @@ import type { Schema } from "../core/validation/schema.js";
 import { loginSchema, type Login } from "./login.js";
 import { pagingobjectSchema, type Pagingobject } from "./pagingobject.js";
 
+/** Schema for successful response from team.accessLogs method */
 export type TeamAccessLogsschema = {
   logins: Login[];
-  ok: "True";
+  ok: boolean;
   paging: Pagingobject;
 };
 
 export const teamAccessLogsschemaSchema: Schema<TeamAccessLogsschema> = s.object<TeamAccessLogsschema>({
   logins: s.array(s.lazy(() => loginSchema)),
-  ok: s.literal("True"),
+  ok: s.boolean(),
   paging: pagingobjectSchema,
 });

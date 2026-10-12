@@ -18,7 +18,7 @@ export const botSchema: Schema<Bot> = s.object<Bot>({
   icons: iconsSchema,
   id: s.string(),
   name: s.string(),
-  updated: s.number(),
+  updated: s.int(),
   userId: s.optional(s.string()),
   _keysMap: {
     appId: "app_id",

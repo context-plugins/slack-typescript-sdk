@@ -5,15 +5,17 @@ import {
   type FilesCommentsDeleteErrorEnum,
 } from "./files-comments-delete-error-enum.js";
 
+/** Schema for error response files.comments.delete method */
 export type FilesCommentsDeleteerrorschema1 = {
+  /** Note: PHP callstack is only visible in dev/qa */
   callstack?: string;
   error: FilesCommentsDeleteErrorEnum;
-  ok: "False";
+  ok: boolean;
 };
 
 export const filesCommentsDeleteerrorschema1Schema: Schema<FilesCommentsDeleteerrorschema1> =
   s.object<FilesCommentsDeleteerrorschema1>({
     callstack: s.optional(s.string()),
     error: filesCommentsDeleteErrorEnumSchema,
-    ok: s.literal("False"),
+    ok: s.boolean(),
   });

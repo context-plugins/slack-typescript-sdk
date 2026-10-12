@@ -1,8 +1,8 @@
 import type { AuthSchemes } from "../auth-schemes.js";
+import { ApiError, type Declared, type ErrorDecoders, type ErrorPayload } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import type { RawClient } from "../core/raw-client.js";
-import { ResponseError, type Declared, type ErrorDecoders } from "../core/response-error.js";
 import * as s from "../core/validation/index.js";
 import { contentTypeSchema, type ContentType } from "../models/content-type.js";
 import { defaulterrortemplate1Schema, type Defaulterrortemplate1 } from "../models/defaulterrortemplate1.js";
@@ -23,6 +23,21 @@ export class Emoji {
     this.#auth = auth;
   }
 
+  /**
+   * emoji_list
+   *
+   * @remarks
+   * Lists custom emoji for a team.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Emoji.EmojiListError} when the API answers with an error status — narrow on
+   * `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   emojiList(
     request: Emoji.EmojiListRequest,
     options?: RequestOptions,
@@ -30,8 +45,9 @@ export class Emoji {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/emoji.list"),
+        urlTemplate: this.#servers.default("/emoji.list"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
         query: [{ name: "token", value: request.token, schema: s.string() }],
         headers: [{ name: "Content-Type", value: request.contentType, schema: contentTypeSchema }],
         body: { kind: "empty" },
@@ -47,16 +63,17 @@ export class Emoji {
 
 export namespace Emoji {
   export type EmojiListRequest = {
+    /** Authentication token. Requires scope: `emoji:read` */
     token: string;
     contentType: ContentType;
   };
 
-  export class EmojiListError extends ResponseError<
-    Declared<"defaulterrortemplate1", Defaulterrortemplate1>
-  > {
+  export class EmojiListError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
+
     static readonly errors: ErrorDecoders<EmojiListError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "defaulterrortemplate1",
         decode: { kind: "json", schema: defaulterrortemplate1Schema },
       },

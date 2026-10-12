@@ -5,13 +5,14 @@ import {
   type AdminConversationsSetConversationPrefsErrorEnum,
 } from "./admin-conversations-set-conversation-prefs-error-enum.js";
 
+/** Schema for error response from admin.conversations.setConversationPrefs */
 export type AdminConversationsSetConversationPrefserrorschema1 = {
   error: AdminConversationsSetConversationPrefsErrorEnum;
-  ok: "False";
+  ok: boolean;
 };
 
 export const adminConversationsSetConversationPrefserrorschema1Schema: Schema<AdminConversationsSetConversationPrefserrorschema1> =
   s.object<AdminConversationsSetConversationPrefserrorschema1>({
     error: adminConversationsSetConversationPrefsErrorEnumSchema,
-    ok: s.literal("False"),
+    ok: s.boolean(),
   });

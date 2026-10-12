@@ -1,8 +1,8 @@
 import type { AuthSchemes } from "../auth-schemes.js";
+import { ApiError, type Declared, type ErrorDecoders, type ErrorPayload } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import type { RawClient } from "../core/raw-client.js";
-import { ResponseError, type Declared, type ErrorDecoders } from "../core/response-error.js";
 import * as s from "../core/validation/index.js";
 import { contentTypeSchema, type ContentType } from "../models/content-type.js";
 import {
@@ -23,6 +23,21 @@ export class Dialog {
     this.#auth = auth;
   }
 
+  /**
+   * dialog_open
+   *
+   * @remarks
+   * Open a dialog with a user
+   *
+   * @returns Typical success response is quite minimal.
+   *
+   * @throws {@link Dialog.DialogOpenError} when the API answers with an error status — narrow on
+   * `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   dialogOpen(
     request: Dialog.DialogOpenRequest,
     options?: RequestOptions,
@@ -30,8 +45,9 @@ export class Dialog {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/dialog.open"),
+        urlTemplate: this.#servers.default("/dialog.open"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
         query: [
           { name: "dialog", value: request.dialog, schema: s.string() },
           { name: "trigger_id", value: request.triggerId, schema: s.string() },
@@ -53,18 +69,21 @@ export class Dialog {
 
 export namespace Dialog {
   export type DialogOpenRequest = {
+    /** The dialog definition. This must be a JSON-encoded string. */
     dialog: string;
+    /** Exchange a trigger to post to the user. */
     triggerId: string;
+    /** Authentication token. Requires scope: `none` */
     token: string;
     contentType: ContentType;
   };
 
-  export class DialogOpenError extends ResponseError<
-    Declared<"dialogOpenerrorschema1", DialogOpenerrorschema1>
-  > {
+  export class DialogOpenError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"dialogOpenerrorschema1", DialogOpenerrorschema1>>;
+
     static readonly errors: ErrorDecoders<DialogOpenError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "dialogOpenerrorschema1",
         decode: { kind: "json", schema: dialogOpenerrorschema1Schema },
       },

@@ -5,15 +5,17 @@ import {
   type ChatScheduleMessageErrorEnum,
 } from "./chat-schedule-message-error-enum.js";
 
+/** Schema for error response chat.scheduleMessage method */
 export type ChatScheduleMessageerrorschema1Error = {
+  /** Note: PHP callstack is only visible in dev/qa */
   callstack?: string;
   error: ChatScheduleMessageErrorEnum;
-  ok: "False";
+  ok: boolean;
 };
 
 export const chatScheduleMessageerrorschema1ErrorSchema: Schema<ChatScheduleMessageerrorschema1Error> =
   s.object<ChatScheduleMessageerrorschema1Error>({
     callstack: s.optional(s.string()),
     error: chatScheduleMessageErrorEnumSchema,
-    ok: s.literal("False"),
+    ok: s.boolean(),
   });

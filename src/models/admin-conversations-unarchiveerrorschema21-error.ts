@@ -5,13 +5,14 @@ import {
   type AdminConversationsRenameErrorEnum,
 } from "./admin-conversations-rename-error-enum.js";
 
+/** Schema for error response from admin.conversations.rename */
 export type AdminConversationsUnarchiveerrorschema21Error = {
   error: AdminConversationsRenameErrorEnum;
-  ok: "False";
+  ok: boolean;
 };
 
 export const adminConversationsUnarchiveerrorschema21ErrorSchema: Schema<AdminConversationsUnarchiveerrorschema21Error> =
   s.object<AdminConversationsUnarchiveerrorschema21Error>({
     error: adminConversationsRenameErrorEnumSchema,
-    ok: s.literal("False"),
+    ok: s.boolean(),
   });

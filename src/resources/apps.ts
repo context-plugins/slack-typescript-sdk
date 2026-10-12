@@ -1,8 +1,8 @@
 import type { AuthSchemes } from "../auth-schemes.js";
+import { ApiError, type Declared, type ErrorDecoders, type ErrorPayload } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import type { RawClient } from "../core/raw-client.js";
-import { ResponseError, type Declared, type ErrorDecoders } from "../core/response-error.js";
 import * as s from "../core/validation/index.js";
 import {
   apiPermissionsScopesListsuccessschemaSchema,
@@ -60,6 +60,22 @@ export class Apps {
     this.#auth = auth;
   }
 
+  /**
+   * apps_event_authorizations_list
+   *
+   * @remarks
+   * Get a list of authorizations for the given event context. Each authorization represents an app
+   * installation that the event is visible to.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Apps.AppsEventAuthorizationsListError} when the API answers with an error status
+   * — narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   appsEventAuthorizationsList(
     request: Apps.AppsEventAuthorizationsListRequest,
     options?: RequestOptions,
@@ -67,12 +83,13 @@ export class Apps {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/apps.event.authorizations.list"),
+        urlTemplate: this.#servers.default("/apps.event.authorizations.list"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
         query: [
           { name: "event_context", value: request.eventContext, schema: s.string() },
           { name: "cursor", value: request.cursor, schema: s.optional(s.string()) },
-          { name: "limit", value: request.limit, schema: s.optional(s.number()) },
+          { name: "limit", value: request.limit, schema: s.optional(s.int()) },
         ],
         headers: [
           { name: "token", value: request.token, schema: s.string() },
@@ -88,6 +105,21 @@ export class Apps {
     );
   }
 
+  /**
+   * apps_permissions_info
+   *
+   * @remarks
+   * Returns list of permissions this app has on a team.
+   *
+   * @returns Standard success response when used with a user token
+   *
+   * @throws {@link Apps.AppsPermissionsInfoError} when the API answers with an error status —
+   * narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   appsPermissionsInfo(
     request: Apps.AppsPermissionsInfoRequest,
     options?: RequestOptions,
@@ -95,8 +127,9 @@ export class Apps {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/apps.permissions.info"),
+        urlTemplate: this.#servers.default("/apps.permissions.info"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
         query: [{ name: "token", value: request.token, schema: s.optional(s.string()) }],
         headers: [{ name: "Content-Type", value: request.contentType, schema: contentTypeSchema }],
         body: { kind: "empty" },
@@ -109,6 +142,21 @@ export class Apps {
     );
   }
 
+  /**
+   * apps_permissions_request
+   *
+   * @remarks
+   * Allows an app to request additional scopes
+   *
+   * @returns Standard success response when used with a user token
+   *
+   * @throws {@link Apps.AppsPermissionsRequestError} when the API answers with an error status —
+   * narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   appsPermissionsRequest(
     request: Apps.AppsPermissionsRequestRequest,
     options?: RequestOptions,
@@ -116,8 +164,9 @@ export class Apps {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/apps.permissions.request"),
+        urlTemplate: this.#servers.default("/apps.permissions.request"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
         query: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "scopes", value: request.scopes, schema: s.string() },
@@ -134,6 +183,21 @@ export class Apps {
     );
   }
 
+  /**
+   * apps_permissions_resources_list
+   *
+   * @remarks
+   * Returns list of resource grants this app has on a team.
+   *
+   * @returns Typical successful paginated response
+   *
+   * @throws {@link Apps.AppsPermissionsResourcesListError} when the API answers with an error
+   * status — narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   appsPermissionsResourcesList(
     request: Apps.AppsPermissionsResourcesListRequest,
     options?: RequestOptions,
@@ -141,12 +205,13 @@ export class Apps {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/apps.permissions.resources.list"),
+        urlTemplate: this.#servers.default("/apps.permissions.resources.list"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
         query: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "cursor", value: request.cursor, schema: s.optional(s.string()) },
-          { name: "limit", value: request.limit, schema: s.optional(s.number()) },
+          { name: "limit", value: request.limit, schema: s.optional(s.int()) },
         ],
         headers: [{ name: "Content-Type", value: request.contentType, schema: contentTypeSchema }],
         body: { kind: "empty" },
@@ -159,6 +224,21 @@ export class Apps {
     );
   }
 
+  /**
+   * apps_permissions_scopes_list
+   *
+   * @remarks
+   * Returns list of scopes this app has on a team.
+   *
+   * @returns Typical successful paginated response
+   *
+   * @throws {@link Apps.AppsPermissionsScopesListError} when the API answers with an error status —
+   * narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   appsPermissionsScopesList(
     request: Apps.AppsPermissionsScopesListRequest,
     options?: RequestOptions,
@@ -166,8 +246,9 @@ export class Apps {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/apps.permissions.scopes.list"),
+        urlTemplate: this.#servers.default("/apps.permissions.scopes.list"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
         query: [{ name: "token", value: request.token, schema: s.string() }],
         headers: [{ name: "Content-Type", value: request.contentType, schema: contentTypeSchema }],
         body: { kind: "empty" },
@@ -180,6 +261,21 @@ export class Apps {
     );
   }
 
+  /**
+   * apps_permissions_users_list
+   *
+   * @remarks
+   * Returns list of user grants and corresponding scopes this app has on a team.
+   *
+   * @returns Typical successful paginated response
+   *
+   * @throws {@link Apps.AppsPermissionsUsersListError} when the API answers with an error status —
+   * narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   appsPermissionsUsersList(
     request: Apps.AppsPermissionsUsersListRequest,
     options?: RequestOptions,
@@ -187,12 +283,13 @@ export class Apps {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/apps.permissions.users.list"),
+        urlTemplate: this.#servers.default("/apps.permissions.users.list"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
         query: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "cursor", value: request.cursor, schema: s.optional(s.string()) },
-          { name: "limit", value: request.limit, schema: s.optional(s.number()) },
+          { name: "limit", value: request.limit, schema: s.optional(s.int()) },
         ],
         headers: [{ name: "Content-Type", value: request.contentType, schema: contentTypeSchema }],
         body: { kind: "empty" },
@@ -205,6 +302,21 @@ export class Apps {
     );
   }
 
+  /**
+   * apps_permissions_users_request
+   *
+   * @remarks
+   * Enables an app to trigger a permissions modal to grant an app access to a user access scope.
+   *
+   * @returns Standard success response when used with a user token
+   *
+   * @throws {@link Apps.AppsPermissionsUsersRequestError} when the API answers with an error status
+   * — narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   appsPermissionsUsersRequest(
     request: Apps.AppsPermissionsUsersRequestRequest,
     options?: RequestOptions,
@@ -212,8 +324,9 @@ export class Apps {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/apps.permissions.users.request"),
+        urlTemplate: this.#servers.default("/apps.permissions.users.request"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
         query: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "scopes", value: request.scopes, schema: s.string() },
@@ -231,6 +344,21 @@ export class Apps {
     );
   }
 
+  /**
+   * apps_uninstall
+   *
+   * @remarks
+   * Uninstalls your app from a workspace.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Apps.AppsUninstallError} when the API answers with an error status — narrow on
+   * `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   appsUninstall(
     request: Apps.AppsUninstallRequest,
     options?: RequestOptions,
@@ -238,8 +366,9 @@ export class Apps {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/apps.uninstall"),
+        urlTemplate: this.#servers.default("/apps.uninstall"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
         query: [
           { name: "token", value: request.token, schema: s.optional(s.string()) },
           { name: "client_id", value: request.clientId, schema: s.optional(s.string()) },
@@ -262,16 +391,17 @@ export namespace Apps {
     eventContext: string;
     cursor?: string;
     limit?: number;
+    /** Authentication token. Requires scope: `authorizations:read` */
     token: string;
     contentType: ContentType;
   };
 
-  export class AppsEventAuthorizationsListError extends ResponseError<
-    Declared<"defaulterrortemplate1", Defaulterrortemplate1>
-  > {
+  export class AppsEventAuthorizationsListError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
+
     static readonly errors: ErrorDecoders<AppsEventAuthorizationsListError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "defaulterrortemplate1",
         decode: { kind: "json", schema: defaulterrortemplate1Schema },
       },
@@ -279,16 +409,19 @@ export namespace Apps {
   }
 
   export type AppsPermissionsInfoRequest = {
+    /** Authentication token. Requires scope: `none` */
     token?: string;
     contentType: ContentType;
   };
 
-  export class AppsPermissionsInfoError extends ResponseError<
-    Declared<"appsPermissionsInfoerrorschema1", AppsPermissionsInfoerrorschema1>
-  > {
+  export class AppsPermissionsInfoError extends ApiError {
+    declare readonly payload: ErrorPayload<
+      Declared<"appsPermissionsInfoerrorschema1", AppsPermissionsInfoerrorschema1>
+    >;
+
     static readonly errors: ErrorDecoders<AppsPermissionsInfoError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "appsPermissionsInfoerrorschema1",
         decode: { kind: "json", schema: appsPermissionsInfoerrorschema1Schema },
       },
@@ -296,18 +429,23 @@ export namespace Apps {
   }
 
   export type AppsPermissionsRequestRequest = {
+    /** Authentication token. Requires scope: `none` */
     token: string;
+    /** A comma separated list of scopes to request for */
     scopes: string;
+    /** Token used to trigger the permissions API */
     triggerId: string;
     contentType: ContentType;
   };
 
-  export class AppsPermissionsRequestError extends ResponseError<
-    Declared<"appsPermissionsRequesterrorschema1", AppsPermissionsRequesterrorschema1>
-  > {
+  export class AppsPermissionsRequestError extends ApiError {
+    declare readonly payload: ErrorPayload<
+      Declared<"appsPermissionsRequesterrorschema1", AppsPermissionsRequesterrorschema1>
+    >;
+
     static readonly errors: ErrorDecoders<AppsPermissionsRequestError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "appsPermissionsRequesterrorschema1",
         decode: { kind: "json", schema: appsPermissionsRequesterrorschema1Schema },
       },
@@ -315,18 +453,27 @@ export namespace Apps {
   }
 
   export type AppsPermissionsResourcesListRequest = {
+    /** Authentication token. Requires scope: `none` */
     token: string;
+    /**
+     * Paginate through collections of data by setting the `cursor` parameter to a `next_cursor`
+     * attribute returned by a previous request's `response_metadata`. Default value fetches the
+     * first "page" of the collection.
+     */
     cursor?: string;
+    /** The maximum number of items to return. */
     limit?: number;
     contentType: ContentType;
   };
 
-  export class AppsPermissionsResourcesListError extends ResponseError<
-    Declared<"appsPermissionsResourcesListerrorschema1", AppsPermissionsResourcesListerrorschema1>
-  > {
+  export class AppsPermissionsResourcesListError extends ApiError {
+    declare readonly payload: ErrorPayload<
+      Declared<"appsPermissionsResourcesListerrorschema1", AppsPermissionsResourcesListerrorschema1>
+    >;
+
     static readonly errors: ErrorDecoders<AppsPermissionsResourcesListError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "appsPermissionsResourcesListerrorschema1",
         decode: { kind: "json", schema: appsPermissionsResourcesListerrorschema1Schema },
       },
@@ -334,16 +481,19 @@ export namespace Apps {
   }
 
   export type AppsPermissionsScopesListRequest = {
+    /** Authentication token. Requires scope: `none` */
     token: string;
     contentType: ContentType;
   };
 
-  export class AppsPermissionsScopesListError extends ResponseError<
-    Declared<"appsPermissionsScopesListerrorschema1", AppsPermissionsScopesListerrorschema1>
-  > {
+  export class AppsPermissionsScopesListError extends ApiError {
+    declare readonly payload: ErrorPayload<
+      Declared<"appsPermissionsScopesListerrorschema1", AppsPermissionsScopesListerrorschema1>
+    >;
+
     static readonly errors: ErrorDecoders<AppsPermissionsScopesListError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "appsPermissionsScopesListerrorschema1",
         decode: { kind: "json", schema: appsPermissionsScopesListerrorschema1Schema },
       },
@@ -351,18 +501,25 @@ export namespace Apps {
   }
 
   export type AppsPermissionsUsersListRequest = {
+    /** Authentication token. Requires scope: `none` */
     token: string;
+    /**
+     * Paginate through collections of data by setting the `cursor` parameter to a `next_cursor`
+     * attribute returned by a previous request's `response_metadata`. Default value fetches the
+     * first "page" of the collection.
+     */
     cursor?: string;
+    /** The maximum number of items to return. */
     limit?: number;
     contentType: ContentType;
   };
 
-  export class AppsPermissionsUsersListError extends ResponseError<
-    Declared<"defaulterrortemplate1", Defaulterrortemplate1>
-  > {
+  export class AppsPermissionsUsersListError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
+
     static readonly errors: ErrorDecoders<AppsPermissionsUsersListError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "defaulterrortemplate1",
         decode: { kind: "json", schema: defaulterrortemplate1Schema },
       },
@@ -370,19 +527,23 @@ export namespace Apps {
   }
 
   export type AppsPermissionsUsersRequestRequest = {
+    /** Authentication token. Requires scope: `none` */
     token: string;
+    /** A comma separated list of user scopes to request for */
     scopes: string;
+    /** Token used to trigger the request */
     triggerId: string;
+    /** The user this scope is being requested for */
     user: string;
     contentType: ContentType;
   };
 
-  export class AppsPermissionsUsersRequestError extends ResponseError<
-    Declared<"defaulterrortemplate1", Defaulterrortemplate1>
-  > {
+  export class AppsPermissionsUsersRequestError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
+
     static readonly errors: ErrorDecoders<AppsPermissionsUsersRequestError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "defaulterrortemplate1",
         decode: { kind: "json", schema: defaulterrortemplate1Schema },
       },
@@ -390,18 +551,21 @@ export namespace Apps {
   }
 
   export type AppsUninstallRequest = {
+    /** Authentication token. Requires scope: `none` */
     token?: string;
+    /** Issued when you created your application. */
     clientId?: string;
+    /** Issued when you created your application. */
     clientSecret?: string;
     contentType: ContentType;
   };
 
-  export class AppsUninstallError extends ResponseError<
-    Declared<"appsUninstallerrorschema1", AppsUninstallerrorschema1>
-  > {
+  export class AppsUninstallError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"appsUninstallerrorschema1", AppsUninstallerrorschema1>>;
+
     static readonly errors: ErrorDecoders<AppsUninstallError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "appsUninstallerrorschema1",
         decode: { kind: "json", schema: appsUninstallerrorschema1Schema },
       },

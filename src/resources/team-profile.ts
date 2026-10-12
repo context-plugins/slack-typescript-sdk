@@ -1,8 +1,8 @@
 import type { AuthSchemes } from "../auth-schemes.js";
+import { ApiError, type Declared, type ErrorDecoders, type ErrorPayload } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import type { RawClient } from "../core/raw-client.js";
-import { ResponseError, type Declared, type ErrorDecoders } from "../core/response-error.js";
 import * as s from "../core/validation/index.js";
 import { contentTypeSchema, type ContentType } from "../models/content-type.js";
 import {
@@ -26,6 +26,21 @@ export class TeamProfile {
     this.#auth = auth;
   }
 
+  /**
+   * team_profile_get
+   *
+   * @remarks
+   * Retrieve a team's profile.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link TeamProfile.TeamProfileGetError} when the API answers with an error status —
+   * narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   teamProfileGet(
     request: TeamProfile.TeamProfileGetRequest,
     options?: RequestOptions,
@@ -33,8 +48,9 @@ export class TeamProfile {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/team.profile.get"),
+        urlTemplate: this.#servers.default("/team.profile.get"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
         query: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "visibility", value: request.visibility, schema: s.optional(s.string()) },
@@ -53,17 +69,21 @@ export class TeamProfile {
 
 export namespace TeamProfile {
   export type TeamProfileGetRequest = {
+    /** Authentication token. Requires scope: `users.profile:read` */
     token: string;
+    /** Filter by visibility. */
     visibility?: string;
     contentType: ContentType;
   };
 
-  export class TeamProfileGetError extends ResponseError<
-    Declared<"teamProfileGeterrorschema1", TeamProfileGeterrorschema1>
-  > {
+  export class TeamProfileGetError extends ApiError {
+    declare readonly payload: ErrorPayload<
+      Declared<"teamProfileGeterrorschema1", TeamProfileGeterrorschema1>
+    >;
+
     static readonly errors: ErrorDecoders<TeamProfileGetError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "teamProfileGeterrorschema1",
         decode: { kind: "json", schema: teamProfileGeterrorschema1Schema },
       },

@@ -5,11 +5,13 @@ import {
   type ConversationsArchiveErrorEnum,
 } from "./conversations-archive-error-enum.js";
 
+/** Schema for error response from conversations.archive method */
 export type ConversationsArchiveerrorschema1 = {
+  /** Note: PHP callstack is only visible in dev/qa */
   callstack?: string;
   error: ConversationsArchiveErrorEnum;
   needed?: string;
-  ok: "False";
+  ok: boolean;
   provided?: string;
 };
 
@@ -18,6 +20,6 @@ export const conversationsArchiveerrorschema1Schema: Schema<ConversationsArchive
     callstack: s.optional(s.string()),
     error: conversationsArchiveErrorEnumSchema,
     needed: s.optional(s.string()),
-    ok: s.literal("False"),
+    ok: s.boolean(),
     provided: s.optional(s.string()),
   });

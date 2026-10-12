@@ -5,13 +5,14 @@ import {
   type AdminConversationsArchiveErrorEnum,
 } from "./admin-conversations-archive-error-enum.js";
 
+/** Schema for error response from admin.conversations.archive */
 export type AdminConversationsArchiveerrorschema1Error = {
   error: AdminConversationsArchiveErrorEnum;
-  ok: "False";
+  ok: boolean;
 };
 
 export const adminConversationsArchiveerrorschema1ErrorSchema: Schema<AdminConversationsArchiveerrorschema1Error> =
   s.object<AdminConversationsArchiveerrorschema1Error>({
     error: adminConversationsArchiveErrorEnumSchema,
-    ok: s.literal("False"),
+    ok: s.boolean(),
   });

@@ -4,7 +4,7 @@
 
 Accessor: `client.chatScheduledMessages` · Source: `src/resources/chat-scheduled-messages.ts` · 1 operation · Request and error types: namespace `ChatScheduledMessages`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `slack-web-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `slack-web-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### chatScheduledMessagesList
 
@@ -13,8 +13,8 @@ Accessor: `client.chatScheduledMessages` · Source: `src/resources/chat-schedule
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `ChatScheduledMessagesListschema`
-- **Error**: `ChatScheduledMessages.ChatScheduledMessagesListError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"chatScheduledMessagesListerrorschema1"` [400–599] `ChatScheduledMessagesListerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `ChatScheduledMessages.ChatScheduledMessagesListError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"chatScheduledMessagesListerrorschema1"` [default — any status no arm above covers] `ChatScheduledMessagesListerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `ChatScheduledMessagesListerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `ChatScheduledMessages.ChatScheduledMessagesListRequest` (7):
 

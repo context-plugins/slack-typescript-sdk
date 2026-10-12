@@ -5,15 +5,17 @@ import {
   type RemindersDeleteErrorEnum,
 } from "./reminders-delete-error-enum.js";
 
+/** Schema for error response from reminders.info method */
 export type RemindersInfoerrorschema1Error = {
+  /** Note: PHP callstack is only visible in dev/qa */
   callstack?: string;
   error: RemindersDeleteErrorEnum;
-  ok: "False";
+  ok: boolean;
 };
 
 export const remindersInfoerrorschema1ErrorSchema: Schema<RemindersInfoerrorschema1Error> =
   s.object<RemindersInfoerrorschema1Error>({
     callstack: s.optional(s.string()),
     error: remindersDeleteErrorEnumSchema,
-    ok: s.literal("False"),
+    ok: s.boolean(),
   });

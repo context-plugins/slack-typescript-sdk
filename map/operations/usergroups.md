@@ -4,7 +4,7 @@
 
 Accessor: `client.usergroups` · Source: `src/resources/usergroups.ts` · 7 operations · Request and error types: namespace `Usergroups`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `slack-web-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `slack-web-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### usergroupsCreate
 
@@ -12,9 +12,10 @@ Accessor: `client.usergroups` · Source: `src/resources/usergroups.ts` · 7 oper
 - **Wire**: `POST /usergroups.create`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `UsergroupsCreateschema`
-- **Error**: `Usergroups.UsergroupsCreateError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"usergroupsCreateerrorschema1"` [400–599] `UsergroupsCreateerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Usergroups.UsergroupsCreateError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"usergroupsCreateerrorschema1"` [default — any status no arm above covers] `UsergroupsCreateerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `UsergroupsCreateerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Usergroups.UsergroupsCreateRequest` (7):
 
@@ -40,9 +41,10 @@ Accessor: `client.usergroups` · Source: `src/resources/usergroups.ts` · 7 oper
 - **Wire**: `POST /usergroups.disable`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `UsergroupsDisableschema`
-- **Error**: `Usergroups.UsergroupsDisableError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"usergroupsDisableerrorschema1"` [400–599] `UsergroupsDisableerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Usergroups.UsergroupsDisableError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"usergroupsDisableerrorschema1"` [default — any status no arm above covers] `UsergroupsDisableerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `UsergroupsDisableerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Usergroups.UsergroupsDisableRequest` (4):
 
@@ -65,9 +67,10 @@ Accessor: `client.usergroups` · Source: `src/resources/usergroups.ts` · 7 oper
 - **Wire**: `POST /usergroups.enable`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `UsergroupsEnableschema`
-- **Error**: `Usergroups.UsergroupsEnableError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"usergroupsEnableerrorschema1"` [400–599] `UsergroupsEnableerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Usergroups.UsergroupsEnableError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"usergroupsEnableerrorschema1"` [default — any status no arm above covers] `UsergroupsEnableerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `UsergroupsEnableerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Usergroups.UsergroupsEnableRequest` (4):
 
@@ -91,8 +94,8 @@ Accessor: `client.usergroups` · Source: `src/resources/usergroups.ts` · 7 oper
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `UsergroupsListschema`
-- **Error**: `Usergroups.UsergroupsListError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"usergroupsListerrorschema1"` [400–599] `UsergroupsListerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Usergroups.UsergroupsListError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"usergroupsListerrorschema1"` [default — any status no arm above covers] `UsergroupsListerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `UsergroupsListerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Usergroups.UsergroupsListRequest` (5):
 
@@ -116,9 +119,10 @@ Accessor: `client.usergroups` · Source: `src/resources/usergroups.ts` · 7 oper
 - **Wire**: `POST /usergroups.update`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `UsergroupsUpdateschema`
-- **Error**: `Usergroups.UsergroupsUpdateError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"usergroupsUpdateerrorschema1"` [400–599] `UsergroupsUpdateerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Usergroups.UsergroupsUpdateError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"usergroupsUpdateerrorschema1"` [default — any status no arm above covers] `UsergroupsUpdateerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `UsergroupsUpdateerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Usergroups.UsergroupsUpdateRequest` (8):
 
@@ -146,8 +150,8 @@ Accessor: `client.usergroups` · Source: `src/resources/usergroups.ts` · 7 oper
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `UsergroupsUsersListschema`
-- **Error**: `Usergroups.UsergroupsUsersListError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"usergroupsUsersListerrorschema1"` [400–599] `UsergroupsUsersListerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Usergroups.UsergroupsUsersListError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"usergroupsUsersListerrorschema1"` [default — any status no arm above covers] `UsergroupsUsersListerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `UsergroupsUsersListerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Usergroups.UsergroupsUsersListRequest` (4):
 
@@ -170,9 +174,10 @@ Accessor: `client.usergroups` · Source: `src/resources/usergroups.ts` · 7 oper
 - **Wire**: `POST /usergroups.users.update`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `UsergroupsUsersUpdateschema`
-- **Error**: `Usergroups.UsergroupsUsersUpdateError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"usergroupsUsersUpdateerrorschema1"` [400–599] `UsergroupsUsersUpdateerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Usergroups.UsergroupsUsersUpdateError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"usergroupsUsersUpdateerrorschema1"` [default — any status no arm above covers] `UsergroupsUsersUpdateerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `UsergroupsUsersUpdateerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Usergroups.UsergroupsUsersUpdateRequest` (5):
 

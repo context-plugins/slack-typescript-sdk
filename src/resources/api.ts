@@ -1,8 +1,8 @@
 import type { AuthSchemes } from "../auth-schemes.js";
+import { ApiError, type Declared, type ErrorDecoders, type ErrorPayload } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import type { RawClient } from "../core/raw-client.js";
-import { ResponseError, type Declared, type ErrorDecoders } from "../core/response-error.js";
 import * as s from "../core/validation/index.js";
 import { apiTesterrorschema1Schema, type ApiTesterrorschema1 } from "../models/api-testerrorschema1.js";
 import { apiTestsuccessschemaSchema, type ApiTestsuccessschema } from "../models/api-testsuccessschema.js";
@@ -20,6 +20,21 @@ export class Api {
     this.#auth = auth;
   }
 
+  /**
+   * api_test
+   *
+   * @remarks
+   * Checks API calling code.
+   *
+   * @returns Standard success response
+   *
+   * @throws {@link Api.ApiTestError} when the API answers with an error status — narrow on
+   * `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   apiTest(
     request: Api.ApiTestRequest,
     options?: RequestOptions,
@@ -27,8 +42,9 @@ export class Api {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/api.test"),
+        urlTemplate: this.#servers.default("/api.test"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
         query: [
           { name: "error", value: request.error, schema: s.optional(s.string()) },
           { name: "foo", value: request.foo, schema: s.optional(s.string()) },
@@ -47,15 +63,19 @@ export class Api {
 
 export namespace Api {
   export type ApiTestRequest = {
+    /** Error response to return */
     error?: string;
+    /** example property to return */
     foo?: string;
     contentType: ContentType;
   };
 
-  export class ApiTestError extends ResponseError<Declared<"apiTesterrorschema1", ApiTesterrorschema1>> {
+  export class ApiTestError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"apiTesterrorschema1", ApiTesterrorschema1>>;
+
     static readonly errors: ErrorDecoders<ApiTestError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "apiTesterrorschema1",
         decode: { kind: "json", schema: apiTesterrorschema1Schema },
       },

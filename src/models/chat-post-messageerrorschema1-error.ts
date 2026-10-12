@@ -5,15 +5,17 @@ import {
   type ChatPostMessageErrorEnum,
 } from "./chat-post-message-error-enum.js";
 
+/** Schema for error response chat.postMessage method */
 export type ChatPostMessageerrorschema1Error = {
+  /** Note: PHP callstack is only visible in dev/qa */
   callstack?: string;
   error: ChatPostMessageErrorEnum;
-  ok: "False";
+  ok: boolean;
 };
 
 export const chatPostMessageerrorschema1ErrorSchema: Schema<ChatPostMessageerrorschema1Error> =
   s.object<ChatPostMessageerrorschema1Error>({
     callstack: s.optional(s.string()),
     error: chatPostMessageErrorEnumSchema,
-    ok: s.literal("False"),
+    ok: s.boolean(),
   });

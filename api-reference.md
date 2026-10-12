@@ -22,19 +22,41 @@ Approve an app for installation on a workspace.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.adminApps.adminAppsApprove({ token, contentType });
+  const response = await client.adminApps.adminAppsApprove({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof AdminApps.AdminAppsApproveError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type AdminApps.AdminAppsApproveError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.adminApps.adminAppsApprove({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -62,9 +84,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.adminApps.adminAppsApprove(request)`
 
-**OnError**: <code>[AdminApps.AdminAppsApproveError](src/resources/admin-apps.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[AdminApps.AdminAppsApproveError](src/resources/admin-apps.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.adminApps.adminAppsApprove(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, AdminApps.AdminAppsApproveError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -90,19 +120,41 @@ Restrict an app for installation on a workspace.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.adminApps.adminAppsRestrict({ token, contentType });
+  const response = await client.adminApps.adminAppsRestrict({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof AdminApps.AdminAppsRestrictError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type AdminApps.AdminAppsRestrictError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.adminApps.adminAppsRestrict({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -130,9 +182,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.adminApps.adminAppsRestrict(request)`
 
-**OnError**: <code>[AdminApps.AdminAppsRestrictError](src/resources/admin-apps.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[AdminApps.AdminAppsRestrictError](src/resources/admin-apps.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.adminApps.adminAppsRestrict(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, AdminApps.AdminAppsRestrictError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -162,19 +222,41 @@ Approve an app for installation on a workspace.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.admin.adminAppsApprove({ token, contentType });
+  const response = await client.admin.adminAppsApprove({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Admin.AdminAppsApproveError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Admin.AdminAppsApproveError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.admin.adminAppsApprove({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -202,9 +284,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.admin.adminAppsApprove(request)`
 
-**OnError**: <code>[Admin.AdminAppsApproveError](src/resources/admin.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Admin.AdminAppsApproveError](src/resources/admin.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.admin.adminAppsApprove(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Admin.AdminAppsApproveError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -230,19 +320,41 @@ List approved apps for an org or workspace.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.admin.adminAppsApprovedList({ token, contentType });
+  const response = await client.admin.adminAppsApprovedList({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Admin.AdminAppsApprovedListError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Admin.AdminAppsApprovedListError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.admin.adminAppsApprovedList({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -271,9 +383,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.admin.adminAppsApprovedList(request)`
 
-**OnError**: <code>[Admin.AdminAppsApprovedListError](src/resources/admin.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Admin.AdminAppsApprovedListError](src/resources/admin.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.admin.adminAppsApprovedList(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Admin.AdminAppsApprovedListError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -299,19 +419,41 @@ List app requests for a team/workspace.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.admin.adminAppsRequestsList({ token, contentType });
+  const response = await client.admin.adminAppsRequestsList({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Admin.AdminAppsRequestsListError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Admin.AdminAppsRequestsListError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.admin.adminAppsRequestsList({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -339,9 +481,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.admin.adminAppsRequestsList(request)`
 
-**OnError**: <code>[Admin.AdminAppsRequestsListError](src/resources/admin.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Admin.AdminAppsRequestsListError](src/resources/admin.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.admin.adminAppsRequestsList(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Admin.AdminAppsRequestsListError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -367,19 +517,41 @@ Restrict an app for installation on a workspace.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.admin.adminAppsRestrict({ token, contentType });
+  const response = await client.admin.adminAppsRestrict({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Admin.AdminAppsRestrictError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Admin.AdminAppsRestrictError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.admin.adminAppsRestrict({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -407,9 +579,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.admin.adminAppsRestrict(request)`
 
-**OnError**: <code>[Admin.AdminAppsRestrictError](src/resources/admin.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Admin.AdminAppsRestrictError](src/resources/admin.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.admin.adminAppsRestrict(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Admin.AdminAppsRestrictError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -435,19 +615,41 @@ List restricted apps for an org or workspace.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.admin.adminAppsRestrictedList({ token, contentType });
+  const response = await client.admin.adminAppsRestrictedList({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Admin.AdminAppsRestrictedListError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Admin.AdminAppsRestrictedListError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.admin.adminAppsRestrictedList({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -476,9 +678,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.admin.adminAppsRestrictedList(request)`
 
-**OnError**: <code>[Admin.AdminAppsRestrictedListError](src/resources/admin.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Admin.AdminAppsRestrictedListError](src/resources/admin.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.admin.adminAppsRestrictedList(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Admin.AdminAppsRestrictedListError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -504,22 +714,43 @@ Archive a public or private channel.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.admin.adminConversationsArchive({ token, contentType, channelId });
+  const response = await client.admin.adminConversationsArchive({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    channelId: "some example string",
+  });
   // TODO: Handle 'response' of type AdminConversationsArchiveschema
 } catch (err) {
-  if (
-    err instanceof Admin.AdminConversationsArchiveError &&
-      err.payload.kind === "adminConversationsArchiveerrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type AdminConversationsArchiveerrorschema1
-  }
+  // TODO: Handle 'err' of type Admin.AdminConversationsArchiveError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.admin.adminConversationsArchive({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  channelId: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type AdminConversationsArchiveschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -545,9 +776,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[AdminConversationsArchiveschema](src/models/admin-conversations-archiveschema.ts)</code>
+**Direct**: `await client.admin.adminConversationsArchive(request)`
 
-**OnError**: <code>[Admin.AdminConversationsArchiveError](src/resources/admin.ts)</code>
+- **OnSuccess**: <code>[AdminConversationsArchiveschema](src/models/admin-conversations-archiveschema.ts)</code>
+- **OnError**: throws <code>[Admin.AdminConversationsArchiveError](src/resources/admin.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.admin.adminConversationsArchive(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;AdminConversationsArchiveschema, Admin.AdminConversationsArchiveError&gt;</code>, with `result.value` of type <code>[AdminConversationsArchiveschema](src/models/admin-conversations-archiveschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -573,22 +812,43 @@ Convert a public channel to a private channel.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.admin.adminConversationsConvertToPrivate({ token, contentType, channelId });
+  const response = await client.admin.adminConversationsConvertToPrivate({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    channelId: "some example string",
+  });
   // TODO: Handle 'response' of type AdminConversationsConvertToPrivateschema
 } catch (err) {
-  if (
-    err instanceof Admin.AdminConversationsConvertToPrivateError &&
-      err.payload.kind === "adminConversationsConvertToPrivateerrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type AdminConversationsConvertToPrivateerrorschema1
-  }
+  // TODO: Handle 'err' of type Admin.AdminConversationsConvertToPrivateError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.admin.adminConversationsConvertToPrivate({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  channelId: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type AdminConversationsConvertToPrivateschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -614,9 +874,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[AdminConversationsConvertToPrivateschema](src/models/admin-conversations-convert-to-privateschema.ts)</code>
+**Direct**: `await client.admin.adminConversationsConvertToPrivate(request)`
 
-**OnError**: <code>[Admin.AdminConversationsConvertToPrivateError](src/resources/admin.ts)</code>
+- **OnSuccess**: <code>[AdminConversationsConvertToPrivateschema](src/models/admin-conversations-convert-to-privateschema.ts)</code>
+- **OnError**: throws <code>[Admin.AdminConversationsConvertToPrivateError](src/resources/admin.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.admin.adminConversationsConvertToPrivate(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;AdminConversationsConvertToPrivateschema, Admin.AdminConversationsConvertToPrivateError&gt;</code>, with `result.value` of type <code>[AdminConversationsConvertToPrivateschema](src/models/admin-conversations-convert-to-privateschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -642,22 +910,45 @@ Create a public or private channel-based conversation.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.admin.adminConversationsCreate({ token, contentType, name, isPrivate });
+  const response = await client.admin.adminConversationsCreate({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    name: "some example string",
+    isPrivate: true,
+  });
   // TODO: Handle 'response' of type AdminConversationsCreateschema
 } catch (err) {
-  if (
-    err instanceof Admin.AdminConversationsCreateError &&
-      err.payload.kind === "adminConversationsCreateerrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type AdminConversationsCreateerrorschema1
-  }
+  // TODO: Handle 'err' of type Admin.AdminConversationsCreateError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.admin.adminConversationsCreate({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  name: "some example string",
+  isPrivate: true,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type AdminConversationsCreateschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -687,9 +978,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[AdminConversationsCreateschema](src/models/admin-conversations-createschema.ts)</code>
+**Direct**: `await client.admin.adminConversationsCreate(request)`
 
-**OnError**: <code>[Admin.AdminConversationsCreateError](src/resources/admin.ts)</code>
+- **OnSuccess**: <code>[AdminConversationsCreateschema](src/models/admin-conversations-createschema.ts)</code>
+- **OnError**: throws <code>[Admin.AdminConversationsCreateError](src/resources/admin.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.admin.adminConversationsCreate(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;AdminConversationsCreateschema, Admin.AdminConversationsCreateError&gt;</code>, with `result.value` of type <code>[AdminConversationsCreateschema](src/models/admin-conversations-createschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -715,22 +1014,43 @@ Delete a public or private channel.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.admin.adminConversationsDelete({ token, contentType, channelId });
+  const response = await client.admin.adminConversationsDelete({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    channelId: "some example string",
+  });
   // TODO: Handle 'response' of type AdminConversationsDeleteschema
 } catch (err) {
-  if (
-    err instanceof Admin.AdminConversationsDeleteError &&
-      err.payload.kind === "adminConversationsDeleteerrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type AdminConversationsDeleteerrorschema1
-  }
+  // TODO: Handle 'err' of type Admin.AdminConversationsDeleteError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.admin.adminConversationsDelete({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  channelId: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type AdminConversationsDeleteschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -756,9 +1076,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[AdminConversationsDeleteschema](src/models/admin-conversations-deleteschema.ts)</code>
+**Direct**: `await client.admin.adminConversationsDelete(request)`
 
-**OnError**: <code>[Admin.AdminConversationsDeleteError](src/resources/admin.ts)</code>
+- **OnSuccess**: <code>[AdminConversationsDeleteschema](src/models/admin-conversations-deleteschema.ts)</code>
+- **OnError**: throws <code>[Admin.AdminConversationsDeleteError](src/resources/admin.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.admin.adminConversationsDelete(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;AdminConversationsDeleteschema, Admin.AdminConversationsDeleteError&gt;</code>, with `result.value` of type <code>[AdminConversationsDeleteschema](src/models/admin-conversations-deleteschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -784,22 +1112,43 @@ Disconnect a connected channel from one or more workspaces.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.admin.adminConversationsDisconnectShared({ token, contentType, channelId });
+  const response = await client.admin.adminConversationsDisconnectShared({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    channelId: "some example string",
+  });
   // TODO: Handle 'response' of type AdminConversationsRenameschema
 } catch (err) {
-  if (
-    err instanceof Admin.AdminConversationsDisconnectSharedError &&
-      err.payload.kind === "adminConversationsDisconnectSharederrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type AdminConversationsDisconnectSharederrorschema1
-  }
+  // TODO: Handle 'err' of type Admin.AdminConversationsDisconnectSharedError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.admin.adminConversationsDisconnectShared({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  channelId: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type AdminConversationsRenameschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -826,9 +1175,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[AdminConversationsRenameschema](src/models/admin-conversations-renameschema.ts)</code>
+**Direct**: `await client.admin.adminConversationsDisconnectShared(request)`
 
-**OnError**: <code>[Admin.AdminConversationsDisconnectSharedError](src/resources/admin.ts)</code>
+- **OnSuccess**: <code>[AdminConversationsRenameschema](src/models/admin-conversations-renameschema.ts)</code>
+- **OnError**: throws <code>[Admin.AdminConversationsDisconnectSharedError](src/resources/admin.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.admin.adminConversationsDisconnectShared(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;AdminConversationsRenameschema, Admin.AdminConversationsDisconnectSharedError&gt;</code>, with `result.value` of type <code>[AdminConversationsRenameschema](src/models/admin-conversations-renameschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -854,7 +1211,7 @@ List all disconnected channels—i.e., channels that were once connected to othe
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -862,17 +1219,33 @@ List all disconnected channels—i.e., channels that were once connected to othe
 ```ts
 try {
   const response = await client.admin.adminConversationsEkmListOriginalConnectedChannelInfo({
-    token,
-    contentType,
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
   });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (
-    err instanceof Admin.AdminConversationsEkmListOriginalConnectedChannelInfoError &&
-      err.payload.kind === "defaulterrortemplate1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Admin.AdminConversationsEkmListOriginalConnectedChannelInfoError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.admin.adminConversationsEkmListOriginalConnectedChannelInfo({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -901,9 +1274,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.admin.adminConversationsEkmListOriginalConnectedChannelInfo(request)`
 
-**OnError**: <code>[Admin.AdminConversationsEkmListOriginalConnectedChannelInfoError](src/resources/admin.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Admin.AdminConversationsEkmListOriginalConnectedChannelInfoError](src/resources/admin.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.admin.adminConversationsEkmListOriginalConnectedChannelInfo(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Admin.AdminConversationsEkmListOriginalConnectedChannelInfoError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -929,7 +1310,7 @@ Get conversation preferences for a public or private channel.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -937,18 +1318,35 @@ Get conversation preferences for a public or private channel.
 ```ts
 try {
   const response = await client.admin.adminConversationsGetConversationPrefs({
-    channelId,
-    token,
-    contentType,
+    channelId: "some example string",
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
   });
   // TODO: Handle 'response' of type AdminConversationsGetConversationPrefsschema
 } catch (err) {
-  if (
-    err instanceof Admin.AdminConversationsGetConversationPrefsError &&
-      err.payload.kind === "adminConversationsUnarchiveerrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type AdminConversationsUnarchiveerrorschema1
-  }
+  // TODO: Handle 'err' of type Admin.AdminConversationsGetConversationPrefsError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.admin.adminConversationsGetConversationPrefs({
+  channelId: "some example string",
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type AdminConversationsGetConversationPrefsschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -974,9 +1372,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[AdminConversationsGetConversationPrefsschema](src/models/admin-conversations-get-conversation-prefsschema.ts)</code>
+**Direct**: `await client.admin.adminConversationsGetConversationPrefs(request)`
 
-**OnError**: <code>[Admin.AdminConversationsGetConversationPrefsError](src/resources/admin.ts)</code>
+- **OnSuccess**: <code>[AdminConversationsGetConversationPrefsschema](src/models/admin-conversations-get-conversation-prefsschema.ts)</code>
+- **OnError**: throws <code>[Admin.AdminConversationsGetConversationPrefsError](src/resources/admin.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.admin.adminConversationsGetConversationPrefs(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;AdminConversationsGetConversationPrefsschema, Admin.AdminConversationsGetConversationPrefsError&gt;</code>, with `result.value` of type <code>[AdminConversationsGetConversationPrefsschema](src/models/admin-conversations-get-conversation-prefsschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -1002,22 +1408,43 @@ Get all the workspaces a given public or private channel is connected to within 
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.admin.adminConversationsGetTeams({ channelId, token, contentType });
+  const response = await client.admin.adminConversationsGetTeams({
+    channelId: "some example string",
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type AdminConversationsGetTeamsschema
 } catch (err) {
-  if (
-    err instanceof Admin.AdminConversationsGetTeamsError &&
-      err.payload.kind === "adminConversationsGetTeamserrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type AdminConversationsGetTeamserrorschema1
-  }
+  // TODO: Handle 'err' of type Admin.AdminConversationsGetTeamsError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.admin.adminConversationsGetTeams({
+  channelId: "some example string",
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type AdminConversationsGetTeamsschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -1045,9 +1472,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[AdminConversationsGetTeamsschema](src/models/admin-conversations-get-teamsschema.ts)</code>
+**Direct**: `await client.admin.adminConversationsGetTeams(request)`
 
-**OnError**: <code>[Admin.AdminConversationsGetTeamsError](src/resources/admin.ts)</code>
+- **OnSuccess**: <code>[AdminConversationsGetTeamsschema](src/models/admin-conversations-get-teamsschema.ts)</code>
+- **OnError**: throws <code>[Admin.AdminConversationsGetTeamsError](src/resources/admin.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.admin.adminConversationsGetTeams(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;AdminConversationsGetTeamsschema, Admin.AdminConversationsGetTeamsError&gt;</code>, with `result.value` of type <code>[AdminConversationsGetTeamsschema](src/models/admin-conversations-get-teamsschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -1073,22 +1508,45 @@ Invite a user to a public or private channel.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.admin.adminConversationsInvite({ token, contentType, userIds, channelId });
+  const response = await client.admin.adminConversationsInvite({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    userIds: "some example string",
+    channelId: "some example string",
+  });
   // TODO: Handle 'response' of type AdminConversationsInviteschema
 } catch (err) {
-  if (
-    err instanceof Admin.AdminConversationsInviteError &&
-      err.payload.kind === "adminConversationsInviteerrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type AdminConversationsInviteerrorschema1
-  }
+  // TODO: Handle 'err' of type Admin.AdminConversationsInviteError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.admin.adminConversationsInvite({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  userIds: "some example string",
+  channelId: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type AdminConversationsInviteschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -1115,9 +1573,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[AdminConversationsInviteschema](src/models/admin-conversations-inviteschema.ts)</code>
+**Direct**: `await client.admin.adminConversationsInvite(request)`
 
-**OnError**: <code>[Admin.AdminConversationsInviteError](src/resources/admin.ts)</code>
+- **OnSuccess**: <code>[AdminConversationsInviteschema](src/models/admin-conversations-inviteschema.ts)</code>
+- **OnError**: throws <code>[Admin.AdminConversationsInviteError](src/resources/admin.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.admin.adminConversationsInvite(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;AdminConversationsInviteschema, Admin.AdminConversationsInviteError&gt;</code>, with `result.value` of type <code>[AdminConversationsInviteschema](src/models/admin-conversations-inviteschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -1143,22 +1609,45 @@ Rename a public or private channel.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.admin.adminConversationsRename({ token, contentType, channelId, name });
+  const response = await client.admin.adminConversationsRename({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    channelId: "some example string",
+    name: "some example string",
+  });
   // TODO: Handle 'response' of type AdminConversationsRenameschema1
 } catch (err) {
-  if (
-    err instanceof Admin.AdminConversationsRenameError &&
-      err.payload.kind === "adminConversationsUnarchiveerrorschema21"
-  ) {
-    // TODO: Handle 'err.payload.body' of type AdminConversationsUnarchiveerrorschema21
-  }
+  // TODO: Handle 'err' of type Admin.AdminConversationsRenameError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.admin.adminConversationsRename({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  channelId: "some example string",
+  name: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type AdminConversationsRenameschema1
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -1185,9 +1674,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[AdminConversationsRenameschema1](src/models/admin-conversations-renameschema1.ts)</code>
+**Direct**: `await client.admin.adminConversationsRename(request)`
 
-**OnError**: <code>[Admin.AdminConversationsRenameError](src/resources/admin.ts)</code>
+- **OnSuccess**: <code>[AdminConversationsRenameschema1](src/models/admin-conversations-renameschema1.ts)</code>
+- **OnError**: throws <code>[Admin.AdminConversationsRenameError](src/resources/admin.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.admin.adminConversationsRename(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;AdminConversationsRenameschema1, Admin.AdminConversationsRenameError&gt;</code>, with `result.value` of type <code>[AdminConversationsRenameschema1](src/models/admin-conversations-renameschema1.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -1213,7 +1710,7 @@ Add an allowlist of IDP groups for accessing a channel
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -1221,19 +1718,37 @@ Add an allowlist of IDP groups for accessing a channel
 ```ts
 try {
   const response = await client.admin.adminConversationsRestrictAccessAddGroup({
-    contentType,
-    token,
-    groupId,
-    channelId,
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    token: "some example string",
+    groupId: "some example string",
+    channelId: "some example string",
   });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (
-    err instanceof Admin.AdminConversationsRestrictAccessAddGroupError &&
-      err.payload.kind === "defaulterrortemplate1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Admin.AdminConversationsRestrictAccessAddGroupError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.admin.adminConversationsRestrictAccessAddGroup({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  token: "some example string",
+  groupId: "some example string",
+  channelId: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -1261,9 +1776,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.admin.adminConversationsRestrictAccessAddGroup(request)`
 
-**OnError**: <code>[Admin.AdminConversationsRestrictAccessAddGroupError](src/resources/admin.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Admin.AdminConversationsRestrictAccessAddGroupError](src/resources/admin.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.admin.adminConversationsRestrictAccessAddGroup(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Admin.AdminConversationsRestrictAccessAddGroupError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -1289,7 +1812,7 @@ List all IDP Groups linked to a channel
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -1297,18 +1820,35 @@ List all IDP Groups linked to a channel
 ```ts
 try {
   const response = await client.admin.adminConversationsRestrictAccessListGroups({
-    token,
-    channelId,
-    contentType,
+    token: "some example string",
+    channelId: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
   });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (
-    err instanceof Admin.AdminConversationsRestrictAccessListGroupsError &&
-      err.payload.kind === "defaulterrortemplate1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Admin.AdminConversationsRestrictAccessListGroupsError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.admin.adminConversationsRestrictAccessListGroups({
+  token: "some example string",
+  channelId: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -1335,9 +1875,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.admin.adminConversationsRestrictAccessListGroups(request)`
 
-**OnError**: <code>[Admin.AdminConversationsRestrictAccessListGroupsError](src/resources/admin.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Admin.AdminConversationsRestrictAccessListGroupsError](src/resources/admin.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.admin.adminConversationsRestrictAccessListGroups(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Admin.AdminConversationsRestrictAccessListGroupsError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -1363,7 +1911,7 @@ Remove a linked IDP group linked from a private channel
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -1371,20 +1919,39 @@ Remove a linked IDP group linked from a private channel
 ```ts
 try {
   const response = await client.admin.adminConversationsRestrictAccessRemoveGroup({
-    contentType,
-    token,
-    teamId,
-    groupId,
-    channelId,
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    token: "some example string",
+    teamId: "some example string",
+    groupId: "some example string",
+    channelId: "some example string",
   });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (
-    err instanceof Admin.AdminConversationsRestrictAccessRemoveGroupError &&
-      err.payload.kind === "defaulterrortemplate1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Admin.AdminConversationsRestrictAccessRemoveGroupError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.admin.adminConversationsRestrictAccessRemoveGroup({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  token: "some example string",
+  teamId: "some example string",
+  groupId: "some example string",
+  channelId: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -1412,9 +1979,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.admin.adminConversationsRestrictAccessRemoveGroup(request)`
 
-**OnError**: <code>[Admin.AdminConversationsRestrictAccessRemoveGroupError](src/resources/admin.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Admin.AdminConversationsRestrictAccessRemoveGroupError](src/resources/admin.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.admin.adminConversationsRestrictAccessRemoveGroup(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Admin.AdminConversationsRestrictAccessRemoveGroupError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -1440,22 +2015,41 @@ Search for public or private channels in an Enterprise organization.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.admin.adminConversationsSearch({ token, contentType });
+  const response = await client.admin.adminConversationsSearch({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type AdminConversationsSearchschema
 } catch (err) {
-  if (
-    err instanceof Admin.AdminConversationsSearchError &&
-      err.payload.kind === "adminConversationsSearcherrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type AdminConversationsSearcherrorschema1
-  }
+  // TODO: Handle 'err' of type Admin.AdminConversationsSearchError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.admin.adminConversationsSearch({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type AdminConversationsSearchschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -1487,9 +2081,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[AdminConversationsSearchschema](src/models/admin-conversations-searchschema.ts)</code>
+**Direct**: `await client.admin.adminConversationsSearch(request)`
 
-**OnError**: <code>[Admin.AdminConversationsSearchError](src/resources/admin.ts)</code>
+- **OnSuccess**: <code>[AdminConversationsSearchschema](src/models/admin-conversations-searchschema.ts)</code>
+- **OnError**: throws <code>[Admin.AdminConversationsSearchError](src/resources/admin.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.admin.adminConversationsSearch(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;AdminConversationsSearchschema, Admin.AdminConversationsSearchError&gt;</code>, with `result.value` of type <code>[AdminConversationsSearchschema](src/models/admin-conversations-searchschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -1515,7 +2117,7 @@ Set the posting permissions for a public or private channel.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -1523,19 +2125,37 @@ Set the posting permissions for a public or private channel.
 ```ts
 try {
   const response = await client.admin.adminConversationsSetConversationPrefs({
-    token,
-    contentType,
-    channelId,
-    prefs,
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    channelId: "some example string",
+    prefs: "some example string",
   });
   // TODO: Handle 'response' of type AdminConversationsSetConversationPrefsschema
 } catch (err) {
-  if (
-    err instanceof Admin.AdminConversationsSetConversationPrefsError &&
-      err.payload.kind === "adminConversationsSetConversationPrefserrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type AdminConversationsSetConversationPrefserrorschema1
-  }
+  // TODO: Handle 'err' of type Admin.AdminConversationsSetConversationPrefsError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.admin.adminConversationsSetConversationPrefs({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  channelId: "some example string",
+  prefs: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type AdminConversationsSetConversationPrefsschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -1562,9 +2182,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[AdminConversationsSetConversationPrefsschema](src/models/admin-conversations-set-conversation-prefsschema.ts)</code>
+**Direct**: `await client.admin.adminConversationsSetConversationPrefs(request)`
 
-**OnError**: <code>[Admin.AdminConversationsSetConversationPrefsError](src/resources/admin.ts)</code>
+- **OnSuccess**: <code>[AdminConversationsSetConversationPrefsschema](src/models/admin-conversations-set-conversation-prefsschema.ts)</code>
+- **OnError**: throws <code>[Admin.AdminConversationsSetConversationPrefsError](src/resources/admin.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.admin.adminConversationsSetConversationPrefs(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;AdminConversationsSetConversationPrefsschema, Admin.AdminConversationsSetConversationPrefsError&gt;</code>, with `result.value` of type <code>[AdminConversationsSetConversationPrefsschema](src/models/admin-conversations-set-conversation-prefsschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -1590,19 +2218,43 @@ Set the workspaces in an Enterprise grid org that connect to a public or private
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.admin.adminConversationsSetTeams({ token, contentType, channelId });
+  const response = await client.admin.adminConversationsSetTeams({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    channelId: "some example string",
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Admin.AdminConversationsSetTeamsError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Admin.AdminConversationsSetTeamsError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.admin.adminConversationsSetTeams({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  channelId: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -1631,9 +2283,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.admin.adminConversationsSetTeams(request)`
 
-**OnError**: <code>[Admin.AdminConversationsSetTeamsError](src/resources/admin.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Admin.AdminConversationsSetTeamsError](src/resources/admin.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.admin.adminConversationsSetTeams(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Admin.AdminConversationsSetTeamsError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -1659,22 +2319,43 @@ Unarchive a public or private channel.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.admin.adminConversationsUnarchive({ token, contentType, channelId });
+  const response = await client.admin.adminConversationsUnarchive({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    channelId: "some example string",
+  });
   // TODO: Handle 'response' of type AdminConversationsUnarchiveschema
 } catch (err) {
-  if (
-    err instanceof Admin.AdminConversationsUnarchiveError &&
-      err.payload.kind === "adminConversationsUnarchiveerrorschema31"
-  ) {
-    // TODO: Handle 'err.payload.body' of type AdminConversationsUnarchiveerrorschema31
-  }
+  // TODO: Handle 'err' of type Admin.AdminConversationsUnarchiveError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.admin.adminConversationsUnarchive({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  channelId: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type AdminConversationsUnarchiveschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -1700,9 +2381,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[AdminConversationsUnarchiveschema](src/models/admin-conversations-unarchiveschema.ts)</code>
+**Direct**: `await client.admin.adminConversationsUnarchive(request)`
 
-**OnError**: <code>[Admin.AdminConversationsUnarchiveError](src/resources/admin.ts)</code>
+- **OnSuccess**: <code>[AdminConversationsUnarchiveschema](src/models/admin-conversations-unarchiveschema.ts)</code>
+- **OnError**: throws <code>[Admin.AdminConversationsUnarchiveError](src/resources/admin.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.admin.adminConversationsUnarchive(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;AdminConversationsUnarchiveschema, Admin.AdminConversationsUnarchiveError&gt;</code>, with `result.value` of type <code>[AdminConversationsUnarchiveschema](src/models/admin-conversations-unarchiveschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -1728,19 +2417,45 @@ Add an emoji.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.admin.adminEmojiAdd({ contentType, token, name, url });
+  const response = await client.admin.adminEmojiAdd({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    token: "some example string",
+    name: "some example string",
+    url: "some example string",
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Admin.AdminEmojiAddError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Admin.AdminEmojiAddError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.admin.adminEmojiAdd({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  token: "some example string",
+  name: "some example string",
+  url: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -1767,9 +2482,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.admin.adminEmojiAdd(request)`
 
-**OnError**: <code>[Admin.AdminEmojiAddError](src/resources/admin.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Admin.AdminEmojiAddError](src/resources/admin.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.admin.adminEmojiAdd(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Admin.AdminEmojiAddError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -1795,19 +2518,45 @@ Add an emoji alias.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.admin.adminEmojiAddAlias({ contentType, token, name, aliasFor });
+  const response = await client.admin.adminEmojiAddAlias({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    token: "some example string",
+    name: "some example string",
+    aliasFor: "some example string",
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Admin.AdminEmojiAddAliasError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Admin.AdminEmojiAddAliasError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.admin.adminEmojiAddAlias({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  token: "some example string",
+  name: "some example string",
+  aliasFor: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -1834,9 +2583,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.admin.adminEmojiAddAlias(request)`
 
-**OnError**: <code>[Admin.AdminEmojiAddAliasError](src/resources/admin.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Admin.AdminEmojiAddAliasError](src/resources/admin.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.admin.adminEmojiAddAlias(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Admin.AdminEmojiAddAliasError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -1862,19 +2619,41 @@ List emoji for an Enterprise Grid organization.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.admin.adminEmojiList({ token, contentType });
+  const response = await client.admin.adminEmojiList({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Admin.AdminEmojiListError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Admin.AdminEmojiListError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.admin.adminEmojiList({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -1901,9 +2680,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.admin.adminEmojiList(request)`
 
-**OnError**: <code>[Admin.AdminEmojiListError](src/resources/admin.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Admin.AdminEmojiListError](src/resources/admin.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.admin.adminEmojiList(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Admin.AdminEmojiListError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -1929,19 +2716,43 @@ Remove an emoji across an Enterprise Grid organization
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.admin.adminEmojiRemove({ contentType, token, name });
+  const response = await client.admin.adminEmojiRemove({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    token: "some example string",
+    name: "some example string",
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Admin.AdminEmojiRemoveError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Admin.AdminEmojiRemoveError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.admin.adminEmojiRemove({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  token: "some example string",
+  name: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -1967,9 +2778,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.admin.adminEmojiRemove(request)`
 
-**OnError**: <code>[Admin.AdminEmojiRemoveError](src/resources/admin.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Admin.AdminEmojiRemoveError](src/resources/admin.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.admin.adminEmojiRemove(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Admin.AdminEmojiRemoveError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -1995,19 +2814,45 @@ Rename an emoji.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.admin.adminEmojiRename({ contentType, token, name, newName });
+  const response = await client.admin.adminEmojiRename({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    token: "some example string",
+    name: "some example string",
+    newName: "some example string",
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Admin.AdminEmojiRenameError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Admin.AdminEmojiRenameError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.admin.adminEmojiRename({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  token: "some example string",
+  name: "some example string",
+  newName: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -2034,9 +2879,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.admin.adminEmojiRename(request)`
 
-**OnError**: <code>[Admin.AdminEmojiRenameError](src/resources/admin.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Admin.AdminEmojiRenameError](src/resources/admin.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.admin.adminEmojiRename(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Admin.AdminEmojiRenameError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -2062,19 +2915,43 @@ Approve a workspace invite request.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.admin.adminInviteRequestsApprove({ token, contentType, inviteRequestId });
+  const response = await client.admin.adminInviteRequestsApprove({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    inviteRequestId: "some example string",
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Admin.AdminInviteRequestsApproveError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Admin.AdminInviteRequestsApproveError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.admin.adminInviteRequestsApprove({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  inviteRequestId: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -2101,9 +2978,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.admin.adminInviteRequestsApprove(request)`
 
-**OnError**: <code>[Admin.AdminInviteRequestsApproveError](src/resources/admin.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Admin.AdminInviteRequestsApproveError](src/resources/admin.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.admin.adminInviteRequestsApprove(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Admin.AdminInviteRequestsApproveError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -2129,21 +3014,41 @@ List all approved workspace invite requests.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.admin.adminInviteRequestsApprovedList({ token, contentType });
+  const response = await client.admin.adminInviteRequestsApprovedList({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (
-    err instanceof Admin.AdminInviteRequestsApprovedListError && err.payload.kind === "defaulterrortemplate1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Admin.AdminInviteRequestsApprovedListError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.admin.adminInviteRequestsApprovedList({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -2171,9 +3076,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.admin.adminInviteRequestsApprovedList(request)`
 
-**OnError**: <code>[Admin.AdminInviteRequestsApprovedListError](src/resources/admin.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Admin.AdminInviteRequestsApprovedListError](src/resources/admin.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.admin.adminInviteRequestsApprovedList(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Admin.AdminInviteRequestsApprovedListError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -2199,21 +3112,41 @@ List all denied workspace invite requests.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.admin.adminInviteRequestsDeniedList({ token, contentType });
+  const response = await client.admin.adminInviteRequestsDeniedList({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (
-    err instanceof Admin.AdminInviteRequestsDeniedListError && err.payload.kind === "defaulterrortemplate1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Admin.AdminInviteRequestsDeniedListError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.admin.adminInviteRequestsDeniedList({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -2241,9 +3174,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.admin.adminInviteRequestsDeniedList(request)`
 
-**OnError**: <code>[Admin.AdminInviteRequestsDeniedListError](src/resources/admin.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Admin.AdminInviteRequestsDeniedListError](src/resources/admin.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.admin.adminInviteRequestsDeniedList(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Admin.AdminInviteRequestsDeniedListError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -2269,19 +3210,43 @@ Deny a workspace invite request.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.admin.adminInviteRequestsDeny({ token, contentType, inviteRequestId });
+  const response = await client.admin.adminInviteRequestsDeny({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    inviteRequestId: "some example string",
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Admin.AdminInviteRequestsDenyError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Admin.AdminInviteRequestsDenyError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.admin.adminInviteRequestsDeny({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  inviteRequestId: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -2308,9 +3273,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.admin.adminInviteRequestsDeny(request)`
 
-**OnError**: <code>[Admin.AdminInviteRequestsDenyError](src/resources/admin.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Admin.AdminInviteRequestsDenyError](src/resources/admin.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.admin.adminInviteRequestsDeny(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Admin.AdminInviteRequestsDenyError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -2336,19 +3309,41 @@ List all pending workspace invite requests.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.admin.adminInviteRequestsList({ token, contentType });
+  const response = await client.admin.adminInviteRequestsList({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Admin.AdminInviteRequestsListError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Admin.AdminInviteRequestsListError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.admin.adminInviteRequestsList({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -2376,9 +3371,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.admin.adminInviteRequestsList(request)`
 
-**OnError**: <code>[Admin.AdminInviteRequestsListError](src/resources/admin.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Admin.AdminInviteRequestsListError](src/resources/admin.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.admin.adminInviteRequestsList(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Admin.AdminInviteRequestsListError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -2404,19 +3407,43 @@ List all of the admins on a given workspace.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.admin.adminTeamsAdminsList({ token, teamId, contentType });
+  const response = await client.admin.adminTeamsAdminsList({
+    token: "some example string",
+    teamId: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Admin.AdminTeamsAdminsListError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Admin.AdminTeamsAdminsListError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.admin.adminTeamsAdminsList({
+  token: "some example string",
+  teamId: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -2444,9 +3471,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.admin.adminTeamsAdminsList(request)`
 
-**OnError**: <code>[Admin.AdminTeamsAdminsListError](src/resources/admin.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Admin.AdminTeamsAdminsListError](src/resources/admin.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.admin.adminTeamsAdminsList(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Admin.AdminTeamsAdminsListError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -2472,19 +3507,45 @@ Create an Enterprise team.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.admin.adminTeamsCreate({ token, contentType, teamDomain, teamName });
+  const response = await client.admin.adminTeamsCreate({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    teamDomain: "some example string",
+    teamName: "some example string",
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Admin.AdminTeamsCreateError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Admin.AdminTeamsCreateError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.admin.adminTeamsCreate({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  teamDomain: "some example string",
+  teamName: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -2513,9 +3574,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.admin.adminTeamsCreate(request)`
 
-**OnError**: <code>[Admin.AdminTeamsCreateError](src/resources/admin.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Admin.AdminTeamsCreateError](src/resources/admin.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.admin.adminTeamsCreate(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Admin.AdminTeamsCreateError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -2541,19 +3610,41 @@ List all teams on an Enterprise organization
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.admin.adminTeamsList({ token, contentType });
+  const response = await client.admin.adminTeamsList({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Admin.AdminTeamsListError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Admin.AdminTeamsListError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.admin.adminTeamsList({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -2580,9 +3671,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.admin.adminTeamsList(request)`
 
-**OnError**: <code>[Admin.AdminTeamsListError](src/resources/admin.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Admin.AdminTeamsListError](src/resources/admin.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.admin.adminTeamsList(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Admin.AdminTeamsListError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -2608,19 +3707,43 @@ List all of the owners on a given workspace.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.admin.adminTeamsOwnersList({ token, teamId, contentType });
+  const response = await client.admin.adminTeamsOwnersList({
+    token: "some example string",
+    teamId: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Admin.AdminTeamsOwnersListError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Admin.AdminTeamsOwnersListError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.admin.adminTeamsOwnersList({
+  token: "some example string",
+  teamId: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -2648,9 +3771,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.admin.adminTeamsOwnersList(request)`
 
-**OnError**: <code>[Admin.AdminTeamsOwnersListError](src/resources/admin.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Admin.AdminTeamsOwnersListError](src/resources/admin.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.admin.adminTeamsOwnersList(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Admin.AdminTeamsOwnersListError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -2676,19 +3807,43 @@ Fetch information about settings in a workspace
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.admin.adminTeamsSettingsInfo({ teamId, token, contentType });
+  const response = await client.admin.adminTeamsSettingsInfo({
+    teamId: "some example string",
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Admin.AdminTeamsSettingsInfoError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Admin.AdminTeamsSettingsInfoError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.admin.adminTeamsSettingsInfo({
+  teamId: "some example string",
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -2714,9 +3869,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.admin.adminTeamsSettingsInfo(request)`
 
-**OnError**: <code>[Admin.AdminTeamsSettingsInfoError](src/resources/admin.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Admin.AdminTeamsSettingsInfoError](src/resources/admin.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.admin.adminTeamsSettingsInfo(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Admin.AdminTeamsSettingsInfoError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -2742,7 +3905,7 @@ Set the default channels of a workspace.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -2750,19 +3913,37 @@ Set the default channels of a workspace.
 ```ts
 try {
   const response = await client.admin.adminTeamsSettingsSetDefaultChannels({
-    contentType,
-    token,
-    teamId,
-    channelIds,
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    token: "some example string",
+    teamId: "some example string",
+    channelIds: "some example string",
   });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (
-    err instanceof Admin.AdminTeamsSettingsSetDefaultChannelsError &&
-      err.payload.kind === "defaulterrortemplate1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Admin.AdminTeamsSettingsSetDefaultChannelsError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.admin.adminTeamsSettingsSetDefaultChannels({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  token: "some example string",
+  teamId: "some example string",
+  channelIds: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -2789,9 +3970,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.admin.adminTeamsSettingsSetDefaultChannels(request)`
 
-**OnError**: <code>[Admin.AdminTeamsSettingsSetDefaultChannelsError](src/resources/admin.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Admin.AdminTeamsSettingsSetDefaultChannelsError](src/resources/admin.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.admin.adminTeamsSettingsSetDefaultChannels(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Admin.AdminTeamsSettingsSetDefaultChannelsError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -2817,7 +4006,7 @@ Set the description of a given workspace.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -2825,18 +4014,37 @@ Set the description of a given workspace.
 ```ts
 try {
   const response = await client.admin.adminTeamsSettingsSetDescription({
-    token,
-    contentType,
-    teamId,
-    description,
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    teamId: "some example string",
+    description: "some example string",
   });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (
-    err instanceof Admin.AdminTeamsSettingsSetDescriptionError && err.payload.kind === "defaulterrortemplate1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Admin.AdminTeamsSettingsSetDescriptionError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.admin.adminTeamsSettingsSetDescription({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  teamId: "some example string",
+  description: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -2863,9 +4071,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.admin.adminTeamsSettingsSetDescription(request)`
 
-**OnError**: <code>[Admin.AdminTeamsSettingsSetDescriptionError](src/resources/admin.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Admin.AdminTeamsSettingsSetDescriptionError](src/resources/admin.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.admin.adminTeamsSettingsSetDescription(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Admin.AdminTeamsSettingsSetDescriptionError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -2891,7 +4107,7 @@ An API method that allows admins to set the discoverability of a given workspace
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -2899,19 +4115,37 @@ An API method that allows admins to set the discoverability of a given workspace
 ```ts
 try {
   const response = await client.admin.adminTeamsSettingsSetDiscoverability({
-    token,
-    contentType,
-    teamId,
-    discoverability,
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    teamId: "some example string",
+    discoverability: "some example string",
   });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (
-    err instanceof Admin.AdminTeamsSettingsSetDiscoverabilityError &&
-      err.payload.kind === "defaulterrortemplate1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Admin.AdminTeamsSettingsSetDiscoverabilityError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.admin.adminTeamsSettingsSetDiscoverability({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  teamId: "some example string",
+  discoverability: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -2938,9 +4172,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.admin.adminTeamsSettingsSetDiscoverability(request)`
 
-**OnError**: <code>[Admin.AdminTeamsSettingsSetDiscoverabilityError](src/resources/admin.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Admin.AdminTeamsSettingsSetDiscoverabilityError](src/resources/admin.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.admin.adminTeamsSettingsSetDiscoverability(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Admin.AdminTeamsSettingsSetDiscoverabilityError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -2966,19 +4208,45 @@ Sets the icon of a workspace.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.admin.adminTeamsSettingsSetIcon({ contentType, token, imageUrl, teamId });
+  const response = await client.admin.adminTeamsSettingsSetIcon({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    token: "some example string",
+    imageUrl: "some example string",
+    teamId: "some example string",
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Admin.AdminTeamsSettingsSetIconError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Admin.AdminTeamsSettingsSetIconError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.admin.adminTeamsSettingsSetIcon({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  token: "some example string",
+  imageUrl: "some example string",
+  teamId: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -3005,9 +4273,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.admin.adminTeamsSettingsSetIcon(request)`
 
-**OnError**: <code>[Admin.AdminTeamsSettingsSetIconError](src/resources/admin.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Admin.AdminTeamsSettingsSetIconError](src/resources/admin.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.admin.adminTeamsSettingsSetIcon(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Admin.AdminTeamsSettingsSetIconError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -3033,19 +4309,45 @@ Set the name of a given workspace.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.admin.adminTeamsSettingsSetName({ token, contentType, teamId, name });
+  const response = await client.admin.adminTeamsSettingsSetName({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    teamId: "some example string",
+    name: "some example string",
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Admin.AdminTeamsSettingsSetNameError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Admin.AdminTeamsSettingsSetNameError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.admin.adminTeamsSettingsSetName({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  teamId: "some example string",
+  name: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -3072,9 +4374,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.admin.adminTeamsSettingsSetName(request)`
 
-**OnError**: <code>[Admin.AdminTeamsSettingsSetNameError](src/resources/admin.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Admin.AdminTeamsSettingsSetNameError](src/resources/admin.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.admin.adminTeamsSettingsSetName(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Admin.AdminTeamsSettingsSetNameError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -3100,7 +4410,7 @@ Add one or more default channels to an IDP group.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -3108,16 +4418,37 @@ Add one or more default channels to an IDP group.
 ```ts
 try {
   const response = await client.admin.adminUsergroupsAddChannels({
-    token,
-    contentType,
-    usergroupId,
-    channelIds,
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    usergroupId: "some example string",
+    channelIds: "some example string",
   });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Admin.AdminUsergroupsAddChannelsError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Admin.AdminUsergroupsAddChannelsError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.admin.adminUsergroupsAddChannels({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  usergroupId: "some example string",
+  channelIds: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -3145,9 +4476,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.admin.adminUsergroupsAddChannels(request)`
 
-**OnError**: <code>[Admin.AdminUsergroupsAddChannelsError](src/resources/admin.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Admin.AdminUsergroupsAddChannelsError](src/resources/admin.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.admin.adminUsergroupsAddChannels(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Admin.AdminUsergroupsAddChannelsError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -3173,19 +4512,45 @@ Associate one or more default workspaces with an organization-wide IDP group.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.admin.adminUsergroupsAddTeams({ token, contentType, usergroupId, teamIds });
+  const response = await client.admin.adminUsergroupsAddTeams({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    usergroupId: "some example string",
+    teamIds: "some example string",
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Admin.AdminUsergroupsAddTeamsError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Admin.AdminUsergroupsAddTeamsError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.admin.adminUsergroupsAddTeams({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  usergroupId: "some example string",
+  teamIds: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -3213,9 +4578,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.admin.adminUsergroupsAddTeams(request)`
 
-**OnError**: <code>[Admin.AdminUsergroupsAddTeamsError](src/resources/admin.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Admin.AdminUsergroupsAddTeamsError](src/resources/admin.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.admin.adminUsergroupsAddTeams(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Admin.AdminUsergroupsAddTeamsError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -3241,19 +4614,43 @@ List the channels linked to an org-level IDP group (user group).
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.admin.adminUsergroupsListChannels({ usergroupId, token, contentType });
+  const response = await client.admin.adminUsergroupsListChannels({
+    usergroupId: "some example string",
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Admin.AdminUsergroupsListChannelsError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Admin.AdminUsergroupsListChannelsError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.admin.adminUsergroupsListChannels({
+  usergroupId: "some example string",
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -3281,9 +4678,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.admin.adminUsergroupsListChannels(request)`
 
-**OnError**: <code>[Admin.AdminUsergroupsListChannelsError](src/resources/admin.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Admin.AdminUsergroupsListChannelsError](src/resources/admin.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.admin.adminUsergroupsListChannels(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Admin.AdminUsergroupsListChannelsError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -3309,7 +4714,7 @@ Remove one or more default channels from an org-level IDP group (user group).
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -3317,18 +4722,37 @@ Remove one or more default channels from an org-level IDP group (user group).
 ```ts
 try {
   const response = await client.admin.adminUsergroupsRemoveChannels({
-    token,
-    contentType,
-    usergroupId,
-    channelIds,
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    usergroupId: "some example string",
+    channelIds: "some example string",
   });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (
-    err instanceof Admin.AdminUsergroupsRemoveChannelsError && err.payload.kind === "defaulterrortemplate1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Admin.AdminUsergroupsRemoveChannelsError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.admin.adminUsergroupsRemoveChannels({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  usergroupId: "some example string",
+  channelIds: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -3355,9 +4779,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.admin.adminUsergroupsRemoveChannels(request)`
 
-**OnError**: <code>[Admin.AdminUsergroupsRemoveChannelsError](src/resources/admin.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Admin.AdminUsergroupsRemoveChannelsError](src/resources/admin.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.admin.adminUsergroupsRemoveChannels(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Admin.AdminUsergroupsRemoveChannelsError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -3383,19 +4815,45 @@ Add an Enterprise user to a workspace.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.admin.adminUsersAssign({ token, contentType, teamId, userId });
+  const response = await client.admin.adminUsersAssign({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    teamId: "some example string",
+    userId: "some example string",
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Admin.AdminUsersAssignError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Admin.AdminUsersAssignError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.admin.adminUsersAssign({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  teamId: "some example string",
+  userId: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -3425,9 +4883,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.admin.adminUsersAssign(request)`
 
-**OnError**: <code>[Admin.AdminUsersAssignError](src/resources/admin.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Admin.AdminUsersAssignError](src/resources/admin.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.admin.adminUsersAssign(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Admin.AdminUsersAssignError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -3453,19 +4919,47 @@ Invite a user to a workspace.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.admin.adminUsersInvite({ token, contentType, teamId, email, channelIds });
+  const response = await client.admin.adminUsersInvite({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    teamId: "some example string",
+    email: "some example string",
+    channelIds: "some example string",
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Admin.AdminUsersInviteError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Admin.AdminUsersInviteError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.admin.adminUsersInvite({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  teamId: "some example string",
+  email: "some example string",
+  channelIds: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -3499,9 +4993,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.admin.adminUsersInvite(request)`
 
-**OnError**: <code>[Admin.AdminUsersInviteError](src/resources/admin.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Admin.AdminUsersInviteError](src/resources/admin.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.admin.adminUsersInvite(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Admin.AdminUsersInviteError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -3527,19 +5029,43 @@ List users on a workspace
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.admin.adminUsersList({ teamId, token, contentType });
+  const response = await client.admin.adminUsersList({
+    teamId: "some example string",
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Admin.AdminUsersListError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Admin.AdminUsersListError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.admin.adminUsersList({
+  teamId: "some example string",
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -3567,9 +5093,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.admin.adminUsersList(request)`
 
-**OnError**: <code>[Admin.AdminUsersListError](src/resources/admin.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Admin.AdminUsersListError](src/resources/admin.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.admin.adminUsersList(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Admin.AdminUsersListError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -3595,19 +5129,45 @@ Remove a user from a workspace.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.admin.adminUsersRemove({ token, contentType, teamId, userId });
+  const response = await client.admin.adminUsersRemove({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    teamId: "some example string",
+    userId: "some example string",
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Admin.AdminUsersRemoveError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Admin.AdminUsersRemoveError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.admin.adminUsersRemove({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  teamId: "some example string",
+  userId: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -3634,9 +5194,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.admin.adminUsersRemove(request)`
 
-**OnError**: <code>[Admin.AdminUsersRemoveError](src/resources/admin.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Admin.AdminUsersRemoveError](src/resources/admin.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.admin.adminUsersRemove(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Admin.AdminUsersRemoveError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -3662,19 +5230,45 @@ Invalidate a single session for a user by session_id
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.admin.adminUsersSessionInvalidate({ token, contentType, teamId, sessionId });
+  const response = await client.admin.adminUsersSessionInvalidate({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    teamId: "some example string",
+    sessionId: 1,
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Admin.AdminUsersSessionInvalidateError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Admin.AdminUsersSessionInvalidateError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.admin.adminUsersSessionInvalidate({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  teamId: "some example string",
+  sessionId: 1,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -3701,9 +5295,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.admin.adminUsersSessionInvalidate(request)`
 
-**OnError**: <code>[Admin.AdminUsersSessionInvalidateError](src/resources/admin.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Admin.AdminUsersSessionInvalidateError](src/resources/admin.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.admin.adminUsersSessionInvalidate(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Admin.AdminUsersSessionInvalidateError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -3729,19 +5331,43 @@ Wipes all valid sessions on all devices for a given user
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.admin.adminUsersSessionReset({ token, contentType, userId });
+  const response = await client.admin.adminUsersSessionReset({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    userId: "some example string",
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Admin.AdminUsersSessionResetError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Admin.AdminUsersSessionResetError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.admin.adminUsersSessionReset({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  userId: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -3769,9 +5395,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.admin.adminUsersSessionReset(request)`
 
-**OnError**: <code>[Admin.AdminUsersSessionResetError](src/resources/admin.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Admin.AdminUsersSessionResetError](src/resources/admin.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.admin.adminUsersSessionReset(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Admin.AdminUsersSessionResetError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -3797,19 +5431,45 @@ Set an existing guest, regular user, or owner to be an admin user.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.admin.adminUsersSetAdmin({ token, contentType, teamId, userId });
+  const response = await client.admin.adminUsersSetAdmin({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    teamId: "some example string",
+    userId: "some example string",
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Admin.AdminUsersSetAdminError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Admin.AdminUsersSetAdminError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.admin.adminUsersSetAdmin({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  teamId: "some example string",
+  userId: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -3836,9 +5496,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.admin.adminUsersSetAdmin(request)`
 
-**OnError**: <code>[Admin.AdminUsersSetAdminError](src/resources/admin.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Admin.AdminUsersSetAdminError](src/resources/admin.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.admin.adminUsersSetAdmin(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Admin.AdminUsersSetAdminError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -3864,7 +5532,7 @@ Set an expiration for a guest user
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -3872,17 +5540,39 @@ Set an expiration for a guest user
 ```ts
 try {
   const response = await client.admin.adminUsersSetExpiration({
-    token,
-    contentType,
-    teamId,
-    userId,
-    expirationTs,
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    teamId: "some example string",
+    userId: "some example string",
+    expirationTs: 1,
   });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Admin.AdminUsersSetExpirationError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Admin.AdminUsersSetExpirationError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.admin.adminUsersSetExpiration({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  teamId: "some example string",
+  userId: "some example string",
+  expirationTs: 1,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -3910,9 +5600,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.admin.adminUsersSetExpiration(request)`
 
-**OnError**: <code>[Admin.AdminUsersSetExpirationError](src/resources/admin.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Admin.AdminUsersSetExpirationError](src/resources/admin.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.admin.adminUsersSetExpiration(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Admin.AdminUsersSetExpirationError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -3938,19 +5636,45 @@ Set an existing guest, regular user, or admin user to be a workspace owner.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.admin.adminUsersSetOwner({ token, contentType, teamId, userId });
+  const response = await client.admin.adminUsersSetOwner({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    teamId: "some example string",
+    userId: "some example string",
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Admin.AdminUsersSetOwnerError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Admin.AdminUsersSetOwnerError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.admin.adminUsersSetOwner({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  teamId: "some example string",
+  userId: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -3977,9 +5701,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.admin.adminUsersSetOwner(request)`
 
-**OnError**: <code>[Admin.AdminUsersSetOwnerError](src/resources/admin.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Admin.AdminUsersSetOwnerError](src/resources/admin.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.admin.adminUsersSetOwner(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Admin.AdminUsersSetOwnerError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -4005,19 +5737,45 @@ Set an existing guest user, admin user, or owner to be a regular user.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.admin.adminUsersSetRegular({ token, contentType, teamId, userId });
+  const response = await client.admin.adminUsersSetRegular({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    teamId: "some example string",
+    userId: "some example string",
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Admin.AdminUsersSetRegularError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Admin.AdminUsersSetRegularError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.admin.adminUsersSetRegular({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  teamId: "some example string",
+  userId: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -4044,9 +5802,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.admin.adminUsersSetRegular(request)`
 
-**OnError**: <code>[Admin.AdminUsersSetRegularError](src/resources/admin.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Admin.AdminUsersSetRegularError](src/resources/admin.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.admin.adminUsersSetRegular(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Admin.AdminUsersSetRegularError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -4076,22 +5842,41 @@ List approved apps for an org or workspace.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.adminAppsApproved.adminAppsApprovedList({ token, contentType });
+  const response = await client.adminAppsApproved.adminAppsApprovedList({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (
-    err instanceof AdminAppsApproved.AdminAppsApprovedListError &&
-      err.payload.kind === "defaulterrortemplate1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type AdminAppsApproved.AdminAppsApprovedListError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.adminAppsApproved.adminAppsApprovedList({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -4120,9 +5905,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.adminAppsApproved.adminAppsApprovedList(request)`
 
-**OnError**: <code>[AdminAppsApproved.AdminAppsApprovedListError](src/resources/admin-apps-approved.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[AdminAppsApproved.AdminAppsApprovedListError](src/resources/admin-apps-approved.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.adminAppsApproved.adminAppsApprovedList(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, AdminAppsApproved.AdminAppsApprovedListError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -4152,22 +5945,41 @@ List app requests for a team/workspace.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.adminAppsRequests.adminAppsRequestsList({ token, contentType });
+  const response = await client.adminAppsRequests.adminAppsRequestsList({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (
-    err instanceof AdminAppsRequests.AdminAppsRequestsListError &&
-      err.payload.kind === "defaulterrortemplate1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type AdminAppsRequests.AdminAppsRequestsListError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.adminAppsRequests.adminAppsRequestsList({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -4195,9 +6007,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.adminAppsRequests.adminAppsRequestsList(request)`
 
-**OnError**: <code>[AdminAppsRequests.AdminAppsRequestsListError](src/resources/admin-apps-requests.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[AdminAppsRequests.AdminAppsRequestsListError](src/resources/admin-apps-requests.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.adminAppsRequests.adminAppsRequestsList(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, AdminAppsRequests.AdminAppsRequestsListError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -4227,22 +6047,41 @@ List restricted apps for an org or workspace.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.adminAppsRestricted.adminAppsRestrictedList({ token, contentType });
+  const response = await client.adminAppsRestricted.adminAppsRestrictedList({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (
-    err instanceof AdminAppsRestricted.AdminAppsRestrictedListError &&
-      err.payload.kind === "defaulterrortemplate1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type AdminAppsRestricted.AdminAppsRestrictedListError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.adminAppsRestricted.adminAppsRestrictedList({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -4271,9 +6110,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.adminAppsRestricted.adminAppsRestrictedList(request)`
 
-**OnError**: <code>[AdminAppsRestricted.AdminAppsRestrictedListError](src/resources/admin-apps-restricted.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[AdminAppsRestricted.AdminAppsRestrictedListError](src/resources/admin-apps-restricted.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.adminAppsRestricted.adminAppsRestrictedList(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, AdminAppsRestricted.AdminAppsRestrictedListError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -4303,7 +6150,7 @@ Archive a public or private channel.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -4311,18 +6158,35 @@ Archive a public or private channel.
 ```ts
 try {
   const response = await client.adminConversations.adminConversationsArchive({
-    token,
-    contentType,
-    channelId,
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    channelId: "some example string",
   });
   // TODO: Handle 'response' of type AdminConversationsArchiveschema
 } catch (err) {
-  if (
-    err instanceof AdminConversations.AdminConversationsArchiveError &&
-      err.payload.kind === "adminConversationsArchiveerrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type AdminConversationsArchiveerrorschema1
-  }
+  // TODO: Handle 'err' of type AdminConversations.AdminConversationsArchiveError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.adminConversations.adminConversationsArchive({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  channelId: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type AdminConversationsArchiveschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -4348,9 +6212,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[AdminConversationsArchiveschema](src/models/admin-conversations-archiveschema.ts)</code>
+**Direct**: `await client.adminConversations.adminConversationsArchive(request)`
 
-**OnError**: <code>[AdminConversations.AdminConversationsArchiveError](src/resources/admin-conversations.ts)</code>
+- **OnSuccess**: <code>[AdminConversationsArchiveschema](src/models/admin-conversations-archiveschema.ts)</code>
+- **OnError**: throws <code>[AdminConversations.AdminConversationsArchiveError](src/resources/admin-conversations.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.adminConversations.adminConversationsArchive(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;AdminConversationsArchiveschema, AdminConversations.AdminConversationsArchiveError&gt;</code>, with `result.value` of type <code>[AdminConversationsArchiveschema](src/models/admin-conversations-archiveschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -4376,7 +6248,7 @@ Convert a public channel to a private channel.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -4384,18 +6256,35 @@ Convert a public channel to a private channel.
 ```ts
 try {
   const response = await client.adminConversations.adminConversationsConvertToPrivate({
-    token,
-    contentType,
-    channelId,
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    channelId: "some example string",
   });
   // TODO: Handle 'response' of type AdminConversationsConvertToPrivateschema
 } catch (err) {
-  if (
-    err instanceof AdminConversations.AdminConversationsConvertToPrivateError &&
-      err.payload.kind === "adminConversationsConvertToPrivateerrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type AdminConversationsConvertToPrivateerrorschema1
-  }
+  // TODO: Handle 'err' of type AdminConversations.AdminConversationsConvertToPrivateError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.adminConversations.adminConversationsConvertToPrivate({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  channelId: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type AdminConversationsConvertToPrivateschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -4421,9 +6310,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[AdminConversationsConvertToPrivateschema](src/models/admin-conversations-convert-to-privateschema.ts)</code>
+**Direct**: `await client.adminConversations.adminConversationsConvertToPrivate(request)`
 
-**OnError**: <code>[AdminConversations.AdminConversationsConvertToPrivateError](src/resources/admin-conversations.ts)</code>
+- **OnSuccess**: <code>[AdminConversationsConvertToPrivateschema](src/models/admin-conversations-convert-to-privateschema.ts)</code>
+- **OnError**: throws <code>[AdminConversations.AdminConversationsConvertToPrivateError](src/resources/admin-conversations.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.adminConversations.adminConversationsConvertToPrivate(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;AdminConversationsConvertToPrivateschema, AdminConversations.AdminConversationsConvertToPrivateError&gt;</code>, with `result.value` of type <code>[AdminConversationsConvertToPrivateschema](src/models/admin-conversations-convert-to-privateschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -4449,7 +6346,7 @@ Create a public or private channel-based conversation.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -4457,19 +6354,37 @@ Create a public or private channel-based conversation.
 ```ts
 try {
   const response = await client.adminConversations.adminConversationsCreate({
-    token,
-    contentType,
-    name,
-    isPrivate,
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    name: "some example string",
+    isPrivate: true,
   });
   // TODO: Handle 'response' of type AdminConversationsCreateschema
 } catch (err) {
-  if (
-    err instanceof AdminConversations.AdminConversationsCreateError &&
-      err.payload.kind === "adminConversationsCreateerrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type AdminConversationsCreateerrorschema1
-  }
+  // TODO: Handle 'err' of type AdminConversations.AdminConversationsCreateError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.adminConversations.adminConversationsCreate({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  name: "some example string",
+  isPrivate: true,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type AdminConversationsCreateschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -4499,9 +6414,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[AdminConversationsCreateschema](src/models/admin-conversations-createschema.ts)</code>
+**Direct**: `await client.adminConversations.adminConversationsCreate(request)`
 
-**OnError**: <code>[AdminConversations.AdminConversationsCreateError](src/resources/admin-conversations.ts)</code>
+- **OnSuccess**: <code>[AdminConversationsCreateschema](src/models/admin-conversations-createschema.ts)</code>
+- **OnError**: throws <code>[AdminConversations.AdminConversationsCreateError](src/resources/admin-conversations.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.adminConversations.adminConversationsCreate(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;AdminConversationsCreateschema, AdminConversations.AdminConversationsCreateError&gt;</code>, with `result.value` of type <code>[AdminConversationsCreateschema](src/models/admin-conversations-createschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -4527,7 +6450,7 @@ Delete a public or private channel.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -4535,18 +6458,35 @@ Delete a public or private channel.
 ```ts
 try {
   const response = await client.adminConversations.adminConversationsDelete({
-    token,
-    contentType,
-    channelId,
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    channelId: "some example string",
   });
   // TODO: Handle 'response' of type AdminConversationsDeleteschema
 } catch (err) {
-  if (
-    err instanceof AdminConversations.AdminConversationsDeleteError &&
-      err.payload.kind === "adminConversationsDeleteerrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type AdminConversationsDeleteerrorschema1
-  }
+  // TODO: Handle 'err' of type AdminConversations.AdminConversationsDeleteError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.adminConversations.adminConversationsDelete({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  channelId: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type AdminConversationsDeleteschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -4572,9 +6512,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[AdminConversationsDeleteschema](src/models/admin-conversations-deleteschema.ts)</code>
+**Direct**: `await client.adminConversations.adminConversationsDelete(request)`
 
-**OnError**: <code>[AdminConversations.AdminConversationsDeleteError](src/resources/admin-conversations.ts)</code>
+- **OnSuccess**: <code>[AdminConversationsDeleteschema](src/models/admin-conversations-deleteschema.ts)</code>
+- **OnError**: throws <code>[AdminConversations.AdminConversationsDeleteError](src/resources/admin-conversations.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.adminConversations.adminConversationsDelete(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;AdminConversationsDeleteschema, AdminConversations.AdminConversationsDeleteError&gt;</code>, with `result.value` of type <code>[AdminConversationsDeleteschema](src/models/admin-conversations-deleteschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -4600,7 +6548,7 @@ Disconnect a connected channel from one or more workspaces.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -4608,18 +6556,35 @@ Disconnect a connected channel from one or more workspaces.
 ```ts
 try {
   const response = await client.adminConversations.adminConversationsDisconnectShared({
-    token,
-    contentType,
-    channelId,
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    channelId: "some example string",
   });
   // TODO: Handle 'response' of type AdminConversationsRenameschema
 } catch (err) {
-  if (
-    err instanceof AdminConversations.AdminConversationsDisconnectSharedError &&
-      err.payload.kind === "adminConversationsDisconnectSharederrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type AdminConversationsDisconnectSharederrorschema1
-  }
+  // TODO: Handle 'err' of type AdminConversations.AdminConversationsDisconnectSharedError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.adminConversations.adminConversationsDisconnectShared({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  channelId: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type AdminConversationsRenameschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -4646,9 +6611,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[AdminConversationsRenameschema](src/models/admin-conversations-renameschema.ts)</code>
+**Direct**: `await client.adminConversations.adminConversationsDisconnectShared(request)`
 
-**OnError**: <code>[AdminConversations.AdminConversationsDisconnectSharedError](src/resources/admin-conversations.ts)</code>
+- **OnSuccess**: <code>[AdminConversationsRenameschema](src/models/admin-conversations-renameschema.ts)</code>
+- **OnError**: throws <code>[AdminConversations.AdminConversationsDisconnectSharedError](src/resources/admin-conversations.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.adminConversations.adminConversationsDisconnectShared(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;AdminConversationsRenameschema, AdminConversations.AdminConversationsDisconnectSharedError&gt;</code>, with `result.value` of type <code>[AdminConversationsRenameschema](src/models/admin-conversations-renameschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -4674,7 +6647,7 @@ Get conversation preferences for a public or private channel.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -4682,18 +6655,35 @@ Get conversation preferences for a public or private channel.
 ```ts
 try {
   const response = await client.adminConversations.adminConversationsGetConversationPrefs({
-    channelId,
-    token,
-    contentType,
+    channelId: "some example string",
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
   });
   // TODO: Handle 'response' of type AdminConversationsGetConversationPrefsschema
 } catch (err) {
-  if (
-    err instanceof AdminConversations.AdminConversationsGetConversationPrefsError &&
-      err.payload.kind === "adminConversationsUnarchiveerrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type AdminConversationsUnarchiveerrorschema1
-  }
+  // TODO: Handle 'err' of type AdminConversations.AdminConversationsGetConversationPrefsError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.adminConversations.adminConversationsGetConversationPrefs({
+  channelId: "some example string",
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type AdminConversationsGetConversationPrefsschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -4719,9 +6709,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[AdminConversationsGetConversationPrefsschema](src/models/admin-conversations-get-conversation-prefsschema.ts)</code>
+**Direct**: `await client.adminConversations.adminConversationsGetConversationPrefs(request)`
 
-**OnError**: <code>[AdminConversations.AdminConversationsGetConversationPrefsError](src/resources/admin-conversations.ts)</code>
+- **OnSuccess**: <code>[AdminConversationsGetConversationPrefsschema](src/models/admin-conversations-get-conversation-prefsschema.ts)</code>
+- **OnError**: throws <code>[AdminConversations.AdminConversationsGetConversationPrefsError](src/resources/admin-conversations.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.adminConversations.adminConversationsGetConversationPrefs(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;AdminConversationsGetConversationPrefsschema, AdminConversations.AdminConversationsGetConversationPrefsError&gt;</code>, with `result.value` of type <code>[AdminConversationsGetConversationPrefsschema](src/models/admin-conversations-get-conversation-prefsschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -4747,7 +6745,7 @@ Get all the workspaces a given public or private channel is connected to within 
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -4755,18 +6753,35 @@ Get all the workspaces a given public or private channel is connected to within 
 ```ts
 try {
   const response = await client.adminConversations.adminConversationsGetTeams({
-    channelId,
-    token,
-    contentType,
+    channelId: "some example string",
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
   });
   // TODO: Handle 'response' of type AdminConversationsGetTeamsschema
 } catch (err) {
-  if (
-    err instanceof AdminConversations.AdminConversationsGetTeamsError &&
-      err.payload.kind === "adminConversationsGetTeamserrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type AdminConversationsGetTeamserrorschema1
-  }
+  // TODO: Handle 'err' of type AdminConversations.AdminConversationsGetTeamsError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.adminConversations.adminConversationsGetTeams({
+  channelId: "some example string",
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type AdminConversationsGetTeamsschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -4794,9 +6809,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[AdminConversationsGetTeamsschema](src/models/admin-conversations-get-teamsschema.ts)</code>
+**Direct**: `await client.adminConversations.adminConversationsGetTeams(request)`
 
-**OnError**: <code>[AdminConversations.AdminConversationsGetTeamsError](src/resources/admin-conversations.ts)</code>
+- **OnSuccess**: <code>[AdminConversationsGetTeamsschema](src/models/admin-conversations-get-teamsschema.ts)</code>
+- **OnError**: throws <code>[AdminConversations.AdminConversationsGetTeamsError](src/resources/admin-conversations.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.adminConversations.adminConversationsGetTeams(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;AdminConversationsGetTeamsschema, AdminConversations.AdminConversationsGetTeamsError&gt;</code>, with `result.value` of type <code>[AdminConversationsGetTeamsschema](src/models/admin-conversations-get-teamsschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -4822,7 +6845,7 @@ Invite a user to a public or private channel.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -4830,19 +6853,37 @@ Invite a user to a public or private channel.
 ```ts
 try {
   const response = await client.adminConversations.adminConversationsInvite({
-    token,
-    contentType,
-    userIds,
-    channelId,
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    userIds: "some example string",
+    channelId: "some example string",
   });
   // TODO: Handle 'response' of type AdminConversationsInviteschema
 } catch (err) {
-  if (
-    err instanceof AdminConversations.AdminConversationsInviteError &&
-      err.payload.kind === "adminConversationsInviteerrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type AdminConversationsInviteerrorschema1
-  }
+  // TODO: Handle 'err' of type AdminConversations.AdminConversationsInviteError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.adminConversations.adminConversationsInvite({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  userIds: "some example string",
+  channelId: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type AdminConversationsInviteschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -4869,9 +6910,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[AdminConversationsInviteschema](src/models/admin-conversations-inviteschema.ts)</code>
+**Direct**: `await client.adminConversations.adminConversationsInvite(request)`
 
-**OnError**: <code>[AdminConversations.AdminConversationsInviteError](src/resources/admin-conversations.ts)</code>
+- **OnSuccess**: <code>[AdminConversationsInviteschema](src/models/admin-conversations-inviteschema.ts)</code>
+- **OnError**: throws <code>[AdminConversations.AdminConversationsInviteError](src/resources/admin-conversations.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.adminConversations.adminConversationsInvite(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;AdminConversationsInviteschema, AdminConversations.AdminConversationsInviteError&gt;</code>, with `result.value` of type <code>[AdminConversationsInviteschema](src/models/admin-conversations-inviteschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -4897,7 +6946,7 @@ Rename a public or private channel.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -4905,19 +6954,37 @@ Rename a public or private channel.
 ```ts
 try {
   const response = await client.adminConversations.adminConversationsRename({
-    token,
-    contentType,
-    channelId,
-    name,
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    channelId: "some example string",
+    name: "some example string",
   });
   // TODO: Handle 'response' of type AdminConversationsRenameschema1
 } catch (err) {
-  if (
-    err instanceof AdminConversations.AdminConversationsRenameError &&
-      err.payload.kind === "adminConversationsUnarchiveerrorschema21"
-  ) {
-    // TODO: Handle 'err.payload.body' of type AdminConversationsUnarchiveerrorschema21
-  }
+  // TODO: Handle 'err' of type AdminConversations.AdminConversationsRenameError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.adminConversations.adminConversationsRename({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  channelId: "some example string",
+  name: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type AdminConversationsRenameschema1
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -4944,9 +7011,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[AdminConversationsRenameschema1](src/models/admin-conversations-renameschema1.ts)</code>
+**Direct**: `await client.adminConversations.adminConversationsRename(request)`
 
-**OnError**: <code>[AdminConversations.AdminConversationsRenameError](src/resources/admin-conversations.ts)</code>
+- **OnSuccess**: <code>[AdminConversationsRenameschema1](src/models/admin-conversations-renameschema1.ts)</code>
+- **OnError**: throws <code>[AdminConversations.AdminConversationsRenameError](src/resources/admin-conversations.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.adminConversations.adminConversationsRename(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;AdminConversationsRenameschema1, AdminConversations.AdminConversationsRenameError&gt;</code>, with `result.value` of type <code>[AdminConversationsRenameschema1](src/models/admin-conversations-renameschema1.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -4972,22 +7047,41 @@ Search for public or private channels in an Enterprise organization.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.adminConversations.adminConversationsSearch({ token, contentType });
+  const response = await client.adminConversations.adminConversationsSearch({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type AdminConversationsSearchschema
 } catch (err) {
-  if (
-    err instanceof AdminConversations.AdminConversationsSearchError &&
-      err.payload.kind === "adminConversationsSearcherrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type AdminConversationsSearcherrorschema1
-  }
+  // TODO: Handle 'err' of type AdminConversations.AdminConversationsSearchError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.adminConversations.adminConversationsSearch({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type AdminConversationsSearchschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -5019,9 +7113,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[AdminConversationsSearchschema](src/models/admin-conversations-searchschema.ts)</code>
+**Direct**: `await client.adminConversations.adminConversationsSearch(request)`
 
-**OnError**: <code>[AdminConversations.AdminConversationsSearchError](src/resources/admin-conversations.ts)</code>
+- **OnSuccess**: <code>[AdminConversationsSearchschema](src/models/admin-conversations-searchschema.ts)</code>
+- **OnError**: throws <code>[AdminConversations.AdminConversationsSearchError](src/resources/admin-conversations.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.adminConversations.adminConversationsSearch(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;AdminConversationsSearchschema, AdminConversations.AdminConversationsSearchError&gt;</code>, with `result.value` of type <code>[AdminConversationsSearchschema](src/models/admin-conversations-searchschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -5047,7 +7149,7 @@ Set the posting permissions for a public or private channel.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -5055,19 +7157,37 @@ Set the posting permissions for a public or private channel.
 ```ts
 try {
   const response = await client.adminConversations.adminConversationsSetConversationPrefs({
-    token,
-    contentType,
-    channelId,
-    prefs,
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    channelId: "some example string",
+    prefs: "some example string",
   });
   // TODO: Handle 'response' of type AdminConversationsSetConversationPrefsschema
 } catch (err) {
-  if (
-    err instanceof AdminConversations.AdminConversationsSetConversationPrefsError &&
-      err.payload.kind === "adminConversationsSetConversationPrefserrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type AdminConversationsSetConversationPrefserrorschema1
-  }
+  // TODO: Handle 'err' of type AdminConversations.AdminConversationsSetConversationPrefsError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.adminConversations.adminConversationsSetConversationPrefs({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  channelId: "some example string",
+  prefs: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type AdminConversationsSetConversationPrefsschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -5094,9 +7214,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[AdminConversationsSetConversationPrefsschema](src/models/admin-conversations-set-conversation-prefsschema.ts)</code>
+**Direct**: `await client.adminConversations.adminConversationsSetConversationPrefs(request)`
 
-**OnError**: <code>[AdminConversations.AdminConversationsSetConversationPrefsError](src/resources/admin-conversations.ts)</code>
+- **OnSuccess**: <code>[AdminConversationsSetConversationPrefsschema](src/models/admin-conversations-set-conversation-prefsschema.ts)</code>
+- **OnError**: throws <code>[AdminConversations.AdminConversationsSetConversationPrefsError](src/resources/admin-conversations.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.adminConversations.adminConversationsSetConversationPrefs(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;AdminConversationsSetConversationPrefsschema, AdminConversations.AdminConversationsSetConversationPrefsError&gt;</code>, with `result.value` of type <code>[AdminConversationsSetConversationPrefsschema](src/models/admin-conversations-set-conversation-prefsschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -5122,7 +7250,7 @@ Set the workspaces in an Enterprise grid org that connect to a public or private
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -5130,18 +7258,35 @@ Set the workspaces in an Enterprise grid org that connect to a public or private
 ```ts
 try {
   const response = await client.adminConversations.adminConversationsSetTeams({
-    token,
-    contentType,
-    channelId,
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    channelId: "some example string",
   });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (
-    err instanceof AdminConversations.AdminConversationsSetTeamsError &&
-      err.payload.kind === "defaulterrortemplate1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type AdminConversations.AdminConversationsSetTeamsError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.adminConversations.adminConversationsSetTeams({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  channelId: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -5170,9 +7315,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.adminConversations.adminConversationsSetTeams(request)`
 
-**OnError**: <code>[AdminConversations.AdminConversationsSetTeamsError](src/resources/admin-conversations.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[AdminConversations.AdminConversationsSetTeamsError](src/resources/admin-conversations.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.adminConversations.adminConversationsSetTeams(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, AdminConversations.AdminConversationsSetTeamsError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -5198,7 +7351,7 @@ Unarchive a public or private channel.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -5206,18 +7359,35 @@ Unarchive a public or private channel.
 ```ts
 try {
   const response = await client.adminConversations.adminConversationsUnarchive({
-    token,
-    contentType,
-    channelId,
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    channelId: "some example string",
   });
   // TODO: Handle 'response' of type AdminConversationsUnarchiveschema
 } catch (err) {
-  if (
-    err instanceof AdminConversations.AdminConversationsUnarchiveError &&
-      err.payload.kind === "adminConversationsUnarchiveerrorschema31"
-  ) {
-    // TODO: Handle 'err.payload.body' of type AdminConversationsUnarchiveerrorschema31
-  }
+  // TODO: Handle 'err' of type AdminConversations.AdminConversationsUnarchiveError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.adminConversations.adminConversationsUnarchive({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  channelId: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type AdminConversationsUnarchiveschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -5243,9 +7413,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[AdminConversationsUnarchiveschema](src/models/admin-conversations-unarchiveschema.ts)</code>
+**Direct**: `await client.adminConversations.adminConversationsUnarchive(request)`
 
-**OnError**: <code>[AdminConversations.AdminConversationsUnarchiveError](src/resources/admin-conversations.ts)</code>
+- **OnSuccess**: <code>[AdminConversationsUnarchiveschema](src/models/admin-conversations-unarchiveschema.ts)</code>
+- **OnError**: throws <code>[AdminConversations.AdminConversationsUnarchiveError](src/resources/admin-conversations.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.adminConversations.adminConversationsUnarchive(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;AdminConversationsUnarchiveschema, AdminConversations.AdminConversationsUnarchiveError&gt;</code>, with `result.value` of type <code>[AdminConversationsUnarchiveschema](src/models/admin-conversations-unarchiveschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -5275,7 +7453,7 @@ List all disconnected channels—i.e., channels that were once connected to othe
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -5283,17 +7461,33 @@ List all disconnected channels—i.e., channels that were once connected to othe
 ```ts
 try {
   const response = await client.adminConversationsEkm.adminConversationsEkmListOriginalConnectedChannelInfo({
-    token,
-    contentType,
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
   });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (
-    err instanceof AdminConversationsEkm.AdminConversationsEkmListOriginalConnectedChannelInfoError &&
-      err.payload.kind === "defaulterrortemplate1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type AdminConversationsEkm.AdminConversationsEkmListOriginalConnectedChannelInfoError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.adminConversationsEkm.adminConversationsEkmListOriginalConnectedChannelInfo({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -5322,9 +7516,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.adminConversationsEkm.adminConversationsEkmListOriginalConnectedChannelInfo(request)`
 
-**OnError**: <code>[AdminConversationsEkm.AdminConversationsEkmListOriginalConnectedChannelInfoError](src/resources/admin-conversations-ekm.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[AdminConversationsEkm.AdminConversationsEkmListOriginalConnectedChannelInfoError](src/resources/admin-conversations-ekm.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.adminConversationsEkm.adminConversationsEkmListOriginalConnectedChannelInfo(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, AdminConversationsEkm.AdminConversationsEkmListOriginalConnectedChannelInfoError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -5354,7 +7556,7 @@ Add an allowlist of IDP groups for accessing a channel
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -5362,19 +7564,37 @@ Add an allowlist of IDP groups for accessing a channel
 ```ts
 try {
   const response = await client.adminConversationsRestrictAccess.adminConversationsRestrictAccessAddGroup({
-    contentType,
-    token,
-    groupId,
-    channelId,
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    token: "some example string",
+    groupId: "some example string",
+    channelId: "some example string",
   });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (
-    err instanceof AdminConversationsRestrictAccess.AdminConversationsRestrictAccessAddGroupError &&
-      err.payload.kind === "defaulterrortemplate1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type AdminConversationsRestrictAccess.AdminConversationsRestrictAccessAddGroupError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.adminConversationsRestrictAccess.adminConversationsRestrictAccessAddGroup({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  token: "some example string",
+  groupId: "some example string",
+  channelId: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -5402,9 +7622,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.adminConversationsRestrictAccess.adminConversationsRestrictAccessAddGroup(request)`
 
-**OnError**: <code>[AdminConversationsRestrictAccess.AdminConversationsRestrictAccessAddGroupError](src/resources/admin-conversations-restrict-access.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[AdminConversationsRestrictAccess.AdminConversationsRestrictAccessAddGroupError](src/resources/admin-conversations-restrict-access.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.adminConversationsRestrictAccess.adminConversationsRestrictAccessAddGroup(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, AdminConversationsRestrictAccess.AdminConversationsRestrictAccessAddGroupError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -5430,7 +7658,7 @@ List all IDP Groups linked to a channel
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -5438,18 +7666,35 @@ List all IDP Groups linked to a channel
 ```ts
 try {
   const response = await client.adminConversationsRestrictAccess.adminConversationsRestrictAccessListGroups({
-    token,
-    channelId,
-    contentType,
+    token: "some example string",
+    channelId: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
   });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (
-    err instanceof AdminConversationsRestrictAccess.AdminConversationsRestrictAccessListGroupsError &&
-      err.payload.kind === "defaulterrortemplate1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type AdminConversationsRestrictAccess.AdminConversationsRestrictAccessListGroupsError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.adminConversationsRestrictAccess.adminConversationsRestrictAccessListGroups({
+  token: "some example string",
+  channelId: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -5476,9 +7721,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.adminConversationsRestrictAccess.adminConversationsRestrictAccessListGroups(request)`
 
-**OnError**: <code>[AdminConversationsRestrictAccess.AdminConversationsRestrictAccessListGroupsError](src/resources/admin-conversations-restrict-access.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[AdminConversationsRestrictAccess.AdminConversationsRestrictAccessListGroupsError](src/resources/admin-conversations-restrict-access.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.adminConversationsRestrictAccess.adminConversationsRestrictAccessListGroups(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, AdminConversationsRestrictAccess.AdminConversationsRestrictAccessListGroupsError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -5504,7 +7757,7 @@ Remove a linked IDP group linked from a private channel
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -5512,20 +7765,39 @@ Remove a linked IDP group linked from a private channel
 ```ts
 try {
   const response = await client.adminConversationsRestrictAccess.adminConversationsRestrictAccessRemoveGroup({
-    contentType,
-    token,
-    teamId,
-    groupId,
-    channelId,
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    token: "some example string",
+    teamId: "some example string",
+    groupId: "some example string",
+    channelId: "some example string",
   });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (
-    err instanceof AdminConversationsRestrictAccess.AdminConversationsRestrictAccessRemoveGroupError &&
-      err.payload.kind === "defaulterrortemplate1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type AdminConversationsRestrictAccess.AdminConversationsRestrictAccessRemoveGroupError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.adminConversationsRestrictAccess.adminConversationsRestrictAccessRemoveGroup({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  token: "some example string",
+  teamId: "some example string",
+  groupId: "some example string",
+  channelId: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -5553,9 +7825,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.adminConversationsRestrictAccess.adminConversationsRestrictAccessRemoveGroup(request)`
 
-**OnError**: <code>[AdminConversationsRestrictAccess.AdminConversationsRestrictAccessRemoveGroupError](src/resources/admin-conversations-restrict-access.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[AdminConversationsRestrictAccess.AdminConversationsRestrictAccessRemoveGroupError](src/resources/admin-conversations-restrict-access.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.adminConversationsRestrictAccess.adminConversationsRestrictAccessRemoveGroup(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, AdminConversationsRestrictAccess.AdminConversationsRestrictAccessRemoveGroupError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -5585,19 +7865,45 @@ Add an emoji.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.adminEmoji.adminEmojiAdd({ contentType, token, name, url });
+  const response = await client.adminEmoji.adminEmojiAdd({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    token: "some example string",
+    name: "some example string",
+    url: "some example string",
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof AdminEmoji.AdminEmojiAddError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type AdminEmoji.AdminEmojiAddError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.adminEmoji.adminEmojiAdd({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  token: "some example string",
+  name: "some example string",
+  url: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -5624,9 +7930,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.adminEmoji.adminEmojiAdd(request)`
 
-**OnError**: <code>[AdminEmoji.AdminEmojiAddError](src/resources/admin-emoji.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[AdminEmoji.AdminEmojiAddError](src/resources/admin-emoji.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.adminEmoji.adminEmojiAdd(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, AdminEmoji.AdminEmojiAddError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -5652,19 +7966,45 @@ Add an emoji alias.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.adminEmoji.adminEmojiAddAlias({ contentType, token, name, aliasFor });
+  const response = await client.adminEmoji.adminEmojiAddAlias({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    token: "some example string",
+    name: "some example string",
+    aliasFor: "some example string",
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof AdminEmoji.AdminEmojiAddAliasError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type AdminEmoji.AdminEmojiAddAliasError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.adminEmoji.adminEmojiAddAlias({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  token: "some example string",
+  name: "some example string",
+  aliasFor: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -5691,9 +8031,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.adminEmoji.adminEmojiAddAlias(request)`
 
-**OnError**: <code>[AdminEmoji.AdminEmojiAddAliasError](src/resources/admin-emoji.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[AdminEmoji.AdminEmojiAddAliasError](src/resources/admin-emoji.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.adminEmoji.adminEmojiAddAlias(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, AdminEmoji.AdminEmojiAddAliasError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -5719,19 +8067,41 @@ List emoji for an Enterprise Grid organization.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.adminEmoji.adminEmojiList({ token, contentType });
+  const response = await client.adminEmoji.adminEmojiList({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof AdminEmoji.AdminEmojiListError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type AdminEmoji.AdminEmojiListError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.adminEmoji.adminEmojiList({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -5758,9 +8128,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.adminEmoji.adminEmojiList(request)`
 
-**OnError**: <code>[AdminEmoji.AdminEmojiListError](src/resources/admin-emoji.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[AdminEmoji.AdminEmojiListError](src/resources/admin-emoji.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.adminEmoji.adminEmojiList(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, AdminEmoji.AdminEmojiListError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -5786,19 +8164,43 @@ Remove an emoji across an Enterprise Grid organization
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.adminEmoji.adminEmojiRemove({ contentType, token, name });
+  const response = await client.adminEmoji.adminEmojiRemove({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    token: "some example string",
+    name: "some example string",
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof AdminEmoji.AdminEmojiRemoveError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type AdminEmoji.AdminEmojiRemoveError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.adminEmoji.adminEmojiRemove({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  token: "some example string",
+  name: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -5824,9 +8226,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.adminEmoji.adminEmojiRemove(request)`
 
-**OnError**: <code>[AdminEmoji.AdminEmojiRemoveError](src/resources/admin-emoji.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[AdminEmoji.AdminEmojiRemoveError](src/resources/admin-emoji.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.adminEmoji.adminEmojiRemove(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, AdminEmoji.AdminEmojiRemoveError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -5852,19 +8262,45 @@ Rename an emoji.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.adminEmoji.adminEmojiRename({ contentType, token, name, newName });
+  const response = await client.adminEmoji.adminEmojiRename({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    token: "some example string",
+    name: "some example string",
+    newName: "some example string",
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof AdminEmoji.AdminEmojiRenameError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type AdminEmoji.AdminEmojiRenameError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.adminEmoji.adminEmojiRename({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  token: "some example string",
+  name: "some example string",
+  newName: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -5891,9 +8327,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.adminEmoji.adminEmojiRename(request)`
 
-**OnError**: <code>[AdminEmoji.AdminEmojiRenameError](src/resources/admin-emoji.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[AdminEmoji.AdminEmojiRenameError](src/resources/admin-emoji.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.adminEmoji.adminEmojiRename(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, AdminEmoji.AdminEmojiRenameError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -5923,7 +8367,7 @@ Approve a workspace invite request.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -5931,18 +8375,35 @@ Approve a workspace invite request.
 ```ts
 try {
   const response = await client.adminInviteRequests.adminInviteRequestsApprove({
-    token,
-    contentType,
-    inviteRequestId,
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    inviteRequestId: "some example string",
   });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (
-    err instanceof AdminInviteRequests.AdminInviteRequestsApproveError &&
-      err.payload.kind === "defaulterrortemplate1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type AdminInviteRequests.AdminInviteRequestsApproveError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.adminInviteRequests.adminInviteRequestsApprove({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  inviteRequestId: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -5969,9 +8430,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.adminInviteRequests.adminInviteRequestsApprove(request)`
 
-**OnError**: <code>[AdminInviteRequests.AdminInviteRequestsApproveError](src/resources/admin-invite-requests.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[AdminInviteRequests.AdminInviteRequestsApproveError](src/resources/admin-invite-requests.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.adminInviteRequests.adminInviteRequestsApprove(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, AdminInviteRequests.AdminInviteRequestsApproveError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -5997,7 +8466,7 @@ Deny a workspace invite request.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -6005,18 +8474,35 @@ Deny a workspace invite request.
 ```ts
 try {
   const response = await client.adminInviteRequests.adminInviteRequestsDeny({
-    token,
-    contentType,
-    inviteRequestId,
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    inviteRequestId: "some example string",
   });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (
-    err instanceof AdminInviteRequests.AdminInviteRequestsDenyError &&
-      err.payload.kind === "defaulterrortemplate1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type AdminInviteRequests.AdminInviteRequestsDenyError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.adminInviteRequests.adminInviteRequestsDeny({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  inviteRequestId: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -6043,9 +8529,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.adminInviteRequests.adminInviteRequestsDeny(request)`
 
-**OnError**: <code>[AdminInviteRequests.AdminInviteRequestsDenyError](src/resources/admin-invite-requests.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[AdminInviteRequests.AdminInviteRequestsDenyError](src/resources/admin-invite-requests.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.adminInviteRequests.adminInviteRequestsDeny(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, AdminInviteRequests.AdminInviteRequestsDenyError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -6071,22 +8565,41 @@ List all pending workspace invite requests.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.adminInviteRequests.adminInviteRequestsList({ token, contentType });
+  const response = await client.adminInviteRequests.adminInviteRequestsList({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (
-    err instanceof AdminInviteRequests.AdminInviteRequestsListError &&
-      err.payload.kind === "defaulterrortemplate1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type AdminInviteRequests.AdminInviteRequestsListError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.adminInviteRequests.adminInviteRequestsList({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -6114,9 +8627,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.adminInviteRequests.adminInviteRequestsList(request)`
 
-**OnError**: <code>[AdminInviteRequests.AdminInviteRequestsListError](src/resources/admin-invite-requests.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[AdminInviteRequests.AdminInviteRequestsListError](src/resources/admin-invite-requests.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.adminInviteRequests.adminInviteRequestsList(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, AdminInviteRequests.AdminInviteRequestsListError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -6146,7 +8667,7 @@ List all approved workspace invite requests.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -6154,17 +8675,33 @@ List all approved workspace invite requests.
 ```ts
 try {
   const response = await client.adminInviteRequestsApproved.adminInviteRequestsApprovedList({
-    token,
-    contentType,
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
   });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (
-    err instanceof AdminInviteRequestsApproved.AdminInviteRequestsApprovedListError &&
-      err.payload.kind === "defaulterrortemplate1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type AdminInviteRequestsApproved.AdminInviteRequestsApprovedListError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.adminInviteRequestsApproved.adminInviteRequestsApprovedList({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -6192,9 +8729,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.adminInviteRequestsApproved.adminInviteRequestsApprovedList(request)`
 
-**OnError**: <code>[AdminInviteRequestsApproved.AdminInviteRequestsApprovedListError](src/resources/admin-invite-requests-approved.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[AdminInviteRequestsApproved.AdminInviteRequestsApprovedListError](src/resources/admin-invite-requests-approved.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.adminInviteRequestsApproved.adminInviteRequestsApprovedList(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, AdminInviteRequestsApproved.AdminInviteRequestsApprovedListError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -6224,7 +8769,7 @@ List all denied workspace invite requests.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -6232,17 +8777,33 @@ List all denied workspace invite requests.
 ```ts
 try {
   const response = await client.adminInviteRequestsDenied.adminInviteRequestsDeniedList({
-    token,
-    contentType,
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
   });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (
-    err instanceof AdminInviteRequestsDenied.AdminInviteRequestsDeniedListError &&
-      err.payload.kind === "defaulterrortemplate1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type AdminInviteRequestsDenied.AdminInviteRequestsDeniedListError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.adminInviteRequestsDenied.adminInviteRequestsDeniedList({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -6270,9 +8831,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.adminInviteRequestsDenied.adminInviteRequestsDeniedList(request)`
 
-**OnError**: <code>[AdminInviteRequestsDenied.AdminInviteRequestsDeniedListError](src/resources/admin-invite-requests-denied.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[AdminInviteRequestsDenied.AdminInviteRequestsDeniedListError](src/resources/admin-invite-requests-denied.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.adminInviteRequestsDenied.adminInviteRequestsDeniedList(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, AdminInviteRequestsDenied.AdminInviteRequestsDeniedListError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -6302,21 +8871,43 @@ List all of the admins on a given workspace.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.adminTeamsAdmins.adminTeamsAdminsList({ token, teamId, contentType });
+  const response = await client.adminTeamsAdmins.adminTeamsAdminsList({
+    token: "some example string",
+    teamId: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (
-    err instanceof AdminTeamsAdmins.AdminTeamsAdminsListError && err.payload.kind === "defaulterrortemplate1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type AdminTeamsAdmins.AdminTeamsAdminsListError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.adminTeamsAdmins.adminTeamsAdminsList({
+  token: "some example string",
+  teamId: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -6344,9 +8935,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.adminTeamsAdmins.adminTeamsAdminsList(request)`
 
-**OnError**: <code>[AdminTeamsAdmins.AdminTeamsAdminsListError](src/resources/admin-teams-admins.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[AdminTeamsAdmins.AdminTeamsAdminsListError](src/resources/admin-teams-admins.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.adminTeamsAdmins.adminTeamsAdminsList(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, AdminTeamsAdmins.AdminTeamsAdminsListError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -6376,19 +8975,45 @@ Create an Enterprise team.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.adminTeams.adminTeamsCreate({ token, contentType, teamDomain, teamName });
+  const response = await client.adminTeams.adminTeamsCreate({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    teamDomain: "some example string",
+    teamName: "some example string",
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof AdminTeams.AdminTeamsCreateError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type AdminTeams.AdminTeamsCreateError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.adminTeams.adminTeamsCreate({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  teamDomain: "some example string",
+  teamName: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -6417,9 +9042,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.adminTeams.adminTeamsCreate(request)`
 
-**OnError**: <code>[AdminTeams.AdminTeamsCreateError](src/resources/admin-teams.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[AdminTeams.AdminTeamsCreateError](src/resources/admin-teams.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.adminTeams.adminTeamsCreate(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, AdminTeams.AdminTeamsCreateError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -6445,19 +9078,41 @@ List all teams on an Enterprise organization
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.adminTeams.adminTeamsList({ token, contentType });
+  const response = await client.adminTeams.adminTeamsList({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof AdminTeams.AdminTeamsListError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type AdminTeams.AdminTeamsListError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.adminTeams.adminTeamsList({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -6484,9 +9139,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.adminTeams.adminTeamsList(request)`
 
-**OnError**: <code>[AdminTeams.AdminTeamsListError](src/resources/admin-teams.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[AdminTeams.AdminTeamsListError](src/resources/admin-teams.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.adminTeams.adminTeamsList(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, AdminTeams.AdminTeamsListError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -6516,21 +9179,43 @@ List all of the owners on a given workspace.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.adminTeamsOwners.adminTeamsOwnersList({ token, teamId, contentType });
+  const response = await client.adminTeamsOwners.adminTeamsOwnersList({
+    token: "some example string",
+    teamId: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (
-    err instanceof AdminTeamsOwners.AdminTeamsOwnersListError && err.payload.kind === "defaulterrortemplate1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type AdminTeamsOwners.AdminTeamsOwnersListError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.adminTeamsOwners.adminTeamsOwnersList({
+  token: "some example string",
+  teamId: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -6558,9 +9243,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.adminTeamsOwners.adminTeamsOwnersList(request)`
 
-**OnError**: <code>[AdminTeamsOwners.AdminTeamsOwnersListError](src/resources/admin-teams-owners.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[AdminTeamsOwners.AdminTeamsOwnersListError](src/resources/admin-teams-owners.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.adminTeamsOwners.adminTeamsOwnersList(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, AdminTeamsOwners.AdminTeamsOwnersListError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -6590,22 +9283,43 @@ Fetch information about settings in a workspace
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.adminTeamsSettings.adminTeamsSettingsInfo({ teamId, token, contentType });
+  const response = await client.adminTeamsSettings.adminTeamsSettingsInfo({
+    teamId: "some example string",
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (
-    err instanceof AdminTeamsSettings.AdminTeamsSettingsInfoError &&
-      err.payload.kind === "defaulterrortemplate1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type AdminTeamsSettings.AdminTeamsSettingsInfoError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.adminTeamsSettings.adminTeamsSettingsInfo({
+  teamId: "some example string",
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -6631,9 +9345,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.adminTeamsSettings.adminTeamsSettingsInfo(request)`
 
-**OnError**: <code>[AdminTeamsSettings.AdminTeamsSettingsInfoError](src/resources/admin-teams-settings.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[AdminTeamsSettings.AdminTeamsSettingsInfoError](src/resources/admin-teams-settings.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.adminTeamsSettings.adminTeamsSettingsInfo(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, AdminTeamsSettings.AdminTeamsSettingsInfoError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -6659,7 +9381,7 @@ Set the default channels of a workspace.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -6667,19 +9389,37 @@ Set the default channels of a workspace.
 ```ts
 try {
   const response = await client.adminTeamsSettings.adminTeamsSettingsSetDefaultChannels({
-    contentType,
-    token,
-    teamId,
-    channelIds,
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    token: "some example string",
+    teamId: "some example string",
+    channelIds: "some example string",
   });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (
-    err instanceof AdminTeamsSettings.AdminTeamsSettingsSetDefaultChannelsError &&
-      err.payload.kind === "defaulterrortemplate1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type AdminTeamsSettings.AdminTeamsSettingsSetDefaultChannelsError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.adminTeamsSettings.adminTeamsSettingsSetDefaultChannels({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  token: "some example string",
+  teamId: "some example string",
+  channelIds: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -6706,9 +9446,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.adminTeamsSettings.adminTeamsSettingsSetDefaultChannels(request)`
 
-**OnError**: <code>[AdminTeamsSettings.AdminTeamsSettingsSetDefaultChannelsError](src/resources/admin-teams-settings.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[AdminTeamsSettings.AdminTeamsSettingsSetDefaultChannelsError](src/resources/admin-teams-settings.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.adminTeamsSettings.adminTeamsSettingsSetDefaultChannels(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, AdminTeamsSettings.AdminTeamsSettingsSetDefaultChannelsError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -6734,7 +9482,7 @@ Set the description of a given workspace.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -6742,19 +9490,37 @@ Set the description of a given workspace.
 ```ts
 try {
   const response = await client.adminTeamsSettings.adminTeamsSettingsSetDescription({
-    token,
-    contentType,
-    teamId,
-    description,
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    teamId: "some example string",
+    description: "some example string",
   });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (
-    err instanceof AdminTeamsSettings.AdminTeamsSettingsSetDescriptionError &&
-      err.payload.kind === "defaulterrortemplate1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type AdminTeamsSettings.AdminTeamsSettingsSetDescriptionError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.adminTeamsSettings.adminTeamsSettingsSetDescription({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  teamId: "some example string",
+  description: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -6781,9 +9547,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.adminTeamsSettings.adminTeamsSettingsSetDescription(request)`
 
-**OnError**: <code>[AdminTeamsSettings.AdminTeamsSettingsSetDescriptionError](src/resources/admin-teams-settings.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[AdminTeamsSettings.AdminTeamsSettingsSetDescriptionError](src/resources/admin-teams-settings.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.adminTeamsSettings.adminTeamsSettingsSetDescription(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, AdminTeamsSettings.AdminTeamsSettingsSetDescriptionError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -6809,7 +9583,7 @@ An API method that allows admins to set the discoverability of a given workspace
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -6817,19 +9591,37 @@ An API method that allows admins to set the discoverability of a given workspace
 ```ts
 try {
   const response = await client.adminTeamsSettings.adminTeamsSettingsSetDiscoverability({
-    token,
-    contentType,
-    teamId,
-    discoverability,
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    teamId: "some example string",
+    discoverability: "some example string",
   });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (
-    err instanceof AdminTeamsSettings.AdminTeamsSettingsSetDiscoverabilityError &&
-      err.payload.kind === "defaulterrortemplate1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type AdminTeamsSettings.AdminTeamsSettingsSetDiscoverabilityError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.adminTeamsSettings.adminTeamsSettingsSetDiscoverability({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  teamId: "some example string",
+  discoverability: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -6856,9 +9648,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.adminTeamsSettings.adminTeamsSettingsSetDiscoverability(request)`
 
-**OnError**: <code>[AdminTeamsSettings.AdminTeamsSettingsSetDiscoverabilityError](src/resources/admin-teams-settings.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[AdminTeamsSettings.AdminTeamsSettingsSetDiscoverabilityError](src/resources/admin-teams-settings.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.adminTeamsSettings.adminTeamsSettingsSetDiscoverability(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, AdminTeamsSettings.AdminTeamsSettingsSetDiscoverabilityError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -6884,7 +9684,7 @@ Sets the icon of a workspace.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -6892,19 +9692,37 @@ Sets the icon of a workspace.
 ```ts
 try {
   const response = await client.adminTeamsSettings.adminTeamsSettingsSetIcon({
-    contentType,
-    token,
-    imageUrl,
-    teamId,
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    token: "some example string",
+    imageUrl: "some example string",
+    teamId: "some example string",
   });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (
-    err instanceof AdminTeamsSettings.AdminTeamsSettingsSetIconError &&
-      err.payload.kind === "defaulterrortemplate1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type AdminTeamsSettings.AdminTeamsSettingsSetIconError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.adminTeamsSettings.adminTeamsSettingsSetIcon({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  token: "some example string",
+  imageUrl: "some example string",
+  teamId: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -6931,9 +9749,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.adminTeamsSettings.adminTeamsSettingsSetIcon(request)`
 
-**OnError**: <code>[AdminTeamsSettings.AdminTeamsSettingsSetIconError](src/resources/admin-teams-settings.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[AdminTeamsSettings.AdminTeamsSettingsSetIconError](src/resources/admin-teams-settings.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.adminTeamsSettings.adminTeamsSettingsSetIcon(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, AdminTeamsSettings.AdminTeamsSettingsSetIconError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -6959,7 +9785,7 @@ Set the name of a given workspace.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -6967,19 +9793,37 @@ Set the name of a given workspace.
 ```ts
 try {
   const response = await client.adminTeamsSettings.adminTeamsSettingsSetName({
-    token,
-    contentType,
-    teamId,
-    name,
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    teamId: "some example string",
+    name: "some example string",
   });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (
-    err instanceof AdminTeamsSettings.AdminTeamsSettingsSetNameError &&
-      err.payload.kind === "defaulterrortemplate1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type AdminTeamsSettings.AdminTeamsSettingsSetNameError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.adminTeamsSettings.adminTeamsSettingsSetName({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  teamId: "some example string",
+  name: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -7006,9 +9850,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.adminTeamsSettings.adminTeamsSettingsSetName(request)`
 
-**OnError**: <code>[AdminTeamsSettings.AdminTeamsSettingsSetNameError](src/resources/admin-teams-settings.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[AdminTeamsSettings.AdminTeamsSettingsSetNameError](src/resources/admin-teams-settings.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.adminTeamsSettings.adminTeamsSettingsSetName(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, AdminTeamsSettings.AdminTeamsSettingsSetNameError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -7038,7 +9890,7 @@ Add one or more default channels to an IDP group.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -7046,19 +9898,37 @@ Add one or more default channels to an IDP group.
 ```ts
 try {
   const response = await client.adminUsergroups.adminUsergroupsAddChannels({
-    token,
-    contentType,
-    usergroupId,
-    channelIds,
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    usergroupId: "some example string",
+    channelIds: "some example string",
   });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (
-    err instanceof AdminUsergroups.AdminUsergroupsAddChannelsError &&
-      err.payload.kind === "defaulterrortemplate1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type AdminUsergroups.AdminUsergroupsAddChannelsError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.adminUsergroups.adminUsergroupsAddChannels({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  usergroupId: "some example string",
+  channelIds: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -7086,9 +9956,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.adminUsergroups.adminUsergroupsAddChannels(request)`
 
-**OnError**: <code>[AdminUsergroups.AdminUsergroupsAddChannelsError](src/resources/admin-usergroups.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[AdminUsergroups.AdminUsergroupsAddChannelsError](src/resources/admin-usergroups.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.adminUsergroups.adminUsergroupsAddChannels(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, AdminUsergroups.AdminUsergroupsAddChannelsError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -7114,7 +9992,7 @@ Associate one or more default workspaces with an organization-wide IDP group.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -7122,19 +10000,37 @@ Associate one or more default workspaces with an organization-wide IDP group.
 ```ts
 try {
   const response = await client.adminUsergroups.adminUsergroupsAddTeams({
-    token,
-    contentType,
-    usergroupId,
-    teamIds,
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    usergroupId: "some example string",
+    teamIds: "some example string",
   });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (
-    err instanceof AdminUsergroups.AdminUsergroupsAddTeamsError &&
-      err.payload.kind === "defaulterrortemplate1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type AdminUsergroups.AdminUsergroupsAddTeamsError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.adminUsergroups.adminUsergroupsAddTeams({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  usergroupId: "some example string",
+  teamIds: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -7162,9 +10058,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.adminUsergroups.adminUsergroupsAddTeams(request)`
 
-**OnError**: <code>[AdminUsergroups.AdminUsergroupsAddTeamsError](src/resources/admin-usergroups.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[AdminUsergroups.AdminUsergroupsAddTeamsError](src/resources/admin-usergroups.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.adminUsergroups.adminUsergroupsAddTeams(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, AdminUsergroups.AdminUsergroupsAddTeamsError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -7190,7 +10094,7 @@ List the channels linked to an org-level IDP group (user group).
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -7198,18 +10102,35 @@ List the channels linked to an org-level IDP group (user group).
 ```ts
 try {
   const response = await client.adminUsergroups.adminUsergroupsListChannels({
-    usergroupId,
-    token,
-    contentType,
+    usergroupId: "some example string",
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
   });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (
-    err instanceof AdminUsergroups.AdminUsergroupsListChannelsError &&
-      err.payload.kind === "defaulterrortemplate1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type AdminUsergroups.AdminUsergroupsListChannelsError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.adminUsergroups.adminUsergroupsListChannels({
+  usergroupId: "some example string",
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -7237,9 +10158,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.adminUsergroups.adminUsergroupsListChannels(request)`
 
-**OnError**: <code>[AdminUsergroups.AdminUsergroupsListChannelsError](src/resources/admin-usergroups.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[AdminUsergroups.AdminUsergroupsListChannelsError](src/resources/admin-usergroups.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.adminUsergroups.adminUsergroupsListChannels(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, AdminUsergroups.AdminUsergroupsListChannelsError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -7265,7 +10194,7 @@ Remove one or more default channels from an org-level IDP group (user group).
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -7273,19 +10202,37 @@ Remove one or more default channels from an org-level IDP group (user group).
 ```ts
 try {
   const response = await client.adminUsergroups.adminUsergroupsRemoveChannels({
-    token,
-    contentType,
-    usergroupId,
-    channelIds,
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    usergroupId: "some example string",
+    channelIds: "some example string",
   });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (
-    err instanceof AdminUsergroups.AdminUsergroupsRemoveChannelsError &&
-      err.payload.kind === "defaulterrortemplate1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type AdminUsergroups.AdminUsergroupsRemoveChannelsError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.adminUsergroups.adminUsergroupsRemoveChannels({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  usergroupId: "some example string",
+  channelIds: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -7312,9 +10259,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.adminUsergroups.adminUsergroupsRemoveChannels(request)`
 
-**OnError**: <code>[AdminUsergroups.AdminUsergroupsRemoveChannelsError](src/resources/admin-usergroups.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[AdminUsergroups.AdminUsergroupsRemoveChannelsError](src/resources/admin-usergroups.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.adminUsergroups.adminUsergroupsRemoveChannels(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, AdminUsergroups.AdminUsergroupsRemoveChannelsError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -7344,19 +10299,45 @@ Add an Enterprise user to a workspace.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.adminUsers.adminUsersAssign({ token, contentType, teamId, userId });
+  const response = await client.adminUsers.adminUsersAssign({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    teamId: "some example string",
+    userId: "some example string",
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof AdminUsers.AdminUsersAssignError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type AdminUsers.AdminUsersAssignError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.adminUsers.adminUsersAssign({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  teamId: "some example string",
+  userId: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -7386,9 +10367,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.adminUsers.adminUsersAssign(request)`
 
-**OnError**: <code>[AdminUsers.AdminUsersAssignError](src/resources/admin-users.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[AdminUsers.AdminUsersAssignError](src/resources/admin-users.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.adminUsers.adminUsersAssign(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, AdminUsers.AdminUsersAssignError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -7414,7 +10403,7 @@ Invite a user to a workspace.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -7422,17 +10411,39 @@ Invite a user to a workspace.
 ```ts
 try {
   const response = await client.adminUsers.adminUsersInvite({
-    token,
-    contentType,
-    teamId,
-    email,
-    channelIds,
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    teamId: "some example string",
+    email: "some example string",
+    channelIds: "some example string",
   });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof AdminUsers.AdminUsersInviteError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type AdminUsers.AdminUsersInviteError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.adminUsers.adminUsersInvite({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  teamId: "some example string",
+  email: "some example string",
+  channelIds: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -7466,9 +10477,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.adminUsers.adminUsersInvite(request)`
 
-**OnError**: <code>[AdminUsers.AdminUsersInviteError](src/resources/admin-users.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[AdminUsers.AdminUsersInviteError](src/resources/admin-users.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.adminUsers.adminUsersInvite(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, AdminUsers.AdminUsersInviteError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -7494,19 +10513,43 @@ List users on a workspace
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.adminUsers.adminUsersList({ teamId, token, contentType });
+  const response = await client.adminUsers.adminUsersList({
+    teamId: "some example string",
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof AdminUsers.AdminUsersListError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type AdminUsers.AdminUsersListError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.adminUsers.adminUsersList({
+  teamId: "some example string",
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -7534,9 +10577,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.adminUsers.adminUsersList(request)`
 
-**OnError**: <code>[AdminUsers.AdminUsersListError](src/resources/admin-users.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[AdminUsers.AdminUsersListError](src/resources/admin-users.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.adminUsers.adminUsersList(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, AdminUsers.AdminUsersListError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -7562,19 +10613,45 @@ Remove a user from a workspace.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.adminUsers.adminUsersRemove({ token, contentType, teamId, userId });
+  const response = await client.adminUsers.adminUsersRemove({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    teamId: "some example string",
+    userId: "some example string",
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof AdminUsers.AdminUsersRemoveError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type AdminUsers.AdminUsersRemoveError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.adminUsers.adminUsersRemove({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  teamId: "some example string",
+  userId: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -7601,9 +10678,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.adminUsers.adminUsersRemove(request)`
 
-**OnError**: <code>[AdminUsers.AdminUsersRemoveError](src/resources/admin-users.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[AdminUsers.AdminUsersRemoveError](src/resources/admin-users.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.adminUsers.adminUsersRemove(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, AdminUsers.AdminUsersRemoveError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -7629,19 +10714,45 @@ Set an existing guest, regular user, or owner to be an admin user.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.adminUsers.adminUsersSetAdmin({ token, contentType, teamId, userId });
+  const response = await client.adminUsers.adminUsersSetAdmin({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    teamId: "some example string",
+    userId: "some example string",
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof AdminUsers.AdminUsersSetAdminError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type AdminUsers.AdminUsersSetAdminError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.adminUsers.adminUsersSetAdmin({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  teamId: "some example string",
+  userId: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -7668,9 +10779,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.adminUsers.adminUsersSetAdmin(request)`
 
-**OnError**: <code>[AdminUsers.AdminUsersSetAdminError](src/resources/admin-users.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[AdminUsers.AdminUsersSetAdminError](src/resources/admin-users.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.adminUsers.adminUsersSetAdmin(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, AdminUsers.AdminUsersSetAdminError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -7696,7 +10815,7 @@ Set an expiration for a guest user
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -7704,19 +10823,39 @@ Set an expiration for a guest user
 ```ts
 try {
   const response = await client.adminUsers.adminUsersSetExpiration({
-    token,
-    contentType,
-    teamId,
-    userId,
-    expirationTs,
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    teamId: "some example string",
+    userId: "some example string",
+    expirationTs: 1,
   });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (
-    err instanceof AdminUsers.AdminUsersSetExpirationError && err.payload.kind === "defaulterrortemplate1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type AdminUsers.AdminUsersSetExpirationError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.adminUsers.adminUsersSetExpiration({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  teamId: "some example string",
+  userId: "some example string",
+  expirationTs: 1,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -7744,9 +10883,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.adminUsers.adminUsersSetExpiration(request)`
 
-**OnError**: <code>[AdminUsers.AdminUsersSetExpirationError](src/resources/admin-users.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[AdminUsers.AdminUsersSetExpirationError](src/resources/admin-users.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.adminUsers.adminUsersSetExpiration(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, AdminUsers.AdminUsersSetExpirationError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -7772,19 +10919,45 @@ Set an existing guest, regular user, or admin user to be a workspace owner.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.adminUsers.adminUsersSetOwner({ token, contentType, teamId, userId });
+  const response = await client.adminUsers.adminUsersSetOwner({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    teamId: "some example string",
+    userId: "some example string",
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof AdminUsers.AdminUsersSetOwnerError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type AdminUsers.AdminUsersSetOwnerError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.adminUsers.adminUsersSetOwner({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  teamId: "some example string",
+  userId: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -7811,9 +10984,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.adminUsers.adminUsersSetOwner(request)`
 
-**OnError**: <code>[AdminUsers.AdminUsersSetOwnerError](src/resources/admin-users.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[AdminUsers.AdminUsersSetOwnerError](src/resources/admin-users.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.adminUsers.adminUsersSetOwner(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, AdminUsers.AdminUsersSetOwnerError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -7839,19 +11020,45 @@ Set an existing guest user, admin user, or owner to be a regular user.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.adminUsers.adminUsersSetRegular({ token, contentType, teamId, userId });
+  const response = await client.adminUsers.adminUsersSetRegular({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    teamId: "some example string",
+    userId: "some example string",
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof AdminUsers.AdminUsersSetRegularError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type AdminUsers.AdminUsersSetRegularError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.adminUsers.adminUsersSetRegular({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  teamId: "some example string",
+  userId: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -7878,9 +11085,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.adminUsers.adminUsersSetRegular(request)`
 
-**OnError**: <code>[AdminUsers.AdminUsersSetRegularError](src/resources/admin-users.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[AdminUsers.AdminUsersSetRegularError](src/resources/admin-users.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.adminUsers.adminUsersSetRegular(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, AdminUsers.AdminUsersSetRegularError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -7910,7 +11125,7 @@ Invalidate a single session for a user by session_id
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -7918,19 +11133,37 @@ Invalidate a single session for a user by session_id
 ```ts
 try {
   const response = await client.adminUsersSession.adminUsersSessionInvalidate({
-    token,
-    contentType,
-    teamId,
-    sessionId,
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    teamId: "some example string",
+    sessionId: 1,
   });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (
-    err instanceof AdminUsersSession.AdminUsersSessionInvalidateError &&
-      err.payload.kind === "defaulterrortemplate1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type AdminUsersSession.AdminUsersSessionInvalidateError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.adminUsersSession.adminUsersSessionInvalidate({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  teamId: "some example string",
+  sessionId: 1,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -7957,9 +11190,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.adminUsersSession.adminUsersSessionInvalidate(request)`
 
-**OnError**: <code>[AdminUsersSession.AdminUsersSessionInvalidateError](src/resources/admin-users-session.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[AdminUsersSession.AdminUsersSessionInvalidateError](src/resources/admin-users-session.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.adminUsersSession.adminUsersSessionInvalidate(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, AdminUsersSession.AdminUsersSessionInvalidateError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -7985,22 +11226,43 @@ Wipes all valid sessions on all devices for a given user
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.adminUsersSession.adminUsersSessionReset({ token, contentType, userId });
+  const response = await client.adminUsersSession.adminUsersSessionReset({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    userId: "some example string",
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (
-    err instanceof AdminUsersSession.AdminUsersSessionResetError &&
-      err.payload.kind === "defaulterrortemplate1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type AdminUsersSession.AdminUsersSessionResetError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.adminUsersSession.adminUsersSessionReset({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  userId: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -8028,9 +11290,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.adminUsersSession.adminUsersSessionReset(request)`
 
-**OnError**: <code>[AdminUsersSession.AdminUsersSessionResetError](src/resources/admin-users-session.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[AdminUsersSession.AdminUsersSessionResetError](src/resources/admin-users-session.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.adminUsersSession.adminUsersSessionReset(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, AdminUsersSession.AdminUsersSessionResetError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -8060,19 +11330,37 @@ Checks API calling code.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.api.apiTest({ contentType });
+  const response = await client.api.apiTest({ contentType: ContentType.ApplicationXWwwFormUrlencoded });
   // TODO: Handle 'response' of type ApiTestsuccessschema
 } catch (err) {
-  if (err instanceof Api.ApiTestError && err.payload.kind === "apiTesterrorschema1") {
-    // TODO: Handle 'err.payload.body' of type ApiTesterrorschema1
-  }
+  // TODO: Handle 'err' of type Api.ApiTestError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.api.apiTest({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type ApiTestsuccessschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -8098,9 +11386,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ApiTestsuccessschema](src/models/api-testsuccessschema.ts)</code>
+**Direct**: `await client.api.apiTest(request)`
 
-**OnError**: <code>[Api.ApiTestError](src/resources/api.ts)</code>
+- **OnSuccess**: <code>[ApiTestsuccessschema](src/models/api-testsuccessschema.ts)</code>
+- **OnError**: throws <code>[Api.ApiTestError](src/resources/api.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.api.apiTest(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;ApiTestsuccessschema, Api.ApiTestError&gt;</code>, with `result.value` of type <code>[ApiTestsuccessschema](src/models/api-testsuccessschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -8130,7 +11426,7 @@ Get a list of authorizations for the given event context. Each authorization rep
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -8138,18 +11434,35 @@ Get a list of authorizations for the given event context. Each authorization rep
 ```ts
 try {
   const response = await client.appsEventAuthorizations.appsEventAuthorizationsList({
-    eventContext,
-    token,
-    contentType,
+    eventContext: "some example string",
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
   });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (
-    err instanceof AppsEventAuthorizations.AppsEventAuthorizationsListError &&
-      err.payload.kind === "defaulterrortemplate1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type AppsEventAuthorizations.AppsEventAuthorizationsListError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.appsEventAuthorizations.appsEventAuthorizationsList({
+  eventContext: "some example string",
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -8177,9 +11490,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.appsEventAuthorizations.appsEventAuthorizationsList(request)`
 
-**OnError**: <code>[AppsEventAuthorizations.AppsEventAuthorizationsListError](src/resources/apps-event-authorizations.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[AppsEventAuthorizations.AppsEventAuthorizationsListError](src/resources/apps-event-authorizations.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.appsEventAuthorizations.appsEventAuthorizationsList(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, AppsEventAuthorizations.AppsEventAuthorizationsListError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -8209,19 +11530,43 @@ Get a list of authorizations for the given event context. Each authorization rep
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.apps.appsEventAuthorizationsList({ eventContext, token, contentType });
+  const response = await client.apps.appsEventAuthorizationsList({
+    eventContext: "some example string",
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Apps.AppsEventAuthorizationsListError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Apps.AppsEventAuthorizationsListError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.apps.appsEventAuthorizationsList({
+  eventContext: "some example string",
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -8249,9 +11594,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.apps.appsEventAuthorizationsList(request)`
 
-**OnError**: <code>[Apps.AppsEventAuthorizationsListError](src/resources/apps.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Apps.AppsEventAuthorizationsListError](src/resources/apps.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.apps.appsEventAuthorizationsList(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Apps.AppsEventAuthorizationsListError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -8277,21 +11630,39 @@ Returns list of permissions this app has on a team.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.apps.appsPermissionsInfo({ contentType });
+  const response = await client.apps.appsPermissionsInfo({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type AppsPermissionsInfoschema
 } catch (err) {
-  if (
-    err instanceof Apps.AppsPermissionsInfoError && err.payload.kind === "appsPermissionsInfoerrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type AppsPermissionsInfoerrorschema1
-  }
+  // TODO: Handle 'err' of type Apps.AppsPermissionsInfoError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.apps.appsPermissionsInfo({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type AppsPermissionsInfoschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -8316,9 +11687,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[AppsPermissionsInfoschema](src/models/apps-permissions-infoschema.ts)</code>
+**Direct**: `await client.apps.appsPermissionsInfo(request)`
 
-**OnError**: <code>[Apps.AppsPermissionsInfoError](src/resources/apps.ts)</code>
+- **OnSuccess**: <code>[AppsPermissionsInfoschema](src/models/apps-permissions-infoschema.ts)</code>
+- **OnError**: throws <code>[Apps.AppsPermissionsInfoError](src/resources/apps.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.apps.appsPermissionsInfo(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;AppsPermissionsInfoschema, Apps.AppsPermissionsInfoError&gt;</code>, with `result.value` of type <code>[AppsPermissionsInfoschema](src/models/apps-permissions-infoschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -8344,22 +11723,45 @@ Allows an app to request additional scopes
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.apps.appsPermissionsRequest({ token, scopes, triggerId, contentType });
+  const response = await client.apps.appsPermissionsRequest({
+    token: "some example string",
+    scopes: "some example string",
+    triggerId: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type AppsPermissionsRequestschema
 } catch (err) {
-  if (
-    err instanceof Apps.AppsPermissionsRequestError &&
-      err.payload.kind === "appsPermissionsRequesterrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type AppsPermissionsRequesterrorschema1
-  }
+  // TODO: Handle 'err' of type Apps.AppsPermissionsRequestError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.apps.appsPermissionsRequest({
+  token: "some example string",
+  scopes: "some example string",
+  triggerId: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type AppsPermissionsRequestschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -8386,9 +11788,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[AppsPermissionsRequestschema](src/models/apps-permissions-requestschema.ts)</code>
+**Direct**: `await client.apps.appsPermissionsRequest(request)`
 
-**OnError**: <code>[Apps.AppsPermissionsRequestError](src/resources/apps.ts)</code>
+- **OnSuccess**: <code>[AppsPermissionsRequestschema](src/models/apps-permissions-requestschema.ts)</code>
+- **OnError**: throws <code>[Apps.AppsPermissionsRequestError](src/resources/apps.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.apps.appsPermissionsRequest(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;AppsPermissionsRequestschema, Apps.AppsPermissionsRequestError&gt;</code>, with `result.value` of type <code>[AppsPermissionsRequestschema](src/models/apps-permissions-requestschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -8414,22 +11824,41 @@ Returns list of resource grants this app has on a team.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.apps.appsPermissionsResourcesList({ token, contentType });
+  const response = await client.apps.appsPermissionsResourcesList({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type AppsPermissionsResourcesListsuccessschema
 } catch (err) {
-  if (
-    err instanceof Apps.AppsPermissionsResourcesListError &&
-      err.payload.kind === "appsPermissionsResourcesListerrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type AppsPermissionsResourcesListerrorschema1
-  }
+  // TODO: Handle 'err' of type Apps.AppsPermissionsResourcesListError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.apps.appsPermissionsResourcesList({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type AppsPermissionsResourcesListsuccessschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -8456,9 +11885,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[AppsPermissionsResourcesListsuccessschema](src/models/apps-permissions-resources-listsuccessschema.ts)</code>
+**Direct**: `await client.apps.appsPermissionsResourcesList(request)`
 
-**OnError**: <code>[Apps.AppsPermissionsResourcesListError](src/resources/apps.ts)</code>
+- **OnSuccess**: <code>[AppsPermissionsResourcesListsuccessschema](src/models/apps-permissions-resources-listsuccessschema.ts)</code>
+- **OnError**: throws <code>[Apps.AppsPermissionsResourcesListError](src/resources/apps.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.apps.appsPermissionsResourcesList(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;AppsPermissionsResourcesListsuccessschema, Apps.AppsPermissionsResourcesListError&gt;</code>, with `result.value` of type <code>[AppsPermissionsResourcesListsuccessschema](src/models/apps-permissions-resources-listsuccessschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -8484,22 +11921,41 @@ Returns list of scopes this app has on a team.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.apps.appsPermissionsScopesList({ token, contentType });
+  const response = await client.apps.appsPermissionsScopesList({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type ApiPermissionsScopesListsuccessschema
 } catch (err) {
-  if (
-    err instanceof Apps.AppsPermissionsScopesListError &&
-      err.payload.kind === "appsPermissionsScopesListerrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type AppsPermissionsScopesListerrorschema1
-  }
+  // TODO: Handle 'err' of type Apps.AppsPermissionsScopesListError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.apps.appsPermissionsScopesList({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type ApiPermissionsScopesListsuccessschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -8524,9 +11980,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ApiPermissionsScopesListsuccessschema](src/models/api-permissions-scopes-listsuccessschema.ts)</code>
+**Direct**: `await client.apps.appsPermissionsScopesList(request)`
 
-**OnError**: <code>[Apps.AppsPermissionsScopesListError](src/resources/apps.ts)</code>
+- **OnSuccess**: <code>[ApiPermissionsScopesListsuccessschema](src/models/api-permissions-scopes-listsuccessschema.ts)</code>
+- **OnError**: throws <code>[Apps.AppsPermissionsScopesListError](src/resources/apps.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.apps.appsPermissionsScopesList(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;ApiPermissionsScopesListsuccessschema, Apps.AppsPermissionsScopesListError&gt;</code>, with `result.value` of type <code>[ApiPermissionsScopesListsuccessschema](src/models/api-permissions-scopes-listsuccessschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -8552,19 +12016,41 @@ Returns list of user grants and corresponding scopes this app has on a team.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.apps.appsPermissionsUsersList({ token, contentType });
+  const response = await client.apps.appsPermissionsUsersList({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Apps.AppsPermissionsUsersListError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Apps.AppsPermissionsUsersListError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.apps.appsPermissionsUsersList({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -8591,9 +12077,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.apps.appsPermissionsUsersList(request)`
 
-**OnError**: <code>[Apps.AppsPermissionsUsersListError](src/resources/apps.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Apps.AppsPermissionsUsersListError](src/resources/apps.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.apps.appsPermissionsUsersList(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Apps.AppsPermissionsUsersListError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -8619,7 +12113,7 @@ Enables an app to trigger a permissions modal to grant an app access to a user a
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -8627,17 +12121,39 @@ Enables an app to trigger a permissions modal to grant an app access to a user a
 ```ts
 try {
   const response = await client.apps.appsPermissionsUsersRequest({
-    token,
-    scopes,
-    triggerId,
-    user,
-    contentType,
+    token: "some example string",
+    scopes: "some example string",
+    triggerId: "some example string",
+    user: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
   });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Apps.AppsPermissionsUsersRequestError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Apps.AppsPermissionsUsersRequestError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.apps.appsPermissionsUsersRequest({
+  token: "some example string",
+  scopes: "some example string",
+  triggerId: "some example string",
+  user: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -8665,9 +12181,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.apps.appsPermissionsUsersRequest(request)`
 
-**OnError**: <code>[Apps.AppsPermissionsUsersRequestError](src/resources/apps.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Apps.AppsPermissionsUsersRequestError](src/resources/apps.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.apps.appsPermissionsUsersRequest(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Apps.AppsPermissionsUsersRequestError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -8693,19 +12217,39 @@ Uninstalls your app from a workspace.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.apps.appsUninstall({ contentType });
+  const response = await client.apps.appsUninstall({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type AppsUninstallschema
 } catch (err) {
-  if (err instanceof Apps.AppsUninstallError && err.payload.kind === "appsUninstallerrorschema1") {
-    // TODO: Handle 'err.payload.body' of type AppsUninstallerrorschema1
-  }
+  // TODO: Handle 'err' of type Apps.AppsUninstallError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.apps.appsUninstall({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type AppsUninstallschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -8732,9 +12276,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[AppsUninstallschema](src/models/apps-uninstallschema.ts)</code>
+**Direct**: `await client.apps.appsUninstall(request)`
 
-**OnError**: <code>[Apps.AppsUninstallError](src/resources/apps.ts)</code>
+- **OnSuccess**: <code>[AppsUninstallschema](src/models/apps-uninstallschema.ts)</code>
+- **OnError**: throws <code>[Apps.AppsUninstallError](src/resources/apps.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.apps.appsUninstall(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;AppsUninstallschema, Apps.AppsUninstallError&gt;</code>, with `result.value` of type <code>[AppsUninstallschema](src/models/apps-uninstallschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -8764,22 +12316,39 @@ Returns list of permissions this app has on a team.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.appsPermissions.appsPermissionsInfo({ contentType });
+  const response = await client.appsPermissions.appsPermissionsInfo({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type AppsPermissionsInfoschema
 } catch (err) {
-  if (
-    err instanceof AppsPermissions.AppsPermissionsInfoError &&
-      err.payload.kind === "appsPermissionsInfoerrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type AppsPermissionsInfoerrorschema1
-  }
+  // TODO: Handle 'err' of type AppsPermissions.AppsPermissionsInfoError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.appsPermissions.appsPermissionsInfo({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type AppsPermissionsInfoschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -8804,9 +12373,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[AppsPermissionsInfoschema](src/models/apps-permissions-infoschema.ts)</code>
+**Direct**: `await client.appsPermissions.appsPermissionsInfo(request)`
 
-**OnError**: <code>[AppsPermissions.AppsPermissionsInfoError](src/resources/apps-permissions.ts)</code>
+- **OnSuccess**: <code>[AppsPermissionsInfoschema](src/models/apps-permissions-infoschema.ts)</code>
+- **OnError**: throws <code>[AppsPermissions.AppsPermissionsInfoError](src/resources/apps-permissions.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.appsPermissions.appsPermissionsInfo(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;AppsPermissionsInfoschema, AppsPermissions.AppsPermissionsInfoError&gt;</code>, with `result.value` of type <code>[AppsPermissionsInfoschema](src/models/apps-permissions-infoschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -8832,7 +12409,7 @@ Allows an app to request additional scopes
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -8840,19 +12417,37 @@ Allows an app to request additional scopes
 ```ts
 try {
   const response = await client.appsPermissions.appsPermissionsRequest({
-    token,
-    scopes,
-    triggerId,
-    contentType,
+    token: "some example string",
+    scopes: "some example string",
+    triggerId: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
   });
   // TODO: Handle 'response' of type AppsPermissionsRequestschema
 } catch (err) {
-  if (
-    err instanceof AppsPermissions.AppsPermissionsRequestError &&
-      err.payload.kind === "appsPermissionsRequesterrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type AppsPermissionsRequesterrorschema1
-  }
+  // TODO: Handle 'err' of type AppsPermissions.AppsPermissionsRequestError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.appsPermissions.appsPermissionsRequest({
+  token: "some example string",
+  scopes: "some example string",
+  triggerId: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type AppsPermissionsRequestschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -8879,9 +12474,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[AppsPermissionsRequestschema](src/models/apps-permissions-requestschema.ts)</code>
+**Direct**: `await client.appsPermissions.appsPermissionsRequest(request)`
 
-**OnError**: <code>[AppsPermissions.AppsPermissionsRequestError](src/resources/apps-permissions.ts)</code>
+- **OnSuccess**: <code>[AppsPermissionsRequestschema](src/models/apps-permissions-requestschema.ts)</code>
+- **OnError**: throws <code>[AppsPermissions.AppsPermissionsRequestError](src/resources/apps-permissions.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.appsPermissions.appsPermissionsRequest(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;AppsPermissionsRequestschema, AppsPermissions.AppsPermissionsRequestError&gt;</code>, with `result.value` of type <code>[AppsPermissionsRequestschema](src/models/apps-permissions-requestschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -8911,22 +12514,41 @@ Returns list of resource grants this app has on a team.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.appsPermissionsResources.appsPermissionsResourcesList({ token, contentType });
+  const response = await client.appsPermissionsResources.appsPermissionsResourcesList({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type AppsPermissionsResourcesListsuccessschema
 } catch (err) {
-  if (
-    err instanceof AppsPermissionsResources.AppsPermissionsResourcesListError &&
-      err.payload.kind === "appsPermissionsResourcesListerrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type AppsPermissionsResourcesListerrorschema1
-  }
+  // TODO: Handle 'err' of type AppsPermissionsResources.AppsPermissionsResourcesListError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.appsPermissionsResources.appsPermissionsResourcesList({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type AppsPermissionsResourcesListsuccessschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -8953,9 +12575,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[AppsPermissionsResourcesListsuccessschema](src/models/apps-permissions-resources-listsuccessschema.ts)</code>
+**Direct**: `await client.appsPermissionsResources.appsPermissionsResourcesList(request)`
 
-**OnError**: <code>[AppsPermissionsResources.AppsPermissionsResourcesListError](src/resources/apps-permissions-resources.ts)</code>
+- **OnSuccess**: <code>[AppsPermissionsResourcesListsuccessschema](src/models/apps-permissions-resources-listsuccessschema.ts)</code>
+- **OnError**: throws <code>[AppsPermissionsResources.AppsPermissionsResourcesListError](src/resources/apps-permissions-resources.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.appsPermissionsResources.appsPermissionsResourcesList(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;AppsPermissionsResourcesListsuccessschema, AppsPermissionsResources.AppsPermissionsResourcesListError&gt;</code>, with `result.value` of type <code>[AppsPermissionsResourcesListsuccessschema](src/models/apps-permissions-resources-listsuccessschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -8985,22 +12615,41 @@ Returns list of scopes this app has on a team.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.appsPermissionsScopes.appsPermissionsScopesList({ token, contentType });
+  const response = await client.appsPermissionsScopes.appsPermissionsScopesList({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type ApiPermissionsScopesListsuccessschema
 } catch (err) {
-  if (
-    err instanceof AppsPermissionsScopes.AppsPermissionsScopesListError &&
-      err.payload.kind === "appsPermissionsScopesListerrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type AppsPermissionsScopesListerrorschema1
-  }
+  // TODO: Handle 'err' of type AppsPermissionsScopes.AppsPermissionsScopesListError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.appsPermissionsScopes.appsPermissionsScopesList({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type ApiPermissionsScopesListsuccessschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -9025,9 +12674,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ApiPermissionsScopesListsuccessschema](src/models/api-permissions-scopes-listsuccessschema.ts)</code>
+**Direct**: `await client.appsPermissionsScopes.appsPermissionsScopesList(request)`
 
-**OnError**: <code>[AppsPermissionsScopes.AppsPermissionsScopesListError](src/resources/apps-permissions-scopes.ts)</code>
+- **OnSuccess**: <code>[ApiPermissionsScopesListsuccessschema](src/models/api-permissions-scopes-listsuccessschema.ts)</code>
+- **OnError**: throws <code>[AppsPermissionsScopes.AppsPermissionsScopesListError](src/resources/apps-permissions-scopes.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.appsPermissionsScopes.appsPermissionsScopesList(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;ApiPermissionsScopesListsuccessschema, AppsPermissionsScopes.AppsPermissionsScopesListError&gt;</code>, with `result.value` of type <code>[ApiPermissionsScopesListsuccessschema](src/models/api-permissions-scopes-listsuccessschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -9057,22 +12714,41 @@ Returns list of user grants and corresponding scopes this app has on a team.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.appsPermissionsUsers.appsPermissionsUsersList({ token, contentType });
+  const response = await client.appsPermissionsUsers.appsPermissionsUsersList({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (
-    err instanceof AppsPermissionsUsers.AppsPermissionsUsersListError &&
-      err.payload.kind === "defaulterrortemplate1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type AppsPermissionsUsers.AppsPermissionsUsersListError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.appsPermissionsUsers.appsPermissionsUsersList({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -9099,9 +12775,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.appsPermissionsUsers.appsPermissionsUsersList(request)`
 
-**OnError**: <code>[AppsPermissionsUsers.AppsPermissionsUsersListError](src/resources/apps-permissions-users.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[AppsPermissionsUsers.AppsPermissionsUsersListError](src/resources/apps-permissions-users.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.appsPermissionsUsers.appsPermissionsUsersList(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, AppsPermissionsUsers.AppsPermissionsUsersListError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -9127,7 +12811,7 @@ Enables an app to trigger a permissions modal to grant an app access to a user a
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -9135,20 +12819,39 @@ Enables an app to trigger a permissions modal to grant an app access to a user a
 ```ts
 try {
   const response = await client.appsPermissionsUsers.appsPermissionsUsersRequest({
-    token,
-    scopes,
-    triggerId,
-    user,
-    contentType,
+    token: "some example string",
+    scopes: "some example string",
+    triggerId: "some example string",
+    user: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
   });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (
-    err instanceof AppsPermissionsUsers.AppsPermissionsUsersRequestError &&
-      err.payload.kind === "defaulterrortemplate1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type AppsPermissionsUsers.AppsPermissionsUsersRequestError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.appsPermissionsUsers.appsPermissionsUsersRequest({
+  token: "some example string",
+  scopes: "some example string",
+  triggerId: "some example string",
+  user: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -9176,9 +12879,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.appsPermissionsUsers.appsPermissionsUsersRequest(request)`
 
-**OnError**: <code>[AppsPermissionsUsers.AppsPermissionsUsersRequestError](src/resources/apps-permissions-users.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[AppsPermissionsUsers.AppsPermissionsUsersRequestError](src/resources/apps-permissions-users.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.appsPermissionsUsers.appsPermissionsUsersRequest(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, AppsPermissionsUsers.AppsPermissionsUsersRequestError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -9208,19 +12919,41 @@ Revokes a token.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.auth2.authRevoke({ token, contentType });
+  const response = await client.auth2.authRevoke({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type AuthRevokeschema
 } catch (err) {
-  if (err instanceof Auth.AuthRevokeError && err.payload.kind === "authRevokeerrorschema1") {
-    // TODO: Handle 'err.payload.body' of type AuthRevokeerrorschema1
-  }
+  // TODO: Handle 'err' of type Auth.AuthRevokeError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.auth2.authRevoke({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type AuthRevokeschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -9246,9 +12979,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[AuthRevokeschema](src/models/auth-revokeschema.ts)</code>
+**Direct**: `await client.auth2.authRevoke(request)`
 
-**OnError**: <code>[Auth.AuthRevokeError](src/resources/auth.ts)</code>
+- **OnSuccess**: <code>[AuthRevokeschema](src/models/auth-revokeschema.ts)</code>
+- **OnError**: throws <code>[Auth.AuthRevokeError](src/resources/auth.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.auth2.authRevoke(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;AuthRevokeschema, Auth.AuthRevokeError&gt;</code>, with `result.value` of type <code>[AuthRevokeschema](src/models/auth-revokeschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -9274,19 +13015,41 @@ Checks authentication & identity.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.auth2.authTest({ token, contentType });
+  const response = await client.auth2.authTest({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type AuthTestsuccessschema
 } catch (err) {
-  if (err instanceof Auth.AuthTestError && err.payload.kind === "authTesterrorschema1") {
-    // TODO: Handle 'err.payload.body' of type AuthTesterrorschema1
-  }
+  // TODO: Handle 'err' of type Auth.AuthTestError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.auth2.authTest({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type AuthTestsuccessschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -9311,9 +13074,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[AuthTestsuccessschema](src/models/auth-testsuccessschema.ts)</code>
+**Direct**: `await client.auth2.authTest(request)`
 
-**OnError**: <code>[Auth.AuthTestError](src/resources/auth.ts)</code>
+- **OnSuccess**: <code>[AuthTestsuccessschema](src/models/auth-testsuccessschema.ts)</code>
+- **OnError**: throws <code>[Auth.AuthTestError](src/resources/auth.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.auth2.authTest(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;AuthTestsuccessschema, Auth.AuthTestError&gt;</code>, with `result.value` of type <code>[AuthTestsuccessschema](src/models/auth-testsuccessschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -9343,19 +13114,41 @@ Gets information about a bot user.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.bots.botsInfo({ token, contentType });
+  const response = await client.bots.botsInfo({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type BotsInfoschema
 } catch (err) {
-  if (err instanceof Bots.BotsInfoError && err.payload.kind === "botsInfoerrorschema1") {
-    // TODO: Handle 'err.payload.body' of type BotsInfoerrorschema1
-  }
+  // TODO: Handle 'err' of type Bots.BotsInfoError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.bots.botsInfo({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type BotsInfoschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -9381,9 +13174,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[BotsInfoschema](src/models/bots-infoschema.ts)</code>
+**Direct**: `await client.bots.botsInfo(request)`
 
-**OnError**: <code>[Bots.BotsInfoError](src/resources/bots.ts)</code>
+- **OnSuccess**: <code>[BotsInfoschema](src/models/bots-infoschema.ts)</code>
+- **OnError**: throws <code>[Bots.BotsInfoError](src/resources/bots.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.bots.botsInfo(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;BotsInfoschema, Bots.BotsInfoError&gt;</code>, with `result.value` of type <code>[BotsInfoschema](src/models/bots-infoschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -9413,19 +13214,45 @@ Registers a new Call.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.calls.callsAdd({ token, contentType, externalUniqueId, joinUrl });
+  const response = await client.calls.callsAdd({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    externalUniqueId: "some example string",
+    joinUrl: "some example string",
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Calls.CallsAddError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Calls.CallsAddError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.calls.callsAdd({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  externalUniqueId: "some example string",
+  joinUrl: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -9458,9 +13285,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.calls.callsAdd(request)`
 
-**OnError**: <code>[Calls.CallsAddError](src/resources/calls.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Calls.CallsAddError](src/resources/calls.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.calls.callsAdd(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Calls.CallsAddError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -9486,19 +13321,43 @@ Ends a Call.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.calls.callsEnd({ token, contentType, id });
+  const response = await client.calls.callsEnd({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    id: "some example string",
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Calls.CallsEndError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Calls.CallsEndError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.calls.callsEnd({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  id: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -9525,9 +13384,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.calls.callsEnd(request)`
 
-**OnError**: <code>[Calls.CallsEndError](src/resources/calls.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Calls.CallsEndError](src/resources/calls.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.calls.callsEnd(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Calls.CallsEndError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -9553,19 +13420,43 @@ Returns information about a Call.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.calls.callsInfo({ id, token, contentType });
+  const response = await client.calls.callsInfo({
+    id: "some example string",
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Calls.CallsInfoError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Calls.CallsInfoError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.calls.callsInfo({
+  id: "some example string",
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -9591,9 +13482,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.calls.callsInfo(request)`
 
-**OnError**: <code>[Calls.CallsInfoError](src/resources/calls.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Calls.CallsInfoError](src/resources/calls.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.calls.callsInfo(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Calls.CallsInfoError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -9619,19 +13518,45 @@ Registers new participants added to a Call.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.calls.callsParticipantsAdd({ token, contentType, id, users });
+  const response = await client.calls.callsParticipantsAdd({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    id: "some example string",
+    users: "some example string",
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Calls.CallsParticipantsAddError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Calls.CallsParticipantsAddError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.calls.callsParticipantsAdd({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  id: "some example string",
+  users: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -9658,9 +13583,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.calls.callsParticipantsAdd(request)`
 
-**OnError**: <code>[Calls.CallsParticipantsAddError](src/resources/calls.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Calls.CallsParticipantsAddError](src/resources/calls.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.calls.callsParticipantsAdd(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Calls.CallsParticipantsAddError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -9686,19 +13619,45 @@ Registers participants removed from a Call.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.calls.callsParticipantsRemove({ token, contentType, id, users });
+  const response = await client.calls.callsParticipantsRemove({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    id: "some example string",
+    users: "some example string",
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Calls.CallsParticipantsRemoveError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Calls.CallsParticipantsRemoveError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.calls.callsParticipantsRemove({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  id: "some example string",
+  users: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -9725,9 +13684,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.calls.callsParticipantsRemove(request)`
 
-**OnError**: <code>[Calls.CallsParticipantsRemoveError](src/resources/calls.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Calls.CallsParticipantsRemoveError](src/resources/calls.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.calls.callsParticipantsRemove(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Calls.CallsParticipantsRemoveError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -9753,19 +13720,43 @@ Updates information about a Call.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.calls.callsUpdate({ token, contentType, id });
+  const response = await client.calls.callsUpdate({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    id: "some example string",
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Calls.CallsUpdateError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Calls.CallsUpdateError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.calls.callsUpdate({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  id: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -9794,9 +13785,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.calls.callsUpdate(request)`
 
-**OnError**: <code>[Calls.CallsUpdateError](src/resources/calls.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Calls.CallsUpdateError](src/resources/calls.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.calls.callsUpdate(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Calls.CallsUpdateError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -9826,21 +13825,45 @@ Registers new participants added to a Call.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.callsParticipants.callsParticipantsAdd({ token, contentType, id, users });
+  const response = await client.callsParticipants.callsParticipantsAdd({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    id: "some example string",
+    users: "some example string",
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (
-    err instanceof CallsParticipants.CallsParticipantsAddError && err.payload.kind === "defaulterrortemplate1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type CallsParticipants.CallsParticipantsAddError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.callsParticipants.callsParticipantsAdd({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  id: "some example string",
+  users: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -9867,9 +13890,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.callsParticipants.callsParticipantsAdd(request)`
 
-**OnError**: <code>[CallsParticipants.CallsParticipantsAddError](src/resources/calls-participants.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[CallsParticipants.CallsParticipantsAddError](src/resources/calls-participants.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.callsParticipants.callsParticipantsAdd(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, CallsParticipants.CallsParticipantsAddError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -9895,22 +13926,45 @@ Registers participants removed from a Call.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.callsParticipants.callsParticipantsRemove({ token, contentType, id, users });
+  const response = await client.callsParticipants.callsParticipantsRemove({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    id: "some example string",
+    users: "some example string",
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (
-    err instanceof CallsParticipants.CallsParticipantsRemoveError &&
-      err.payload.kind === "defaulterrortemplate1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type CallsParticipants.CallsParticipantsRemoveError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.callsParticipants.callsParticipantsRemove({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  id: "some example string",
+  users: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -9937,9 +13991,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.callsParticipants.callsParticipantsRemove(request)`
 
-**OnError**: <code>[CallsParticipants.CallsParticipantsRemoveError](src/resources/calls-participants.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[CallsParticipants.CallsParticipantsRemoveError](src/resources/calls-participants.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.callsParticipants.callsParticipantsRemove(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, CallsParticipants.CallsParticipantsRemoveError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -9969,19 +14031,37 @@ Deletes a message.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.chat.chatDelete({ contentType });
+  const response = await client.chat.chatDelete({ contentType: ContentType.ApplicationXWwwFormUrlencoded });
   // TODO: Handle 'response' of type ChatDeletesuccessschema
 } catch (err) {
-  if (err instanceof Chat.ChatDeleteError && err.payload.kind === "chatDeleteerrorschema1") {
-    // TODO: Handle 'err.payload.body' of type ChatDeleteerrorschema1
-  }
+  // TODO: Handle 'err' of type Chat.ChatDeleteError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.chat.chatDelete({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type ChatDeletesuccessschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -10009,9 +14089,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ChatDeletesuccessschema](src/models/chat-deletesuccessschema.ts)</code>
+**Direct**: `await client.chat.chatDelete(request)`
 
-**OnError**: <code>[Chat.ChatDeleteError](src/resources/chat.ts)</code>
+- **OnSuccess**: <code>[ChatDeletesuccessschema](src/models/chat-deletesuccessschema.ts)</code>
+- **OnError**: throws <code>[Chat.ChatDeleteError](src/resources/chat.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.chat.chatDelete(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;ChatDeletesuccessschema, Chat.ChatDeleteError&gt;</code>, with `result.value` of type <code>[ChatDeletesuccessschema](src/models/chat-deletesuccessschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -10037,7 +14125,7 @@ Deletes a pending scheduled message from the queue.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -10045,19 +14133,37 @@ Deletes a pending scheduled message from the queue.
 ```ts
 try {
   const response = await client.chat.chatDeleteScheduledMessage({
-    token,
-    contentType,
-    channel,
-    scheduledMessageId,
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    channel: "some example string",
+    scheduledMessageId: "some example string",
   });
   // TODO: Handle 'response' of type ChatDeleteScheduledMessageschema
 } catch (err) {
-  if (
-    err instanceof Chat.ChatDeleteScheduledMessageError &&
-      err.payload.kind === "chatDeleteScheduledMessageerrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type ChatDeleteScheduledMessageerrorschema1
-  }
+  // TODO: Handle 'err' of type Chat.ChatDeleteScheduledMessageError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.chat.chatDeleteScheduledMessage({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  channel: "some example string",
+  scheduledMessageId: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type ChatDeleteScheduledMessageschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -10085,9 +14191,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ChatDeleteScheduledMessageschema](src/models/chat-delete-scheduled-messageschema.ts)</code>
+**Direct**: `await client.chat.chatDeleteScheduledMessage(request)`
 
-**OnError**: <code>[Chat.ChatDeleteScheduledMessageError](src/resources/chat.ts)</code>
+- **OnSuccess**: <code>[ChatDeleteScheduledMessageschema](src/models/chat-delete-scheduled-messageschema.ts)</code>
+- **OnError**: throws <code>[Chat.ChatDeleteScheduledMessageError](src/resources/chat.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.chat.chatDeleteScheduledMessage(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;ChatDeleteScheduledMessageschema, Chat.ChatDeleteScheduledMessageError&gt;</code>, with `result.value` of type <code>[ChatDeleteScheduledMessageschema](src/models/chat-delete-scheduled-messageschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -10113,19 +14227,45 @@ Retrieve a permalink URL for a specific extant message
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.chat.chatGetPermalink({ token, channel, messageTs, contentType });
+  const response = await client.chat.chatGetPermalink({
+    token: "some example string",
+    channel: "some example string",
+    messageTs: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type ChatGetPermalinksuccessschema
 } catch (err) {
-  if (err instanceof Chat.ChatGetPermalinkError && err.payload.kind === "chatGetPermalinkerrorschema1") {
-    // TODO: Handle 'err.payload.body' of type ChatGetPermalinkerrorschema1
-  }
+  // TODO: Handle 'err' of type Chat.ChatGetPermalinkError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.chat.chatGetPermalink({
+  token: "some example string",
+  channel: "some example string",
+  messageTs: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type ChatGetPermalinksuccessschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -10152,9 +14292,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ChatGetPermalinksuccessschema](src/models/chat-get-permalinksuccessschema.ts)</code>
+**Direct**: `await client.chat.chatGetPermalink(request)`
 
-**OnError**: <code>[Chat.ChatGetPermalinkError](src/resources/chat.ts)</code>
+- **OnSuccess**: <code>[ChatGetPermalinksuccessschema](src/models/chat-get-permalinksuccessschema.ts)</code>
+- **OnError**: throws <code>[Chat.ChatGetPermalinkError](src/resources/chat.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.chat.chatGetPermalink(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;ChatGetPermalinksuccessschema, Chat.ChatGetPermalinkError&gt;</code>, with `result.value` of type <code>[ChatGetPermalinksuccessschema](src/models/chat-get-permalinksuccessschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -10180,19 +14328,39 @@ Share a me message into a channel.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.chat.chatMeMessage({ contentType });
+  const response = await client.chat.chatMeMessage({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type ChatMeMessageschema
 } catch (err) {
-  if (err instanceof Chat.ChatMeMessageError && err.payload.kind === "chatMeMessageerrorschema1") {
-    // TODO: Handle 'err.payload.body' of type ChatMeMessageerrorschema1
-  }
+  // TODO: Handle 'err' of type Chat.ChatMeMessageError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.chat.chatMeMessage({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type ChatMeMessageschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -10219,9 +14387,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ChatMeMessageschema](src/models/chat-me-messageschema.ts)</code>
+**Direct**: `await client.chat.chatMeMessage(request)`
 
-**OnError**: <code>[Chat.ChatMeMessageError](src/resources/chat.ts)</code>
+- **OnSuccess**: <code>[ChatMeMessageschema](src/models/chat-me-messageschema.ts)</code>
+- **OnError**: throws <code>[Chat.ChatMeMessageError](src/resources/chat.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.chat.chatMeMessage(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;ChatMeMessageschema, Chat.ChatMeMessageError&gt;</code>, with `result.value` of type <code>[ChatMeMessageschema](src/models/chat-me-messageschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -10247,19 +14423,45 @@ Sends an ephemeral message to a user in a channel.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.chat.chatPostEphemeral({ token, contentType, channel, user });
+  const response = await client.chat.chatPostEphemeral({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    channel: "some example string",
+    user: "some example string",
+  });
   // TODO: Handle 'response' of type ChatPostEphemeralsuccessschema
 } catch (err) {
-  if (err instanceof Chat.ChatPostEphemeralError && err.payload.kind === "chatPostEphemeralerrorschema1") {
-    // TODO: Handle 'err.payload.body' of type ChatPostEphemeralerrorschema1
-  }
+  // TODO: Handle 'err' of type Chat.ChatPostEphemeralError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.chat.chatPostEphemeral({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  channel: "some example string",
+  user: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type ChatPostEphemeralsuccessschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -10296,9 +14498,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ChatPostEphemeralsuccessschema](src/models/chat-post-ephemeralsuccessschema.ts)</code>
+**Direct**: `await client.chat.chatPostEphemeral(request)`
 
-**OnError**: <code>[Chat.ChatPostEphemeralError](src/resources/chat.ts)</code>
+- **OnSuccess**: <code>[ChatPostEphemeralsuccessschema](src/models/chat-post-ephemeralsuccessschema.ts)</code>
+- **OnError**: throws <code>[Chat.ChatPostEphemeralError](src/resources/chat.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.chat.chatPostEphemeral(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;ChatPostEphemeralsuccessschema, Chat.ChatPostEphemeralError&gt;</code>, with `result.value` of type <code>[ChatPostEphemeralsuccessschema](src/models/chat-post-ephemeralsuccessschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -10324,19 +14534,43 @@ Sends a message to a channel.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.chat.chatPostMessage({ token, contentType, channel });
+  const response = await client.chat.chatPostMessage({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    channel: "some example string",
+  });
   // TODO: Handle 'response' of type ChatPostMessagesuccessschema
 } catch (err) {
-  if (err instanceof Chat.ChatPostMessageError && err.payload.kind === "chatPostMessageerrorschema1") {
-    // TODO: Handle 'err.payload.body' of type ChatPostMessageerrorschema1
-  }
+  // TODO: Handle 'err' of type Chat.ChatPostMessageError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.chat.chatPostMessage({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  channel: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type ChatPostMessagesuccessschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -10376,9 +14610,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ChatPostMessagesuccessschema](src/models/chat-post-messagesuccessschema.ts)</code>
+**Direct**: `await client.chat.chatPostMessage(request)`
 
-**OnError**: <code>[Chat.ChatPostMessageError](src/resources/chat.ts)</code>
+- **OnSuccess**: <code>[ChatPostMessagesuccessschema](src/models/chat-post-messagesuccessschema.ts)</code>
+- **OnError**: throws <code>[Chat.ChatPostMessageError](src/resources/chat.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.chat.chatPostMessage(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;ChatPostMessagesuccessschema, Chat.ChatPostMessageError&gt;</code>, with `result.value` of type <code>[ChatPostMessagesuccessschema](src/models/chat-post-messagesuccessschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -10404,21 +14646,39 @@ Schedules a message to be sent to a channel.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.chat.chatScheduleMessage({ contentType });
+  const response = await client.chat.chatScheduleMessage({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type ChatScheduleMessagesuccessschema
 } catch (err) {
-  if (
-    err instanceof Chat.ChatScheduleMessageError && err.payload.kind === "chatScheduleMessageerrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type ChatScheduleMessageerrorschema1
-  }
+  // TODO: Handle 'err' of type Chat.ChatScheduleMessageError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.chat.chatScheduleMessage({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type ChatScheduleMessagesuccessschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -10455,9 +14715,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ChatScheduleMessagesuccessschema](src/models/chat-schedule-messagesuccessschema.ts)</code>
+**Direct**: `await client.chat.chatScheduleMessage(request)`
 
-**OnError**: <code>[Chat.ChatScheduleMessageError](src/resources/chat.ts)</code>
+- **OnSuccess**: <code>[ChatScheduleMessagesuccessschema](src/models/chat-schedule-messagesuccessschema.ts)</code>
+- **OnError**: throws <code>[Chat.ChatScheduleMessageError](src/resources/chat.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.chat.chatScheduleMessage(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;ChatScheduleMessagesuccessschema, Chat.ChatScheduleMessageError&gt;</code>, with `result.value` of type <code>[ChatScheduleMessagesuccessschema](src/models/chat-schedule-messagesuccessschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -10483,22 +14751,39 @@ Returns a list of scheduled messages.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.chat.chatScheduledMessagesList({ contentType });
+  const response = await client.chat.chatScheduledMessagesList({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type ChatScheduledMessagesListschema
 } catch (err) {
-  if (
-    err instanceof Chat.ChatScheduledMessagesListError &&
-      err.payload.kind === "chatScheduledMessagesListerrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type ChatScheduledMessagesListerrorschema1
-  }
+  // TODO: Handle 'err' of type Chat.ChatScheduledMessagesListError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.chat.chatScheduledMessagesList({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type ChatScheduledMessagesListschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -10528,9 +14813,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ChatScheduledMessagesListschema](src/models/chat-scheduled-messages-listschema.ts)</code>
+**Direct**: `await client.chat.chatScheduledMessagesList(request)`
 
-**OnError**: <code>[Chat.ChatScheduledMessagesListError](src/resources/chat.ts)</code>
+- **OnSuccess**: <code>[ChatScheduledMessagesListschema](src/models/chat-scheduled-messages-listschema.ts)</code>
+- **OnError**: throws <code>[Chat.ChatScheduledMessagesListError](src/resources/chat.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.chat.chatScheduledMessagesList(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;ChatScheduledMessagesListschema, Chat.ChatScheduledMessagesListError&gt;</code>, with `result.value` of type <code>[ChatScheduledMessagesListschema](src/models/chat-scheduled-messages-listschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -10556,19 +14849,45 @@ Provide custom unfurl behavior for user-posted URLs
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.chat.chatUnfurl({ token, contentType, channel, ts });
+  const response = await client.chat.chatUnfurl({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    channel: "some example string",
+    ts: "some example string",
+  });
   // TODO: Handle 'response' of type ChatUnfurlsuccessschema
 } catch (err) {
-  if (err instanceof Chat.ChatUnfurlError && err.payload.kind === "chatUnfurlerrorschema1") {
-    // TODO: Handle 'err.payload.body' of type ChatUnfurlerrorschema1
-  }
+  // TODO: Handle 'err' of type Chat.ChatUnfurlError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.chat.chatUnfurl({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  channel: "some example string",
+  ts: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type ChatUnfurlsuccessschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -10599,9 +14918,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ChatUnfurlsuccessschema](src/models/chat-unfurlsuccessschema.ts)</code>
+**Direct**: `await client.chat.chatUnfurl(request)`
 
-**OnError**: <code>[Chat.ChatUnfurlError](src/resources/chat.ts)</code>
+- **OnSuccess**: <code>[ChatUnfurlsuccessschema](src/models/chat-unfurlsuccessschema.ts)</code>
+- **OnError**: throws <code>[Chat.ChatUnfurlError](src/resources/chat.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.chat.chatUnfurl(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;ChatUnfurlsuccessschema, Chat.ChatUnfurlError&gt;</code>, with `result.value` of type <code>[ChatUnfurlsuccessschema](src/models/chat-unfurlsuccessschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -10627,19 +14954,45 @@ Updates a message.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.chat.chatUpdate({ token, contentType, channel, ts });
+  const response = await client.chat.chatUpdate({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    channel: "some example string",
+    ts: "some example string",
+  });
   // TODO: Handle 'response' of type ChatUpdatesuccessschema
 } catch (err) {
-  if (err instanceof Chat.ChatUpdateError && err.payload.kind === "chatUpdateerrorschema1") {
-    // TODO: Handle 'err.payload.body' of type ChatUpdateerrorschema1
-  }
+  // TODO: Handle 'err' of type Chat.ChatUpdateError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.chat.chatUpdate({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  channel: "some example string",
+  ts: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type ChatUpdatesuccessschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -10672,9 +15025,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ChatUpdatesuccessschema](src/models/chat-updatesuccessschema.ts)</code>
+**Direct**: `await client.chat.chatUpdate(request)`
 
-**OnError**: <code>[Chat.ChatUpdateError](src/resources/chat.ts)</code>
+- **OnSuccess**: <code>[ChatUpdatesuccessschema](src/models/chat-updatesuccessschema.ts)</code>
+- **OnError**: throws <code>[Chat.ChatUpdateError](src/resources/chat.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.chat.chatUpdate(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;ChatUpdatesuccessschema, Chat.ChatUpdateError&gt;</code>, with `result.value` of type <code>[ChatUpdatesuccessschema](src/models/chat-updatesuccessschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -10704,22 +15065,39 @@ Returns a list of scheduled messages.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.chatScheduledMessages.chatScheduledMessagesList({ contentType });
+  const response = await client.chatScheduledMessages.chatScheduledMessagesList({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type ChatScheduledMessagesListschema
 } catch (err) {
-  if (
-    err instanceof ChatScheduledMessages.ChatScheduledMessagesListError &&
-      err.payload.kind === "chatScheduledMessagesListerrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type ChatScheduledMessagesListerrorschema1
-  }
+  // TODO: Handle 'err' of type ChatScheduledMessages.ChatScheduledMessagesListError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.chatScheduledMessages.chatScheduledMessagesList({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type ChatScheduledMessagesListschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -10749,9 +15127,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ChatScheduledMessagesListschema](src/models/chat-scheduled-messages-listschema.ts)</code>
+**Direct**: `await client.chatScheduledMessages.chatScheduledMessagesList(request)`
 
-**OnError**: <code>[ChatScheduledMessages.ChatScheduledMessagesListError](src/resources/chat-scheduled-messages.ts)</code>
+- **OnSuccess**: <code>[ChatScheduledMessagesListschema](src/models/chat-scheduled-messages-listschema.ts)</code>
+- **OnError**: throws <code>[ChatScheduledMessages.ChatScheduledMessagesListError](src/resources/chat-scheduled-messages.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.chatScheduledMessages.chatScheduledMessagesList(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;ChatScheduledMessagesListschema, ChatScheduledMessages.ChatScheduledMessagesListError&gt;</code>, with `result.value` of type <code>[ChatScheduledMessagesListschema](src/models/chat-scheduled-messages-listschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -10781,22 +15167,39 @@ Archives a conversation.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.conversations.conversationsArchive({ contentType });
+  const response = await client.conversations.conversationsArchive({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type ConversationsArchivesuccessschema
 } catch (err) {
-  if (
-    err instanceof Conversations.ConversationsArchiveError &&
-      err.payload.kind === "conversationsArchiveerrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type ConversationsArchiveerrorschema1
-  }
+  // TODO: Handle 'err' of type Conversations.ConversationsArchiveError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.conversations.conversationsArchive({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type ConversationsArchivesuccessschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -10822,9 +15225,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ConversationsArchivesuccessschema](src/models/conversations-archivesuccessschema.ts)</code>
+**Direct**: `await client.conversations.conversationsArchive(request)`
 
-**OnError**: <code>[Conversations.ConversationsArchiveError](src/resources/conversations.ts)</code>
+- **OnSuccess**: <code>[ConversationsArchivesuccessschema](src/models/conversations-archivesuccessschema.ts)</code>
+- **OnError**: throws <code>[Conversations.ConversationsArchiveError](src/resources/conversations.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.conversations.conversationsArchive(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;ConversationsArchivesuccessschema, Conversations.ConversationsArchiveError&gt;</code>, with `result.value` of type <code>[ConversationsArchivesuccessschema](src/models/conversations-archivesuccessschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -10850,22 +15261,39 @@ Closes a direct message or multi-person direct message.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.conversations.conversationsClose({ contentType });
+  const response = await client.conversations.conversationsClose({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type ConversationsClosesuccessschema
 } catch (err) {
-  if (
-    err instanceof Conversations.ConversationsCloseError &&
-      err.payload.kind === "conversationsCloseerrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type ConversationsCloseerrorschema1
-  }
+  // TODO: Handle 'err' of type Conversations.ConversationsCloseError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.conversations.conversationsClose({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type ConversationsClosesuccessschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -10891,9 +15319,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ConversationsClosesuccessschema](src/models/conversations-closesuccessschema.ts)</code>
+**Direct**: `await client.conversations.conversationsClose(request)`
 
-**OnError**: <code>[Conversations.ConversationsCloseError](src/resources/conversations.ts)</code>
+- **OnSuccess**: <code>[ConversationsClosesuccessschema](src/models/conversations-closesuccessschema.ts)</code>
+- **OnError**: throws <code>[Conversations.ConversationsCloseError](src/resources/conversations.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.conversations.conversationsClose(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;ConversationsClosesuccessschema, Conversations.ConversationsCloseError&gt;</code>, with `result.value` of type <code>[ConversationsClosesuccessschema](src/models/conversations-closesuccessschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -10919,22 +15355,39 @@ Initiates a public or private channel-based conversation
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.conversations.conversationsCreate({ contentType });
+  const response = await client.conversations.conversationsCreate({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type ConversationsCreatesuccessschema
 } catch (err) {
-  if (
-    err instanceof Conversations.ConversationsCreateError &&
-      err.payload.kind === "conversationsCreateerrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type ConversationsCreateerrorschema1
-  }
+  // TODO: Handle 'err' of type Conversations.ConversationsCreateError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.conversations.conversationsCreate({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type ConversationsCreatesuccessschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -10961,9 +15414,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ConversationsCreatesuccessschema](src/models/conversations-createsuccessschema.ts)</code>
+**Direct**: `await client.conversations.conversationsCreate(request)`
 
-**OnError**: <code>[Conversations.ConversationsCreateError](src/resources/conversations.ts)</code>
+- **OnSuccess**: <code>[ConversationsCreatesuccessschema](src/models/conversations-createsuccessschema.ts)</code>
+- **OnError**: throws <code>[Conversations.ConversationsCreateError](src/resources/conversations.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.conversations.conversationsCreate(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;ConversationsCreatesuccessschema, Conversations.ConversationsCreateError&gt;</code>, with `result.value` of type <code>[ConversationsCreatesuccessschema](src/models/conversations-createsuccessschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -10989,22 +15450,39 @@ Fetches a conversation's history of messages and events.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.conversations.conversationsHistory({ contentType });
+  const response = await client.conversations.conversationsHistory({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type ConversationsHistorysuccessschema
 } catch (err) {
-  if (
-    err instanceof Conversations.ConversationsHistoryError &&
-      err.payload.kind === "conversationsHistoryerrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type ConversationsHistoryerrorschema1
-  }
+  // TODO: Handle 'err' of type Conversations.ConversationsHistoryError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.conversations.conversationsHistory({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type ConversationsHistorysuccessschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -11035,9 +15513,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ConversationsHistorysuccessschema](src/models/conversations-historysuccessschema.ts)</code>
+**Direct**: `await client.conversations.conversationsHistory(request)`
 
-**OnError**: <code>[Conversations.ConversationsHistoryError](src/resources/conversations.ts)</code>
+- **OnSuccess**: <code>[ConversationsHistorysuccessschema](src/models/conversations-historysuccessschema.ts)</code>
+- **OnError**: throws <code>[Conversations.ConversationsHistoryError](src/resources/conversations.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.conversations.conversationsHistory(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;ConversationsHistorysuccessschema, Conversations.ConversationsHistoryError&gt;</code>, with `result.value` of type <code>[ConversationsHistorysuccessschema](src/models/conversations-historysuccessschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -11063,22 +15549,39 @@ Retrieve information about a conversation.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.conversations.conversationsInfo({ contentType });
+  const response = await client.conversations.conversationsInfo({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type ConversationsInfosuccessschema
 } catch (err) {
-  if (
-    err instanceof Conversations.ConversationsInfoError &&
-      err.payload.kind === "conversationsInfoerrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type ConversationsInfoerrorschema1
-  }
+  // TODO: Handle 'err' of type Conversations.ConversationsInfoError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.conversations.conversationsInfo({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type ConversationsInfosuccessschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -11106,9 +15609,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ConversationsInfosuccessschema](src/models/conversations-infosuccessschema.ts)</code>
+**Direct**: `await client.conversations.conversationsInfo(request)`
 
-**OnError**: <code>[Conversations.ConversationsInfoError](src/resources/conversations.ts)</code>
+- **OnSuccess**: <code>[ConversationsInfosuccessschema](src/models/conversations-infosuccessschema.ts)</code>
+- **OnError**: throws <code>[Conversations.ConversationsInfoError](src/resources/conversations.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.conversations.conversationsInfo(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;ConversationsInfosuccessschema, Conversations.ConversationsInfoError&gt;</code>, with `result.value` of type <code>[ConversationsInfosuccessschema](src/models/conversations-infosuccessschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -11134,22 +15645,39 @@ Invites users to a channel.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.conversations.conversationsInvite({ contentType });
+  const response = await client.conversations.conversationsInvite({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type ConversationsInviteerrorschema
 } catch (err) {
-  if (
-    err instanceof Conversations.ConversationsInviteError &&
-      err.payload.kind === "conversationsInviteerrorschema11"
-  ) {
-    // TODO: Handle 'err.payload.body' of type ConversationsInviteerrorschema11
-  }
+  // TODO: Handle 'err' of type Conversations.ConversationsInviteError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.conversations.conversationsInvite({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type ConversationsInviteerrorschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -11176,9 +15704,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ConversationsInviteerrorschema](src/models/conversations-inviteerrorschema.ts)</code>
+**Direct**: `await client.conversations.conversationsInvite(request)`
 
-**OnError**: <code>[Conversations.ConversationsInviteError](src/resources/conversations.ts)</code>
+- **OnSuccess**: <code>[ConversationsInviteerrorschema](src/models/conversations-inviteerrorschema.ts)</code>
+- **OnError**: throws <code>[Conversations.ConversationsInviteError](src/resources/conversations.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.conversations.conversationsInvite(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;ConversationsInviteerrorschema, Conversations.ConversationsInviteError&gt;</code>, with `result.value` of type <code>[ConversationsInviteerrorschema](src/models/conversations-inviteerrorschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -11204,22 +15740,39 @@ Joins an existing conversation.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.conversations.conversationsJoin({ contentType });
+  const response = await client.conversations.conversationsJoin({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type ConversationsJoinsuccessschema
 } catch (err) {
-  if (
-    err instanceof Conversations.ConversationsJoinError &&
-      err.payload.kind === "conversationsJoinerrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type ConversationsJoinerrorschema1
-  }
+  // TODO: Handle 'err' of type Conversations.ConversationsJoinError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.conversations.conversationsJoin({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type ConversationsJoinsuccessschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -11245,9 +15798,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ConversationsJoinsuccessschema](src/models/conversations-joinsuccessschema.ts)</code>
+**Direct**: `await client.conversations.conversationsJoin(request)`
 
-**OnError**: <code>[Conversations.ConversationsJoinError](src/resources/conversations.ts)</code>
+- **OnSuccess**: <code>[ConversationsJoinsuccessschema](src/models/conversations-joinsuccessschema.ts)</code>
+- **OnError**: throws <code>[Conversations.ConversationsJoinError](src/resources/conversations.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.conversations.conversationsJoin(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;ConversationsJoinsuccessschema, Conversations.ConversationsJoinError&gt;</code>, with `result.value` of type <code>[ConversationsJoinsuccessschema](src/models/conversations-joinsuccessschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -11273,22 +15834,39 @@ Removes a user from a conversation.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.conversations.conversationsKick({ contentType });
+  const response = await client.conversations.conversationsKick({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type ConversationsKicksuccessschema
 } catch (err) {
-  if (
-    err instanceof Conversations.ConversationsKickError &&
-      err.payload.kind === "conversationsKickerrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type ConversationsKickerrorschema1
-  }
+  // TODO: Handle 'err' of type Conversations.ConversationsKickError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.conversations.conversationsKick({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type ConversationsKicksuccessschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -11315,9 +15893,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ConversationsKicksuccessschema](src/models/conversations-kicksuccessschema.ts)</code>
+**Direct**: `await client.conversations.conversationsKick(request)`
 
-**OnError**: <code>[Conversations.ConversationsKickError](src/resources/conversations.ts)</code>
+- **OnSuccess**: <code>[ConversationsKicksuccessschema](src/models/conversations-kicksuccessschema.ts)</code>
+- **OnError**: throws <code>[Conversations.ConversationsKickError](src/resources/conversations.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.conversations.conversationsKick(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;ConversationsKicksuccessschema, Conversations.ConversationsKickError&gt;</code>, with `result.value` of type <code>[ConversationsKicksuccessschema](src/models/conversations-kicksuccessschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -11343,22 +15929,39 @@ Leaves a conversation.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.conversations.conversationsLeave({ contentType });
+  const response = await client.conversations.conversationsLeave({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type ConversationsLeavesuccessschema
 } catch (err) {
-  if (
-    err instanceof Conversations.ConversationsLeaveError &&
-      err.payload.kind === "conversationsLeaveerrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type ConversationsLeaveerrorschema1
-  }
+  // TODO: Handle 'err' of type Conversations.ConversationsLeaveError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.conversations.conversationsLeave({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type ConversationsLeavesuccessschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -11384,9 +15987,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ConversationsLeavesuccessschema](src/models/conversations-leavesuccessschema.ts)</code>
+**Direct**: `await client.conversations.conversationsLeave(request)`
 
-**OnError**: <code>[Conversations.ConversationsLeaveError](src/resources/conversations.ts)</code>
+- **OnSuccess**: <code>[ConversationsLeavesuccessschema](src/models/conversations-leavesuccessschema.ts)</code>
+- **OnError**: throws <code>[Conversations.ConversationsLeaveError](src/resources/conversations.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.conversations.conversationsLeave(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;ConversationsLeavesuccessschema, Conversations.ConversationsLeaveError&gt;</code>, with `result.value` of type <code>[ConversationsLeavesuccessschema](src/models/conversations-leavesuccessschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -11412,22 +16023,39 @@ Lists all channels in a Slack team.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.conversations.conversationsList({ contentType });
+  const response = await client.conversations.conversationsList({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type ConversationsListsuccessschema
 } catch (err) {
-  if (
-    err instanceof Conversations.ConversationsListError &&
-      err.payload.kind === "conversationsListerrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type ConversationsListerrorschema1
-  }
+  // TODO: Handle 'err' of type Conversations.ConversationsListError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.conversations.conversationsList({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type ConversationsListsuccessschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -11456,9 +16084,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ConversationsListsuccessschema](src/models/conversations-listsuccessschema.ts)</code>
+**Direct**: `await client.conversations.conversationsList(request)`
 
-**OnError**: <code>[Conversations.ConversationsListError](src/resources/conversations.ts)</code>
+- **OnSuccess**: <code>[ConversationsListsuccessschema](src/models/conversations-listsuccessschema.ts)</code>
+- **OnError**: throws <code>[Conversations.ConversationsListError](src/resources/conversations.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.conversations.conversationsList(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;ConversationsListsuccessschema, Conversations.ConversationsListError&gt;</code>, with `result.value` of type <code>[ConversationsListsuccessschema](src/models/conversations-listsuccessschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -11484,22 +16120,39 @@ Sets the read cursor in a channel.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.conversations.conversationsMark({ contentType });
+  const response = await client.conversations.conversationsMark({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type ConversationsMarksuccessschema
 } catch (err) {
-  if (
-    err instanceof Conversations.ConversationsMarkError &&
-      err.payload.kind === "conversationsMarkerrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type ConversationsMarkerrorschema1
-  }
+  // TODO: Handle 'err' of type Conversations.ConversationsMarkError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.conversations.conversationsMark({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type ConversationsMarksuccessschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -11526,9 +16179,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ConversationsMarksuccessschema](src/models/conversations-marksuccessschema.ts)</code>
+**Direct**: `await client.conversations.conversationsMark(request)`
 
-**OnError**: <code>[Conversations.ConversationsMarkError](src/resources/conversations.ts)</code>
+- **OnSuccess**: <code>[ConversationsMarksuccessschema](src/models/conversations-marksuccessschema.ts)</code>
+- **OnError**: throws <code>[Conversations.ConversationsMarkError](src/resources/conversations.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.conversations.conversationsMark(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;ConversationsMarksuccessschema, Conversations.ConversationsMarkError&gt;</code>, with `result.value` of type <code>[ConversationsMarksuccessschema](src/models/conversations-marksuccessschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -11554,22 +16215,39 @@ Retrieve members of a conversation.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.conversations.conversationsMembers({ contentType });
+  const response = await client.conversations.conversationsMembers({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type ConversationsMemberssuccessschema
 } catch (err) {
-  if (
-    err instanceof Conversations.ConversationsMembersError &&
-      err.payload.kind === "conversationsMemberserrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type ConversationsMemberserrorschema1
-  }
+  // TODO: Handle 'err' of type Conversations.ConversationsMembersError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.conversations.conversationsMembers({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type ConversationsMemberssuccessschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -11597,9 +16275,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ConversationsMemberssuccessschema](src/models/conversations-memberssuccessschema.ts)</code>
+**Direct**: `await client.conversations.conversationsMembers(request)`
 
-**OnError**: <code>[Conversations.ConversationsMembersError](src/resources/conversations.ts)</code>
+- **OnSuccess**: <code>[ConversationsMemberssuccessschema](src/models/conversations-memberssuccessschema.ts)</code>
+- **OnError**: throws <code>[Conversations.ConversationsMembersError](src/resources/conversations.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.conversations.conversationsMembers(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;ConversationsMemberssuccessschema, Conversations.ConversationsMembersError&gt;</code>, with `result.value` of type <code>[ConversationsMemberssuccessschema](src/models/conversations-memberssuccessschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -11625,22 +16311,39 @@ Opens or resumes a direct message or multi-person direct message.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.conversations.conversationsOpen({ contentType });
+  const response = await client.conversations.conversationsOpen({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type ConversationsOpensuccessschema
 } catch (err) {
-  if (
-    err instanceof Conversations.ConversationsOpenError &&
-      err.payload.kind === "conversationsOpenerrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type ConversationsOpenerrorschema1
-  }
+  // TODO: Handle 'err' of type Conversations.ConversationsOpenError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.conversations.conversationsOpen({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type ConversationsOpensuccessschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -11668,9 +16371,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ConversationsOpensuccessschema](src/models/conversations-opensuccessschema.ts)</code>
+**Direct**: `await client.conversations.conversationsOpen(request)`
 
-**OnError**: <code>[Conversations.ConversationsOpenError](src/resources/conversations.ts)</code>
+- **OnSuccess**: <code>[ConversationsOpensuccessschema](src/models/conversations-opensuccessschema.ts)</code>
+- **OnError**: throws <code>[Conversations.ConversationsOpenError](src/resources/conversations.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.conversations.conversationsOpen(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;ConversationsOpensuccessschema, Conversations.ConversationsOpenError&gt;</code>, with `result.value` of type <code>[ConversationsOpensuccessschema](src/models/conversations-opensuccessschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -11696,22 +16407,39 @@ Renames a conversation.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.conversations.conversationsRename({ contentType });
+  const response = await client.conversations.conversationsRename({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type ConversationsRenamesuccessschema
 } catch (err) {
-  if (
-    err instanceof Conversations.ConversationsRenameError &&
-      err.payload.kind === "conversationsRenameerrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type ConversationsRenameerrorschema1
-  }
+  // TODO: Handle 'err' of type Conversations.ConversationsRenameError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.conversations.conversationsRename({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type ConversationsRenamesuccessschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -11738,9 +16466,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ConversationsRenamesuccessschema](src/models/conversations-renamesuccessschema.ts)</code>
+**Direct**: `await client.conversations.conversationsRename(request)`
 
-**OnError**: <code>[Conversations.ConversationsRenameError](src/resources/conversations.ts)</code>
+- **OnSuccess**: <code>[ConversationsRenamesuccessschema](src/models/conversations-renamesuccessschema.ts)</code>
+- **OnError**: throws <code>[Conversations.ConversationsRenameError](src/resources/conversations.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.conversations.conversationsRename(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;ConversationsRenamesuccessschema, Conversations.ConversationsRenameError&gt;</code>, with `result.value` of type <code>[ConversationsRenamesuccessschema](src/models/conversations-renamesuccessschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -11766,22 +16502,39 @@ Retrieve a thread of messages posted to a conversation
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.conversations.conversationsReplies({ contentType });
+  const response = await client.conversations.conversationsReplies({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type ConversationsRepliessuccessschema
 } catch (err) {
-  if (
-    err instanceof Conversations.ConversationsRepliesError &&
-      err.payload.kind === "conversationsReplieserrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type ConversationsReplieserrorschema1
-  }
+  // TODO: Handle 'err' of type Conversations.ConversationsRepliesError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.conversations.conversationsReplies({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type ConversationsRepliessuccessschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -11813,9 +16566,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ConversationsRepliessuccessschema](src/models/conversations-repliessuccessschema.ts)</code>
+**Direct**: `await client.conversations.conversationsReplies(request)`
 
-**OnError**: <code>[Conversations.ConversationsRepliesError](src/resources/conversations.ts)</code>
+- **OnSuccess**: <code>[ConversationsRepliessuccessschema](src/models/conversations-repliessuccessschema.ts)</code>
+- **OnError**: throws <code>[Conversations.ConversationsRepliesError](src/resources/conversations.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.conversations.conversationsReplies(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;ConversationsRepliessuccessschema, Conversations.ConversationsRepliesError&gt;</code>, with `result.value` of type <code>[ConversationsRepliessuccessschema](src/models/conversations-repliessuccessschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -11841,22 +16602,39 @@ Sets the purpose for a conversation.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.conversations.conversationsSetPurpose({ contentType });
+  const response = await client.conversations.conversationsSetPurpose({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type ConversationsSetPurposesuccessschema
 } catch (err) {
-  if (
-    err instanceof Conversations.ConversationsSetPurposeError &&
-      err.payload.kind === "conversationsSetPurposeerrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type ConversationsSetPurposeerrorschema1
-  }
+  // TODO: Handle 'err' of type Conversations.ConversationsSetPurposeError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.conversations.conversationsSetPurpose({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type ConversationsSetPurposesuccessschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -11883,9 +16661,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ConversationsSetPurposesuccessschema](src/models/conversations-set-purposesuccessschema.ts)</code>
+**Direct**: `await client.conversations.conversationsSetPurpose(request)`
 
-**OnError**: <code>[Conversations.ConversationsSetPurposeError](src/resources/conversations.ts)</code>
+- **OnSuccess**: <code>[ConversationsSetPurposesuccessschema](src/models/conversations-set-purposesuccessschema.ts)</code>
+- **OnError**: throws <code>[Conversations.ConversationsSetPurposeError](src/resources/conversations.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.conversations.conversationsSetPurpose(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;ConversationsSetPurposesuccessschema, Conversations.ConversationsSetPurposeError&gt;</code>, with `result.value` of type <code>[ConversationsSetPurposesuccessschema](src/models/conversations-set-purposesuccessschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -11911,22 +16697,39 @@ Sets the topic for a conversation.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.conversations.conversationsSetTopic({ contentType });
+  const response = await client.conversations.conversationsSetTopic({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type ConversationsSetTopicsuccessschema
 } catch (err) {
-  if (
-    err instanceof Conversations.ConversationsSetTopicError &&
-      err.payload.kind === "conversationsSetTopicerrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type ConversationsSetTopicerrorschema1
-  }
+  // TODO: Handle 'err' of type Conversations.ConversationsSetTopicError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.conversations.conversationsSetTopic({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type ConversationsSetTopicsuccessschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -11953,9 +16756,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ConversationsSetTopicsuccessschema](src/models/conversations-set-topicsuccessschema.ts)</code>
+**Direct**: `await client.conversations.conversationsSetTopic(request)`
 
-**OnError**: <code>[Conversations.ConversationsSetTopicError](src/resources/conversations.ts)</code>
+- **OnSuccess**: <code>[ConversationsSetTopicsuccessschema](src/models/conversations-set-topicsuccessschema.ts)</code>
+- **OnError**: throws <code>[Conversations.ConversationsSetTopicError](src/resources/conversations.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.conversations.conversationsSetTopic(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;ConversationsSetTopicsuccessschema, Conversations.ConversationsSetTopicError&gt;</code>, with `result.value` of type <code>[ConversationsSetTopicsuccessschema](src/models/conversations-set-topicsuccessschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -11981,22 +16792,39 @@ Reverses conversation archival.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.conversations.conversationsUnarchive({ contentType });
+  const response = await client.conversations.conversationsUnarchive({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type ConversationsUnarchivesuccessschema
 } catch (err) {
-  if (
-    err instanceof Conversations.ConversationsUnarchiveError &&
-      err.payload.kind === "conversationsUnarchiveerrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type ConversationsUnarchiveerrorschema1
-  }
+  // TODO: Handle 'err' of type Conversations.ConversationsUnarchiveError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.conversations.conversationsUnarchive({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type ConversationsUnarchivesuccessschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -12022,9 +16850,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ConversationsUnarchivesuccessschema](src/models/conversations-unarchivesuccessschema.ts)</code>
+**Direct**: `await client.conversations.conversationsUnarchive(request)`
 
-**OnError**: <code>[Conversations.ConversationsUnarchiveError](src/resources/conversations.ts)</code>
+- **OnSuccess**: <code>[ConversationsUnarchivesuccessschema](src/models/conversations-unarchivesuccessschema.ts)</code>
+- **OnError**: throws <code>[Conversations.ConversationsUnarchiveError](src/resources/conversations.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.conversations.conversationsUnarchive(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;ConversationsUnarchivesuccessschema, Conversations.ConversationsUnarchiveError&gt;</code>, with `result.value` of type <code>[ConversationsUnarchivesuccessschema](src/models/conversations-unarchivesuccessschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -12054,19 +16890,45 @@ Open a dialog with a user
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.dialog.dialogOpen({ dialog, triggerId, token, contentType });
+  const response = await client.dialog.dialogOpen({
+    dialog: "some example string",
+    triggerId: "some example string",
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type DialogOpenschema
 } catch (err) {
-  if (err instanceof Dialog.DialogOpenError && err.payload.kind === "dialogOpenerrorschema1") {
-    // TODO: Handle 'err.payload.body' of type DialogOpenerrorschema1
-  }
+  // TODO: Handle 'err' of type Dialog.DialogOpenError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.dialog.dialogOpen({
+  dialog: "some example string",
+  triggerId: "some example string",
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type DialogOpenschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -12093,9 +16955,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[DialogOpenschema](src/models/dialog-openschema.ts)</code>
+**Direct**: `await client.dialog.dialogOpen(request)`
 
-**OnError**: <code>[Dialog.DialogOpenError](src/resources/dialog.ts)</code>
+- **OnSuccess**: <code>[DialogOpenschema](src/models/dialog-openschema.ts)</code>
+- **OnError**: throws <code>[Dialog.DialogOpenError](src/resources/dialog.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.dialog.dialogOpen(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;DialogOpenschema, Dialog.DialogOpenError&gt;</code>, with `result.value` of type <code>[DialogOpenschema](src/models/dialog-openschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -12125,19 +16995,41 @@ Ends the current user's Do Not Disturb session immediately.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.dnd.dndEndDnd({ token, contentType });
+  const response = await client.dnd.dndEndDnd({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type DndEndDndschema
 } catch (err) {
-  if (err instanceof Dnd.DndEndDndError && err.payload.kind === "dndEndDnderrorschema1") {
-    // TODO: Handle 'err.payload.body' of type DndEndDnderrorschema1
-  }
+  // TODO: Handle 'err' of type Dnd.DndEndDndError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.dnd.dndEndDnd({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type DndEndDndschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -12162,9 +17054,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[DndEndDndschema](src/models/dnd-end-dndschema.ts)</code>
+**Direct**: `await client.dnd.dndEndDnd(request)`
 
-**OnError**: <code>[Dnd.DndEndDndError](src/resources/dnd.ts)</code>
+- **OnSuccess**: <code>[DndEndDndschema](src/models/dnd-end-dndschema.ts)</code>
+- **OnError**: throws <code>[Dnd.DndEndDndError](src/resources/dnd.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.dnd.dndEndDnd(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;DndEndDndschema, Dnd.DndEndDndError&gt;</code>, with `result.value` of type <code>[DndEndDndschema](src/models/dnd-end-dndschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -12190,19 +17090,41 @@ Ends the current user's snooze mode immediately.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.dnd.dndEndSnooze({ token, contentType });
+  const response = await client.dnd.dndEndSnooze({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type DndEndSnoozeschema
 } catch (err) {
-  if (err instanceof Dnd.DndEndSnoozeError && err.payload.kind === "dndEndSnoozeerrorschema1") {
-    // TODO: Handle 'err.payload.body' of type DndEndSnoozeerrorschema1
-  }
+  // TODO: Handle 'err' of type Dnd.DndEndSnoozeError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.dnd.dndEndSnooze({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type DndEndSnoozeschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -12227,9 +17149,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[DndEndSnoozeschema](src/models/dnd-end-snoozeschema.ts)</code>
+**Direct**: `await client.dnd.dndEndSnooze(request)`
 
-**OnError**: <code>[Dnd.DndEndSnoozeError](src/resources/dnd.ts)</code>
+- **OnSuccess**: <code>[DndEndSnoozeschema](src/models/dnd-end-snoozeschema.ts)</code>
+- **OnError**: throws <code>[Dnd.DndEndSnoozeError](src/resources/dnd.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.dnd.dndEndSnooze(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;DndEndSnoozeschema, Dnd.DndEndSnoozeError&gt;</code>, with `result.value` of type <code>[DndEndSnoozeschema](src/models/dnd-end-snoozeschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -12255,19 +17185,37 @@ Retrieves a user's current Do Not Disturb status.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.dnd.dndInfo({ contentType });
+  const response = await client.dnd.dndInfo({ contentType: ContentType.ApplicationXWwwFormUrlencoded });
   // TODO: Handle 'response' of type DndInfoschema
 } catch (err) {
-  if (err instanceof Dnd.DndInfoError && err.payload.kind === "dndInfoerrorschema1") {
-    // TODO: Handle 'err.payload.body' of type DndInfoerrorschema1
-  }
+  // TODO: Handle 'err' of type Dnd.DndInfoError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.dnd.dndInfo({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type DndInfoschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -12293,9 +17241,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[DndInfoschema](src/models/dnd-infoschema.ts)</code>
+**Direct**: `await client.dnd.dndInfo(request)`
 
-**OnError**: <code>[Dnd.DndInfoError](src/resources/dnd.ts)</code>
+- **OnSuccess**: <code>[DndInfoschema](src/models/dnd-infoschema.ts)</code>
+- **OnError**: throws <code>[Dnd.DndInfoError](src/resources/dnd.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.dnd.dndInfo(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;DndInfoschema, Dnd.DndInfoError&gt;</code>, with `result.value` of type <code>[DndInfoschema](src/models/dnd-infoschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -12321,19 +17277,43 @@ Turns on Do Not Disturb mode for the current user, or changes its duration.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.dnd.dndSetSnooze({ contentType, token, numMinutes });
+  const response = await client.dnd.dndSetSnooze({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    token: "some example string",
+    numMinutes: "some example string",
+  });
   // TODO: Handle 'response' of type DndSetSnoozeschema
 } catch (err) {
-  if (err instanceof Dnd.DndSetSnoozeError && err.payload.kind === "dndSetSnoozeerrorschema1") {
-    // TODO: Handle 'err.payload.body' of type DndSetSnoozeerrorschema1
-  }
+  // TODO: Handle 'err' of type Dnd.DndSetSnoozeError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.dnd.dndSetSnooze({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  token: "some example string",
+  numMinutes: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type DndSetSnoozeschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -12359,9 +17339,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[DndSetSnoozeschema](src/models/dnd-set-snoozeschema.ts)</code>
+**Direct**: `await client.dnd.dndSetSnooze(request)`
 
-**OnError**: <code>[Dnd.DndSetSnoozeError](src/resources/dnd.ts)</code>
+- **OnSuccess**: <code>[DndSetSnoozeschema](src/models/dnd-set-snoozeschema.ts)</code>
+- **OnError**: throws <code>[Dnd.DndSetSnoozeError](src/resources/dnd.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.dnd.dndSetSnooze(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;DndSetSnoozeschema, Dnd.DndSetSnoozeError&gt;</code>, with `result.value` of type <code>[DndSetSnoozeschema](src/models/dnd-set-snoozeschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -12387,19 +17375,37 @@ Retrieves the Do Not Disturb status for up to 50 users on a team.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.dnd.dndTeamInfo({ contentType });
+  const response = await client.dnd.dndTeamInfo({ contentType: ContentType.ApplicationXWwwFormUrlencoded });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Dnd.DndTeamInfoError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Dnd.DndTeamInfoError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.dnd.dndTeamInfo({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -12425,9 +17431,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.dnd.dndTeamInfo(request)`
 
-**OnError**: <code>[Dnd.DndTeamInfoError](src/resources/dnd.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Dnd.DndTeamInfoError](src/resources/dnd.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.dnd.dndTeamInfo(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Dnd.DndTeamInfoError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -12457,19 +17471,41 @@ Lists custom emoji for a team.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.emoji.emojiList({ token, contentType });
+  const response = await client.emoji.emojiList({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Emoji.EmojiListError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Emoji.EmojiListError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.emoji.emojiList({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -12494,9 +17530,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.emoji.emojiList(request)`
 
-**OnError**: <code>[Emoji.EmojiListError](src/resources/emoji.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Emoji.EmojiListError](src/resources/emoji.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.emoji.emojiList(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Emoji.EmojiListError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -12526,22 +17570,39 @@ Deletes an existing comment on a file.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.filesComments.filesCommentsDelete({ contentType });
+  const response = await client.filesComments.filesCommentsDelete({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type FilesCommentsDeleteschema
 } catch (err) {
-  if (
-    err instanceof FilesComments.FilesCommentsDeleteError &&
-      err.payload.kind === "filesCommentsDeleteerrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type FilesCommentsDeleteerrorschema1
-  }
+  // TODO: Handle 'err' of type FilesComments.FilesCommentsDeleteError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.filesComments.filesCommentsDelete({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type FilesCommentsDeleteschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -12568,9 +17629,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[FilesCommentsDeleteschema](src/models/files-comments-deleteschema.ts)</code>
+**Direct**: `await client.filesComments.filesCommentsDelete(request)`
 
-**OnError**: <code>[FilesComments.FilesCommentsDeleteError](src/resources/files-comments.ts)</code>
+- **OnSuccess**: <code>[FilesCommentsDeleteschema](src/models/files-comments-deleteschema.ts)</code>
+- **OnError**: throws <code>[FilesComments.FilesCommentsDeleteError](src/resources/files-comments.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.filesComments.filesCommentsDelete(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;FilesCommentsDeleteschema, FilesComments.FilesCommentsDeleteError&gt;</code>, with `result.value` of type <code>[FilesCommentsDeleteschema](src/models/files-comments-deleteschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -12600,21 +17669,39 @@ Deletes an existing comment on a file.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.files.filesCommentsDelete({ contentType });
+  const response = await client.files.filesCommentsDelete({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type FilesCommentsDeleteschema
 } catch (err) {
-  if (
-    err instanceof Files.FilesCommentsDeleteError && err.payload.kind === "filesCommentsDeleteerrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type FilesCommentsDeleteerrorschema1
-  }
+  // TODO: Handle 'err' of type Files.FilesCommentsDeleteError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.files.filesCommentsDelete({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type FilesCommentsDeleteschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -12641,9 +17728,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[FilesCommentsDeleteschema](src/models/files-comments-deleteschema.ts)</code>
+**Direct**: `await client.files.filesCommentsDelete(request)`
 
-**OnError**: <code>[Files.FilesCommentsDeleteError](src/resources/files.ts)</code>
+- **OnSuccess**: <code>[FilesCommentsDeleteschema](src/models/files-comments-deleteschema.ts)</code>
+- **OnError**: throws <code>[Files.FilesCommentsDeleteError](src/resources/files.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.files.filesCommentsDelete(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;FilesCommentsDeleteschema, Files.FilesCommentsDeleteError&gt;</code>, with `result.value` of type <code>[FilesCommentsDeleteschema](src/models/files-comments-deleteschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -12669,19 +17764,37 @@ Deletes a file.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.files.filesDelete({ contentType });
+  const response = await client.files.filesDelete({ contentType: ContentType.ApplicationXWwwFormUrlencoded });
   // TODO: Handle 'response' of type FilesDeleteschema
 } catch (err) {
-  if (err instanceof Files.FilesDeleteError && err.payload.kind === "filesDeleteerrorschema1") {
-    // TODO: Handle 'err.payload.body' of type FilesDeleteerrorschema1
-  }
+  // TODO: Handle 'err' of type Files.FilesDeleteError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.files.filesDelete({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type FilesDeleteschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -12707,9 +17820,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[FilesDeleteschema](src/models/files-deleteschema.ts)</code>
+**Direct**: `await client.files.filesDelete(request)`
 
-**OnError**: <code>[Files.FilesDeleteError](src/resources/files.ts)</code>
+- **OnSuccess**: <code>[FilesDeleteschema](src/models/files-deleteschema.ts)</code>
+- **OnError**: throws <code>[Files.FilesDeleteError](src/resources/files.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.files.filesDelete(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;FilesDeleteschema, Files.FilesDeleteError&gt;</code>, with `result.value` of type <code>[FilesDeleteschema](src/models/files-deleteschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -12735,19 +17856,37 @@ Gets information about a file.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.files.filesInfo({ contentType });
+  const response = await client.files.filesInfo({ contentType: ContentType.ApplicationXWwwFormUrlencoded });
   // TODO: Handle 'response' of type FilesInfoschema
 } catch (err) {
-  if (err instanceof Files.FilesInfoError && err.payload.kind === "filesInfoerrorschema1") {
-    // TODO: Handle 'err.payload.body' of type FilesInfoerrorschema1
-  }
+  // TODO: Handle 'err' of type Files.FilesInfoError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.files.filesInfo({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type FilesInfoschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -12777,9 +17916,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[FilesInfoschema](src/models/files-infoschema.ts)</code>
+**Direct**: `await client.files.filesInfo(request)`
 
-**OnError**: <code>[Files.FilesInfoError](src/resources/files.ts)</code>
+- **OnSuccess**: <code>[FilesInfoschema](src/models/files-infoschema.ts)</code>
+- **OnError**: throws <code>[Files.FilesInfoError](src/resources/files.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.files.filesInfo(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;FilesInfoschema, Files.FilesInfoError&gt;</code>, with `result.value` of type <code>[FilesInfoschema](src/models/files-infoschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -12805,19 +17952,37 @@ List for a team, in a channel, or from a user with applied filters.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.files.filesList({ contentType });
+  const response = await client.files.filesList({ contentType: ContentType.ApplicationXWwwFormUrlencoded });
   // TODO: Handle 'response' of type FilesListschema
 } catch (err) {
-  if (err instanceof Files.FilesListError && err.payload.kind === "filesListerrorschema1") {
-    // TODO: Handle 'err.payload.body' of type FilesListerrorschema1
-  }
+  // TODO: Handle 'err' of type Files.FilesListError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.files.filesList({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type FilesListschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -12850,9 +18015,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[FilesListschema](src/models/files-listschema.ts)</code>
+**Direct**: `await client.files.filesList(request)`
 
-**OnError**: <code>[Files.FilesListError](src/resources/files.ts)</code>
+- **OnSuccess**: <code>[FilesListschema](src/models/files-listschema.ts)</code>
+- **OnError**: throws <code>[Files.FilesListError](src/resources/files.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.files.filesList(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;FilesListschema, Files.FilesListError&gt;</code>, with `result.value` of type <code>[FilesListschema](src/models/files-listschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -12878,19 +18051,39 @@ Adds a file from a remote service
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.files.filesRemoteAdd({ contentType });
+  const response = await client.files.filesRemoteAdd({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Files.FilesRemoteAddError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Files.FilesRemoteAddError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.files.filesRemoteAdd({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -12921,9 +18114,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.files.filesRemoteAdd(request)`
 
-**OnError**: <code>[Files.FilesRemoteAddError](src/resources/files.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Files.FilesRemoteAddError](src/resources/files.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.files.filesRemoteAdd(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Files.FilesRemoteAddError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -12949,19 +18150,39 @@ Retrieve information about a remote file added to Slack
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.files.filesRemoteInfo({ contentType });
+  const response = await client.files.filesRemoteInfo({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Files.FilesRemoteInfoError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Files.FilesRemoteInfoError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.files.filesRemoteInfo({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -12988,9 +18209,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.files.filesRemoteInfo(request)`
 
-**OnError**: <code>[Files.FilesRemoteInfoError](src/resources/files.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Files.FilesRemoteInfoError](src/resources/files.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.files.filesRemoteInfo(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Files.FilesRemoteInfoError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -13016,19 +18245,39 @@ Retrieve information about a remote file added to Slack
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.files.filesRemoteList({ contentType });
+  const response = await client.files.filesRemoteList({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Files.FilesRemoteListError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Files.FilesRemoteListError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.files.filesRemoteList({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -13058,9 +18307,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.files.filesRemoteList(request)`
 
-**OnError**: <code>[Files.FilesRemoteListError](src/resources/files.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Files.FilesRemoteListError](src/resources/files.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.files.filesRemoteList(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Files.FilesRemoteListError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -13086,19 +18343,39 @@ Remove a remote file.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.files.filesRemoteRemove({ contentType });
+  const response = await client.files.filesRemoteRemove({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Files.FilesRemoteRemoveError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Files.FilesRemoteRemoveError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.files.filesRemoteRemove({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -13125,9 +18402,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.files.filesRemoteRemove(request)`
 
-**OnError**: <code>[Files.FilesRemoteRemoveError](src/resources/files.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Files.FilesRemoteRemoveError](src/resources/files.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.files.filesRemoteRemove(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Files.FilesRemoteRemoveError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -13153,19 +18438,39 @@ Share a remote file into a channel.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.files.filesRemoteShare({ contentType });
+  const response = await client.files.filesRemoteShare({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Files.FilesRemoteShareError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Files.FilesRemoteShareError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.files.filesRemoteShare({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -13193,9 +18498,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.files.filesRemoteShare(request)`
 
-**OnError**: <code>[Files.FilesRemoteShareError](src/resources/files.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Files.FilesRemoteShareError](src/resources/files.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.files.filesRemoteShare(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Files.FilesRemoteShareError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -13221,19 +18534,39 @@ Updates an existing remote file.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.files.filesRemoteUpdate({ contentType });
+  const response = await client.files.filesRemoteUpdate({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Files.FilesRemoteUpdateError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Files.FilesRemoteUpdateError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.files.filesRemoteUpdate({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -13265,9 +18598,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.files.filesRemoteUpdate(request)`
 
-**OnError**: <code>[Files.FilesRemoteUpdateError](src/resources/files.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Files.FilesRemoteUpdateError](src/resources/files.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.files.filesRemoteUpdate(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Files.FilesRemoteUpdateError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -13293,21 +18634,39 @@ Revokes public/external sharing access for a file
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.files.filesRevokePublicUrl({ contentType });
+  const response = await client.files.filesRevokePublicUrl({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type FilesRevokePublicUrLschema
 } catch (err) {
-  if (
-    err instanceof Files.FilesRevokePublicUrlError && err.payload.kind === "filesRevokePublicUrLerrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type FilesRevokePublicUrLerrorschema1
-  }
+  // TODO: Handle 'err' of type Files.FilesRevokePublicUrlError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.files.filesRevokePublicUrl({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type FilesRevokePublicUrLschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -13333,9 +18692,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[FilesRevokePublicUrLschema](src/models/files-revoke-public-ur-lschema.ts)</code>
+**Direct**: `await client.files.filesRevokePublicUrl(request)`
 
-**OnError**: <code>[Files.FilesRevokePublicUrlError](src/resources/files.ts)</code>
+- **OnSuccess**: <code>[FilesRevokePublicUrLschema](src/models/files-revoke-public-ur-lschema.ts)</code>
+- **OnError**: throws <code>[Files.FilesRevokePublicUrlError](src/resources/files.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.files.filesRevokePublicUrl(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;FilesRevokePublicUrLschema, Files.FilesRevokePublicUrlError&gt;</code>, with `result.value` of type <code>[FilesRevokePublicUrLschema](src/models/files-revoke-public-ur-lschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -13361,21 +18728,39 @@ Enables a file for public/external sharing.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.files.filesSharedPublicUrl({ contentType });
+  const response = await client.files.filesSharedPublicUrl({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type FilesSharedPublicUrLschema
 } catch (err) {
-  if (
-    err instanceof Files.FilesSharedPublicUrlError && err.payload.kind === "filesSharedPublicUrLerrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type FilesSharedPublicUrLerrorschema1
-  }
+  // TODO: Handle 'err' of type Files.FilesSharedPublicUrlError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.files.filesSharedPublicUrl({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type FilesSharedPublicUrLschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -13401,9 +18786,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[FilesSharedPublicUrLschema](src/models/files-shared-public-ur-lschema.ts)</code>
+**Direct**: `await client.files.filesSharedPublicUrl(request)`
 
-**OnError**: <code>[Files.FilesSharedPublicUrlError](src/resources/files.ts)</code>
+- **OnSuccess**: <code>[FilesSharedPublicUrLschema](src/models/files-shared-public-ur-lschema.ts)</code>
+- **OnError**: throws <code>[Files.FilesSharedPublicUrlError](src/resources/files.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.files.filesSharedPublicUrl(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;FilesSharedPublicUrLschema, Files.FilesSharedPublicUrlError&gt;</code>, with `result.value` of type <code>[FilesSharedPublicUrLschema](src/models/files-shared-public-ur-lschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -13429,19 +18822,37 @@ Uploads or creates a file.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.files.filesUpload({ contentType });
+  const response = await client.files.filesUpload({ contentType: ContentType.ApplicationXWwwFormUrlencoded });
   // TODO: Handle 'response' of type FilesUploadschema
 } catch (err) {
-  if (err instanceof Files.FilesUploadError && err.payload.kind === "filesUploaderrorschema1") {
-    // TODO: Handle 'err.payload.body' of type FilesUploaderrorschema1
-  }
+  // TODO: Handle 'err' of type Files.FilesUploadError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.files.filesUpload({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type FilesUploadschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -13474,9 +18885,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[FilesUploadschema](src/models/files-uploadschema.ts)</code>
+**Direct**: `await client.files.filesUpload(request)`
 
-**OnError**: <code>[Files.FilesUploadError](src/resources/files.ts)</code>
+- **OnSuccess**: <code>[FilesUploadschema](src/models/files-uploadschema.ts)</code>
+- **OnError**: throws <code>[Files.FilesUploadError](src/resources/files.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.files.filesUpload(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;FilesUploadschema, Files.FilesUploadError&gt;</code>, with `result.value` of type <code>[FilesUploadschema](src/models/files-uploadschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -13506,19 +18925,39 @@ Adds a file from a remote service
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.filesRemote.filesRemoteAdd({ contentType });
+  const response = await client.filesRemote.filesRemoteAdd({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof FilesRemote.FilesRemoteAddError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type FilesRemote.FilesRemoteAddError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.filesRemote.filesRemoteAdd({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -13549,9 +18988,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.filesRemote.filesRemoteAdd(request)`
 
-**OnError**: <code>[FilesRemote.FilesRemoteAddError](src/resources/files-remote.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[FilesRemote.FilesRemoteAddError](src/resources/files-remote.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.filesRemote.filesRemoteAdd(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, FilesRemote.FilesRemoteAddError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -13577,19 +19024,39 @@ Retrieve information about a remote file added to Slack
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.filesRemote.filesRemoteInfo({ contentType });
+  const response = await client.filesRemote.filesRemoteInfo({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof FilesRemote.FilesRemoteInfoError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type FilesRemote.FilesRemoteInfoError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.filesRemote.filesRemoteInfo({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -13616,9 +19083,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.filesRemote.filesRemoteInfo(request)`
 
-**OnError**: <code>[FilesRemote.FilesRemoteInfoError](src/resources/files-remote.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[FilesRemote.FilesRemoteInfoError](src/resources/files-remote.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.filesRemote.filesRemoteInfo(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, FilesRemote.FilesRemoteInfoError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -13644,19 +19119,39 @@ Retrieve information about a remote file added to Slack
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.filesRemote.filesRemoteList({ contentType });
+  const response = await client.filesRemote.filesRemoteList({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof FilesRemote.FilesRemoteListError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type FilesRemote.FilesRemoteListError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.filesRemote.filesRemoteList({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -13686,9 +19181,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.filesRemote.filesRemoteList(request)`
 
-**OnError**: <code>[FilesRemote.FilesRemoteListError](src/resources/files-remote.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[FilesRemote.FilesRemoteListError](src/resources/files-remote.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.filesRemote.filesRemoteList(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, FilesRemote.FilesRemoteListError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -13714,19 +19217,39 @@ Remove a remote file.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.filesRemote.filesRemoteRemove({ contentType });
+  const response = await client.filesRemote.filesRemoteRemove({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof FilesRemote.FilesRemoteRemoveError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type FilesRemote.FilesRemoteRemoveError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.filesRemote.filesRemoteRemove({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -13753,9 +19276,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.filesRemote.filesRemoteRemove(request)`
 
-**OnError**: <code>[FilesRemote.FilesRemoteRemoveError](src/resources/files-remote.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[FilesRemote.FilesRemoteRemoveError](src/resources/files-remote.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.filesRemote.filesRemoteRemove(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, FilesRemote.FilesRemoteRemoveError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -13781,19 +19312,39 @@ Share a remote file into a channel.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.filesRemote.filesRemoteShare({ contentType });
+  const response = await client.filesRemote.filesRemoteShare({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof FilesRemote.FilesRemoteShareError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type FilesRemote.FilesRemoteShareError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.filesRemote.filesRemoteShare({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -13821,9 +19372,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.filesRemote.filesRemoteShare(request)`
 
-**OnError**: <code>[FilesRemote.FilesRemoteShareError](src/resources/files-remote.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[FilesRemote.FilesRemoteShareError](src/resources/files-remote.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.filesRemote.filesRemoteShare(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, FilesRemote.FilesRemoteShareError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -13849,19 +19408,39 @@ Updates an existing remote file.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.filesRemote.filesRemoteUpdate({ contentType });
+  const response = await client.filesRemote.filesRemoteUpdate({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof FilesRemote.FilesRemoteUpdateError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type FilesRemote.FilesRemoteUpdateError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.filesRemote.filesRemoteUpdate({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -13893,9 +19472,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.filesRemote.filesRemoteUpdate(request)`
 
-**OnError**: <code>[FilesRemote.FilesRemoteUpdateError](src/resources/files-remote.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[FilesRemote.FilesRemoteUpdateError](src/resources/files-remote.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.filesRemote.filesRemoteUpdate(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, FilesRemote.FilesRemoteUpdateError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -13925,21 +19512,43 @@ For Enterprise Grid workspaces, map local user IDs to global user IDs
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.migration.migrationExchange({ token, users, contentType });
+  const response = await client.migration.migrationExchange({
+    token: "some example string",
+    users: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type MigrationExchangesuccessschema
 } catch (err) {
-  if (
-    err instanceof Migration.MigrationExchangeError && err.payload.kind === "migrationExchangeerrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type MigrationExchangeerrorschema1
-  }
+  // TODO: Handle 'err' of type Migration.MigrationExchangeError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.migration.migrationExchange({
+  token: "some example string",
+  users: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type MigrationExchangesuccessschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -13967,9 +19576,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[MigrationExchangesuccessschema](src/models/migration-exchangesuccessschema.ts)</code>
+**Direct**: `await client.migration.migrationExchange(request)`
 
-**OnError**: <code>[Migration.MigrationExchangeError](src/resources/migration.ts)</code>
+- **OnSuccess**: <code>[MigrationExchangesuccessschema](src/models/migration-exchangesuccessschema.ts)</code>
+- **OnError**: throws <code>[Migration.MigrationExchangeError](src/resources/migration.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.migration.migrationExchange(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;MigrationExchangesuccessschema, Migration.MigrationExchangeError&gt;</code>, with `result.value` of type <code>[MigrationExchangesuccessschema](src/models/migration-exchangesuccessschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -13999,19 +19616,37 @@ Exchanges a temporary OAuth verifier code for an access token.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.oauth.oauthAccess({ contentType });
+  const response = await client.oauth.oauthAccess({ contentType: ContentType.ApplicationXWwwFormUrlencoded });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Oauth.OauthAccessError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Oauth.OauthAccessError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.oauth.oauthAccess({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -14040,9 +19675,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.oauth.oauthAccess(request)`
 
-**OnError**: <code>[Oauth.OauthAccessError](src/resources/oauth.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Oauth.OauthAccessError](src/resources/oauth.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.oauth.oauthAccess(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Oauth.OauthAccessError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -14068,19 +19711,37 @@ Exchanges a temporary OAuth verifier code for a workspace token.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.oauth.oauthToken({ contentType });
+  const response = await client.oauth.oauthToken({ contentType: ContentType.ApplicationXWwwFormUrlencoded });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Oauth.OauthTokenError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Oauth.OauthTokenError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.oauth.oauthToken({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -14109,9 +19770,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.oauth.oauthToken(request)`
 
-**OnError**: <code>[Oauth.OauthTokenError](src/resources/oauth.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Oauth.OauthTokenError](src/resources/oauth.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.oauth.oauthToken(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Oauth.OauthTokenError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -14137,19 +19806,41 @@ Exchanges a temporary OAuth verifier code for an access token.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.oauth.oauthV2Access({ code, contentType });
+  const response = await client.oauth.oauthV2Access({
+    code: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Oauth.OauthV2AccessError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Oauth.OauthV2AccessError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.oauth.oauthV2Access({
+  code: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -14177,9 +19868,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.oauth.oauthV2Access(request)`
 
-**OnError**: <code>[Oauth.OauthV2AccessError](src/resources/oauth.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Oauth.OauthV2AccessError](src/resources/oauth.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.oauth.oauthV2Access(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Oauth.OauthV2AccessError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -14209,19 +19908,41 @@ Exchanges a temporary OAuth verifier code for an access token.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.oauthV2.oauthV2Access({ code, contentType });
+  const response = await client.oauthV2.oauthV2Access({
+    code: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof OauthV2.OauthV2AccessError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type OauthV2.OauthV2AccessError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.oauthV2.oauthV2Access({
+  code: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -14249,9 +19970,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.oauthV2.oauthV2Access(request)`
 
-**OnError**: <code>[OauthV2.OauthV2AccessError](src/resources/oauth-v2.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[OauthV2.OauthV2AccessError](src/resources/oauth-v2.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.oauthV2.oauthV2Access(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, OauthV2.OauthV2AccessError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -14281,19 +20010,43 @@ Pins an item to a channel.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.pins.pinsAdd({ token, contentType, channel });
+  const response = await client.pins.pinsAdd({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    channel: "some example string",
+  });
   // TODO: Handle 'response' of type PinsAddschema
 } catch (err) {
-  if (err instanceof Pins.PinsAddError && err.payload.kind === "pinsAdderrorschema1") {
-    // TODO: Handle 'err.payload.body' of type PinsAdderrorschema1
-  }
+  // TODO: Handle 'err' of type Pins.PinsAddError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.pins.pinsAdd({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  channel: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type PinsAddschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -14320,9 +20073,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[PinsAddschema](src/models/pins-addschema.ts)</code>
+**Direct**: `await client.pins.pinsAdd(request)`
 
-**OnError**: <code>[Pins.PinsAddError](src/resources/pins.ts)</code>
+- **OnSuccess**: <code>[PinsAddschema](src/models/pins-addschema.ts)</code>
+- **OnError**: throws <code>[Pins.PinsAddError](src/resources/pins.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.pins.pinsAdd(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;PinsAddschema, Pins.PinsAddError&gt;</code>, with `result.value` of type <code>[PinsAddschema](src/models/pins-addschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -14348,19 +20109,43 @@ Lists items pinned to a channel.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.pins.pinsList({ token, channel, contentType });
+  const response = await client.pins.pinsList({
+    token: "some example string",
+    channel: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type Record<string, unknown>
 } catch (err) {
-  if (err instanceof Pins.PinsListError && err.payload.kind === "pinsListerrorschema1") {
-    // TODO: Handle 'err.payload.body' of type PinsListerrorschema1
-  }
+  // TODO: Handle 'err' of type Pins.PinsListError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.pins.pinsList({
+  token: "some example string",
+  channel: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Record<string, unknown>
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -14386,9 +20171,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>Record&lt;string, unknown&gt;</code>
+**Direct**: `await client.pins.pinsList(request)`
 
-**OnError**: <code>[Pins.PinsListError](src/resources/pins.ts)</code>
+- **OnSuccess**: <code>Record&lt;string, unknown&gt;</code>
+- **OnError**: throws <code>[Pins.PinsListError](src/resources/pins.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.pins.pinsList(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Record&lt;string, unknown&gt;, Pins.PinsListError&gt;</code>, with `result.value` of type <code>Record&lt;string, unknown&gt;</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -14414,19 +20207,43 @@ Un-pins an item from a channel.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.pins.pinsRemove({ token, contentType, channel });
+  const response = await client.pins.pinsRemove({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    channel: "some example string",
+  });
   // TODO: Handle 'response' of type PinsRemoveschema
 } catch (err) {
-  if (err instanceof Pins.PinsRemoveError && err.payload.kind === "pinsRemoveerrorschema1") {
-    // TODO: Handle 'err.payload.body' of type PinsRemoveerrorschema1
-  }
+  // TODO: Handle 'err' of type Pins.PinsRemoveError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.pins.pinsRemove({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  channel: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type PinsRemoveschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -14453,9 +20270,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[PinsRemoveschema](src/models/pins-removeschema.ts)</code>
+**Direct**: `await client.pins.pinsRemove(request)`
 
-**OnError**: <code>[Pins.PinsRemoveError](src/resources/pins.ts)</code>
+- **OnSuccess**: <code>[PinsRemoveschema](src/models/pins-removeschema.ts)</code>
+- **OnError**: throws <code>[Pins.PinsRemoveError](src/resources/pins.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.pins.pinsRemove(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;PinsRemoveschema, Pins.PinsRemoveError&gt;</code>, with `result.value` of type <code>[PinsRemoveschema](src/models/pins-removeschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -14485,19 +20310,47 @@ Adds a reaction to an item.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.reactions.reactionsAdd({ token, contentType, channel, name, timestamp });
+  const response = await client.reactions.reactionsAdd({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    channel: "some example string",
+    name: "some example string",
+    timestamp: "some example string",
+  });
   // TODO: Handle 'response' of type ReactionsAddschema
 } catch (err) {
-  if (err instanceof Reactions.ReactionsAddError && err.payload.kind === "reactionsAdderrorschema1") {
-    // TODO: Handle 'err.payload.body' of type ReactionsAdderrorschema1
-  }
+  // TODO: Handle 'err' of type Reactions.ReactionsAddError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.reactions.reactionsAdd({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  channel: "some example string",
+  name: "some example string",
+  timestamp: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type ReactionsAddschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -14525,9 +20378,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ReactionsAddschema](src/models/reactions-addschema.ts)</code>
+**Direct**: `await client.reactions.reactionsAdd(request)`
 
-**OnError**: <code>[Reactions.ReactionsAddError](src/resources/reactions.ts)</code>
+- **OnSuccess**: <code>[ReactionsAddschema](src/models/reactions-addschema.ts)</code>
+- **OnError**: throws <code>[Reactions.ReactionsAddError](src/resources/reactions.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.reactions.reactionsAdd(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;ReactionsAddschema, Reactions.ReactionsAddError&gt;</code>, with `result.value` of type <code>[ReactionsAddschema](src/models/reactions-addschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -14553,19 +20414,41 @@ Gets reactions for an item.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.reactions.reactionsGet({ token, contentType });
+  const response = await client.reactions.reactionsGet({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type Record<string, unknown>
 } catch (err) {
-  if (err instanceof Reactions.ReactionsGetError && err.payload.kind === "reactionsGeterrorschema1") {
-    // TODO: Handle 'err.payload.body' of type ReactionsGeterrorschema1
-  }
+  // TODO: Handle 'err' of type Reactions.ReactionsGetError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.reactions.reactionsGet({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Record<string, unknown>
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -14595,9 +20478,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>Record&lt;string, unknown&gt;</code>
+**Direct**: `await client.reactions.reactionsGet(request)`
 
-**OnError**: <code>[Reactions.ReactionsGetError](src/resources/reactions.ts)</code>
+- **OnSuccess**: <code>Record&lt;string, unknown&gt;</code>
+- **OnError**: throws <code>[Reactions.ReactionsGetError](src/resources/reactions.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.reactions.reactionsGet(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Record&lt;string, unknown&gt;, Reactions.ReactionsGetError&gt;</code>, with `result.value` of type <code>Record&lt;string, unknown&gt;</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -14623,19 +20514,41 @@ Lists reactions made by a user.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.reactions.reactionsList({ token, contentType });
+  const response = await client.reactions.reactionsList({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type ReactionsListschema
 } catch (err) {
-  if (err instanceof Reactions.ReactionsListError && err.payload.kind === "reactionsListerrorschema1") {
-    // TODO: Handle 'err.payload.body' of type ReactionsListerrorschema1
-  }
+  // TODO: Handle 'err' of type Reactions.ReactionsListError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.reactions.reactionsList({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type ReactionsListschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -14666,9 +20579,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ReactionsListschema](src/models/reactions-listschema.ts)</code>
+**Direct**: `await client.reactions.reactionsList(request)`
 
-**OnError**: <code>[Reactions.ReactionsListError](src/resources/reactions.ts)</code>
+- **OnSuccess**: <code>[ReactionsListschema](src/models/reactions-listschema.ts)</code>
+- **OnError**: throws <code>[Reactions.ReactionsListError](src/resources/reactions.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.reactions.reactionsList(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;ReactionsListschema, Reactions.ReactionsListError&gt;</code>, with `result.value` of type <code>[ReactionsListschema](src/models/reactions-listschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -14694,19 +20615,43 @@ Removes a reaction from an item.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.reactions.reactionsRemove({ token, contentType, name });
+  const response = await client.reactions.reactionsRemove({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    name: "some example string",
+  });
   // TODO: Handle 'response' of type ReactionsRemoveschema
 } catch (err) {
-  if (err instanceof Reactions.ReactionsRemoveError && err.payload.kind === "reactionsRemoveerrorschema1") {
-    // TODO: Handle 'err.payload.body' of type ReactionsRemoveerrorschema1
-  }
+  // TODO: Handle 'err' of type Reactions.ReactionsRemoveError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.reactions.reactionsRemove({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  name: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type ReactionsRemoveschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -14736,9 +20681,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ReactionsRemoveschema](src/models/reactions-removeschema.ts)</code>
+**Direct**: `await client.reactions.reactionsRemove(request)`
 
-**OnError**: <code>[Reactions.ReactionsRemoveError](src/resources/reactions.ts)</code>
+- **OnSuccess**: <code>[ReactionsRemoveschema](src/models/reactions-removeschema.ts)</code>
+- **OnError**: throws <code>[Reactions.ReactionsRemoveError](src/resources/reactions.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.reactions.reactionsRemove(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;ReactionsRemoveschema, Reactions.ReactionsRemoveError&gt;</code>, with `result.value` of type <code>[ReactionsRemoveschema](src/models/reactions-removeschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -14768,19 +20721,45 @@ Creates a reminder.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.reminders.remindersAdd({ token, contentType, text, time });
+  const response = await client.reminders.remindersAdd({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    text: "some example string",
+    time: "some example string",
+  });
   // TODO: Handle 'response' of type RemindersAddschema
 } catch (err) {
-  if (err instanceof Reminders.RemindersAddError && err.payload.kind === "remindersAdderrorschema1") {
-    // TODO: Handle 'err.payload.body' of type RemindersAdderrorschema1
-  }
+  // TODO: Handle 'err' of type Reminders.RemindersAddError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.reminders.remindersAdd({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  text: "some example string",
+  time: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type RemindersAddschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -14808,9 +20787,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[RemindersAddschema](src/models/reminders-addschema.ts)</code>
+**Direct**: `await client.reminders.remindersAdd(request)`
 
-**OnError**: <code>[Reminders.RemindersAddError](src/resources/reminders.ts)</code>
+- **OnSuccess**: <code>[RemindersAddschema](src/models/reminders-addschema.ts)</code>
+- **OnError**: throws <code>[Reminders.RemindersAddError](src/resources/reminders.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.reminders.remindersAdd(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;RemindersAddschema, Reminders.RemindersAddError&gt;</code>, with `result.value` of type <code>[RemindersAddschema](src/models/reminders-addschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -14836,21 +20823,39 @@ Marks a reminder as complete.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.reminders.remindersComplete({ contentType });
+  const response = await client.reminders.remindersComplete({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type RemindersCompleteschema
 } catch (err) {
-  if (
-    err instanceof Reminders.RemindersCompleteError && err.payload.kind === "remindersCompleteerrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type RemindersCompleteerrorschema1
-  }
+  // TODO: Handle 'err' of type Reminders.RemindersCompleteError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.reminders.remindersComplete({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type RemindersCompleteschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -14876,9 +20881,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[RemindersCompleteschema](src/models/reminders-completeschema.ts)</code>
+**Direct**: `await client.reminders.remindersComplete(request)`
 
-**OnError**: <code>[Reminders.RemindersCompleteError](src/resources/reminders.ts)</code>
+- **OnSuccess**: <code>[RemindersCompleteschema](src/models/reminders-completeschema.ts)</code>
+- **OnError**: throws <code>[Reminders.RemindersCompleteError](src/resources/reminders.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.reminders.remindersComplete(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;RemindersCompleteschema, Reminders.RemindersCompleteError&gt;</code>, with `result.value` of type <code>[RemindersCompleteschema](src/models/reminders-completeschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -14904,19 +20917,39 @@ Deletes a reminder.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.reminders.remindersDelete({ contentType });
+  const response = await client.reminders.remindersDelete({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type RemindersDeleteschema
 } catch (err) {
-  if (err instanceof Reminders.RemindersDeleteError && err.payload.kind === "remindersDeleteerrorschema1") {
-    // TODO: Handle 'err.payload.body' of type RemindersDeleteerrorschema1
-  }
+  // TODO: Handle 'err' of type Reminders.RemindersDeleteError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.reminders.remindersDelete({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type RemindersDeleteschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -14942,9 +20975,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[RemindersDeleteschema](src/models/reminders-deleteschema.ts)</code>
+**Direct**: `await client.reminders.remindersDelete(request)`
 
-**OnError**: <code>[Reminders.RemindersDeleteError](src/resources/reminders.ts)</code>
+- **OnSuccess**: <code>[RemindersDeleteschema](src/models/reminders-deleteschema.ts)</code>
+- **OnError**: throws <code>[Reminders.RemindersDeleteError](src/resources/reminders.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.reminders.remindersDelete(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;RemindersDeleteschema, Reminders.RemindersDeleteError&gt;</code>, with `result.value` of type <code>[RemindersDeleteschema](src/models/reminders-deleteschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -14970,19 +21011,39 @@ Gets information about a reminder.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.reminders.remindersInfo({ contentType });
+  const response = await client.reminders.remindersInfo({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type RemindersInfoschema
 } catch (err) {
-  if (err instanceof Reminders.RemindersInfoError && err.payload.kind === "remindersInfoerrorschema1") {
-    // TODO: Handle 'err.payload.body' of type RemindersInfoerrorschema1
-  }
+  // TODO: Handle 'err' of type Reminders.RemindersInfoError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.reminders.remindersInfo({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type RemindersInfoschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -15008,9 +21069,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[RemindersInfoschema](src/models/reminders-infoschema.ts)</code>
+**Direct**: `await client.reminders.remindersInfo(request)`
 
-**OnError**: <code>[Reminders.RemindersInfoError](src/resources/reminders.ts)</code>
+- **OnSuccess**: <code>[RemindersInfoschema](src/models/reminders-infoschema.ts)</code>
+- **OnError**: throws <code>[Reminders.RemindersInfoError](src/resources/reminders.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.reminders.remindersInfo(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;RemindersInfoschema, Reminders.RemindersInfoError&gt;</code>, with `result.value` of type <code>[RemindersInfoschema](src/models/reminders-infoschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -15036,19 +21105,39 @@ Lists all reminders created by or for a given user.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.reminders.remindersList({ contentType });
+  const response = await client.reminders.remindersList({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type RemindersListschema
 } catch (err) {
-  if (err instanceof Reminders.RemindersListError && err.payload.kind === "remindersListerrorschema1") {
-    // TODO: Handle 'err.payload.body' of type RemindersListerrorschema1
-  }
+  // TODO: Handle 'err' of type Reminders.RemindersListError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.reminders.remindersList({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type RemindersListschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -15073,9 +21162,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[RemindersListschema](src/models/reminders-listschema.ts)</code>
+**Direct**: `await client.reminders.remindersList(request)`
 
-**OnError**: <code>[Reminders.RemindersListError](src/resources/reminders.ts)</code>
+- **OnSuccess**: <code>[RemindersListschema](src/models/reminders-listschema.ts)</code>
+- **OnError**: throws <code>[Reminders.RemindersListError](src/resources/reminders.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.reminders.remindersList(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;RemindersListschema, Reminders.RemindersListError&gt;</code>, with `result.value` of type <code>[RemindersListschema](src/models/reminders-listschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -15105,19 +21202,41 @@ Starts a Real Time Messaging session.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.rtm.rtmConnect({ token, contentType });
+  const response = await client.rtm.rtmConnect({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type RtmConnectschema
 } catch (err) {
-  if (err instanceof Rtm.RtmConnectError && err.payload.kind === "rtmConnecterrorschema1") {
-    // TODO: Handle 'err.payload.body' of type RtmConnecterrorschema1
-  }
+  // TODO: Handle 'err' of type Rtm.RtmConnectError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.rtm.rtmConnect({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type RtmConnectschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -15144,9 +21263,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[RtmConnectschema](src/models/rtm-connectschema.ts)</code>
+**Direct**: `await client.rtm.rtmConnect(request)`
 
-**OnError**: <code>[Rtm.RtmConnectError](src/resources/rtm.ts)</code>
+- **OnSuccess**: <code>[RtmConnectschema](src/models/rtm-connectschema.ts)</code>
+- **OnError**: throws <code>[Rtm.RtmConnectError](src/resources/rtm.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.rtm.rtmConnect(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;RtmConnectschema, Rtm.RtmConnectError&gt;</code>, with `result.value` of type <code>[RtmConnectschema](src/models/rtm-connectschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -15176,19 +21303,43 @@ Searches for messages matching a query.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.search.searchMessages({ token, query, contentType });
+  const response = await client.search.searchMessages({
+    token: "some example string",
+    query: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Search.SearchMessagesError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Search.SearchMessagesError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.search.searchMessages({
+  token: "some example string",
+  query: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -15219,9 +21370,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.search.searchMessages(request)`
 
-**OnError**: <code>[Search.SearchMessagesError](src/resources/search.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Search.SearchMessagesError](src/resources/search.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.search.searchMessages(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Search.SearchMessagesError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -15251,19 +21410,41 @@ Adds a star to an item.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.stars.starsAdd({ token, contentType });
+  const response = await client.stars.starsAdd({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type StarsAddschema
 } catch (err) {
-  if (err instanceof Stars.StarsAddError && err.payload.kind === "starsAdderrorschema1") {
-    // TODO: Handle 'err.payload.body' of type StarsAdderrorschema1
-  }
+  // TODO: Handle 'err' of type Stars.StarsAddError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.stars.starsAdd({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type StarsAddschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -15292,9 +21473,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[StarsAddschema](src/models/stars-addschema.ts)</code>
+**Direct**: `await client.stars.starsAdd(request)`
 
-**OnError**: <code>[Stars.StarsAddError](src/resources/stars.ts)</code>
+- **OnSuccess**: <code>[StarsAddschema](src/models/stars-addschema.ts)</code>
+- **OnError**: throws <code>[Stars.StarsAddError](src/resources/stars.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.stars.starsAdd(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;StarsAddschema, Stars.StarsAddError&gt;</code>, with `result.value` of type <code>[StarsAddschema](src/models/stars-addschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -15320,19 +21509,37 @@ Lists stars for a user.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.stars.starsList({ contentType });
+  const response = await client.stars.starsList({ contentType: ContentType.ApplicationXWwwFormUrlencoded });
   // TODO: Handle 'response' of type StarsListschema
 } catch (err) {
-  if (err instanceof Stars.StarsListError && err.payload.kind === "starsListerrorschema1") {
-    // TODO: Handle 'err.payload.body' of type StarsListerrorschema1
-  }
+  // TODO: Handle 'err' of type Stars.StarsListError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.stars.starsList({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type StarsListschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -15361,9 +21568,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[StarsListschema](src/models/stars-listschema.ts)</code>
+**Direct**: `await client.stars.starsList(request)`
 
-**OnError**: <code>[Stars.StarsListError](src/resources/stars.ts)</code>
+- **OnSuccess**: <code>[StarsListschema](src/models/stars-listschema.ts)</code>
+- **OnError**: throws <code>[Stars.StarsListError](src/resources/stars.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.stars.starsList(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;StarsListschema, Stars.StarsListError&gt;</code>, with `result.value` of type <code>[StarsListschema](src/models/stars-listschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -15389,19 +21604,41 @@ Removes a star from an item.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.stars.starsRemove({ token, contentType });
+  const response = await client.stars.starsRemove({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type StarsRemoveschema
 } catch (err) {
-  if (err instanceof Stars.StarsRemoveError && err.payload.kind === "starsRemoveerrorschema1") {
-    // TODO: Handle 'err.payload.body' of type StarsRemoveerrorschema1
-  }
+  // TODO: Handle 'err' of type Stars.StarsRemoveError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.stars.starsRemove({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type StarsRemoveschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -15430,9 +21667,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[StarsRemoveschema](src/models/stars-removeschema.ts)</code>
+**Direct**: `await client.stars.starsRemove(request)`
 
-**OnError**: <code>[Stars.StarsRemoveError](src/resources/stars.ts)</code>
+- **OnSuccess**: <code>[StarsRemoveschema](src/models/stars-removeschema.ts)</code>
+- **OnError**: throws <code>[Stars.StarsRemoveError](src/resources/stars.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.stars.starsRemove(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;StarsRemoveschema, Stars.StarsRemoveError&gt;</code>, with `result.value` of type <code>[StarsRemoveschema](src/models/stars-removeschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -15462,19 +21707,41 @@ Gets the access logs for the current team.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.teamApi.teamAccessLogs({ token, contentType });
+  const response = await client.teamApi.teamAccessLogs({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type TeamAccessLogsschema
 } catch (err) {
-  if (err instanceof TeamApi.TeamAccessLogsError && err.payload.kind === "teamAccessLogserrorschema1") {
-    // TODO: Handle 'err.payload.body' of type TeamAccessLogserrorschema1
-  }
+  // TODO: Handle 'err' of type TeamApi.TeamAccessLogsError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.teamApi.teamAccessLogs({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type TeamAccessLogsschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -15502,9 +21769,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[TeamAccessLogsschema](src/models/team-access-logsschema.ts)</code>
+**Direct**: `await client.teamApi.teamAccessLogs(request)`
 
-**OnError**: <code>[TeamApi.TeamAccessLogsError](src/resources/team-api.ts)</code>
+- **OnSuccess**: <code>[TeamAccessLogsschema](src/models/team-access-logsschema.ts)</code>
+- **OnError**: throws <code>[TeamApi.TeamAccessLogsError](src/resources/team-api.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.teamApi.teamAccessLogs(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;TeamAccessLogsschema, TeamApi.TeamAccessLogsError&gt;</code>, with `result.value` of type <code>[TeamAccessLogsschema](src/models/team-access-logsschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -15530,19 +21805,41 @@ Gets billable users information for the current team.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.teamApi.teamBillableInfo({ token, contentType });
+  const response = await client.teamApi.teamBillableInfo({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof TeamApi.TeamBillableInfoError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type TeamApi.TeamBillableInfoError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.teamApi.teamBillableInfo({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -15568,9 +21865,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.teamApi.teamBillableInfo(request)`
 
-**OnError**: <code>[TeamApi.TeamBillableInfoError](src/resources/team-api.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[TeamApi.TeamBillableInfoError](src/resources/team-api.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.teamApi.teamBillableInfo(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, TeamApi.TeamBillableInfoError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -15596,19 +21901,41 @@ Gets information about the current team.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.teamApi.teamInfo({ token, contentType });
+  const response = await client.teamApi.teamInfo({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type TeamInfoschema
 } catch (err) {
-  if (err instanceof TeamApi.TeamInfoError && err.payload.kind === "teamInfoerrorschema1") {
-    // TODO: Handle 'err.payload.body' of type TeamInfoerrorschema1
-  }
+  // TODO: Handle 'err' of type TeamApi.TeamInfoError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.teamApi.teamInfo({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type TeamInfoschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -15634,9 +21961,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[TeamInfoschema](src/models/team-infoschema.ts)</code>
+**Direct**: `await client.teamApi.teamInfo(request)`
 
-**OnError**: <code>[TeamApi.TeamInfoError](src/resources/team-api.ts)</code>
+- **OnSuccess**: <code>[TeamInfoschema](src/models/team-infoschema.ts)</code>
+- **OnError**: throws <code>[TeamApi.TeamInfoError](src/resources/team-api.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.teamApi.teamInfo(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;TeamInfoschema, TeamApi.TeamInfoError&gt;</code>, with `result.value` of type <code>[TeamInfoschema](src/models/team-infoschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -15662,21 +21997,41 @@ Gets the integration logs for the current team.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.teamApi.teamIntegrationLogs({ token, contentType });
+  const response = await client.teamApi.teamIntegrationLogs({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type TeamIntegrationLogsschema
 } catch (err) {
-  if (
-    err instanceof TeamApi.TeamIntegrationLogsError && err.payload.kind === "teamIntegrationLogserrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type TeamIntegrationLogserrorschema1
-  }
+  // TODO: Handle 'err' of type TeamApi.TeamIntegrationLogsError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.teamApi.teamIntegrationLogs({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type TeamIntegrationLogsschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -15707,9 +22062,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[TeamIntegrationLogsschema](src/models/team-integration-logsschema.ts)</code>
+**Direct**: `await client.teamApi.teamIntegrationLogs(request)`
 
-**OnError**: <code>[TeamApi.TeamIntegrationLogsError](src/resources/team-api.ts)</code>
+- **OnSuccess**: <code>[TeamIntegrationLogsschema](src/models/team-integration-logsschema.ts)</code>
+- **OnError**: throws <code>[TeamApi.TeamIntegrationLogsError](src/resources/team-api.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.teamApi.teamIntegrationLogs(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;TeamIntegrationLogsschema, TeamApi.TeamIntegrationLogsError&gt;</code>, with `result.value` of type <code>[TeamIntegrationLogsschema](src/models/team-integration-logsschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -15735,19 +22098,41 @@ Retrieve a team's profile.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.teamApi.teamProfileGet({ token, contentType });
+  const response = await client.teamApi.teamProfileGet({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type TeamProfileGetsuccessschema
 } catch (err) {
-  if (err instanceof TeamApi.TeamProfileGetError && err.payload.kind === "teamProfileGeterrorschema1") {
-    // TODO: Handle 'err.payload.body' of type TeamProfileGeterrorschema1
-  }
+  // TODO: Handle 'err' of type TeamApi.TeamProfileGetError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.teamApi.teamProfileGet({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type TeamProfileGetsuccessschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -15773,9 +22158,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[TeamProfileGetsuccessschema](src/models/team-profile-getsuccessschema.ts)</code>
+**Direct**: `await client.teamApi.teamProfileGet(request)`
 
-**OnError**: <code>[TeamApi.TeamProfileGetError](src/resources/team-api.ts)</code>
+- **OnSuccess**: <code>[TeamProfileGetsuccessschema](src/models/team-profile-getsuccessschema.ts)</code>
+- **OnError**: throws <code>[TeamApi.TeamProfileGetError](src/resources/team-api.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.teamApi.teamProfileGet(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;TeamProfileGetsuccessschema, TeamApi.TeamProfileGetError&gt;</code>, with `result.value` of type <code>[TeamProfileGetsuccessschema](src/models/team-profile-getsuccessschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -15805,19 +22198,41 @@ Retrieve a team's profile.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.teamProfile.teamProfileGet({ token, contentType });
+  const response = await client.teamProfile.teamProfileGet({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type TeamProfileGetsuccessschema
 } catch (err) {
-  if (err instanceof TeamProfile.TeamProfileGetError && err.payload.kind === "teamProfileGeterrorschema1") {
-    // TODO: Handle 'err.payload.body' of type TeamProfileGeterrorschema1
-  }
+  // TODO: Handle 'err' of type TeamProfile.TeamProfileGetError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.teamProfile.teamProfileGet({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type TeamProfileGetsuccessschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -15843,9 +22258,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[TeamProfileGetsuccessschema](src/models/team-profile-getsuccessschema.ts)</code>
+**Direct**: `await client.teamProfile.teamProfileGet(request)`
 
-**OnError**: <code>[TeamProfile.TeamProfileGetError](src/resources/team-profile.ts)</code>
+- **OnSuccess**: <code>[TeamProfileGetsuccessschema](src/models/team-profile-getsuccessschema.ts)</code>
+- **OnError**: throws <code>[TeamProfile.TeamProfileGetError](src/resources/team-profile.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.teamProfile.teamProfileGet(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;TeamProfileGetsuccessschema, TeamProfile.TeamProfileGetError&gt;</code>, with `result.value` of type <code>[TeamProfileGetsuccessschema](src/models/team-profile-getsuccessschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -15875,21 +22298,43 @@ Create a User Group
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.usergroups.usergroupsCreate({ token, contentType, name });
+  const response = await client.usergroups.usergroupsCreate({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    name: "some example string",
+  });
   // TODO: Handle 'response' of type UsergroupsCreateschema
 } catch (err) {
-  if (
-    err instanceof Usergroups.UsergroupsCreateError && err.payload.kind === "usergroupsCreateerrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type UsergroupsCreateerrorschema1
-  }
+  // TODO: Handle 'err' of type Usergroups.UsergroupsCreateError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.usergroups.usergroupsCreate({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  name: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type UsergroupsCreateschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -15919,9 +22364,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[UsergroupsCreateschema](src/models/usergroups-createschema.ts)</code>
+**Direct**: `await client.usergroups.usergroupsCreate(request)`
 
-**OnError**: <code>[Usergroups.UsergroupsCreateError](src/resources/usergroups.ts)</code>
+- **OnSuccess**: <code>[UsergroupsCreateschema](src/models/usergroups-createschema.ts)</code>
+- **OnError**: throws <code>[Usergroups.UsergroupsCreateError](src/resources/usergroups.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.usergroups.usergroupsCreate(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;UsergroupsCreateschema, Usergroups.UsergroupsCreateError&gt;</code>, with `result.value` of type <code>[UsergroupsCreateschema](src/models/usergroups-createschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -15947,21 +22400,43 @@ Disable an existing User Group
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.usergroups.usergroupsDisable({ token, contentType, usergroup });
+  const response = await client.usergroups.usergroupsDisable({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    usergroup: "some example string",
+  });
   // TODO: Handle 'response' of type UsergroupsDisableschema
 } catch (err) {
-  if (
-    err instanceof Usergroups.UsergroupsDisableError && err.payload.kind === "usergroupsDisableerrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type UsergroupsDisableerrorschema1
-  }
+  // TODO: Handle 'err' of type Usergroups.UsergroupsDisableError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.usergroups.usergroupsDisable({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  usergroup: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type UsergroupsDisableschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -15988,9 +22463,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[UsergroupsDisableschema](src/models/usergroups-disableschema.ts)</code>
+**Direct**: `await client.usergroups.usergroupsDisable(request)`
 
-**OnError**: <code>[Usergroups.UsergroupsDisableError](src/resources/usergroups.ts)</code>
+- **OnSuccess**: <code>[UsergroupsDisableschema](src/models/usergroups-disableschema.ts)</code>
+- **OnError**: throws <code>[Usergroups.UsergroupsDisableError](src/resources/usergroups.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.usergroups.usergroupsDisable(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;UsergroupsDisableschema, Usergroups.UsergroupsDisableError&gt;</code>, with `result.value` of type <code>[UsergroupsDisableschema](src/models/usergroups-disableschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -16016,21 +22499,43 @@ Enable a User Group
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.usergroups.usergroupsEnable({ token, contentType, usergroup });
+  const response = await client.usergroups.usergroupsEnable({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    usergroup: "some example string",
+  });
   // TODO: Handle 'response' of type UsergroupsEnableschema
 } catch (err) {
-  if (
-    err instanceof Usergroups.UsergroupsEnableError && err.payload.kind === "usergroupsEnableerrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type UsergroupsEnableerrorschema1
-  }
+  // TODO: Handle 'err' of type Usergroups.UsergroupsEnableError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.usergroups.usergroupsEnable({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  usergroup: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type UsergroupsEnableschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -16057,9 +22562,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[UsergroupsEnableschema](src/models/usergroups-enableschema.ts)</code>
+**Direct**: `await client.usergroups.usergroupsEnable(request)`
 
-**OnError**: <code>[Usergroups.UsergroupsEnableError](src/resources/usergroups.ts)</code>
+- **OnSuccess**: <code>[UsergroupsEnableschema](src/models/usergroups-enableschema.ts)</code>
+- **OnError**: throws <code>[Usergroups.UsergroupsEnableError](src/resources/usergroups.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.usergroups.usergroupsEnable(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;UsergroupsEnableschema, Usergroups.UsergroupsEnableError&gt;</code>, with `result.value` of type <code>[UsergroupsEnableschema](src/models/usergroups-enableschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -16085,19 +22598,41 @@ List all User Groups for a team
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.usergroups.usergroupsList({ token, contentType });
+  const response = await client.usergroups.usergroupsList({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type UsergroupsListschema
 } catch (err) {
-  if (err instanceof Usergroups.UsergroupsListError && err.payload.kind === "usergroupsListerrorschema1") {
-    // TODO: Handle 'err.payload.body' of type UsergroupsListerrorschema1
-  }
+  // TODO: Handle 'err' of type Usergroups.UsergroupsListError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.usergroups.usergroupsList({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type UsergroupsListschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -16125,9 +22660,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[UsergroupsListschema](src/models/usergroups-listschema.ts)</code>
+**Direct**: `await client.usergroups.usergroupsList(request)`
 
-**OnError**: <code>[Usergroups.UsergroupsListError](src/resources/usergroups.ts)</code>
+- **OnSuccess**: <code>[UsergroupsListschema](src/models/usergroups-listschema.ts)</code>
+- **OnError**: throws <code>[Usergroups.UsergroupsListError](src/resources/usergroups.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.usergroups.usergroupsList(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;UsergroupsListschema, Usergroups.UsergroupsListError&gt;</code>, with `result.value` of type <code>[UsergroupsListschema](src/models/usergroups-listschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -16153,21 +22696,43 @@ Update an existing User Group
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.usergroups.usergroupsUpdate({ token, contentType, usergroup });
+  const response = await client.usergroups.usergroupsUpdate({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    usergroup: "some example string",
+  });
   // TODO: Handle 'response' of type UsergroupsUpdateschema
 } catch (err) {
-  if (
-    err instanceof Usergroups.UsergroupsUpdateError && err.payload.kind === "usergroupsUpdateerrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type UsergroupsUpdateerrorschema1
-  }
+  // TODO: Handle 'err' of type Usergroups.UsergroupsUpdateError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.usergroups.usergroupsUpdate({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  usergroup: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type UsergroupsUpdateschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -16198,9 +22763,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[UsergroupsUpdateschema](src/models/usergroups-updateschema.ts)</code>
+**Direct**: `await client.usergroups.usergroupsUpdate(request)`
 
-**OnError**: <code>[Usergroups.UsergroupsUpdateError](src/resources/usergroups.ts)</code>
+- **OnSuccess**: <code>[UsergroupsUpdateschema](src/models/usergroups-updateschema.ts)</code>
+- **OnError**: throws <code>[Usergroups.UsergroupsUpdateError](src/resources/usergroups.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.usergroups.usergroupsUpdate(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;UsergroupsUpdateschema, Usergroups.UsergroupsUpdateError&gt;</code>, with `result.value` of type <code>[UsergroupsUpdateschema](src/models/usergroups-updateschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -16226,22 +22799,43 @@ List all users in a User Group
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.usergroups.usergroupsUsersList({ token, usergroup, contentType });
+  const response = await client.usergroups.usergroupsUsersList({
+    token: "some example string",
+    usergroup: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type UsergroupsUsersListschema
 } catch (err) {
-  if (
-    err instanceof Usergroups.UsergroupsUsersListError &&
-      err.payload.kind === "usergroupsUsersListerrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type UsergroupsUsersListerrorschema1
-  }
+  // TODO: Handle 'err' of type Usergroups.UsergroupsUsersListError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.usergroups.usergroupsUsersList({
+  token: "some example string",
+  usergroup: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type UsergroupsUsersListschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -16268,9 +22862,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[UsergroupsUsersListschema](src/models/usergroups-users-listschema.ts)</code>
+**Direct**: `await client.usergroups.usergroupsUsersList(request)`
 
-**OnError**: <code>[Usergroups.UsergroupsUsersListError](src/resources/usergroups.ts)</code>
+- **OnSuccess**: <code>[UsergroupsUsersListschema](src/models/usergroups-users-listschema.ts)</code>
+- **OnError**: throws <code>[Usergroups.UsergroupsUsersListError](src/resources/usergroups.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.usergroups.usergroupsUsersList(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;UsergroupsUsersListschema, Usergroups.UsergroupsUsersListError&gt;</code>, with `result.value` of type <code>[UsergroupsUsersListschema](src/models/usergroups-users-listschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -16296,22 +22898,45 @@ Update the list of users for a User Group
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.usergroups.usergroupsUsersUpdate({ token, contentType, usergroup, users });
+  const response = await client.usergroups.usergroupsUsersUpdate({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    usergroup: "some example string",
+    users: "some example string",
+  });
   // TODO: Handle 'response' of type UsergroupsUsersUpdateschema
 } catch (err) {
-  if (
-    err instanceof Usergroups.UsergroupsUsersUpdateError &&
-      err.payload.kind === "usergroupsUsersUpdateerrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type UsergroupsUsersUpdateerrorschema1
-  }
+  // TODO: Handle 'err' of type Usergroups.UsergroupsUsersUpdateError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.usergroups.usergroupsUsersUpdate({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  usergroup: "some example string",
+  users: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type UsergroupsUsersUpdateschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -16339,9 +22964,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[UsergroupsUsersUpdateschema](src/models/usergroups-users-updateschema.ts)</code>
+**Direct**: `await client.usergroups.usergroupsUsersUpdate(request)`
 
-**OnError**: <code>[Usergroups.UsergroupsUsersUpdateError](src/resources/usergroups.ts)</code>
+- **OnSuccess**: <code>[UsergroupsUsersUpdateschema](src/models/usergroups-users-updateschema.ts)</code>
+- **OnError**: throws <code>[Usergroups.UsergroupsUsersUpdateError](src/resources/usergroups.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.usergroups.usergroupsUsersUpdate(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;UsergroupsUsersUpdateschema, Usergroups.UsergroupsUsersUpdateError&gt;</code>, with `result.value` of type <code>[UsergroupsUsersUpdateschema](src/models/usergroups-users-updateschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -16371,22 +23004,43 @@ List all users in a User Group
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.usergroupsUsers.usergroupsUsersList({ token, usergroup, contentType });
+  const response = await client.usergroupsUsers.usergroupsUsersList({
+    token: "some example string",
+    usergroup: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type UsergroupsUsersListschema
 } catch (err) {
-  if (
-    err instanceof UsergroupsUsers.UsergroupsUsersListError &&
-      err.payload.kind === "usergroupsUsersListerrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type UsergroupsUsersListerrorschema1
-  }
+  // TODO: Handle 'err' of type UsergroupsUsers.UsergroupsUsersListError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.usergroupsUsers.usergroupsUsersList({
+  token: "some example string",
+  usergroup: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type UsergroupsUsersListschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -16413,9 +23067,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[UsergroupsUsersListschema](src/models/usergroups-users-listschema.ts)</code>
+**Direct**: `await client.usergroupsUsers.usergroupsUsersList(request)`
 
-**OnError**: <code>[UsergroupsUsers.UsergroupsUsersListError](src/resources/usergroups-users.ts)</code>
+- **OnSuccess**: <code>[UsergroupsUsersListschema](src/models/usergroups-users-listschema.ts)</code>
+- **OnError**: throws <code>[UsergroupsUsers.UsergroupsUsersListError](src/resources/usergroups-users.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.usergroupsUsers.usergroupsUsersList(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;UsergroupsUsersListschema, UsergroupsUsers.UsergroupsUsersListError&gt;</code>, with `result.value` of type <code>[UsergroupsUsersListschema](src/models/usergroups-users-listschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -16441,7 +23103,7 @@ Update the list of users for a User Group
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -16449,19 +23111,37 @@ Update the list of users for a User Group
 ```ts
 try {
   const response = await client.usergroupsUsers.usergroupsUsersUpdate({
-    token,
-    contentType,
-    usergroup,
-    users,
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    usergroup: "some example string",
+    users: "some example string",
   });
   // TODO: Handle 'response' of type UsergroupsUsersUpdateschema
 } catch (err) {
-  if (
-    err instanceof UsergroupsUsers.UsergroupsUsersUpdateError &&
-      err.payload.kind === "usergroupsUsersUpdateerrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type UsergroupsUsersUpdateerrorschema1
-  }
+  // TODO: Handle 'err' of type UsergroupsUsers.UsergroupsUsersUpdateError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.usergroupsUsers.usergroupsUsersUpdate({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  usergroup: "some example string",
+  users: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type UsergroupsUsersUpdateschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -16489,9 +23169,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[UsergroupsUsersUpdateschema](src/models/usergroups-users-updateschema.ts)</code>
+**Direct**: `await client.usergroupsUsers.usergroupsUsersUpdate(request)`
 
-**OnError**: <code>[UsergroupsUsers.UsergroupsUsersUpdateError](src/resources/usergroups-users.ts)</code>
+- **OnSuccess**: <code>[UsergroupsUsersUpdateschema](src/models/usergroups-users-updateschema.ts)</code>
+- **OnError**: throws <code>[UsergroupsUsers.UsergroupsUsersUpdateError](src/resources/usergroups-users.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.usergroupsUsers.usergroupsUsersUpdate(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;UsergroupsUsersUpdateschema, UsergroupsUsers.UsergroupsUsersUpdateError&gt;</code>, with `result.value` of type <code>[UsergroupsUsersUpdateschema](src/models/usergroups-users-updateschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -16521,19 +23209,39 @@ List conversations the calling user may access.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.users.usersConversations({ contentType });
+  const response = await client.users.usersConversations({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type UsersConversationssuccessschema
 } catch (err) {
-  if (err instanceof Users.UsersConversationsError && err.payload.kind === "usersConversationserrorschema1") {
-    // TODO: Handle 'err.payload.body' of type UsersConversationserrorschema1
-  }
+  // TODO: Handle 'err' of type Users.UsersConversationsError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.users.usersConversations({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type UsersConversationssuccessschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -16563,9 +23271,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[UsersConversationssuccessschema](src/models/users-conversationssuccessschema.ts)</code>
+**Direct**: `await client.users.usersConversations(request)`
 
-**OnError**: <code>[Users.UsersConversationsError](src/resources/users.ts)</code>
+- **OnSuccess**: <code>[UsersConversationssuccessschema](src/models/users-conversationssuccessschema.ts)</code>
+- **OnError**: throws <code>[Users.UsersConversationsError](src/resources/users.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.users.usersConversations(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;UsersConversationssuccessschema, Users.UsersConversationsError&gt;</code>, with `result.value` of type <code>[UsersConversationssuccessschema](src/models/users-conversationssuccessschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -16591,19 +23307,41 @@ Delete the user profile photo
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.users.usersDeletePhoto({ contentType, token });
+  const response = await client.users.usersDeletePhoto({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    token: "some example string",
+  });
   // TODO: Handle 'response' of type UsersDeletePhotoschema
 } catch (err) {
-  if (err instanceof Users.UsersDeletePhotoError && err.payload.kind === "usersDeletePhotoerrorschema1") {
-    // TODO: Handle 'err.payload.body' of type UsersDeletePhotoerrorschema1
-  }
+  // TODO: Handle 'err' of type Users.UsersDeletePhotoError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.users.usersDeletePhoto({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  token: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type UsersDeletePhotoschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -16628,9 +23366,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[UsersDeletePhotoschema](src/models/users-delete-photoschema.ts)</code>
+**Direct**: `await client.users.usersDeletePhoto(request)`
 
-**OnError**: <code>[Users.UsersDeletePhotoError](src/resources/users.ts)</code>
+- **OnSuccess**: <code>[UsersDeletePhotoschema](src/models/users-delete-photoschema.ts)</code>
+- **OnError**: throws <code>[Users.UsersDeletePhotoError](src/resources/users.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.users.usersDeletePhoto(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;UsersDeletePhotoschema, Users.UsersDeletePhotoError&gt;</code>, with `result.value` of type <code>[UsersDeletePhotoschema](src/models/users-delete-photoschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -16656,19 +23402,41 @@ Gets user presence information.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.users.usersGetPresence({ token, contentType });
+  const response = await client.users.usersGetPresence({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type ApImethodusersGetPresence
 } catch (err) {
-  if (err instanceof Users.UsersGetPresenceError && err.payload.kind === "usersCountserrorschema1") {
-    // TODO: Handle 'err.payload.body' of type UsersCountserrorschema1
-  }
+  // TODO: Handle 'err' of type Users.UsersGetPresenceError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.users.usersGetPresence({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type ApImethodusersGetPresence
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -16694,9 +23462,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ApImethodusersGetPresence](src/models/ap-imethodusers-get-presence.ts)</code>
+**Direct**: `await client.users.usersGetPresence(request)`
 
-**OnError**: <code>[Users.UsersGetPresenceError](src/resources/users.ts)</code>
+- **OnSuccess**: <code>[ApImethodusersGetPresence](src/models/ap-imethodusers-get-presence.ts)</code>
+- **OnError**: throws <code>[Users.UsersGetPresenceError](src/resources/users.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.users.usersGetPresence(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;ApImethodusersGetPresence, Users.UsersGetPresenceError&gt;</code>, with `result.value` of type <code>[ApImethodusersGetPresence](src/models/ap-imethodusers-get-presence.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -16722,19 +23498,39 @@ Get a user's identity.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.users.usersIdentity({ contentType });
+  const response = await client.users.usersIdentity({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type Record<string, unknown>
 } catch (err) {
-  if (err instanceof Users.UsersIdentityError && err.payload.kind === "usersIdentityerrorschema1") {
-    // TODO: Handle 'err.payload.body' of type UsersIdentityerrorschema1
-  }
+  // TODO: Handle 'err' of type Users.UsersIdentityError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.users.usersIdentity({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Record<string, unknown>
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -16759,9 +23555,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>Record&lt;string, unknown&gt;</code>
+**Direct**: `await client.users.usersIdentity(request)`
 
-**OnError**: <code>[Users.UsersIdentityError](src/resources/users.ts)</code>
+- **OnSuccess**: <code>Record&lt;string, unknown&gt;</code>
+- **OnError**: throws <code>[Users.UsersIdentityError](src/resources/users.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.users.usersIdentity(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Record&lt;string, unknown&gt;, Users.UsersIdentityError&gt;</code>, with `result.value` of type <code>Record&lt;string, unknown&gt;</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -16787,19 +23591,41 @@ Gets information about a user.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.users.usersInfo({ token, contentType });
+  const response = await client.users.usersInfo({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type UsersInfosuccessschema
 } catch (err) {
-  if (err instanceof Users.UsersInfoError && err.payload.kind === "usersInfoerrorschema1") {
-    // TODO: Handle 'err.payload.body' of type UsersInfoerrorschema1
-  }
+  // TODO: Handle 'err' of type Users.UsersInfoError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.users.usersInfo({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type UsersInfosuccessschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -16826,9 +23652,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[UsersInfosuccessschema](src/models/users-infosuccessschema.ts)</code>
+**Direct**: `await client.users.usersInfo(request)`
 
-**OnError**: <code>[Users.UsersInfoError](src/resources/users.ts)</code>
+- **OnSuccess**: <code>[UsersInfosuccessschema](src/models/users-infosuccessschema.ts)</code>
+- **OnError**: throws <code>[Users.UsersInfoError](src/resources/users.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.users.usersInfo(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;UsersInfosuccessschema, Users.UsersInfoError&gt;</code>, with `result.value` of type <code>[UsersInfosuccessschema](src/models/users-infosuccessschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -16854,19 +23688,37 @@ Lists all users in a Slack team.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.users.usersList({ contentType });
+  const response = await client.users.usersList({ contentType: ContentType.ApplicationXWwwFormUrlencoded });
   // TODO: Handle 'response' of type UsersListschema
 } catch (err) {
-  if (err instanceof Users.UsersListError && err.payload.kind === "usersListerrorschema1") {
-    // TODO: Handle 'err.payload.body' of type UsersListerrorschema1
-  }
+  // TODO: Handle 'err' of type Users.UsersListError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.users.usersList({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type UsersListschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -16894,9 +23746,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[UsersListschema](src/models/users-listschema.ts)</code>
+**Direct**: `await client.users.usersList(request)`
 
-**OnError**: <code>[Users.UsersListError](src/resources/users.ts)</code>
+- **OnSuccess**: <code>[UsersListschema](src/models/users-listschema.ts)</code>
+- **OnError**: throws <code>[Users.UsersListError](src/resources/users.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.users.usersList(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;UsersListschema, Users.UsersListError&gt;</code>, with `result.value` of type <code>[UsersListschema](src/models/users-listschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -16922,19 +23782,43 @@ Find a user with an email address.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.users.usersLookupByEmail({ token, email, contentType });
+  const response = await client.users.usersLookupByEmail({
+    token: "some example string",
+    email: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type UsersLookupByEmailsuccessschema
 } catch (err) {
-  if (err instanceof Users.UsersLookupByEmailError && err.payload.kind === "usersLookupByEmailerrorschema1") {
-    // TODO: Handle 'err.payload.body' of type UsersLookupByEmailerrorschema1
-  }
+  // TODO: Handle 'err' of type Users.UsersLookupByEmailError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.users.usersLookupByEmail({
+  token: "some example string",
+  email: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type UsersLookupByEmailsuccessschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -16960,9 +23844,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[UsersLookupByEmailsuccessschema](src/models/users-lookup-by-emailsuccessschema.ts)</code>
+**Direct**: `await client.users.usersLookupByEmail(request)`
 
-**OnError**: <code>[Users.UsersLookupByEmailError](src/resources/users.ts)</code>
+- **OnSuccess**: <code>[UsersLookupByEmailsuccessschema](src/models/users-lookup-by-emailsuccessschema.ts)</code>
+- **OnError**: throws <code>[Users.UsersLookupByEmailError](src/resources/users.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.users.usersLookupByEmail(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;UsersLookupByEmailsuccessschema, Users.UsersLookupByEmailError&gt;</code>, with `result.value` of type <code>[UsersLookupByEmailsuccessschema](src/models/users-lookup-by-emailsuccessschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -16988,19 +23880,41 @@ Retrieves a user's profile information.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.users.usersProfileGet({ token, contentType });
+  const response = await client.users.usersProfileGet({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type UsersProfileGetschema
 } catch (err) {
-  if (err instanceof Users.UsersProfileGetError && err.payload.kind === "usersProfileGeterrorschema1") {
-    // TODO: Handle 'err.payload.body' of type UsersProfileGeterrorschema1
-  }
+  // TODO: Handle 'err' of type Users.UsersProfileGetError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.users.usersProfileGet({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type UsersProfileGetschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -17027,9 +23941,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[UsersProfileGetschema](src/models/users-profile-getschema.ts)</code>
+**Direct**: `await client.users.usersProfileGet(request)`
 
-**OnError**: <code>[Users.UsersProfileGetError](src/resources/users.ts)</code>
+- **OnSuccess**: <code>[UsersProfileGetschema](src/models/users-profile-getschema.ts)</code>
+- **OnError**: throws <code>[Users.UsersProfileGetError](src/resources/users.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.users.usersProfileGet(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;UsersProfileGetschema, Users.UsersProfileGetError&gt;</code>, with `result.value` of type <code>[UsersProfileGetschema](src/models/users-profile-getschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -17055,19 +23977,41 @@ Set the profile information for a user.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.users.usersProfileSet({ token, contentType });
+  const response = await client.users.usersProfileSet({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type UsersProfileSetschema
 } catch (err) {
-  if (err instanceof Users.UsersProfileSetError && err.payload.kind === "usersProfileSeterrorschema1") {
-    // TODO: Handle 'err.payload.body' of type UsersProfileSeterrorschema1
-  }
+  // TODO: Handle 'err' of type Users.UsersProfileSetError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.users.usersProfileSet({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type UsersProfileSetschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -17096,9 +24040,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[UsersProfileSetschema](src/models/users-profile-setschema.ts)</code>
+**Direct**: `await client.users.usersProfileSet(request)`
 
-**OnError**: <code>[Users.UsersProfileSetError](src/resources/users.ts)</code>
+- **OnSuccess**: <code>[UsersProfileSetschema](src/models/users-profile-setschema.ts)</code>
+- **OnError**: throws <code>[Users.UsersProfileSetError](src/resources/users.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.users.usersProfileSet(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;UsersProfileSetschema, Users.UsersProfileSetError&gt;</code>, with `result.value` of type <code>[UsersProfileSetschema](src/models/users-profile-setschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -17124,19 +24076,41 @@ Marked a user as active. Deprecated and non-functional.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.users.usersSetActive({ token, contentType });
+  const response = await client.users.usersSetActive({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type UsersSetActiveschema
 } catch (err) {
-  if (err instanceof Users.UsersSetActiveError && err.payload.kind === "usersSetActiveerrorschema1") {
-    // TODO: Handle 'err.payload.body' of type UsersSetActiveerrorschema1
-  }
+  // TODO: Handle 'err' of type Users.UsersSetActiveError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.users.usersSetActive({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type UsersSetActiveschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -17161,9 +24135,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[UsersSetActiveschema](src/models/users-set-activeschema.ts)</code>
+**Direct**: `await client.users.usersSetActive(request)`
 
-**OnError**: <code>[Users.UsersSetActiveError](src/resources/users.ts)</code>
+- **OnSuccess**: <code>[UsersSetActiveschema](src/models/users-set-activeschema.ts)</code>
+- **OnError**: throws <code>[Users.UsersSetActiveError](src/resources/users.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.users.usersSetActive(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;UsersSetActiveschema, Users.UsersSetActiveError&gt;</code>, with `result.value` of type <code>[UsersSetActiveschema](src/models/users-set-activeschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -17189,19 +24171,41 @@ Set the user profile photo
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.users.usersSetPhoto({ contentType, token });
+  const response = await client.users.usersSetPhoto({
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    token: "some example string",
+  });
   // TODO: Handle 'response' of type UsersSetPhotoschema
 } catch (err) {
-  if (err instanceof Users.UsersSetPhotoError && err.payload.kind === "usersSetPhotoerrorschema1") {
-    // TODO: Handle 'err.payload.body' of type UsersSetPhotoerrorschema1
-  }
+  // TODO: Handle 'err' of type Users.UsersSetPhotoError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.users.usersSetPhoto({
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  token: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type UsersSetPhotoschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -17230,9 +24234,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[UsersSetPhotoschema](src/models/users-set-photoschema.ts)</code>
+**Direct**: `await client.users.usersSetPhoto(request)`
 
-**OnError**: <code>[Users.UsersSetPhotoError](src/resources/users.ts)</code>
+- **OnSuccess**: <code>[UsersSetPhotoschema](src/models/users-set-photoschema.ts)</code>
+- **OnError**: throws <code>[Users.UsersSetPhotoError](src/resources/users.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.users.usersSetPhoto(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;UsersSetPhotoschema, Users.UsersSetPhotoError&gt;</code>, with `result.value` of type <code>[UsersSetPhotoschema](src/models/users-set-photoschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -17258,19 +24270,43 @@ Manually sets user presence.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.users.usersSetPresence({ token, contentType, presence });
+  const response = await client.users.usersSetPresence({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+    presence: "some example string",
+  });
   // TODO: Handle 'response' of type UsersSetPresenceschema
 } catch (err) {
-  if (err instanceof Users.UsersSetPresenceError && err.payload.kind === "usersSetPresenceerrorschema1") {
-    // TODO: Handle 'err.payload.body' of type UsersSetPresenceerrorschema1
-  }
+  // TODO: Handle 'err' of type Users.UsersSetPresenceError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.users.usersSetPresence({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  presence: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type UsersSetPresenceschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -17296,9 +24332,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[UsersSetPresenceschema](src/models/users-set-presenceschema.ts)</code>
+**Direct**: `await client.users.usersSetPresence(request)`
 
-**OnError**: <code>[Users.UsersSetPresenceError](src/resources/users.ts)</code>
+- **OnSuccess**: <code>[UsersSetPresenceschema](src/models/users-set-presenceschema.ts)</code>
+- **OnError**: throws <code>[Users.UsersSetPresenceError](src/resources/users.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.users.usersSetPresence(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;UsersSetPresenceschema, Users.UsersSetPresenceError&gt;</code>, with `result.value` of type <code>[UsersSetPresenceschema](src/models/users-set-presenceschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -17328,21 +24372,41 @@ Retrieves a user's profile information.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.usersProfile.usersProfileGet({ token, contentType });
+  const response = await client.usersProfile.usersProfileGet({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type UsersProfileGetschema
 } catch (err) {
-  if (
-    err instanceof UsersProfile.UsersProfileGetError && err.payload.kind === "usersProfileGeterrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type UsersProfileGeterrorschema1
-  }
+  // TODO: Handle 'err' of type UsersProfile.UsersProfileGetError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.usersProfile.usersProfileGet({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type UsersProfileGetschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -17369,9 +24433,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[UsersProfileGetschema](src/models/users-profile-getschema.ts)</code>
+**Direct**: `await client.usersProfile.usersProfileGet(request)`
 
-**OnError**: <code>[UsersProfile.UsersProfileGetError](src/resources/users-profile.ts)</code>
+- **OnSuccess**: <code>[UsersProfileGetschema](src/models/users-profile-getschema.ts)</code>
+- **OnError**: throws <code>[UsersProfile.UsersProfileGetError](src/resources/users-profile.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.usersProfile.usersProfileGet(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;UsersProfileGetschema, UsersProfile.UsersProfileGetError&gt;</code>, with `result.value` of type <code>[UsersProfileGetschema](src/models/users-profile-getschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -17397,21 +24469,41 @@ Set the profile information for a user.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.usersProfile.usersProfileSet({ token, contentType });
+  const response = await client.usersProfile.usersProfileSet({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type UsersProfileSetschema
 } catch (err) {
-  if (
-    err instanceof UsersProfile.UsersProfileSetError && err.payload.kind === "usersProfileSeterrorschema1"
-  ) {
-    // TODO: Handle 'err.payload.body' of type UsersProfileSeterrorschema1
-  }
+  // TODO: Handle 'err' of type UsersProfile.UsersProfileSetError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.usersProfile.usersProfileSet({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type UsersProfileSetschema
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -17440,9 +24532,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[UsersProfileSetschema](src/models/users-profile-setschema.ts)</code>
+**Direct**: `await client.usersProfile.usersProfileSet(request)`
 
-**OnError**: <code>[UsersProfile.UsersProfileSetError](src/resources/users-profile.ts)</code>
+- **OnSuccess**: <code>[UsersProfileSetschema](src/models/users-profile-setschema.ts)</code>
+- **OnError**: throws <code>[UsersProfile.UsersProfileSetError](src/resources/users-profile.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.usersProfile.usersProfileSet(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;UsersProfileSetschema, UsersProfile.UsersProfileSetError&gt;</code>, with `result.value` of type <code>[UsersProfileSetschema](src/models/users-profile-setschema.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -17472,19 +24572,45 @@ Open a view for a user.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.views.viewsOpen({ triggerId, view, token, contentType });
+  const response = await client.views.viewsOpen({
+    triggerId: "some example string",
+    view: "some example string",
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Views.ViewsOpenError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Views.ViewsOpenError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.views.viewsOpen({
+  triggerId: "some example string",
+  view: "some example string",
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -17511,9 +24637,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.views.viewsOpen(request)`
 
-**OnError**: <code>[Views.ViewsOpenError](src/resources/views.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Views.ViewsOpenError](src/resources/views.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.views.viewsOpen(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Views.ViewsOpenError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -17539,19 +24673,45 @@ Publish a static view for a User.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.views.viewsPublish({ userId, view, token, contentType });
+  const response = await client.views.viewsPublish({
+    userId: "some example string",
+    view: "some example string",
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Views.ViewsPublishError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Views.ViewsPublishError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.views.viewsPublish({
+  userId: "some example string",
+  view: "some example string",
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -17579,9 +24739,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.views.viewsPublish(request)`
 
-**OnError**: <code>[Views.ViewsPublishError](src/resources/views.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Views.ViewsPublishError](src/resources/views.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.views.viewsPublish(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Views.ViewsPublishError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -17607,19 +24775,45 @@ Push a view onto the stack of a root view.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.views.viewsPush({ triggerId, view, token, contentType });
+  const response = await client.views.viewsPush({
+    triggerId: "some example string",
+    view: "some example string",
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Views.ViewsPushError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Views.ViewsPushError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.views.viewsPush({
+  triggerId: "some example string",
+  view: "some example string",
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -17646,9 +24840,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.views.viewsPush(request)`
 
-**OnError**: <code>[Views.ViewsPushError](src/resources/views.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Views.ViewsPushError](src/resources/views.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.views.viewsPush(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Views.ViewsPushError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -17674,19 +24876,41 @@ Update an existing view.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.views.viewsUpdate({ token, contentType });
+  const response = await client.views.viewsUpdate({
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Views.ViewsUpdateError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Views.ViewsUpdateError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.views.viewsUpdate({
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -17715,9 +24939,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.views.viewsUpdate(request)`
 
-**OnError**: <code>[Views.ViewsUpdateError](src/resources/views.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Views.ViewsUpdateError](src/resources/views.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.views.viewsUpdate(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Views.ViewsUpdateError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -17747,7 +24979,7 @@ Indicate that an app's step in a workflow completed execution.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -17755,15 +24987,35 @@ Indicate that an app's step in a workflow completed execution.
 ```ts
 try {
   const response = await client.workflows.workflowsStepCompleted({
-    workflowStepExecuteId,
-    token,
-    contentType,
+    workflowStepExecuteId: "some example string",
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
   });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Workflows.WorkflowsStepCompletedError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Workflows.WorkflowsStepCompletedError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.workflows.workflowsStepCompleted({
+  workflowStepExecuteId: "some example string",
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -17790,9 +25042,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.workflows.workflowsStepCompleted(request)`
 
-**OnError**: <code>[Workflows.WorkflowsStepCompletedError](src/resources/workflows.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Workflows.WorkflowsStepCompletedError](src/resources/workflows.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.workflows.workflowsStepCompleted(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Workflows.WorkflowsStepCompletedError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -17818,7 +25078,7 @@ Indicate that an app's step in a workflow failed to execute.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -17826,16 +25086,37 @@ Indicate that an app's step in a workflow failed to execute.
 ```ts
 try {
   const response = await client.workflows.workflowsStepFailed({
-    workflowStepExecuteId,
-    error,
-    token,
-    contentType,
+    workflowStepExecuteId: "some example string",
+    error: "some example string",
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
   });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Workflows.WorkflowsStepFailedError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Workflows.WorkflowsStepFailedError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.workflows.workflowsStepFailed({
+  workflowStepExecuteId: "some example string",
+  error: "some example string",
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -17862,9 +25143,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.workflows.workflowsStepFailed(request)`
 
-**OnError**: <code>[Workflows.WorkflowsStepFailedError](src/resources/workflows.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Workflows.WorkflowsStepFailedError](src/resources/workflows.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.workflows.workflowsStepFailed(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Workflows.WorkflowsStepFailedError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -17890,19 +25179,43 @@ Update the configuration for a workflow extension step.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.workflows.workflowsUpdateStep({ workflowStepEditId, token, contentType });
+  const response = await client.workflows.workflowsUpdateStep({
+    workflowStepEditId: "some example string",
+    token: "some example string",
+    contentType: ContentType.ApplicationXWwwFormUrlencoded,
+  });
   // TODO: Handle 'response' of type Defaultsuccesstemplate
 } catch (err) {
-  if (err instanceof Workflows.WorkflowsUpdateStepError && err.payload.kind === "defaulterrortemplate1") {
-    // TODO: Handle 'err.payload.body' of type Defaulterrortemplate1
-  }
+  // TODO: Handle 'err' of type Workflows.WorkflowsUpdateStepError, discriminated with 'err.payload.kind'
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.workflows.workflowsUpdateStep({
+  workflowStepEditId: "some example string",
+  token: "some example string",
+  contentType: ContentType.ApplicationXWwwFormUrlencoded,
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Defaultsuccesstemplate
+} else {
+  // TODO: Handle 'result', discriminated with 'result.payload.kind'
 }
 ```
 
@@ -17932,9 +25245,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+**Direct**: `await client.workflows.workflowsUpdateStep(request)`
 
-**OnError**: <code>[Workflows.WorkflowsUpdateStepError](src/resources/workflows.ts)</code>
+- **OnSuccess**: <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: throws <code>[Workflows.WorkflowsUpdateStepError](src/resources/workflows.ts)</code>, with `err.payload` discriminated on `kind`
+
+**As ApiResult**: `await client.workflows.workflowsUpdateStep(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Defaultsuccesstemplate, Workflows.WorkflowsUpdateStepError&gt;</code>, with `result.value` of type <code>[Defaultsuccesstemplate](src/models/defaultsuccesstemplate.ts)</code>
+- **OnError**: `result.payload` discriminated on `kind`, with `result.message`
+
+**Thrown**: <code>[SlackWebApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>

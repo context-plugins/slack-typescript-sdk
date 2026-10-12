@@ -4,7 +4,7 @@
 
 Accessor: `client.chat` · Source: `src/resources/chat.ts` · 10 operations · Request and error types: namespace `Chat`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `slack-web-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `slack-web-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### chatDelete
 
@@ -12,9 +12,10 @@ Accessor: `client.chat` · Source: `src/resources/chat.ts` · 10 operations · R
 - **Wire**: `POST /chat.delete`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `ChatDeletesuccessschema`
-- **Error**: `Chat.ChatDeleteError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"chatDeleteerrorschema1"` [400–599] `ChatDeleteerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Chat.ChatDeleteError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"chatDeleteerrorschema1"` [default — any status no arm above covers] `ChatDeleteerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `ChatDeleteerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Chat.ChatDeleteRequest` (5):
 
@@ -38,9 +39,10 @@ Accessor: `client.chat` · Source: `src/resources/chat.ts` · 10 operations · R
 - **Wire**: `POST /chat.deleteScheduledMessage`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `ChatDeleteScheduledMessageschema`
-- **Error**: `Chat.ChatDeleteScheduledMessageError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"chatDeleteScheduledMessageerrorschema1"` [400–599] `ChatDeleteScheduledMessageerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Chat.ChatDeleteScheduledMessageError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"chatDeleteScheduledMessageerrorschema1"` [default — any status no arm above covers] `ChatDeleteScheduledMessageerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `ChatDeleteScheduledMessageerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Chat.ChatDeleteScheduledMessageRequest` (5):
 
@@ -65,8 +67,8 @@ Accessor: `client.chat` · Source: `src/resources/chat.ts` · 10 operations · R
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `ChatGetPermalinksuccessschema`
-- **Error**: `Chat.ChatGetPermalinkError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"chatGetPermalinkerrorschema1"` [400–599] `ChatGetPermalinkerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Chat.ChatGetPermalinkError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"chatGetPermalinkerrorschema1"` [default — any status no arm above covers] `ChatGetPermalinkerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `ChatGetPermalinkerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Chat.ChatGetPermalinkRequest` (4):
 
@@ -89,9 +91,10 @@ Accessor: `client.chat` · Source: `src/resources/chat.ts` · 10 operations · R
 - **Wire**: `POST /chat.meMessage`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `ChatMeMessageschema`
-- **Error**: `Chat.ChatMeMessageError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"chatMeMessageerrorschema1"` [400–599] `ChatMeMessageerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Chat.ChatMeMessageError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"chatMeMessageerrorschema1"` [default — any status no arm above covers] `ChatMeMessageerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `ChatMeMessageerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Chat.ChatMeMessageRequest` (4):
 
@@ -114,9 +117,10 @@ Accessor: `client.chat` · Source: `src/resources/chat.ts` · 10 operations · R
 - **Wire**: `POST /chat.postEphemeral`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `ChatPostEphemeralsuccessschema`
-- **Error**: `Chat.ChatPostEphemeralError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"chatPostEphemeralerrorschema1"` [400–599] `ChatPostEphemeralerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Chat.ChatPostEphemeralError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"chatPostEphemeralerrorschema1"` [default — any status no arm above covers] `ChatPostEphemeralerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `ChatPostEphemeralerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Chat.ChatPostEphemeralRequest` (14):
 
@@ -149,9 +153,10 @@ Accessor: `client.chat` · Source: `src/resources/chat.ts` · 10 operations · R
 - **Wire**: `POST /chat.postMessage`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `ChatPostMessagesuccessschema`
-- **Error**: `Chat.ChatPostMessageError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"chatPostMessageerrorschema1"` [400–599] `ChatPostMessageerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Chat.ChatPostMessageError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"chatPostMessageerrorschema1"` [default — any status no arm above covers] `ChatPostMessageerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `ChatPostMessageerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Chat.ChatPostMessageRequest` (17):
 
@@ -187,9 +192,10 @@ Accessor: `client.chat` · Source: `src/resources/chat.ts` · 10 operations · R
 - **Wire**: `POST /chat.scheduleMessage`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `ChatScheduleMessagesuccessschema`
-- **Error**: `Chat.ChatScheduleMessageError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"chatScheduleMessageerrorschema1"` [400–599] `ChatScheduleMessageerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Chat.ChatScheduleMessageError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"chatScheduleMessageerrorschema1"` [default — any status no arm above covers] `ChatScheduleMessageerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `ChatScheduleMessageerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Chat.ChatScheduleMessageRequest` (14):
 
@@ -223,8 +229,8 @@ Accessor: `client.chat` · Source: `src/resources/chat.ts` · 10 operations · R
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `ChatScheduledMessagesListschema`
-- **Error**: `Chat.ChatScheduledMessagesListError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"chatScheduledMessagesListerrorschema1"` [400–599] `ChatScheduledMessagesListerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Chat.ChatScheduledMessagesListError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"chatScheduledMessagesListerrorschema1"` [default — any status no arm above covers] `ChatScheduledMessagesListerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `ChatScheduledMessagesListerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Chat.ChatScheduledMessagesListRequest` (7):
 
@@ -250,9 +256,10 @@ Accessor: `client.chat` · Source: `src/resources/chat.ts` · 10 operations · R
 - **Wire**: `POST /chat.unfurl`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `ChatUnfurlsuccessschema`
-- **Error**: `Chat.ChatUnfurlError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"chatUnfurlerrorschema1"` [400–599] `ChatUnfurlerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Chat.ChatUnfurlError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"chatUnfurlerrorschema1"` [default — any status no arm above covers] `ChatUnfurlerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `ChatUnfurlerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Chat.ChatUnfurlRequest` (8):
 
@@ -279,9 +286,10 @@ Accessor: `client.chat` · Source: `src/resources/chat.ts` · 10 operations · R
 - **Wire**: `POST /chat.update`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `ChatUpdatesuccessschema`
-- **Error**: `Chat.ChatUpdateError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"chatUpdateerrorschema1"` [400–599] `ChatUpdateerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Chat.ChatUpdateError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"chatUpdateerrorschema1"` [default — any status no arm above covers] `ChatUpdateerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `ChatUpdateerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Chat.ChatUpdateRequest` (10):
 

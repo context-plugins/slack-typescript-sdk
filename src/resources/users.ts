@@ -1,8 +1,9 @@
 import type { AuthSchemes } from "../auth-schemes.js";
+import { ApiError, type Declared, type ErrorDecoders, type ErrorPayload } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import type { RawClient } from "../core/raw-client.js";
-import { ResponseError, type Declared, type ErrorDecoders } from "../core/response-error.js";
+import { uuid } from "../core/uuid.js";
 import * as s from "../core/validation/index.js";
 import {
   apImethodusersGetPresenceSchema,
@@ -95,6 +96,22 @@ export class Users {
     this.#auth = auth;
   }
 
+  /**
+   * users_conversations
+   *
+   * @remarks
+   * List conversations the calling user may access.
+   *
+   * @returns Typical success response with only public channels. Note how `num_members` and
+   * `is_member` are not returned like typical `conversations` objects.
+   *
+   * @throws {@link Users.UsersConversationsError} when the API answers with an error status —
+   * narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   usersConversations(
     request: Users.UsersConversationsRequest,
     options?: RequestOptions,
@@ -102,14 +119,15 @@ export class Users {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/users.conversations"),
+        urlTemplate: this.#servers.default("/users.conversations"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
         query: [
           { name: "token", value: request.token, schema: s.optional(s.string()) },
           { name: "user", value: request.user, schema: s.optional(s.string()) },
           { name: "types", value: request.types, schema: s.optional(s.string()) },
           { name: "exclude_archived", value: request.excludeArchived, schema: s.optional(s.boolean()) },
-          { name: "limit", value: request.limit, schema: s.optional(s.number()) },
+          { name: "limit", value: request.limit, schema: s.optional(s.int()) },
           { name: "cursor", value: request.cursor, schema: s.optional(s.string()) },
         ],
         headers: [{ name: "Content-Type", value: request.contentType, schema: contentTypeSchema }],
@@ -123,6 +141,21 @@ export class Users {
     );
   }
 
+  /**
+   * users_deletePhoto
+   *
+   * @remarks
+   * Delete the user profile photo
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Users.UsersDeletePhotoError} when the API answers with an error status — narrow
+   * on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   usersDeletePhoto(
     request: Users.UsersDeletePhotoRequest,
     options?: RequestOptions,
@@ -130,9 +163,14 @@ export class Users {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/users.deletePhoto"),
+        urlTemplate: this.#servers.default("/users.deletePhoto"),
         auth: this.#auth.slackAuth,
-        headers: [{ name: "Content-Type", value: request.contentType, schema: contentTypeSchema }],
+        pathParams: [],
+        query: [],
+        headers: [
+          { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
+        ],
         body: {
           kind: "formUrlEncoded",
           value: [{ name: "token", value: request.token, schema: s.string() }],
@@ -146,6 +184,22 @@ export class Users {
     );
   }
 
+  /**
+   * users_getPresence
+   *
+   * @remarks
+   * Gets user presence information.
+   *
+   * @returns When requesting information for a different user, this method just returns the current
+   * presence (either `active` or `away`).
+   *
+   * @throws {@link Users.UsersGetPresenceError} when the API answers with an error status — narrow
+   * on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   usersGetPresence(
     request: Users.UsersGetPresenceRequest,
     options?: RequestOptions,
@@ -153,8 +207,9 @@ export class Users {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/users.getPresence"),
+        urlTemplate: this.#servers.default("/users.getPresence"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
         query: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "user", value: request.user, schema: s.optional(s.string()) },
@@ -170,6 +225,21 @@ export class Users {
     );
   }
 
+  /**
+   * users_identity
+   *
+   * @remarks
+   * Get a user's identity.
+   *
+   * @returns You will receive at a minimum the following information:
+   *
+   * @throws {@link Users.UsersIdentityError} when the API answers with an error status — narrow on
+   * `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   usersIdentity(
     request: Users.UsersIdentityRequest,
     options?: RequestOptions,
@@ -177,8 +247,9 @@ export class Users {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/users.identity"),
+        urlTemplate: this.#servers.default("/users.identity"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
         query: [{ name: "token", value: request.token, schema: s.optional(s.string()) }],
         headers: [{ name: "Content-Type", value: request.contentType, schema: contentTypeSchema }],
         body: { kind: "empty" },
@@ -191,6 +262,21 @@ export class Users {
     );
   }
 
+  /**
+   * users_info
+   *
+   * @remarks
+   * Gets information about a user.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Users.UsersInfoError} when the API answers with an error status — narrow on
+   * `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   usersInfo(
     request: Users.UsersInfoRequest,
     options?: RequestOptions,
@@ -198,8 +284,9 @@ export class Users {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/users.info"),
+        urlTemplate: this.#servers.default("/users.info"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
         query: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "include_locale", value: request.includeLocale, schema: s.optional(s.boolean()) },
@@ -216,6 +303,21 @@ export class Users {
     );
   }
 
+  /**
+   * users_list
+   *
+   * @remarks
+   * Lists all users in a Slack team.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Users.UsersListError} when the API answers with an error status — narrow on
+   * `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   usersList(
     request: Users.UsersListRequest,
     options?: RequestOptions,
@@ -223,11 +325,12 @@ export class Users {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/users.list"),
+        urlTemplate: this.#servers.default("/users.list"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
         query: [
           { name: "token", value: request.token, schema: s.optional(s.string()) },
-          { name: "limit", value: request.limit, schema: s.optional(s.number()) },
+          { name: "limit", value: request.limit, schema: s.optional(s.int()) },
           { name: "cursor", value: request.cursor, schema: s.optional(s.string()) },
           { name: "include_locale", value: request.includeLocale, schema: s.optional(s.boolean()) },
         ],
@@ -242,6 +345,21 @@ export class Users {
     );
   }
 
+  /**
+   * users_lookupByEmail
+   *
+   * @remarks
+   * Find a user with an email address.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Users.UsersLookupByEmailError} when the API answers with an error status —
+   * narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   usersLookupByEmail(
     request: Users.UsersLookupByEmailRequest,
     options?: RequestOptions,
@@ -249,8 +367,9 @@ export class Users {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/users.lookupByEmail"),
+        urlTemplate: this.#servers.default("/users.lookupByEmail"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
         query: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "email", value: request.email, schema: s.string() },
@@ -266,6 +385,21 @@ export class Users {
     );
   }
 
+  /**
+   * users_profile_get
+   *
+   * @remarks
+   * Retrieves a user's profile information.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Users.UsersProfileGetError} when the API answers with an error status — narrow
+   * on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   usersProfileGet(
     request: Users.UsersProfileGetRequest,
     options?: RequestOptions,
@@ -273,8 +407,9 @@ export class Users {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/users.profile.get"),
+        urlTemplate: this.#servers.default("/users.profile.get"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
         query: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "include_labels", value: request.includeLabels, schema: s.optional(s.boolean()) },
@@ -291,6 +426,21 @@ export class Users {
     );
   }
 
+  /**
+   * users_profile_set
+   *
+   * @remarks
+   * Set the profile information for a user.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Users.UsersProfileSetError} when the API answers with an error status — narrow
+   * on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   usersProfileSet(
     request: Users.UsersProfileSetRequest,
     options?: RequestOptions,
@@ -298,11 +448,14 @@ export class Users {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/users.profile.set"),
+        urlTemplate: this.#servers.default("/users.profile.set"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "formUrlEncoded",
@@ -322,6 +475,21 @@ export class Users {
     );
   }
 
+  /**
+   * users_setActive
+   *
+   * @remarks
+   * Marked a user as active. Deprecated and non-functional.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Users.UsersSetActiveError} when the API answers with an error status — narrow on
+   * `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   usersSetActive(
     request: Users.UsersSetActiveRequest,
     options?: RequestOptions,
@@ -329,11 +497,14 @@ export class Users {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/users.setActive"),
+        urlTemplate: this.#servers.default("/users.setActive"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: { kind: "empty" },
       },
@@ -345,6 +516,21 @@ export class Users {
     );
   }
 
+  /**
+   * users_setPhoto
+   *
+   * @remarks
+   * Set the user profile photo
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Users.UsersSetPhotoError} when the API answers with an error status — narrow on
+   * `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   usersSetPhoto(
     request: Users.UsersSetPhotoRequest,
     options?: RequestOptions,
@@ -352,9 +538,14 @@ export class Users {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/users.setPhoto"),
+        urlTemplate: this.#servers.default("/users.setPhoto"),
         auth: this.#auth.slackAuth,
-        headers: [{ name: "Content-Type", value: request.contentType, schema: contentTypeSchema }],
+        pathParams: [],
+        query: [],
+        headers: [
+          { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
+        ],
         body: {
           kind: "formUrlEncoded",
           value: [
@@ -374,6 +565,21 @@ export class Users {
     );
   }
 
+  /**
+   * users_setPresence
+   *
+   * @remarks
+   * Manually sets user presence.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Users.UsersSetPresenceError} when the API answers with an error status — narrow
+   * on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   usersSetPresence(
     request: Users.UsersSetPresenceRequest,
     options?: RequestOptions,
@@ -381,11 +587,14 @@ export class Users {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/users.setPresence"),
+        urlTemplate: this.#servers.default("/users.setPresence"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "formUrlEncoded",
@@ -403,21 +612,43 @@ export class Users {
 
 export namespace Users {
   export type UsersConversationsRequest = {
+    /** Authentication token. Requires scope: `conversations:read` */
     token?: string;
+    /**
+     * Browse conversations by a specific user ID's membership. Non-public channels are restricted
+     * to those where the calling user shares membership.
+     */
     user?: string;
+    /**
+     * Mix and match channel types by providing a comma-separated list of any combination of
+     * `public_channel`, `private_channel`, `mpim`, `im`
+     */
     types?: string;
+    /** Set to `true` to exclude archived channels from the list */
     excludeArchived?: boolean;
+    /**
+     * The maximum number of items to return. Fewer than the requested number of items may be
+     * returned, even if the end of the list hasn't been reached. Must be an integer no larger than
+     * 1000.
+     */
     limit?: number;
+    /**
+     * Paginate through collections of data by setting the `cursor` parameter to a `next_cursor`
+     * attribute returned by a previous request's `response_metadata`. Default value fetches the
+     * first "page" of the collection.
+     */
     cursor?: string;
     contentType: ContentType;
   };
 
-  export class UsersConversationsError extends ResponseError<
-    Declared<"usersConversationserrorschema1", UsersConversationserrorschema1>
-  > {
+  export class UsersConversationsError extends ApiError {
+    declare readonly payload: ErrorPayload<
+      Declared<"usersConversationserrorschema1", UsersConversationserrorschema1>
+    >;
+
     static readonly errors: ErrorDecoders<UsersConversationsError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "usersConversationserrorschema1",
         decode: { kind: "json", schema: usersConversationserrorschema1Schema },
       },
@@ -426,15 +657,18 @@ export namespace Users {
 
   export type UsersDeletePhotoRequest = {
     contentType: ContentType;
+    /** Authentication token. Requires scope: `users.profile:write` */
     token: string;
   };
 
-  export class UsersDeletePhotoError extends ResponseError<
-    Declared<"usersDeletePhotoerrorschema1", UsersDeletePhotoerrorschema1>
-  > {
+  export class UsersDeletePhotoError extends ApiError {
+    declare readonly payload: ErrorPayload<
+      Declared<"usersDeletePhotoerrorschema1", UsersDeletePhotoerrorschema1>
+    >;
+
     static readonly errors: ErrorDecoders<UsersDeletePhotoError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "usersDeletePhotoerrorschema1",
         decode: { kind: "json", schema: usersDeletePhotoerrorschema1Schema },
       },
@@ -442,17 +676,19 @@ export namespace Users {
   }
 
   export type UsersGetPresenceRequest = {
+    /** Authentication token. Requires scope: `users:read` */
     token: string;
+    /** User to get presence info on. Defaults to the authed user. */
     user?: string;
     contentType: ContentType;
   };
 
-  export class UsersGetPresenceError extends ResponseError<
-    Declared<"usersCountserrorschema1", UsersCountserrorschema1>
-  > {
+  export class UsersGetPresenceError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"usersCountserrorschema1", UsersCountserrorschema1>>;
+
     static readonly errors: ErrorDecoders<UsersGetPresenceError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "usersCountserrorschema1",
         decode: { kind: "json", schema: usersCountserrorschema1Schema },
       },
@@ -460,16 +696,17 @@ export namespace Users {
   }
 
   export type UsersIdentityRequest = {
+    /** Authentication token. Requires scope: `identity.basic` */
     token?: string;
     contentType: ContentType;
   };
 
-  export class UsersIdentityError extends ResponseError<
-    Declared<"usersIdentityerrorschema1", UsersIdentityerrorschema1>
-  > {
+  export class UsersIdentityError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"usersIdentityerrorschema1", UsersIdentityerrorschema1>>;
+
     static readonly errors: ErrorDecoders<UsersIdentityError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "usersIdentityerrorschema1",
         decode: { kind: "json", schema: usersIdentityerrorschema1Schema },
       },
@@ -477,18 +714,21 @@ export namespace Users {
   }
 
   export type UsersInfoRequest = {
+    /** Authentication token. Requires scope: `users:read` */
     token: string;
+    /** Set this to `true` to receive the locale for this user. Defaults to `false` */
     includeLocale?: boolean;
+    /** User to get info on */
     user?: string;
     contentType: ContentType;
   };
 
-  export class UsersInfoError extends ResponseError<
-    Declared<"usersInfoerrorschema1", UsersInfoerrorschema1>
-  > {
+  export class UsersInfoError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"usersInfoerrorschema1", UsersInfoerrorschema1>>;
+
     static readonly errors: ErrorDecoders<UsersInfoError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "usersInfoerrorschema1",
         decode: { kind: "json", schema: usersInfoerrorschema1Schema },
       },
@@ -496,19 +736,32 @@ export namespace Users {
   }
 
   export type UsersListRequest = {
+    /** Authentication token. Requires scope: `users:read` */
     token?: string;
+    /**
+     * The maximum number of items to return. Fewer than the requested number of items may be
+     * returned, even if the end of the users list hasn't been reached. Providing no `limit` value
+     * will result in Slack attempting to deliver you the entire result set. If the collection is
+     * too large you may experience `limit_required` or HTTP 500 errors.
+     */
     limit?: number;
+    /**
+     * Paginate through collections of data by setting the `cursor` parameter to a `next_cursor`
+     * attribute returned by a previous request's `response_metadata`. Default value fetches the
+     * first "page" of the collection.
+     */
     cursor?: string;
+    /** Set this to `true` to receive the locale for users. Defaults to `false` */
     includeLocale?: boolean;
     contentType: ContentType;
   };
 
-  export class UsersListError extends ResponseError<
-    Declared<"usersListerrorschema1", UsersListerrorschema1>
-  > {
+  export class UsersListError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"usersListerrorschema1", UsersListerrorschema1>>;
+
     static readonly errors: ErrorDecoders<UsersListError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "usersListerrorschema1",
         decode: { kind: "json", schema: usersListerrorschema1Schema },
       },
@@ -516,17 +769,21 @@ export namespace Users {
   }
 
   export type UsersLookupByEmailRequest = {
+    /** Authentication token. Requires scope: `users:read.email` */
     token: string;
+    /** An email address belonging to a user in the workspace */
     email: string;
     contentType: ContentType;
   };
 
-  export class UsersLookupByEmailError extends ResponseError<
-    Declared<"usersLookupByEmailerrorschema1", UsersLookupByEmailerrorschema1>
-  > {
+  export class UsersLookupByEmailError extends ApiError {
+    declare readonly payload: ErrorPayload<
+      Declared<"usersLookupByEmailerrorschema1", UsersLookupByEmailerrorschema1>
+    >;
+
     static readonly errors: ErrorDecoders<UsersLookupByEmailError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "usersLookupByEmailerrorschema1",
         decode: { kind: "json", schema: usersLookupByEmailerrorschema1Schema },
       },
@@ -534,18 +791,23 @@ export namespace Users {
   }
 
   export type UsersProfileGetRequest = {
+    /** Authentication token. Requires scope: `users.profile:read` */
     token: string;
+    /** Include labels for each ID in custom profile fields */
     includeLabels?: boolean;
+    /** User to retrieve profile info for */
     user?: string;
     contentType: ContentType;
   };
 
-  export class UsersProfileGetError extends ResponseError<
-    Declared<"usersProfileGeterrorschema1", UsersProfileGeterrorschema1>
-  > {
+  export class UsersProfileGetError extends ApiError {
+    declare readonly payload: ErrorPayload<
+      Declared<"usersProfileGeterrorschema1", UsersProfileGeterrorschema1>
+    >;
+
     static readonly errors: ErrorDecoders<UsersProfileGetError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "usersProfileGeterrorschema1",
         decode: { kind: "json", schema: usersProfileGeterrorschema1Schema },
       },
@@ -553,20 +815,30 @@ export namespace Users {
   }
 
   export type UsersProfileSetRequest = {
+    /** Authentication token. Requires scope: `users.profile:write` */
     token: string;
     contentType: ContentType;
+    /** Name of a single key to set. Usable only if `profile` is not passed. */
     name?: string;
+    /**
+     * Collection of key:value pairs presented as a URL-encoded JSON hash. At most 50 fields may be
+     * set. Each field name is limited to 255 characters.
+     */
     profile?: string;
+    /** ID of user to change. This argument may only be specified by team admins on paid teams. */
     user?: string;
+    /** Value to set a single key to. Usable only if `profile` is not passed. */
     value?: string;
   };
 
-  export class UsersProfileSetError extends ResponseError<
-    Declared<"usersProfileSeterrorschema1", UsersProfileSeterrorschema1>
-  > {
+  export class UsersProfileSetError extends ApiError {
+    declare readonly payload: ErrorPayload<
+      Declared<"usersProfileSeterrorschema1", UsersProfileSeterrorschema1>
+    >;
+
     static readonly errors: ErrorDecoders<UsersProfileSetError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "usersProfileSeterrorschema1",
         decode: { kind: "json", schema: usersProfileSeterrorschema1Schema },
       },
@@ -574,16 +846,19 @@ export namespace Users {
   }
 
   export type UsersSetActiveRequest = {
+    /** Authentication token. Requires scope: `users:write` */
     token: string;
     contentType: ContentType;
   };
 
-  export class UsersSetActiveError extends ResponseError<
-    Declared<"usersSetActiveerrorschema1", UsersSetActiveerrorschema1>
-  > {
+  export class UsersSetActiveError extends ApiError {
+    declare readonly payload: ErrorPayload<
+      Declared<"usersSetActiveerrorschema1", UsersSetActiveerrorschema1>
+    >;
+
     static readonly errors: ErrorDecoders<UsersSetActiveError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "usersSetActiveerrorschema1",
         decode: { kind: "json", schema: usersSetActiveerrorschema1Schema },
       },
@@ -592,19 +867,24 @@ export namespace Users {
 
   export type UsersSetPhotoRequest = {
     contentType: ContentType;
+    /** Authentication token. Requires scope: `users.profile:write` */
     token: string;
+    /** Width/height of crop box (always square) */
     cropW?: string;
+    /** X coordinate of top-left corner of crop box */
     cropX?: string;
+    /** Y coordinate of top-left corner of crop box */
     cropY?: string;
+    /** File contents via `multipart/form-data`. */
     image?: string;
   };
 
-  export class UsersSetPhotoError extends ResponseError<
-    Declared<"usersSetPhotoerrorschema1", UsersSetPhotoerrorschema1>
-  > {
+  export class UsersSetPhotoError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"usersSetPhotoerrorschema1", UsersSetPhotoerrorschema1>>;
+
     static readonly errors: ErrorDecoders<UsersSetPhotoError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "usersSetPhotoerrorschema1",
         decode: { kind: "json", schema: usersSetPhotoerrorschema1Schema },
       },
@@ -612,17 +892,21 @@ export namespace Users {
   }
 
   export type UsersSetPresenceRequest = {
+    /** Authentication token. Requires scope: `users:write` */
     token: string;
     contentType: ContentType;
+    /** Either `auto` or `away` */
     presence: string;
   };
 
-  export class UsersSetPresenceError extends ResponseError<
-    Declared<"usersSetPresenceerrorschema1", UsersSetPresenceerrorschema1>
-  > {
+  export class UsersSetPresenceError extends ApiError {
+    declare readonly payload: ErrorPayload<
+      Declared<"usersSetPresenceerrorschema1", UsersSetPresenceerrorschema1>
+    >;
+
     static readonly errors: ErrorDecoders<UsersSetPresenceError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "usersSetPresenceerrorschema1",
         decode: { kind: "json", schema: usersSetPresenceerrorschema1Schema },
       },

@@ -5,15 +5,17 @@ import {
   type ConversationsMembersErrorEnum,
 } from "./conversations-members-error-enum.js";
 
+/** Schema for error response conversations.members method */
 export type ConversationsMemberserrorschema1Error = {
+  /** Note: PHP callstack is only visible in dev/qa */
   callstack?: string;
   error: ConversationsMembersErrorEnum;
-  ok: "False";
+  ok: boolean;
 };
 
 export const conversationsMemberserrorschema1ErrorSchema: Schema<ConversationsMemberserrorschema1Error> =
   s.object<ConversationsMemberserrorschema1Error>({
     callstack: s.optional(s.string()),
     error: conversationsMembersErrorEnumSchema,
-    ok: s.literal("False"),
+    ok: s.boolean(),
   });

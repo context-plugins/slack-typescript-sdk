@@ -4,7 +4,7 @@
 
 Accessor: `client.stars` · Source: `src/resources/stars.ts` · 3 operations · Request and error types: namespace `Stars`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `slack-web-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `slack-web-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### starsAdd
 
@@ -12,9 +12,10 @@ Accessor: `client.stars` · Source: `src/resources/stars.ts` · 3 operations · 
 - **Wire**: `POST /stars.add`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `StarsAddschema`
-- **Error**: `Stars.StarsAddError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"starsAdderrorschema1"` [400–599] `StarsAdderrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Stars.StarsAddError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"starsAdderrorschema1"` [default — any status no arm above covers] `StarsAdderrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `StarsAdderrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Stars.StarsAddRequest` (6):
 
@@ -40,8 +41,8 @@ Accessor: `client.stars` · Source: `src/resources/stars.ts` · 3 operations · 
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `StarsListschema`
-- **Error**: `Stars.StarsListError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"starsListerrorschema1"` [400–599] `StarsListerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Stars.StarsListError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"starsListerrorschema1"` [default — any status no arm above covers] `StarsListerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `StarsListerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Stars.StarsListRequest` (6):
 
@@ -66,9 +67,10 @@ Accessor: `client.stars` · Source: `src/resources/stars.ts` · 3 operations · 
 - **Wire**: `POST /stars.remove`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `StarsRemoveschema`
-- **Error**: `Stars.StarsRemoveError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"starsRemoveerrorschema1"` [400–599] `StarsRemoveerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Stars.StarsRemoveError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"starsRemoveerrorschema1"` [default — any status no arm above covers] `StarsRemoveerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `StarsRemoveerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `Stars.StarsRemoveRequest` (6):
 

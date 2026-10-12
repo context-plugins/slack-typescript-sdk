@@ -5,13 +5,14 @@ import {
   type AdminConversationsConvertToPrivateErrorEnum,
 } from "./admin-conversations-convert-to-private-error-enum.js";
 
+/** Schema for error response from admin.conversations.convertToPrivate */
 export type AdminConversationsConvertToPrivateerrorschema1 = {
   error: AdminConversationsConvertToPrivateErrorEnum;
-  ok: "False";
+  ok: boolean;
 };
 
 export const adminConversationsConvertToPrivateerrorschema1Schema: Schema<AdminConversationsConvertToPrivateerrorschema1> =
   s.object<AdminConversationsConvertToPrivateerrorschema1>({
     error: adminConversationsConvertToPrivateErrorEnumSchema,
-    ok: s.literal("False"),
+    ok: s.boolean(),
   });

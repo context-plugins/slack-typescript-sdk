@@ -15,10 +15,10 @@ export type Login = {
 };
 
 export const loginSchema: Schema<Login> = s.object<Login>({
-  count: s.number(),
+  count: s.int(),
   country: s.nullable(s.string()),
-  dateFirst: s.number(),
-  dateLast: s.number(),
+  dateFirst: s.int(),
+  dateLast: s.int(),
   ip: s.nullable(s.string()),
   isp: s.nullable(s.string()),
   region: s.nullable(s.string()),

@@ -2,15 +2,17 @@ import * as s from "../core/validation/index.js";
 import type { Schema } from "../core/validation/schema.js";
 import { remindersAddErrorEnumSchema, type RemindersAddErrorEnum } from "./reminders-add-error-enum.js";
 
+/** Schema for error response from reminders.add method */
 export type RemindersAdderrorschema1 = {
+  /** Note: PHP callstack is only visible in dev/qa */
   callstack?: string;
   error: RemindersAddErrorEnum;
-  ok: "False";
+  ok: boolean;
 };
 
 export const remindersAdderrorschema1Schema: Schema<RemindersAdderrorschema1> =
   s.object<RemindersAdderrorschema1>({
     callstack: s.optional(s.string()),
     error: remindersAddErrorEnumSchema,
-    ok: s.literal("False"),
+    ok: s.boolean(),
   });

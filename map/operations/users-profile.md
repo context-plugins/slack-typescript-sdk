@@ -4,7 +4,7 @@
 
 Accessor: `client.usersProfile` · Source: `src/resources/users-profile.ts` · 2 operations · Request and error types: namespace `UsersProfile`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `slack-web-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `slack-web-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### usersProfileGet
 
@@ -13,8 +13,8 @@ Accessor: `client.usersProfile` · Source: `src/resources/users-profile.ts` · 2
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `UsersProfileGetschema`
-- **Error**: `UsersProfile.UsersProfileGetError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"usersProfileGeterrorschema1"` [400–599] `UsersProfileGeterrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `UsersProfile.UsersProfileGetError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"usersProfileGeterrorschema1"` [default — any status no arm above covers] `UsersProfileGeterrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `UsersProfileGeterrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `UsersProfile.UsersProfileGetRequest` (4):
 
@@ -37,9 +37,10 @@ Accessor: `client.usersProfile` · Source: `src/resources/users-profile.ts` · 2
 - **Wire**: `POST /users.profile.set`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `UsersProfileSetschema`
-- **Error**: `UsersProfile.UsersProfileSetError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"usersProfileSeterrorschema1"` [400–599] `UsersProfileSeterrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `UsersProfile.UsersProfileSetError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"usersProfileSeterrorschema1"` [default — any status no arm above covers] `UsersProfileSeterrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `UsersProfileSeterrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `UsersProfile.UsersProfileSetRequest` (6):
 

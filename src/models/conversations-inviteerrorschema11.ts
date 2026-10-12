@@ -9,12 +9,14 @@ import {
   type Errorsisreturnedwhenanerrorassociatesanuser,
 } from "./errorsisreturnedwhenanerrorassociatesanuser.js";
 
+/** Schema for error response from conversations.invite method */
 export type ConversationsInviteerrorschema11 = {
+  /** Note: PHP callstack is only visible in dev/qa */
   callstack?: string;
   error?: ConversationsInviteErrorEnum;
   errors?: Errorsisreturnedwhenanerrorassociatesanuser[];
   needed?: string;
-  ok: "False";
+  ok: boolean;
   provided?: string;
 };
 
@@ -24,6 +26,6 @@ export const conversationsInviteerrorschema11Schema: Schema<ConversationsInvitee
     error: s.optional(s.lazy(() => conversationsInviteErrorEnumSchema)),
     errors: s.optional(s.array(s.lazy(() => errorsisreturnedwhenanerrorassociatesanuserSchema))),
     needed: s.optional(s.string()),
-    ok: s.literal("False"),
+    ok: s.boolean(),
     provided: s.optional(s.string()),
   });

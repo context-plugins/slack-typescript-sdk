@@ -12,12 +12,12 @@ export type ObjsReminder = {
 };
 
 export const objsReminderSchema: Schema<ObjsReminder> = s.object<ObjsReminder>({
-  completeTs: s.optional(s.number()),
+  completeTs: s.optional(s.int()),
   creator: s.string(),
   id: s.string(),
   recurring: s.boolean(),
   text: s.string(),
-  time: s.optional(s.number()),
+  time: s.optional(s.int()),
   user: s.string(),
   _keysMap: {
     completeTs: "complete_ts",

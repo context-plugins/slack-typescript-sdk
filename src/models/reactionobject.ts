@@ -8,7 +8,7 @@ export type Reactionobject = {
 };
 
 export const reactionobjectSchema: Schema<Reactionobject> = s.object<Reactionobject>({
-  count: s.number(),
+  count: s.int(),
   name: s.string(),
   users: s.array(s.string()),
 });

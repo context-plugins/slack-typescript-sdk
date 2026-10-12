@@ -12,11 +12,11 @@ export type Attachment = {
 
 export const attachmentSchema: Schema<Attachment> = s.object<Attachment>({
   fallback: s.optional(s.string()),
-  id: s.number(),
-  imageBytes: s.optional(s.number()),
-  imageHeight: s.optional(s.number()),
+  id: s.int(),
+  imageBytes: s.optional(s.int()),
+  imageHeight: s.optional(s.int()),
   imageUrl: s.optional(s.string()),
-  imageWidth: s.optional(s.number()),
+  imageWidth: s.optional(s.int()),
   _keysMap: {
     imageBytes: "image_bytes",
     imageHeight: "image_height",

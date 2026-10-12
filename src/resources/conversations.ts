@@ -1,8 +1,9 @@
 import type { AuthSchemes } from "../auth-schemes.js";
+import { ApiError, type Declared, type ErrorDecoders, type ErrorPayload } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import type { RawClient } from "../core/raw-client.js";
-import { ResponseError, type Declared, type ErrorDecoders } from "../core/response-error.js";
+import { uuid } from "../core/uuid.js";
 import * as s from "../core/validation/index.js";
 import { contentTypeSchema, type ContentType } from "../models/content-type.js";
 import {
@@ -162,6 +163,21 @@ export class Conversations {
     this.#auth = auth;
   }
 
+  /**
+   * conversations_archive
+   *
+   * @remarks
+   * Archives a conversation.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Conversations.ConversationsArchiveError} when the API answers with an error
+   * status — narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   conversationsArchive(
     request: Conversations.ConversationsArchiveRequest,
     options?: RequestOptions,
@@ -169,11 +185,14 @@ export class Conversations {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/conversations.archive"),
+        urlTemplate: this.#servers.default("/conversations.archive"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
           { name: "token", value: request.token, schema: s.optional(s.string()) },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "formUrlEncoded",
@@ -188,6 +207,21 @@ export class Conversations {
     );
   }
 
+  /**
+   * conversations_close
+   *
+   * @remarks
+   * Closes a direct message or multi-person direct message.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Conversations.ConversationsCloseError} when the API answers with an error status
+   * — narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   conversationsClose(
     request: Conversations.ConversationsCloseRequest,
     options?: RequestOptions,
@@ -195,11 +229,14 @@ export class Conversations {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/conversations.close"),
+        urlTemplate: this.#servers.default("/conversations.close"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
           { name: "token", value: request.token, schema: s.optional(s.string()) },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "formUrlEncoded",
@@ -214,6 +251,22 @@ export class Conversations {
     );
   }
 
+  /**
+   * conversations_create
+   *
+   * @remarks
+   * Initiates a public or private channel-based conversation
+   *
+   * @returns If successful, the command returns a rather stark [conversation
+   * object](/types/conversation)
+   *
+   * @throws {@link Conversations.ConversationsCreateError} when the API answers with an error
+   * status — narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   conversationsCreate(
     request: Conversations.ConversationsCreateRequest,
     options?: RequestOptions,
@@ -221,11 +274,14 @@ export class Conversations {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/conversations.create"),
+        urlTemplate: this.#servers.default("/conversations.create"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
           { name: "token", value: request.token, schema: s.optional(s.string()) },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "formUrlEncoded",
@@ -243,6 +299,21 @@ export class Conversations {
     );
   }
 
+  /**
+   * conversations_history
+   *
+   * @remarks
+   * Fetches a conversation's history of messages and events.
+   *
+   * @returns Typical success response containing a channel's messages
+   *
+   * @throws {@link Conversations.ConversationsHistoryError} when the API answers with an error
+   * status — narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   conversationsHistory(
     request: Conversations.ConversationsHistoryRequest,
     options?: RequestOptions,
@@ -250,15 +321,16 @@ export class Conversations {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/conversations.history"),
+        urlTemplate: this.#servers.default("/conversations.history"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
         query: [
           { name: "token", value: request.token, schema: s.optional(s.string()) },
           { name: "channel", value: request.channel, schema: s.optional(s.string()) },
-          { name: "latest", value: request.latest, schema: s.optional(s.number()) },
-          { name: "oldest", value: request.oldest, schema: s.optional(s.number()) },
+          { name: "latest", value: request.latest, schema: s.optional(s.float64()) },
+          { name: "oldest", value: request.oldest, schema: s.optional(s.float64()) },
           { name: "inclusive", value: request.inclusive, schema: s.optional(s.boolean()) },
-          { name: "limit", value: request.limit, schema: s.optional(s.number()) },
+          { name: "limit", value: request.limit, schema: s.optional(s.int()) },
           { name: "cursor", value: request.cursor, schema: s.optional(s.string()) },
         ],
         headers: [{ name: "Content-Type", value: request.contentType, schema: contentTypeSchema }],
@@ -272,6 +344,22 @@ export class Conversations {
     );
   }
 
+  /**
+   * conversations_info
+   *
+   * @remarks
+   * Retrieve information about a conversation.
+   *
+   * @returns Typical success response for a public channel. (Also, a response from a private
+   * channel and a multi-party IM is very similar to this example.)
+   *
+   * @throws {@link Conversations.ConversationsInfoError} when the API answers with an error status
+   * — narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   conversationsInfo(
     request: Conversations.ConversationsInfoRequest,
     options?: RequestOptions,
@@ -279,8 +367,9 @@ export class Conversations {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/conversations.info"),
+        urlTemplate: this.#servers.default("/conversations.info"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
         query: [
           { name: "token", value: request.token, schema: s.optional(s.string()) },
           { name: "channel", value: request.channel, schema: s.optional(s.string()) },
@@ -298,6 +387,21 @@ export class Conversations {
     );
   }
 
+  /**
+   * conversations_invite
+   *
+   * @remarks
+   * Invites users to a channel.
+   *
+   * @returns Typical success response when an invitation is extended
+   *
+   * @throws {@link Conversations.ConversationsInviteError} when the API answers with an error
+   * status — narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   conversationsInvite(
     request: Conversations.ConversationsInviteRequest,
     options?: RequestOptions,
@@ -305,11 +409,14 @@ export class Conversations {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/conversations.invite"),
+        urlTemplate: this.#servers.default("/conversations.invite"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
           { name: "token", value: request.token, schema: s.optional(s.string()) },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "formUrlEncoded",
@@ -327,6 +434,21 @@ export class Conversations {
     );
   }
 
+  /**
+   * conversations_join
+   *
+   * @remarks
+   * Joins an existing conversation.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Conversations.ConversationsJoinError} when the API answers with an error status
+   * — narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   conversationsJoin(
     request: Conversations.ConversationsJoinRequest,
     options?: RequestOptions,
@@ -334,11 +456,14 @@ export class Conversations {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/conversations.join"),
+        urlTemplate: this.#servers.default("/conversations.join"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
           { name: "token", value: request.token, schema: s.optional(s.string()) },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "formUrlEncoded",
@@ -353,6 +478,21 @@ export class Conversations {
     );
   }
 
+  /**
+   * conversations_kick
+   *
+   * @remarks
+   * Removes a user from a conversation.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Conversations.ConversationsKickError} when the API answers with an error status
+   * — narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   conversationsKick(
     request: Conversations.ConversationsKickRequest,
     options?: RequestOptions,
@@ -360,11 +500,14 @@ export class Conversations {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/conversations.kick"),
+        urlTemplate: this.#servers.default("/conversations.kick"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
           { name: "token", value: request.token, schema: s.optional(s.string()) },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "formUrlEncoded",
@@ -382,6 +525,21 @@ export class Conversations {
     );
   }
 
+  /**
+   * conversations_leave
+   *
+   * @remarks
+   * Leaves a conversation.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Conversations.ConversationsLeaveError} when the API answers with an error status
+   * — narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   conversationsLeave(
     request: Conversations.ConversationsLeaveRequest,
     options?: RequestOptions,
@@ -389,11 +547,14 @@ export class Conversations {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/conversations.leave"),
+        urlTemplate: this.#servers.default("/conversations.leave"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
           { name: "token", value: request.token, schema: s.optional(s.string()) },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "formUrlEncoded",
@@ -408,6 +569,21 @@ export class Conversations {
     );
   }
 
+  /**
+   * conversations_list
+   *
+   * @remarks
+   * Lists all channels in a Slack team.
+   *
+   * @returns Typical success response with only public channels
+   *
+   * @throws {@link Conversations.ConversationsListError} when the API answers with an error status
+   * — narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   conversationsList(
     request: Conversations.ConversationsListRequest,
     options?: RequestOptions,
@@ -415,13 +591,14 @@ export class Conversations {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/conversations.list"),
+        urlTemplate: this.#servers.default("/conversations.list"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
         query: [
           { name: "token", value: request.token, schema: s.optional(s.string()) },
           { name: "exclude_archived", value: request.excludeArchived, schema: s.optional(s.boolean()) },
           { name: "types", value: request.types, schema: s.optional(s.string()) },
-          { name: "limit", value: request.limit, schema: s.optional(s.number()) },
+          { name: "limit", value: request.limit, schema: s.optional(s.int()) },
           { name: "cursor", value: request.cursor, schema: s.optional(s.string()) },
         ],
         headers: [{ name: "Content-Type", value: request.contentType, schema: contentTypeSchema }],
@@ -435,6 +612,21 @@ export class Conversations {
     );
   }
 
+  /**
+   * conversations_mark
+   *
+   * @remarks
+   * Sets the read cursor in a channel.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Conversations.ConversationsMarkError} when the API answers with an error status
+   * — narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   conversationsMark(
     request: Conversations.ConversationsMarkRequest,
     options?: RequestOptions,
@@ -442,17 +634,20 @@ export class Conversations {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/conversations.mark"),
+        urlTemplate: this.#servers.default("/conversations.mark"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
           { name: "token", value: request.token, schema: s.optional(s.string()) },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "formUrlEncoded",
           value: [
             { name: "channel", value: request.channel, schema: s.optional(s.string()) },
-            { name: "ts", value: request.ts, schema: s.optional(s.number()) },
+            { name: "ts", value: request.ts, schema: s.optional(s.float64()) },
           ],
         },
       },
@@ -464,6 +659,21 @@ export class Conversations {
     );
   }
 
+  /**
+   * conversations_members
+   *
+   * @remarks
+   * Retrieve members of a conversation.
+   *
+   * @returns Typical paginated success response
+   *
+   * @throws {@link Conversations.ConversationsMembersError} when the API answers with an error
+   * status — narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   conversationsMembers(
     request: Conversations.ConversationsMembersRequest,
     options?: RequestOptions,
@@ -471,12 +681,13 @@ export class Conversations {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/conversations.members"),
+        urlTemplate: this.#servers.default("/conversations.members"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
         query: [
           { name: "token", value: request.token, schema: s.optional(s.string()) },
           { name: "channel", value: request.channel, schema: s.optional(s.string()) },
-          { name: "limit", value: request.limit, schema: s.optional(s.number()) },
+          { name: "limit", value: request.limit, schema: s.optional(s.int()) },
           { name: "cursor", value: request.cursor, schema: s.optional(s.string()) },
         ],
         headers: [{ name: "Content-Type", value: request.contentType, schema: contentTypeSchema }],
@@ -490,6 +701,21 @@ export class Conversations {
     );
   }
 
+  /**
+   * conversations_open
+   *
+   * @remarks
+   * Opens or resumes a direct message or multi-person direct message.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Conversations.ConversationsOpenError} when the API answers with an error status
+   * — narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   conversationsOpen(
     request: Conversations.ConversationsOpenRequest,
     options?: RequestOptions,
@@ -497,11 +723,14 @@ export class Conversations {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/conversations.open"),
+        urlTemplate: this.#servers.default("/conversations.open"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
           { name: "token", value: request.token, schema: s.optional(s.string()) },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "formUrlEncoded",
@@ -520,6 +749,21 @@ export class Conversations {
     );
   }
 
+  /**
+   * conversations_rename
+   *
+   * @remarks
+   * Renames a conversation.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Conversations.ConversationsRenameError} when the API answers with an error
+   * status — narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   conversationsRename(
     request: Conversations.ConversationsRenameRequest,
     options?: RequestOptions,
@@ -527,11 +771,14 @@ export class Conversations {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/conversations.rename"),
+        urlTemplate: this.#servers.default("/conversations.rename"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
           { name: "token", value: request.token, schema: s.optional(s.string()) },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "formUrlEncoded",
@@ -549,6 +796,21 @@ export class Conversations {
     );
   }
 
+  /**
+   * conversations_replies
+   *
+   * @remarks
+   * Retrieve a thread of messages posted to a conversation
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Conversations.ConversationsRepliesError} when the API answers with an error
+   * status — narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   conversationsReplies(
     request: Conversations.ConversationsRepliesRequest,
     options?: RequestOptions,
@@ -556,16 +818,17 @@ export class Conversations {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/conversations.replies"),
+        urlTemplate: this.#servers.default("/conversations.replies"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
         query: [
           { name: "token", value: request.token, schema: s.optional(s.string()) },
           { name: "channel", value: request.channel, schema: s.optional(s.string()) },
-          { name: "ts", value: request.ts, schema: s.optional(s.number()) },
-          { name: "latest", value: request.latest, schema: s.optional(s.number()) },
-          { name: "oldest", value: request.oldest, schema: s.optional(s.number()) },
+          { name: "ts", value: request.ts, schema: s.optional(s.float64()) },
+          { name: "latest", value: request.latest, schema: s.optional(s.float64()) },
+          { name: "oldest", value: request.oldest, schema: s.optional(s.float64()) },
           { name: "inclusive", value: request.inclusive, schema: s.optional(s.boolean()) },
-          { name: "limit", value: request.limit, schema: s.optional(s.number()) },
+          { name: "limit", value: request.limit, schema: s.optional(s.int()) },
           { name: "cursor", value: request.cursor, schema: s.optional(s.string()) },
         ],
         headers: [{ name: "Content-Type", value: request.contentType, schema: contentTypeSchema }],
@@ -579,6 +842,21 @@ export class Conversations {
     );
   }
 
+  /**
+   * conversations_setPurpose
+   *
+   * @remarks
+   * Sets the purpose for a conversation.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Conversations.ConversationsSetPurposeError} when the API answers with an error
+   * status — narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   conversationsSetPurpose(
     request: Conversations.ConversationsSetPurposeRequest,
     options?: RequestOptions,
@@ -586,11 +864,14 @@ export class Conversations {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/conversations.setPurpose"),
+        urlTemplate: this.#servers.default("/conversations.setPurpose"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
           { name: "token", value: request.token, schema: s.optional(s.string()) },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "formUrlEncoded",
@@ -608,6 +889,21 @@ export class Conversations {
     );
   }
 
+  /**
+   * conversations_setTopic
+   *
+   * @remarks
+   * Sets the topic for a conversation.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Conversations.ConversationsSetTopicError} when the API answers with an error
+   * status — narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   conversationsSetTopic(
     request: Conversations.ConversationsSetTopicRequest,
     options?: RequestOptions,
@@ -615,11 +911,14 @@ export class Conversations {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/conversations.setTopic"),
+        urlTemplate: this.#servers.default("/conversations.setTopic"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
           { name: "token", value: request.token, schema: s.optional(s.string()) },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "formUrlEncoded",
@@ -637,6 +936,21 @@ export class Conversations {
     );
   }
 
+  /**
+   * conversations_unarchive
+   *
+   * @remarks
+   * Reverses conversation archival.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Conversations.ConversationsUnarchiveError} when the API answers with an error
+   * status — narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   conversationsUnarchive(
     request: Conversations.ConversationsUnarchiveRequest,
     options?: RequestOptions,
@@ -644,11 +958,14 @@ export class Conversations {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/conversations.unarchive"),
+        urlTemplate: this.#servers.default("/conversations.unarchive"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
           { name: "token", value: request.token, schema: s.optional(s.string()) },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "formUrlEncoded",
@@ -667,16 +984,20 @@ export class Conversations {
 export namespace Conversations {
   export type ConversationsArchiveRequest = {
     contentType: ContentType;
+    /** Authentication token. Requires scope: `conversations:write` */
     token?: string;
+    /** ID of conversation to archive */
     channel?: string;
   };
 
-  export class ConversationsArchiveError extends ResponseError<
-    Declared<"conversationsArchiveerrorschema1", ConversationsArchiveerrorschema1>
-  > {
+  export class ConversationsArchiveError extends ApiError {
+    declare readonly payload: ErrorPayload<
+      Declared<"conversationsArchiveerrorschema1", ConversationsArchiveerrorschema1>
+    >;
+
     static readonly errors: ErrorDecoders<ConversationsArchiveError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "conversationsArchiveerrorschema1",
         decode: { kind: "json", schema: conversationsArchiveerrorschema1Schema },
       },
@@ -685,16 +1006,20 @@ export namespace Conversations {
 
   export type ConversationsCloseRequest = {
     contentType: ContentType;
+    /** Authentication token. Requires scope: `conversations:write` */
     token?: string;
+    /** Conversation to close. */
     channel?: string;
   };
 
-  export class ConversationsCloseError extends ResponseError<
-    Declared<"conversationsCloseerrorschema1", ConversationsCloseerrorschema1>
-  > {
+  export class ConversationsCloseError extends ApiError {
+    declare readonly payload: ErrorPayload<
+      Declared<"conversationsCloseerrorschema1", ConversationsCloseerrorschema1>
+    >;
+
     static readonly errors: ErrorDecoders<ConversationsCloseError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "conversationsCloseerrorschema1",
         decode: { kind: "json", schema: conversationsCloseerrorschema1Schema },
       },
@@ -703,17 +1028,22 @@ export namespace Conversations {
 
   export type ConversationsCreateRequest = {
     contentType: ContentType;
+    /** Authentication token. Requires scope: `conversations:write` */
     token?: string;
+    /** Name of the public or private channel to create */
     name?: string;
+    /** Create a private channel instead of a public one */
     isPrivate?: boolean;
   };
 
-  export class ConversationsCreateError extends ResponseError<
-    Declared<"conversationsCreateerrorschema1", ConversationsCreateerrorschema1>
-  > {
+  export class ConversationsCreateError extends ApiError {
+    declare readonly payload: ErrorPayload<
+      Declared<"conversationsCreateerrorschema1", ConversationsCreateerrorschema1>
+    >;
+
     static readonly errors: ErrorDecoders<ConversationsCreateError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "conversationsCreateerrorschema1",
         decode: { kind: "json", schema: conversationsCreateerrorschema1Schema },
       },
@@ -721,22 +1051,41 @@ export namespace Conversations {
   }
 
   export type ConversationsHistoryRequest = {
+    /** Authentication token. Requires scope: `conversations:history` */
     token?: string;
+    /** Conversation ID to fetch history for. */
     channel?: string;
+    /** End of time range of messages to include in results. */
     latest?: number;
+    /** Start of time range of messages to include in results. */
     oldest?: number;
+    /**
+     * Include messages with latest or oldest timestamp in results only when either timestamp is
+     * specified.
+     */
     inclusive?: boolean;
+    /**
+     * The maximum number of items to return. Fewer than the requested number of items may be
+     * returned, even if the end of the users list hasn't been reached.
+     */
     limit?: number;
+    /**
+     * Paginate through collections of data by setting the `cursor` parameter to a `next_cursor`
+     * attribute returned by a previous request's `response_metadata`. Default value fetches the
+     * first "page" of the collection.
+     */
     cursor?: string;
     contentType: ContentType;
   };
 
-  export class ConversationsHistoryError extends ResponseError<
-    Declared<"conversationsHistoryerrorschema1", ConversationsHistoryerrorschema1>
-  > {
+  export class ConversationsHistoryError extends ApiError {
+    declare readonly payload: ErrorPayload<
+      Declared<"conversationsHistoryerrorschema1", ConversationsHistoryerrorschema1>
+    >;
+
     static readonly errors: ErrorDecoders<ConversationsHistoryError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "conversationsHistoryerrorschema1",
         decode: { kind: "json", schema: conversationsHistoryerrorschema1Schema },
       },
@@ -744,19 +1093,27 @@ export namespace Conversations {
   }
 
   export type ConversationsInfoRequest = {
+    /** Authentication token. Requires scope: `conversations:read` */
     token?: string;
+    /** Conversation ID to learn more about */
     channel?: string;
+    /** Set this to `true` to receive the locale for this conversation. Defaults to `false` */
     includeLocale?: boolean;
+    /**
+     * Set to `true` to include the member count for the specified conversation. Defaults to `false`
+     */
     includeNumMembers?: boolean;
     contentType: ContentType;
   };
 
-  export class ConversationsInfoError extends ResponseError<
-    Declared<"conversationsInfoerrorschema1", ConversationsInfoerrorschema1>
-  > {
+  export class ConversationsInfoError extends ApiError {
+    declare readonly payload: ErrorPayload<
+      Declared<"conversationsInfoerrorschema1", ConversationsInfoerrorschema1>
+    >;
+
     static readonly errors: ErrorDecoders<ConversationsInfoError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "conversationsInfoerrorschema1",
         decode: { kind: "json", schema: conversationsInfoerrorschema1Schema },
       },
@@ -765,17 +1122,22 @@ export namespace Conversations {
 
   export type ConversationsInviteRequest = {
     contentType: ContentType;
+    /** Authentication token. Requires scope: `conversations:write` */
     token?: string;
+    /** The ID of the public or private channel to invite user(s) to. */
     channel?: string;
+    /** A comma separated list of user IDs. Up to 1000 users may be listed. */
     users?: string;
   };
 
-  export class ConversationsInviteError extends ResponseError<
-    Declared<"conversationsInviteerrorschema11", ConversationsInviteerrorschema11>
-  > {
+  export class ConversationsInviteError extends ApiError {
+    declare readonly payload: ErrorPayload<
+      Declared<"conversationsInviteerrorschema11", ConversationsInviteerrorschema11>
+    >;
+
     static readonly errors: ErrorDecoders<ConversationsInviteError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "conversationsInviteerrorschema11",
         decode: { kind: "json", schema: conversationsInviteerrorschema11Schema },
       },
@@ -784,16 +1146,20 @@ export namespace Conversations {
 
   export type ConversationsJoinRequest = {
     contentType: ContentType;
+    /** Authentication token. Requires scope: `channels:write` */
     token?: string;
+    /** ID of conversation to join */
     channel?: string;
   };
 
-  export class ConversationsJoinError extends ResponseError<
-    Declared<"conversationsJoinerrorschema1", ConversationsJoinerrorschema1>
-  > {
+  export class ConversationsJoinError extends ApiError {
+    declare readonly payload: ErrorPayload<
+      Declared<"conversationsJoinerrorschema1", ConversationsJoinerrorschema1>
+    >;
+
     static readonly errors: ErrorDecoders<ConversationsJoinError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "conversationsJoinerrorschema1",
         decode: { kind: "json", schema: conversationsJoinerrorschema1Schema },
       },
@@ -802,17 +1168,22 @@ export namespace Conversations {
 
   export type ConversationsKickRequest = {
     contentType: ContentType;
+    /** Authentication token. Requires scope: `conversations:write` */
     token?: string;
+    /** ID of conversation to remove user from. */
     channel?: string;
+    /** User ID to be removed. */
     user?: string;
   };
 
-  export class ConversationsKickError extends ResponseError<
-    Declared<"conversationsKickerrorschema1", ConversationsKickerrorschema1>
-  > {
+  export class ConversationsKickError extends ApiError {
+    declare readonly payload: ErrorPayload<
+      Declared<"conversationsKickerrorschema1", ConversationsKickerrorschema1>
+    >;
+
     static readonly errors: ErrorDecoders<ConversationsKickError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "conversationsKickerrorschema1",
         decode: { kind: "json", schema: conversationsKickerrorschema1Schema },
       },
@@ -821,16 +1192,20 @@ export namespace Conversations {
 
   export type ConversationsLeaveRequest = {
     contentType: ContentType;
+    /** Authentication token. Requires scope: `conversations:write` */
     token?: string;
+    /** Conversation to leave */
     channel?: string;
   };
 
-  export class ConversationsLeaveError extends ResponseError<
-    Declared<"conversationsLeaveerrorschema1", ConversationsLeaveerrorschema1>
-  > {
+  export class ConversationsLeaveError extends ApiError {
+    declare readonly payload: ErrorPayload<
+      Declared<"conversationsLeaveerrorschema1", ConversationsLeaveerrorschema1>
+    >;
+
     static readonly errors: ErrorDecoders<ConversationsLeaveError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "conversationsLeaveerrorschema1",
         decode: { kind: "json", schema: conversationsLeaveerrorschema1Schema },
       },
@@ -838,20 +1213,38 @@ export namespace Conversations {
   }
 
   export type ConversationsListRequest = {
+    /** Authentication token. Requires scope: `conversations:read` */
     token?: string;
+    /** Set to `true` to exclude archived channels from the list */
     excludeArchived?: boolean;
+    /**
+     * Mix and match channel types by providing a comma-separated list of any combination of
+     * `public_channel`, `private_channel`, `mpim`, `im`
+     */
     types?: string;
+    /**
+     * The maximum number of items to return. Fewer than the requested number of items may be
+     * returned, even if the end of the list hasn't been reached. Must be an integer no larger than
+     * 1000.
+     */
     limit?: number;
+    /**
+     * Paginate through collections of data by setting the `cursor` parameter to a `next_cursor`
+     * attribute returned by a previous request's `response_metadata`. Default value fetches the
+     * first "page" of the collection.
+     */
     cursor?: string;
     contentType: ContentType;
   };
 
-  export class ConversationsListError extends ResponseError<
-    Declared<"conversationsListerrorschema1", ConversationsListerrorschema1>
-  > {
+  export class ConversationsListError extends ApiError {
+    declare readonly payload: ErrorPayload<
+      Declared<"conversationsListerrorschema1", ConversationsListerrorschema1>
+    >;
+
     static readonly errors: ErrorDecoders<ConversationsListError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "conversationsListerrorschema1",
         decode: { kind: "json", schema: conversationsListerrorschema1Schema },
       },
@@ -860,17 +1253,22 @@ export namespace Conversations {
 
   export type ConversationsMarkRequest = {
     contentType: ContentType;
+    /** Authentication token. Requires scope: `conversations:write` */
     token?: string;
+    /** Channel or conversation to set the read cursor for. */
     channel?: string;
+    /** Unique identifier of message you want marked as most recently seen in this conversation. */
     ts?: number;
   };
 
-  export class ConversationsMarkError extends ResponseError<
-    Declared<"conversationsMarkerrorschema1", ConversationsMarkerrorschema1>
-  > {
+  export class ConversationsMarkError extends ApiError {
+    declare readonly payload: ErrorPayload<
+      Declared<"conversationsMarkerrorschema1", ConversationsMarkerrorschema1>
+    >;
+
     static readonly errors: ErrorDecoders<ConversationsMarkError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "conversationsMarkerrorschema1",
         decode: { kind: "json", schema: conversationsMarkerrorschema1Schema },
       },
@@ -878,19 +1276,32 @@ export namespace Conversations {
   }
 
   export type ConversationsMembersRequest = {
+    /** Authentication token. Requires scope: `conversations:read` */
     token?: string;
+    /** ID of the conversation to retrieve members for */
     channel?: string;
+    /**
+     * The maximum number of items to return. Fewer than the requested number of items may be
+     * returned, even if the end of the users list hasn't been reached.
+     */
     limit?: number;
+    /**
+     * Paginate through collections of data by setting the `cursor` parameter to a `next_cursor`
+     * attribute returned by a previous request's `response_metadata`. Default value fetches the
+     * first "page" of the collection.
+     */
     cursor?: string;
     contentType: ContentType;
   };
 
-  export class ConversationsMembersError extends ResponseError<
-    Declared<"conversationsMemberserrorschema1", ConversationsMemberserrorschema1>
-  > {
+  export class ConversationsMembersError extends ApiError {
+    declare readonly payload: ErrorPayload<
+      Declared<"conversationsMemberserrorschema1", ConversationsMemberserrorschema1>
+    >;
+
     static readonly errors: ErrorDecoders<ConversationsMembersError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "conversationsMemberserrorschema1",
         decode: { kind: "json", schema: conversationsMemberserrorschema1Schema },
       },
@@ -899,18 +1310,31 @@ export namespace Conversations {
 
   export type ConversationsOpenRequest = {
     contentType: ContentType;
+    /** Authentication token. Requires scope: `conversations:write` */
     token?: string;
+    /**
+     * Resume a conversation by supplying an `im` or `mpim`'s ID. Or provide the `users` field
+     * instead.
+     */
     channel?: string;
+    /**
+     * Comma separated lists of users. If only one user is included, this creates a 1:1 DM. The
+     * ordering of the users is preserved whenever a multi-person direct message is returned. Supply
+     * a `channel` when not supplying `users`.
+     */
     users?: string;
+    /** Boolean, indicates you want the full IM channel definition in the response. */
     returnIm?: boolean;
   };
 
-  export class ConversationsOpenError extends ResponseError<
-    Declared<"conversationsOpenerrorschema1", ConversationsOpenerrorschema1>
-  > {
+  export class ConversationsOpenError extends ApiError {
+    declare readonly payload: ErrorPayload<
+      Declared<"conversationsOpenerrorschema1", ConversationsOpenerrorschema1>
+    >;
+
     static readonly errors: ErrorDecoders<ConversationsOpenError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "conversationsOpenerrorschema1",
         decode: { kind: "json", schema: conversationsOpenerrorschema1Schema },
       },
@@ -919,17 +1343,22 @@ export namespace Conversations {
 
   export type ConversationsRenameRequest = {
     contentType: ContentType;
+    /** Authentication token. Requires scope: `conversations:write` */
     token?: string;
+    /** ID of conversation to rename */
     channel?: string;
+    /** New name for conversation. */
     name?: string;
   };
 
-  export class ConversationsRenameError extends ResponseError<
-    Declared<"conversationsRenameerrorschema1", ConversationsRenameerrorschema1>
-  > {
+  export class ConversationsRenameError extends ApiError {
+    declare readonly payload: ErrorPayload<
+      Declared<"conversationsRenameerrorschema1", ConversationsRenameerrorschema1>
+    >;
+
     static readonly errors: ErrorDecoders<ConversationsRenameError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "conversationsRenameerrorschema1",
         decode: { kind: "json", schema: conversationsRenameerrorschema1Schema },
       },
@@ -937,23 +1366,47 @@ export namespace Conversations {
   }
 
   export type ConversationsRepliesRequest = {
+    /** Authentication token. Requires scope: `conversations:history` */
     token?: string;
+    /** Conversation ID to fetch thread from. */
     channel?: string;
+    /**
+     * Unique identifier of a thread's parent message. `ts` must be the timestamp of an existing
+     * message with 0 or more replies. If there are no replies then just the single message
+     * referenced by `ts` will return - it is just an ordinary, unthreaded message.
+     */
     ts?: number;
+    /** End of time range of messages to include in results. */
     latest?: number;
+    /** Start of time range of messages to include in results. */
     oldest?: number;
+    /**
+     * Include messages with latest or oldest timestamp in results only when either timestamp is
+     * specified.
+     */
     inclusive?: boolean;
+    /**
+     * The maximum number of items to return. Fewer than the requested number of items may be
+     * returned, even if the end of the users list hasn't been reached.
+     */
     limit?: number;
+    /**
+     * Paginate through collections of data by setting the `cursor` parameter to a `next_cursor`
+     * attribute returned by a previous request's `response_metadata`. Default value fetches the
+     * first "page" of the collection.
+     */
     cursor?: string;
     contentType: ContentType;
   };
 
-  export class ConversationsRepliesError extends ResponseError<
-    Declared<"conversationsReplieserrorschema1", ConversationsReplieserrorschema1>
-  > {
+  export class ConversationsRepliesError extends ApiError {
+    declare readonly payload: ErrorPayload<
+      Declared<"conversationsReplieserrorschema1", ConversationsReplieserrorschema1>
+    >;
+
     static readonly errors: ErrorDecoders<ConversationsRepliesError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "conversationsReplieserrorschema1",
         decode: { kind: "json", schema: conversationsReplieserrorschema1Schema },
       },
@@ -962,17 +1415,22 @@ export namespace Conversations {
 
   export type ConversationsSetPurposeRequest = {
     contentType: ContentType;
+    /** Authentication token. Requires scope: `conversations:write` */
     token?: string;
+    /** Conversation to set the purpose of */
     channel?: string;
+    /** A new, specialer purpose */
     purpose?: string;
   };
 
-  export class ConversationsSetPurposeError extends ResponseError<
-    Declared<"conversationsSetPurposeerrorschema1", ConversationsSetPurposeerrorschema1>
-  > {
+  export class ConversationsSetPurposeError extends ApiError {
+    declare readonly payload: ErrorPayload<
+      Declared<"conversationsSetPurposeerrorschema1", ConversationsSetPurposeerrorschema1>
+    >;
+
     static readonly errors: ErrorDecoders<ConversationsSetPurposeError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "conversationsSetPurposeerrorschema1",
         decode: { kind: "json", schema: conversationsSetPurposeerrorschema1Schema },
       },
@@ -981,17 +1439,22 @@ export namespace Conversations {
 
   export type ConversationsSetTopicRequest = {
     contentType: ContentType;
+    /** Authentication token. Requires scope: `conversations:write` */
     token?: string;
+    /** Conversation to set the topic of */
     channel?: string;
+    /** The new topic string. Does not support formatting or linkification. */
     topic?: string;
   };
 
-  export class ConversationsSetTopicError extends ResponseError<
-    Declared<"conversationsSetTopicerrorschema1", ConversationsSetTopicerrorschema1>
-  > {
+  export class ConversationsSetTopicError extends ApiError {
+    declare readonly payload: ErrorPayload<
+      Declared<"conversationsSetTopicerrorschema1", ConversationsSetTopicerrorschema1>
+    >;
+
     static readonly errors: ErrorDecoders<ConversationsSetTopicError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "conversationsSetTopicerrorschema1",
         decode: { kind: "json", schema: conversationsSetTopicerrorschema1Schema },
       },
@@ -1000,16 +1463,20 @@ export namespace Conversations {
 
   export type ConversationsUnarchiveRequest = {
     contentType: ContentType;
+    /** Authentication token. Requires scope: `conversations:write` */
     token?: string;
+    /** ID of conversation to unarchive */
     channel?: string;
   };
 
-  export class ConversationsUnarchiveError extends ResponseError<
-    Declared<"conversationsUnarchiveerrorschema1", ConversationsUnarchiveerrorschema1>
-  > {
+  export class ConversationsUnarchiveError extends ApiError {
+    declare readonly payload: ErrorPayload<
+      Declared<"conversationsUnarchiveerrorschema1", ConversationsUnarchiveerrorschema1>
+    >;
+
     static readonly errors: ErrorDecoders<ConversationsUnarchiveError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "conversationsUnarchiveerrorschema1",
         decode: { kind: "json", schema: conversationsUnarchiveerrorschema1Schema },
       },

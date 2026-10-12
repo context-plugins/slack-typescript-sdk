@@ -1,8 +1,9 @@
 import type { AuthSchemes } from "../auth-schemes.js";
+import { ApiError, type Declared, type ErrorDecoders, type ErrorPayload } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import type { RawClient } from "../core/raw-client.js";
-import { ResponseError, type Declared, type ErrorDecoders } from "../core/response-error.js";
+import { uuid } from "../core/uuid.js";
 import * as s from "../core/validation/index.js";
 import { contentTypeSchema, type ContentType } from "../models/content-type.js";
 import {
@@ -37,6 +38,21 @@ export class Reactions {
     this.#auth = auth;
   }
 
+  /**
+   * reactions_add
+   *
+   * @remarks
+   * Adds a reaction to an item.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Reactions.ReactionsAddError} when the API answers with an error status — narrow
+   * on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   reactionsAdd(
     request: Reactions.ReactionsAddRequest,
     options?: RequestOptions,
@@ -44,11 +60,14 @@ export class Reactions {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/reactions.add"),
+        urlTemplate: this.#servers.default("/reactions.add"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "formUrlEncoded",
@@ -67,6 +86,21 @@ export class Reactions {
     );
   }
 
+  /**
+   * reactions_get
+   *
+   * @remarks
+   * Gets reactions for an item.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Reactions.ReactionsGetError} when the API answers with an error status — narrow
+   * on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   reactionsGet(
     request: Reactions.ReactionsGetRequest,
     options?: RequestOptions,
@@ -74,8 +108,9 @@ export class Reactions {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/reactions.get"),
+        urlTemplate: this.#servers.default("/reactions.get"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
         query: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "channel", value: request.channel, schema: s.optional(s.string()) },
@@ -95,6 +130,21 @@ export class Reactions {
     );
   }
 
+  /**
+   * reactions_list
+   *
+   * @remarks
+   * Lists reactions made by a user.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Reactions.ReactionsListError} when the API answers with an error status — narrow
+   * on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   reactionsList(
     request: Reactions.ReactionsListRequest,
     options?: RequestOptions,
@@ -102,16 +152,17 @@ export class Reactions {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/reactions.list"),
+        urlTemplate: this.#servers.default("/reactions.list"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
         query: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "user", value: request.user, schema: s.optional(s.string()) },
           { name: "full", value: request.full, schema: s.optional(s.boolean()) },
-          { name: "count", value: request.count, schema: s.optional(s.number()) },
-          { name: "page", value: request.page, schema: s.optional(s.number()) },
+          { name: "count", value: request.count, schema: s.optional(s.int()) },
+          { name: "page", value: request.page, schema: s.optional(s.int()) },
           { name: "cursor", value: request.cursor, schema: s.optional(s.string()) },
-          { name: "limit", value: request.limit, schema: s.optional(s.number()) },
+          { name: "limit", value: request.limit, schema: s.optional(s.int()) },
         ],
         headers: [{ name: "Content-Type", value: request.contentType, schema: contentTypeSchema }],
         body: { kind: "empty" },
@@ -124,6 +175,21 @@ export class Reactions {
     );
   }
 
+  /**
+   * reactions_remove
+   *
+   * @remarks
+   * Removes a reaction from an item.
+   *
+   * @returns Typical success response
+   *
+   * @throws {@link Reactions.ReactionsRemoveError} when the API answers with an error status —
+   * narrow on `err.payload.kind`
+   *
+   * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   reactionsRemove(
     request: Reactions.ReactionsRemoveRequest,
     options?: RequestOptions,
@@ -131,11 +197,14 @@ export class Reactions {
     return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/reactions.remove"),
+        urlTemplate: this.#servers.default("/reactions.remove"),
         auth: this.#auth.slackAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "token", value: request.token, schema: s.string() },
           { name: "Content-Type", value: request.contentType, schema: contentTypeSchema },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "formUrlEncoded",
@@ -159,19 +228,23 @@ export class Reactions {
 
 export namespace Reactions {
   export type ReactionsAddRequest = {
+    /** Authentication token. Requires scope: `reactions:write` */
     token: string;
     contentType: ContentType;
+    /** Channel where the message to add reaction to was posted. */
     channel: string;
+    /** Reaction (emoji) name. */
     name: string;
+    /** Timestamp of the message to add reaction to. */
     timestamp: string;
   };
 
-  export class ReactionsAddError extends ResponseError<
-    Declared<"reactionsAdderrorschema1", ReactionsAdderrorschema1>
-  > {
+  export class ReactionsAddError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"reactionsAdderrorschema1", ReactionsAdderrorschema1>>;
+
     static readonly errors: ErrorDecoders<ReactionsAddError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "reactionsAdderrorschema1",
         decode: { kind: "json", schema: reactionsAdderrorschema1Schema },
       },
@@ -179,21 +252,27 @@ export namespace Reactions {
   }
 
   export type ReactionsGetRequest = {
+    /** Authentication token. Requires scope: `reactions:read` */
     token: string;
+    /** Channel where the message to get reactions for was posted. */
     channel?: string;
+    /** File to get reactions for. */
     file?: string;
+    /** File comment to get reactions for. */
     fileComment?: string;
+    /** If true always return the complete reaction list. */
     full?: boolean;
+    /** Timestamp of the message to get reactions for. */
     timestamp?: string;
     contentType: ContentType;
   };
 
-  export class ReactionsGetError extends ResponseError<
-    Declared<"reactionsGeterrorschema1", ReactionsGeterrorschema1>
-  > {
+  export class ReactionsGetError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"reactionsGeterrorschema1", ReactionsGeterrorschema1>>;
+
     static readonly errors: ErrorDecoders<ReactionsGetError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "reactionsGeterrorschema1",
         decode: { kind: "json", schema: reactionsGeterrorschema1Schema },
       },
@@ -201,22 +280,34 @@ export namespace Reactions {
   }
 
   export type ReactionsListRequest = {
+    /** Authentication token. Requires scope: `reactions:read` */
     token: string;
+    /** Show reactions made by this user. Defaults to the authed user. */
     user?: string;
+    /** If true always return the complete reaction list. */
     full?: boolean;
     count?: number;
     page?: number;
+    /**
+     * Parameter for pagination. Set `cursor` equal to the `next_cursor` attribute returned by the
+     * previous request's `response_metadata`. This parameter is optional, but pagination is
+     * mandatory: the default value simply fetches the first "page" of the collection.
+     */
     cursor?: string;
+    /**
+     * The maximum number of items to return. Fewer than the requested number of items may be
+     * returned, even if the end of the list hasn't been reached.
+     */
     limit?: number;
     contentType: ContentType;
   };
 
-  export class ReactionsListError extends ResponseError<
-    Declared<"reactionsListerrorschema1", ReactionsListerrorschema1>
-  > {
+  export class ReactionsListError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"reactionsListerrorschema1", ReactionsListerrorschema1>>;
+
     static readonly errors: ErrorDecoders<ReactionsListError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "reactionsListerrorschema1",
         decode: { kind: "json", schema: reactionsListerrorschema1Schema },
       },
@@ -224,21 +315,29 @@ export namespace Reactions {
   }
 
   export type ReactionsRemoveRequest = {
+    /** Authentication token. Requires scope: `reactions:write` */
     token: string;
     contentType: ContentType;
+    /** Reaction (emoji) name. */
     name: string;
+    /** File to remove reaction from. */
     file?: string;
+    /** File comment to remove reaction from. */
     fileComment?: string;
+    /** Channel where the message to remove reaction from was posted. */
     channel?: string;
+    /** Timestamp of the message to remove reaction from. */
     timestamp?: string;
   };
 
-  export class ReactionsRemoveError extends ResponseError<
-    Declared<"reactionsRemoveerrorschema1", ReactionsRemoveerrorschema1>
-  > {
+  export class ReactionsRemoveError extends ApiError {
+    declare readonly payload: ErrorPayload<
+      Declared<"reactionsRemoveerrorschema1", ReactionsRemoveerrorschema1>
+    >;
+
     static readonly errors: ErrorDecoders<ReactionsRemoveError> = [
       {
-        on: [400, 599],
+        on: "default",
         kind: "reactionsRemoveerrorschema1",
         decode: { kind: "json", schema: reactionsRemoveerrorschema1Schema },
       },

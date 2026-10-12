@@ -4,7 +4,7 @@
 
 Accessor: `client.appsPermissionsResources` · Source: `src/resources/apps-permissions-resources.ts` · 1 operation · Request and error types: namespace `AppsPermissionsResources`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `slack-web-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `slack-web-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### appsPermissionsResourcesList
 
@@ -13,8 +13,8 @@ Accessor: `client.appsPermissionsResources` · Source: `src/resources/apps-permi
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `AppsPermissionsResourcesListsuccessschema`
-- **Error**: `AppsPermissionsResources.AppsPermissionsResourcesListError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"appsPermissionsResourcesListerrorschema1"` [400–599] `AppsPermissionsResourcesListerrorschema1` · `"undeclared"` [any other] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `AppsPermissionsResources.AppsPermissionsResourcesListError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error arms**: `"appsPermissionsResourcesListerrorschema1"` [default — any status no arm above covers] `AppsPermissionsResourcesListerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `AppsPermissionsResourcesListerrorschema1`] `rawBody: ArrayBuffer`
 
 **Fields** — `AppsPermissionsResources.AppsPermissionsResourcesListRequest` (4):
 

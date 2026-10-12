@@ -5,15 +5,17 @@ import {
   type UsersProfileGetErrorEnum,
 } from "./users-profile-get-error-enum.js";
 
+/** Schema for error response from users.profile.get method */
 export type UsersProfileGeterrorschema1 = {
+  /** Note: PHP callstack is only visible in dev/qa */
   callstack?: string;
   error: UsersProfileGetErrorEnum;
-  ok: "False";
+  ok: boolean;
 };
 
 export const usersProfileGeterrorschema1Schema: Schema<UsersProfileGeterrorschema1> =
   s.object<UsersProfileGeterrorschema1>({
     callstack: s.optional(s.string()),
     error: usersProfileGetErrorEnumSchema,
-    ok: s.literal("False"),
+    ok: s.boolean(),
   });
