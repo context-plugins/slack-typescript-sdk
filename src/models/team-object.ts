@@ -1,5 +1,5 @@
 import * as s from "../core/validation/index.js";
-import type { Schema } from "../core/validation/schema.js";
+import type { JsonValue, Schema } from "../core/validation/schema.js";
 import { externalOrgMigrationsSchema, type ExternalOrgMigrations } from "./external-org-migrations.js";
 import { objsIconSchema, type ObjsIcon } from "./objs-icon.js";
 import { objsPrimaryOwnerSchema, type ObjsPrimaryOwner } from "./objs-primary-owner.js";
@@ -36,9 +36,11 @@ export type TeamObject = {
   plan?: Plan;
   primaryOwner?: ObjsPrimaryOwner;
   ssoProvider?: SsoProvider;
+  /** Properties the service sent or accepts beyond those declared. */
+  additionalProperties?: Record<string, JsonValue>;
 };
 
-export const teamObjectSchema: Schema<TeamObject> = s.object<TeamObject>({
+const teamObjectProperties: s.Shape<TeamObject> = {
   archived: s.optional(s.boolean()),
   avatarBaseUrl: s.optional(s.string()),
   created: s.optional(s.int()),
@@ -88,4 +90,19 @@ export const teamObjectSchema: Schema<TeamObject> = s.object<TeamObject>({
     primaryOwner: "primary_owner",
     ssoProvider: "sso_provider",
   },
+};
+
+export const teamObjectInternalSchema: Schema<TeamObject> = s.object<TeamObject>(teamObjectProperties, {
+  additionalProperties: s.json(),
 });
+
+export const teamObjectSchema: Schema<TeamObject> = s.lazySchema(() =>
+  s.object<TeamObject>(
+    {
+      ...teamObjectProperties,
+      enterpriseId: s.optional(s.string().check(s.pattern("^[E][A-Z0-9]{8,}$"))),
+      id: s.string().check(s.pattern("^[TE][A-Z0-9]{8,}$")),
+    },
+    { additionalProperties: s.json() },
+  ),
+);

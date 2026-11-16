@@ -1,12 +1,11 @@
 import type { AuthSchemes } from "../auth-schemes.js";
-import { ApiError, type Declared, type ErrorDecoders, type ErrorPayload } from "../core/api-error.js";
+import { ApiError } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import type { RawClient } from "../core/raw-client.js";
 import { uuid } from "../core/uuid.js";
 import * as s from "../core/validation/index.js";
 import { contentTypeSchema, type ContentType } from "../models/content-type.js";
-import { defaulterrortemplate1Schema, type Defaulterrortemplate1 } from "../models/defaulterrortemplate1.js";
 import {
   defaultsuccesstemplateSchema,
   type Defaultsuccesstemplate,
@@ -32,8 +31,7 @@ export class AdminEmoji {
    *
    * @returns Typical success response
    *
-   * @throws {@link AdminEmoji.AdminEmojiAddError} when the API answers with an error status —
-   * narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -42,7 +40,7 @@ export class AdminEmoji {
   adminEmojiAdd(
     request: AdminEmoji.AdminEmojiAddRequest,
     options?: RequestOptions,
-  ): ApiPromise<Defaultsuccesstemplate, AdminEmoji.AdminEmojiAddError> {
+  ): ApiPromise<Defaultsuccesstemplate, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -65,7 +63,7 @@ export class AdminEmoji {
       },
       {
         success: { kind: "json", schema: defaultsuccesstemplateSchema },
-        errorFactory: AdminEmoji.AdminEmojiAddError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -79,8 +77,7 @@ export class AdminEmoji {
    *
    * @returns Typical success response
    *
-   * @throws {@link AdminEmoji.AdminEmojiAddAliasError} when the API answers with an error status —
-   * narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -89,7 +86,7 @@ export class AdminEmoji {
   adminEmojiAddAlias(
     request: AdminEmoji.AdminEmojiAddAliasRequest,
     options?: RequestOptions,
-  ): ApiPromise<Defaultsuccesstemplate, AdminEmoji.AdminEmojiAddAliasError> {
+  ): ApiPromise<Defaultsuccesstemplate, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -112,7 +109,7 @@ export class AdminEmoji {
       },
       {
         success: { kind: "json", schema: defaultsuccesstemplateSchema },
-        errorFactory: AdminEmoji.AdminEmojiAddAliasError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -126,8 +123,7 @@ export class AdminEmoji {
    *
    * @returns Typical success response
    *
-   * @throws {@link AdminEmoji.AdminEmojiListError} when the API answers with an error status —
-   * narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -136,7 +132,7 @@ export class AdminEmoji {
   adminEmojiList(
     request: AdminEmoji.AdminEmojiListRequest,
     options?: RequestOptions,
-  ): ApiPromise<Defaultsuccesstemplate, AdminEmoji.AdminEmojiListError> {
+  ): ApiPromise<Defaultsuccesstemplate, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -153,7 +149,7 @@ export class AdminEmoji {
       },
       {
         success: { kind: "json", schema: defaultsuccesstemplateSchema },
-        errorFactory: AdminEmoji.AdminEmojiListError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -167,8 +163,7 @@ export class AdminEmoji {
    *
    * @returns Typical success response
    *
-   * @throws {@link AdminEmoji.AdminEmojiRemoveError} when the API answers with an error status —
-   * narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -177,7 +172,7 @@ export class AdminEmoji {
   adminEmojiRemove(
     request: AdminEmoji.AdminEmojiRemoveRequest,
     options?: RequestOptions,
-  ): ApiPromise<Defaultsuccesstemplate, AdminEmoji.AdminEmojiRemoveError> {
+  ): ApiPromise<Defaultsuccesstemplate, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -199,7 +194,7 @@ export class AdminEmoji {
       },
       {
         success: { kind: "json", schema: defaultsuccesstemplateSchema },
-        errorFactory: AdminEmoji.AdminEmojiRemoveError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -213,8 +208,7 @@ export class AdminEmoji {
    *
    * @returns Typical success response
    *
-   * @throws {@link AdminEmoji.AdminEmojiRenameError} when the API answers with an error status —
-   * narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -223,7 +217,7 @@ export class AdminEmoji {
   adminEmojiRename(
     request: AdminEmoji.AdminEmojiRenameRequest,
     options?: RequestOptions,
-  ): ApiPromise<Defaultsuccesstemplate, AdminEmoji.AdminEmojiRenameError> {
+  ): ApiPromise<Defaultsuccesstemplate, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -246,7 +240,7 @@ export class AdminEmoji {
       },
       {
         success: { kind: "json", schema: defaultsuccesstemplateSchema },
-        errorFactory: AdminEmoji.AdminEmojiRenameError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -270,18 +264,6 @@ export namespace AdminEmoji {
     url: string;
   };
 
-  export class AdminEmojiAddError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
-
-    static readonly errors: ErrorDecoders<AdminEmojiAddError> = [
-      {
-        on: "default",
-        kind: "defaulterrortemplate1",
-        decode: { kind: "json", schema: defaulterrortemplate1Schema },
-      },
-    ];
-  }
-
   export type AdminEmojiAddAliasRequest = {
     contentType: ContentType;
     /** Authentication token. Requires scope: `admin.teams:write` */
@@ -295,18 +277,6 @@ export namespace AdminEmoji {
     aliasFor: string;
   };
 
-  export class AdminEmojiAddAliasError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
-
-    static readonly errors: ErrorDecoders<AdminEmojiAddAliasError> = [
-      {
-        on: "default",
-        kind: "defaulterrortemplate1",
-        decode: { kind: "json", schema: defaulterrortemplate1Schema },
-      },
-    ];
-  }
-
   export type AdminEmojiListRequest = {
     /** Authentication token. Requires scope: `admin.teams:read` */
     token: string;
@@ -319,18 +289,6 @@ export namespace AdminEmoji {
     contentType: ContentType;
   };
 
-  export class AdminEmojiListError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
-
-    static readonly errors: ErrorDecoders<AdminEmojiListError> = [
-      {
-        on: "default",
-        kind: "defaulterrortemplate1",
-        decode: { kind: "json", schema: defaulterrortemplate1Schema },
-      },
-    ];
-  }
-
   export type AdminEmojiRemoveRequest = {
     contentType: ContentType;
     /** Authentication token. Requires scope: `admin.teams:write` */
@@ -341,18 +299,6 @@ export namespace AdminEmoji {
      */
     name: string;
   };
-
-  export class AdminEmojiRemoveError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
-
-    static readonly errors: ErrorDecoders<AdminEmojiRemoveError> = [
-      {
-        on: "default",
-        kind: "defaulterrortemplate1",
-        decode: { kind: "json", schema: defaulterrortemplate1Schema },
-      },
-    ];
-  }
 
   export type AdminEmojiRenameRequest = {
     contentType: ContentType;
@@ -366,16 +312,4 @@ export namespace AdminEmoji {
     /** The new name of the emoji. */
     newName: string;
   };
-
-  export class AdminEmojiRenameError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
-
-    static readonly errors: ErrorDecoders<AdminEmojiRenameError> = [
-      {
-        on: "default",
-        kind: "defaulterrortemplate1",
-        decode: { kind: "json", schema: defaulterrortemplate1Schema },
-      },
-    ];
-  }
 }

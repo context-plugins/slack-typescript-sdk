@@ -1,5 +1,5 @@
 import type { AuthSchemes } from "../auth-schemes.js";
-import { ApiError, type Declared, type ErrorDecoders, type ErrorPayload } from "../core/api-error.js";
+import { ApiError } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import type { RawClient } from "../core/raw-client.js";
@@ -7,19 +7,11 @@ import { uuid } from "../core/uuid.js";
 import * as s from "../core/validation/index.js";
 import { contentTypeSchema, type ContentType } from "../models/content-type.js";
 import {
-  usersProfileGeterrorschema1Schema,
-  type UsersProfileGeterrorschema1,
-} from "../models/users-profile-geterrorschema1.js";
-import {
-  usersProfileGetschemaSchema,
+  usersProfileGetschemaInternalSchema,
   type UsersProfileGetschema,
 } from "../models/users-profile-getschema.js";
 import {
-  usersProfileSeterrorschema1Schema,
-  type UsersProfileSeterrorschema1,
-} from "../models/users-profile-seterrorschema1.js";
-import {
-  usersProfileSetschemaSchema,
+  usersProfileSetschemaInternalSchema,
   type UsersProfileSetschema,
 } from "../models/users-profile-setschema.js";
 import type { Servers } from "../servers.js";
@@ -43,8 +35,7 @@ export class UsersProfile {
    *
    * @returns Typical success response
    *
-   * @throws {@link UsersProfile.UsersProfileGetError} when the API answers with an error status —
-   * narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -53,7 +44,7 @@ export class UsersProfile {
   usersProfileGet(
     request: UsersProfile.UsersProfileGetRequest,
     options?: RequestOptions,
-  ): ApiPromise<UsersProfileGetschema, UsersProfile.UsersProfileGetError> {
+  ): ApiPromise<UsersProfileGetschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -69,8 +60,8 @@ export class UsersProfile {
         body: { kind: "empty" },
       },
       {
-        success: { kind: "json", schema: usersProfileGetschemaSchema },
-        errorFactory: UsersProfile.UsersProfileGetError,
+        success: { kind: "json", schema: usersProfileGetschemaInternalSchema },
+        errorFactory: ApiError,
       },
       options,
     );
@@ -84,8 +75,7 @@ export class UsersProfile {
    *
    * @returns Typical success response
    *
-   * @throws {@link UsersProfile.UsersProfileSetError} when the API answers with an error status —
-   * narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -94,7 +84,7 @@ export class UsersProfile {
   usersProfileSet(
     request: UsersProfile.UsersProfileSetRequest,
     options?: RequestOptions,
-  ): ApiPromise<UsersProfileSetschema, UsersProfile.UsersProfileSetError> {
+  ): ApiPromise<UsersProfileSetschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -118,8 +108,8 @@ export class UsersProfile {
         },
       },
       {
-        success: { kind: "json", schema: usersProfileSetschemaSchema },
-        errorFactory: UsersProfile.UsersProfileSetError,
+        success: { kind: "json", schema: usersProfileSetschemaInternalSchema },
+        errorFactory: ApiError,
       },
       options,
     );
@@ -137,20 +127,6 @@ export namespace UsersProfile {
     contentType: ContentType;
   };
 
-  export class UsersProfileGetError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"usersProfileGeterrorschema1", UsersProfileGeterrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<UsersProfileGetError> = [
-      {
-        on: "default",
-        kind: "usersProfileGeterrorschema1",
-        decode: { kind: "json", schema: usersProfileGeterrorschema1Schema },
-      },
-    ];
-  }
-
   export type UsersProfileSetRequest = {
     /** Authentication token. Requires scope: `users.profile:write` */
     token: string;
@@ -167,18 +143,4 @@ export namespace UsersProfile {
     /** Value to set a single key to. Usable only if `profile` is not passed. */
     value?: string;
   };
-
-  export class UsersProfileSetError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"usersProfileSeterrorschema1", UsersProfileSeterrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<UsersProfileSetError> = [
-      {
-        on: "default",
-        kind: "usersProfileSeterrorschema1",
-        decode: { kind: "json", schema: usersProfileSeterrorschema1Schema },
-      },
-    ];
-  }
 }

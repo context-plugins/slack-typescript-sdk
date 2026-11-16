@@ -1,5 +1,5 @@
 import * as s from "../core/validation/index.js";
-import type { Schema } from "../core/validation/schema.js";
+import type { JsonValue, Schema } from "../core/validation/schema.js";
 import { dndSetSnoozeErrorEnumSchema, type DndSetSnoozeErrorEnum } from "./dnd-set-snooze-error-enum.js";
 
 /** Schema for error response from dnd.setSnooze method */
@@ -8,11 +8,16 @@ export type DndSetSnoozeerrorschema1 = {
   callstack?: string;
   error: DndSetSnoozeErrorEnum;
   ok: boolean;
+  /** Properties the service sent or accepts beyond those declared. */
+  additionalProperties?: Record<string, JsonValue>;
 };
 
 export const dndSetSnoozeerrorschema1Schema: Schema<DndSetSnoozeerrorschema1> =
-  s.object<DndSetSnoozeerrorschema1>({
-    callstack: s.optional(s.string()),
-    error: dndSetSnoozeErrorEnumSchema,
-    ok: s.boolean(),
-  });
+  s.object<DndSetSnoozeerrorschema1>(
+    {
+      callstack: s.optional(s.string()),
+      error: dndSetSnoozeErrorEnumSchema,
+      ok: s.boolean(),
+    },
+    { additionalProperties: s.json() },
+  );

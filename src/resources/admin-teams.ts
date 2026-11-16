@@ -1,12 +1,11 @@
 import type { AuthSchemes } from "../auth-schemes.js";
-import { ApiError, type Declared, type ErrorDecoders, type ErrorPayload } from "../core/api-error.js";
+import { ApiError } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import type { RawClient } from "../core/raw-client.js";
 import { uuid } from "../core/uuid.js";
 import * as s from "../core/validation/index.js";
 import { contentTypeSchema, type ContentType } from "../models/content-type.js";
-import { defaulterrortemplate1Schema, type Defaulterrortemplate1 } from "../models/defaulterrortemplate1.js";
 import {
   defaultsuccesstemplateSchema,
   type Defaultsuccesstemplate,
@@ -32,8 +31,7 @@ export class AdminTeams {
    *
    * @returns Typical success response
    *
-   * @throws {@link AdminTeams.AdminTeamsCreateError} when the API answers with an error status —
-   * narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -42,7 +40,7 @@ export class AdminTeams {
   adminTeamsCreate(
     request: AdminTeams.AdminTeamsCreateRequest,
     options?: RequestOptions,
-  ): ApiPromise<Defaultsuccesstemplate, AdminTeams.AdminTeamsCreateError> {
+  ): ApiPromise<Defaultsuccesstemplate, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -71,7 +69,7 @@ export class AdminTeams {
       },
       {
         success: { kind: "json", schema: defaultsuccesstemplateSchema },
-        errorFactory: AdminTeams.AdminTeamsCreateError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -85,8 +83,7 @@ export class AdminTeams {
    *
    * @returns Typical success response
    *
-   * @throws {@link AdminTeams.AdminTeamsListError} when the API answers with an error status —
-   * narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -95,7 +92,7 @@ export class AdminTeams {
   adminTeamsList(
     request: AdminTeams.AdminTeamsListRequest,
     options?: RequestOptions,
-  ): ApiPromise<Defaultsuccesstemplate, AdminTeams.AdminTeamsListError> {
+  ): ApiPromise<Defaultsuccesstemplate, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -114,7 +111,7 @@ export class AdminTeams {
       },
       {
         success: { kind: "json", schema: defaultsuccesstemplateSchema },
-        errorFactory: AdminTeams.AdminTeamsListError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -139,18 +136,6 @@ export namespace AdminTeams {
     teamDiscoverability?: string;
   };
 
-  export class AdminTeamsCreateError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
-
-    static readonly errors: ErrorDecoders<AdminTeamsCreateError> = [
-      {
-        on: "default",
-        kind: "defaulterrortemplate1",
-        decode: { kind: "json", schema: defaulterrortemplate1Schema },
-      },
-    ];
-  }
-
   export type AdminTeamsListRequest = {
     /** The maximum number of items to return. Must be between 1 - 100 both inclusive. */
     limit?: number;
@@ -162,16 +147,4 @@ export namespace AdminTeams {
     token: string;
     contentType: ContentType;
   };
-
-  export class AdminTeamsListError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
-
-    static readonly errors: ErrorDecoders<AdminTeamsListError> = [
-      {
-        on: "default",
-        kind: "defaulterrortemplate1",
-        decode: { kind: "json", schema: defaulterrortemplate1Schema },
-      },
-    ];
-  }
 }

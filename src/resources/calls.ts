@@ -1,12 +1,11 @@
 import type { AuthSchemes } from "../auth-schemes.js";
-import { ApiError, type Declared, type ErrorDecoders, type ErrorPayload } from "../core/api-error.js";
+import { ApiError } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import type { RawClient } from "../core/raw-client.js";
 import { uuid } from "../core/uuid.js";
 import * as s from "../core/validation/index.js";
 import { contentTypeSchema, type ContentType } from "../models/content-type.js";
-import { defaulterrortemplate1Schema, type Defaulterrortemplate1 } from "../models/defaulterrortemplate1.js";
 import {
   defaultsuccesstemplateSchema,
   type Defaultsuccesstemplate,
@@ -32,8 +31,7 @@ export class Calls {
    *
    * @returns Typical success response
    *
-   * @throws {@link Calls.CallsAddError} when the API answers with an error status — narrow on
-   * `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -42,7 +40,7 @@ export class Calls {
   callsAdd(
     request: Calls.CallsAddRequest,
     options?: RequestOptions,
-  ): ApiPromise<Defaultsuccesstemplate, Calls.CallsAddError> {
+  ): ApiPromise<Defaultsuccesstemplate, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -75,7 +73,7 @@ export class Calls {
       },
       {
         success: { kind: "json", schema: defaultsuccesstemplateSchema },
-        errorFactory: Calls.CallsAddError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -89,8 +87,7 @@ export class Calls {
    *
    * @returns Typical success response
    *
-   * @throws {@link Calls.CallsEndError} when the API answers with an error status — narrow on
-   * `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -99,7 +96,7 @@ export class Calls {
   callsEnd(
     request: Calls.CallsEndRequest,
     options?: RequestOptions,
-  ): ApiPromise<Defaultsuccesstemplate, Calls.CallsEndError> {
+  ): ApiPromise<Defaultsuccesstemplate, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -122,7 +119,7 @@ export class Calls {
       },
       {
         success: { kind: "json", schema: defaultsuccesstemplateSchema },
-        errorFactory: Calls.CallsEndError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -136,8 +133,7 @@ export class Calls {
    *
    * @returns Typical success response
    *
-   * @throws {@link Calls.CallsInfoError} when the API answers with an error status — narrow on
-   * `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -146,7 +142,7 @@ export class Calls {
   callsInfo(
     request: Calls.CallsInfoRequest,
     options?: RequestOptions,
-  ): ApiPromise<Defaultsuccesstemplate, Calls.CallsInfoError> {
+  ): ApiPromise<Defaultsuccesstemplate, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -162,7 +158,7 @@ export class Calls {
       },
       {
         success: { kind: "json", schema: defaultsuccesstemplateSchema },
-        errorFactory: Calls.CallsInfoError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -176,8 +172,7 @@ export class Calls {
    *
    * @returns Typical success response
    *
-   * @throws {@link Calls.CallsParticipantsAddError} when the API answers with an error status —
-   * narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -186,7 +181,7 @@ export class Calls {
   callsParticipantsAdd(
     request: Calls.CallsParticipantsAddRequest,
     options?: RequestOptions,
-  ): ApiPromise<Defaultsuccesstemplate, Calls.CallsParticipantsAddError> {
+  ): ApiPromise<Defaultsuccesstemplate, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -209,7 +204,7 @@ export class Calls {
       },
       {
         success: { kind: "json", schema: defaultsuccesstemplateSchema },
-        errorFactory: Calls.CallsParticipantsAddError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -223,8 +218,7 @@ export class Calls {
    *
    * @returns Typical success response
    *
-   * @throws {@link Calls.CallsParticipantsRemoveError} when the API answers with an error status —
-   * narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -233,7 +227,7 @@ export class Calls {
   callsParticipantsRemove(
     request: Calls.CallsParticipantsRemoveRequest,
     options?: RequestOptions,
-  ): ApiPromise<Defaultsuccesstemplate, Calls.CallsParticipantsRemoveError> {
+  ): ApiPromise<Defaultsuccesstemplate, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -256,7 +250,7 @@ export class Calls {
       },
       {
         success: { kind: "json", schema: defaultsuccesstemplateSchema },
-        errorFactory: Calls.CallsParticipantsRemoveError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -270,8 +264,7 @@ export class Calls {
    *
    * @returns Typical success response
    *
-   * @throws {@link Calls.CallsUpdateError} when the API answers with an error status — narrow on
-   * `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -280,7 +273,7 @@ export class Calls {
   callsUpdate(
     request: Calls.CallsUpdateRequest,
     options?: RequestOptions,
-  ): ApiPromise<Defaultsuccesstemplate, Calls.CallsUpdateError> {
+  ): ApiPromise<Defaultsuccesstemplate, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -309,7 +302,7 @@ export class Calls {
       },
       {
         success: { kind: "json", schema: defaultsuccesstemplateSchema },
-        errorFactory: Calls.CallsUpdateError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -355,18 +348,6 @@ export namespace Calls {
     users?: string;
   };
 
-  export class CallsAddError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
-
-    static readonly errors: ErrorDecoders<CallsAddError> = [
-      {
-        on: "default",
-        kind: "defaulterrortemplate1",
-        decode: { kind: "json", schema: defaulterrortemplate1Schema },
-      },
-    ];
-  }
-
   export type CallsEndRequest = {
     /** Authentication token. Requires scope: `calls:write` */
     token: string;
@@ -379,18 +360,6 @@ export namespace Calls {
     duration?: number;
   };
 
-  export class CallsEndError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
-
-    static readonly errors: ErrorDecoders<CallsEndError> = [
-      {
-        on: "default",
-        kind: "defaulterrortemplate1",
-        decode: { kind: "json", schema: defaulterrortemplate1Schema },
-      },
-    ];
-  }
-
   export type CallsInfoRequest = {
     /** `id` of the Call returned by the [`calls.add`](/methods/calls.add) method. */
     id: string;
@@ -398,18 +367,6 @@ export namespace Calls {
     token: string;
     contentType: ContentType;
   };
-
-  export class CallsInfoError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
-
-    static readonly errors: ErrorDecoders<CallsInfoError> = [
-      {
-        on: "default",
-        kind: "defaulterrortemplate1",
-        decode: { kind: "json", schema: defaulterrortemplate1Schema },
-      },
-    ];
-  }
 
   export type CallsParticipantsAddRequest = {
     /** Authentication token. Requires scope: `calls:write` */
@@ -424,18 +381,6 @@ export namespace Calls {
     users: string;
   };
 
-  export class CallsParticipantsAddError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
-
-    static readonly errors: ErrorDecoders<CallsParticipantsAddError> = [
-      {
-        on: "default",
-        kind: "defaulterrortemplate1",
-        decode: { kind: "json", schema: defaulterrortemplate1Schema },
-      },
-    ];
-  }
-
   export type CallsParticipantsRemoveRequest = {
     /** Authentication token. Requires scope: `calls:write` */
     token: string;
@@ -448,18 +393,6 @@ export namespace Calls {
      */
     users: string;
   };
-
-  export class CallsParticipantsRemoveError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
-
-    static readonly errors: ErrorDecoders<CallsParticipantsRemoveError> = [
-      {
-        on: "default",
-        kind: "defaulterrortemplate1",
-        decode: { kind: "json", schema: defaulterrortemplate1Schema },
-      },
-    ];
-  }
 
   export type CallsUpdateRequest = {
     /** Authentication token. Requires scope: `calls:write` */
@@ -477,16 +410,4 @@ export namespace Calls {
      */
     desktopAppJoinUrl?: string;
   };
-
-  export class CallsUpdateError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
-
-    static readonly errors: ErrorDecoders<CallsUpdateError> = [
-      {
-        on: "default",
-        kind: "defaulterrortemplate1",
-        decode: { kind: "json", schema: defaulterrortemplate1Schema },
-      },
-    ];
-  }
 }

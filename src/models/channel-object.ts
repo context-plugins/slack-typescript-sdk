@@ -1,7 +1,7 @@
 import * as s from "../core/validation/index.js";
-import type { Schema } from "../core/validation/schema.js";
-import { purposeSchema, type Purpose } from "./purpose.js";
-import { topicSchema, type Topic } from "./topic.js";
+import type { JsonValue, Schema } from "../core/validation/schema.js";
+import { purposeInternalSchema, purposeSchema, type Purpose } from "./purpose.js";
+import { topicInternalSchema, topicSchema, type Topic } from "./topic.js";
 
 export type ChannelObject = {
   acceptedUser?: string;
@@ -36,9 +36,11 @@ export type ChannelObject = {
   unlinked?: number;
   unreadCount?: number;
   unreadCountDisplay?: number;
+  /** Properties the service sent or accepts beyond those declared. */
+  additionalProperties?: Record<string, JsonValue>;
 };
 
-export const channelObjectSchema: Schema<ChannelObject> = s.object<ChannelObject>({
+const channelObjectProperties: s.Shape<ChannelObject> = {
   acceptedUser: s.optional(s.string()),
   created: s.int(),
   creator: s.string(),
@@ -66,8 +68,8 @@ export const channelObjectSchema: Schema<ChannelObject> = s.object<ChannelObject
   pendingShared: s.optional(s.array(s.string())),
   previousNames: s.optional(s.array(s.string())),
   priority: s.optional(s.float64()),
-  purpose: purposeSchema,
-  topic: topicSchema,
+  purpose: purposeInternalSchema,
+  topic: topicInternalSchema,
   unlinked: s.optional(s.int()),
   unreadCount: s.optional(s.int()),
   unreadCountDisplay: s.optional(s.int()),
@@ -95,4 +97,31 @@ export const channelObjectSchema: Schema<ChannelObject> = s.object<ChannelObject
     unreadCount: "unread_count",
     unreadCountDisplay: "unread_count_display",
   },
-});
+};
+
+export const channelObjectInternalSchema: Schema<ChannelObject> = s.object<ChannelObject>(
+  channelObjectProperties,
+  { additionalProperties: s.json() },
+);
+
+export const channelObjectSchema: Schema<ChannelObject> = s.lazySchema(() =>
+  s.object<ChannelObject>(
+    {
+      ...channelObjectProperties,
+      acceptedUser: s.optional(s.string().check(s.pattern("^[UW][A-Z0-9]{2,}$"))),
+      creator: s.string().check(s.pattern("^[UW][A-Z0-9]{2,}$")),
+      id: s.string().check(s.pattern("^[C][A-Z0-9]{2,}$")),
+      lastRead: s.optional(s.string().check(s.pattern("^\\d{10}\\.\\d{6}$"))),
+      members: s
+        .array(s.string().check(s.pattern("^[UW][A-Z0-9]{2,}$")))
+        .check(s.minLength(0), s.uniqueItems()),
+      pendingShared: s.optional(
+        s.array(s.string().check(s.pattern("^[T][A-Z0-9]{2,}$"))).check(s.minLength(0), s.uniqueItems()),
+      ),
+      previousNames: s.optional(s.array(s.string()).check(s.minLength(0), s.uniqueItems())),
+      purpose: purposeSchema,
+      topic: topicSchema,
+    },
+    { additionalProperties: s.json() },
+  ),
+);

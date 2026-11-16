@@ -1,16 +1,21 @@
 import * as s from "../core/validation/index.js";
-import type { Schema } from "../core/validation/schema.js";
+import type { JsonValue, Schema } from "../core/validation/schema.js";
 import { currentSchema, type Current } from "./current.js";
 
 export type ExternalOrgMigrations = {
   current: Current[];
   dateUpdated: number;
+  /** Properties the service sent or accepts beyond those declared. */
+  additionalProperties?: Record<string, JsonValue>;
 };
 
-export const externalOrgMigrationsSchema: Schema<ExternalOrgMigrations> = s.object<ExternalOrgMigrations>({
-  current: s.array(s.lazy(() => currentSchema)),
-  dateUpdated: s.int(),
-  _keysMap: {
-    dateUpdated: "date_updated",
+export const externalOrgMigrationsSchema: Schema<ExternalOrgMigrations> = s.object<ExternalOrgMigrations>(
+  {
+    current: s.array(s.lazy(() => currentSchema)),
+    dateUpdated: s.int(),
+    _keysMap: {
+      dateUpdated: "date_updated",
+    },
   },
-});
+  { additionalProperties: s.json() },
+);

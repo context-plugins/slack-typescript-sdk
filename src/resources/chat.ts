@@ -1,83 +1,46 @@
 import type { AuthSchemes } from "../auth-schemes.js";
-import { ApiError, type Declared, type ErrorDecoders, type ErrorPayload } from "../core/api-error.js";
+import { ApiError } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import type { RawClient } from "../core/raw-client.js";
 import { uuid } from "../core/uuid.js";
 import * as s from "../core/validation/index.js";
 import {
-  chatDeleteScheduledMessageerrorschema1Schema,
-  type ChatDeleteScheduledMessageerrorschema1,
-} from "../models/chat-delete-scheduled-messageerrorschema1.js";
-import {
   chatDeleteScheduledMessageschemaSchema,
   type ChatDeleteScheduledMessageschema,
 } from "../models/chat-delete-scheduled-messageschema.js";
 import {
-  chatDeleteerrorschema1Schema,
-  type ChatDeleteerrorschema1,
-} from "../models/chat-deleteerrorschema1.js";
-import {
-  chatDeletesuccessschemaSchema,
+  chatDeletesuccessschemaInternalSchema,
   type ChatDeletesuccessschema,
 } from "../models/chat-deletesuccessschema.js";
 import {
-  chatGetPermalinkerrorschema1Schema,
-  type ChatGetPermalinkerrorschema1,
-} from "../models/chat-get-permalinkerrorschema1.js";
-import {
-  chatGetPermalinksuccessschemaSchema,
+  chatGetPermalinksuccessschemaInternalSchema,
   type ChatGetPermalinksuccessschema,
 } from "../models/chat-get-permalinksuccessschema.js";
 import {
-  chatMeMessageerrorschema1Schema,
-  type ChatMeMessageerrorschema1,
-} from "../models/chat-me-messageerrorschema1.js";
-import { chatMeMessageschemaSchema, type ChatMeMessageschema } from "../models/chat-me-messageschema.js";
+  chatMeMessageschemaInternalSchema,
+  type ChatMeMessageschema,
+} from "../models/chat-me-messageschema.js";
 import {
-  chatPostEphemeralerrorschema1Schema,
-  type ChatPostEphemeralerrorschema1,
-} from "../models/chat-post-ephemeralerrorschema1.js";
-import {
-  chatPostEphemeralsuccessschemaSchema,
+  chatPostEphemeralsuccessschemaInternalSchema,
   type ChatPostEphemeralsuccessschema,
 } from "../models/chat-post-ephemeralsuccessschema.js";
 import {
-  chatPostMessageerrorschema1Schema,
-  type ChatPostMessageerrorschema1,
-} from "../models/chat-post-messageerrorschema1.js";
-import {
-  chatPostMessagesuccessschemaSchema,
+  chatPostMessagesuccessschemaInternalSchema,
   type ChatPostMessagesuccessschema,
 } from "../models/chat-post-messagesuccessschema.js";
 import {
-  chatScheduleMessageerrorschema1Schema,
-  type ChatScheduleMessageerrorschema1,
-} from "../models/chat-schedule-messageerrorschema1.js";
-import {
-  chatScheduleMessagesuccessschemaSchema,
+  chatScheduleMessagesuccessschemaInternalSchema,
   type ChatScheduleMessagesuccessschema,
 } from "../models/chat-schedule-messagesuccessschema.js";
 import {
-  chatScheduledMessagesListerrorschema1Schema,
-  type ChatScheduledMessagesListerrorschema1,
-} from "../models/chat-scheduled-messages-listerrorschema1.js";
-import {
-  chatScheduledMessagesListschemaSchema,
+  chatScheduledMessagesListschemaInternalSchema,
   type ChatScheduledMessagesListschema,
 } from "../models/chat-scheduled-messages-listschema.js";
-import {
-  chatUnfurlerrorschema1Schema,
-  type ChatUnfurlerrorschema1,
-} from "../models/chat-unfurlerrorschema1.js";
 import {
   chatUnfurlsuccessschemaSchema,
   type ChatUnfurlsuccessschema,
 } from "../models/chat-unfurlsuccessschema.js";
-import {
-  chatUpdateerrorschema1Schema,
-  type ChatUpdateerrorschema1,
-} from "../models/chat-updateerrorschema1.js";
 import {
   chatUpdatesuccessschemaSchema,
   type ChatUpdatesuccessschema,
@@ -104,8 +67,7 @@ export class Chat {
    *
    * @returns Typical success response
    *
-   * @throws {@link Chat.ChatDeleteError} when the API answers with an error status — narrow on
-   * `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -114,7 +76,7 @@ export class Chat {
   chatDelete(
     request: Chat.ChatDeleteRequest,
     options?: RequestOptions,
-  ): ApiPromise<ChatDeletesuccessschema, Chat.ChatDeleteError> {
+  ): ApiPromise<ChatDeletesuccessschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -137,8 +99,8 @@ export class Chat {
         },
       },
       {
-        success: { kind: "json", schema: chatDeletesuccessschemaSchema },
-        errorFactory: Chat.ChatDeleteError,
+        success: { kind: "json", schema: chatDeletesuccessschemaInternalSchema },
+        errorFactory: ApiError,
       },
       options,
     );
@@ -152,8 +114,7 @@ export class Chat {
    *
    * @returns Typical success response
    *
-   * @throws {@link Chat.ChatDeleteScheduledMessageError} when the API answers with an error status
-   * — narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -162,7 +123,7 @@ export class Chat {
   chatDeleteScheduledMessage(
     request: Chat.ChatDeleteScheduledMessageRequest,
     options?: RequestOptions,
-  ): ApiPromise<ChatDeleteScheduledMessageschema, Chat.ChatDeleteScheduledMessageError> {
+  ): ApiPromise<ChatDeleteScheduledMessageschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -186,7 +147,7 @@ export class Chat {
       },
       {
         success: { kind: "json", schema: chatDeleteScheduledMessageschemaSchema },
-        errorFactory: Chat.ChatDeleteScheduledMessageError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -200,8 +161,7 @@ export class Chat {
    *
    * @returns Standard success response
    *
-   * @throws {@link Chat.ChatGetPermalinkError} when the API answers with an error status — narrow
-   * on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -210,7 +170,7 @@ export class Chat {
   chatGetPermalink(
     request: Chat.ChatGetPermalinkRequest,
     options?: RequestOptions,
-  ): ApiPromise<ChatGetPermalinksuccessschema, Chat.ChatGetPermalinkError> {
+  ): ApiPromise<ChatGetPermalinksuccessschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -226,8 +186,8 @@ export class Chat {
         body: { kind: "empty" },
       },
       {
-        success: { kind: "json", schema: chatGetPermalinksuccessschemaSchema },
-        errorFactory: Chat.ChatGetPermalinkError,
+        success: { kind: "json", schema: chatGetPermalinksuccessschemaInternalSchema },
+        errorFactory: ApiError,
       },
       options,
     );
@@ -241,8 +201,7 @@ export class Chat {
    *
    * @returns Typical success response
    *
-   * @throws {@link Chat.ChatMeMessageError} when the API answers with an error status — narrow on
-   * `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -251,7 +210,7 @@ export class Chat {
   chatMeMessage(
     request: Chat.ChatMeMessageRequest,
     options?: RequestOptions,
-  ): ApiPromise<ChatMeMessageschema, Chat.ChatMeMessageError> {
+  ): ApiPromise<ChatMeMessageschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -273,8 +232,8 @@ export class Chat {
         },
       },
       {
-        success: { kind: "json", schema: chatMeMessageschemaSchema },
-        errorFactory: Chat.ChatMeMessageError,
+        success: { kind: "json", schema: chatMeMessageschemaInternalSchema },
+        errorFactory: ApiError,
       },
       options,
     );
@@ -288,8 +247,7 @@ export class Chat {
    *
    * @returns Typical success response
    *
-   * @throws {@link Chat.ChatPostEphemeralError} when the API answers with an error status — narrow
-   * on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -298,7 +256,7 @@ export class Chat {
   chatPostEphemeral(
     request: Chat.ChatPostEphemeralRequest,
     options?: RequestOptions,
-  ): ApiPromise<ChatPostEphemeralsuccessschema, Chat.ChatPostEphemeralError> {
+  ): ApiPromise<ChatPostEphemeralsuccessschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -330,8 +288,8 @@ export class Chat {
         },
       },
       {
-        success: { kind: "json", schema: chatPostEphemeralsuccessschemaSchema },
-        errorFactory: Chat.ChatPostEphemeralError,
+        success: { kind: "json", schema: chatPostEphemeralsuccessschemaInternalSchema },
+        errorFactory: ApiError,
       },
       options,
     );
@@ -345,8 +303,7 @@ export class Chat {
    *
    * @returns Typical success response
    *
-   * @throws {@link Chat.ChatPostMessageError} when the API answers with an error status — narrow on
-   * `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -355,7 +312,7 @@ export class Chat {
   chatPostMessage(
     request: Chat.ChatPostMessageRequest,
     options?: RequestOptions,
-  ): ApiPromise<ChatPostMessagesuccessschema, Chat.ChatPostMessageError> {
+  ): ApiPromise<ChatPostMessagesuccessschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -390,8 +347,8 @@ export class Chat {
         },
       },
       {
-        success: { kind: "json", schema: chatPostMessagesuccessschemaSchema },
-        errorFactory: Chat.ChatPostMessageError,
+        success: { kind: "json", schema: chatPostMessagesuccessschemaInternalSchema },
+        errorFactory: ApiError,
       },
       options,
     );
@@ -405,8 +362,7 @@ export class Chat {
    *
    * @returns Typical success response
    *
-   * @throws {@link Chat.ChatScheduleMessageError} when the API answers with an error status —
-   * narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -415,7 +371,7 @@ export class Chat {
   chatScheduleMessage(
     request: Chat.ChatScheduleMessageRequest,
     options?: RequestOptions,
-  ): ApiPromise<ChatScheduleMessagesuccessschema, Chat.ChatScheduleMessageError> {
+  ): ApiPromise<ChatScheduleMessagesuccessschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -447,8 +403,8 @@ export class Chat {
         },
       },
       {
-        success: { kind: "json", schema: chatScheduleMessagesuccessschemaSchema },
-        errorFactory: Chat.ChatScheduleMessageError,
+        success: { kind: "json", schema: chatScheduleMessagesuccessschemaInternalSchema },
+        errorFactory: ApiError,
       },
       options,
     );
@@ -462,8 +418,7 @@ export class Chat {
    *
    * @returns Typical success response
    *
-   * @throws {@link Chat.ChatScheduledMessagesListError} when the API answers with an error status —
-   * narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -472,7 +427,7 @@ export class Chat {
   chatScheduledMessagesList(
     request: Chat.ChatScheduledMessagesListRequest,
     options?: RequestOptions,
-  ): ApiPromise<ChatScheduledMessagesListschema, Chat.ChatScheduledMessagesListError> {
+  ): ApiPromise<ChatScheduledMessagesListschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -493,8 +448,8 @@ export class Chat {
         body: { kind: "empty" },
       },
       {
-        success: { kind: "json", schema: chatScheduledMessagesListschemaSchema },
-        errorFactory: Chat.ChatScheduledMessagesListError,
+        success: { kind: "json", schema: chatScheduledMessagesListschemaInternalSchema },
+        errorFactory: ApiError,
       },
       options,
     );
@@ -508,8 +463,7 @@ export class Chat {
    *
    * @returns Typical, minimal success response
    *
-   * @throws {@link Chat.ChatUnfurlError} when the API answers with an error status — narrow on
-   * `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -518,7 +472,7 @@ export class Chat {
   chatUnfurl(
     request: Chat.ChatUnfurlRequest,
     options?: RequestOptions,
-  ): ApiPromise<ChatUnfurlsuccessschema, Chat.ChatUnfurlError> {
+  ): ApiPromise<ChatUnfurlsuccessschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -545,7 +499,7 @@ export class Chat {
       },
       {
         success: { kind: "json", schema: chatUnfurlsuccessschemaSchema },
-        errorFactory: Chat.ChatUnfurlError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -559,8 +513,7 @@ export class Chat {
    *
    * @returns Typical success response
    *
-   * @throws {@link Chat.ChatUpdateError} when the API answers with an error status — narrow on
-   * `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -569,7 +522,7 @@ export class Chat {
   chatUpdate(
     request: Chat.ChatUpdateRequest,
     options?: RequestOptions,
-  ): ApiPromise<ChatUpdatesuccessschema, Chat.ChatUpdateError> {
+  ): ApiPromise<ChatUpdatesuccessschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -598,7 +551,7 @@ export class Chat {
       },
       {
         success: { kind: "json", schema: chatUpdatesuccessschemaSchema },
-        errorFactory: Chat.ChatUpdateError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -622,18 +575,6 @@ export namespace Chat {
     asUser?: boolean;
   };
 
-  export class ChatDeleteError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"chatDeleteerrorschema1", ChatDeleteerrorschema1>>;
-
-    static readonly errors: ErrorDecoders<ChatDeleteError> = [
-      {
-        on: "default",
-        kind: "chatDeleteerrorschema1",
-        decode: { kind: "json", schema: chatDeleteerrorschema1Schema },
-      },
-    ];
-  }
-
   export type ChatDeleteScheduledMessageRequest = {
     /** Authentication token. Requires scope: `chat:write` */
     token: string;
@@ -650,20 +591,6 @@ export namespace Chat {
     asUser?: boolean;
   };
 
-  export class ChatDeleteScheduledMessageError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"chatDeleteScheduledMessageerrorschema1", ChatDeleteScheduledMessageerrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<ChatDeleteScheduledMessageError> = [
-      {
-        on: "default",
-        kind: "chatDeleteScheduledMessageerrorschema1",
-        decode: { kind: "json", schema: chatDeleteScheduledMessageerrorschema1Schema },
-      },
-    ];
-  }
-
   export type ChatGetPermalinkRequest = {
     /** Authentication token. Requires scope: `none` */
     token: string;
@@ -673,20 +600,6 @@ export namespace Chat {
     messageTs: string;
     contentType: ContentType;
   };
-
-  export class ChatGetPermalinkError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"chatGetPermalinkerrorschema1", ChatGetPermalinkerrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<ChatGetPermalinkError> = [
-      {
-        on: "default",
-        kind: "chatGetPermalinkerrorschema1",
-        decode: { kind: "json", schema: chatGetPermalinkerrorschema1Schema },
-      },
-    ];
-  }
 
   export type ChatMeMessageRequest = {
     contentType: ContentType;
@@ -700,18 +613,6 @@ export namespace Chat {
     /** Text of the message to send. */
     text?: string;
   };
-
-  export class ChatMeMessageError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"chatMeMessageerrorschema1", ChatMeMessageerrorschema1>>;
-
-    static readonly errors: ErrorDecoders<ChatMeMessageError> = [
-      {
-        on: "default",
-        kind: "chatMeMessageerrorschema1",
-        decode: { kind: "json", schema: chatMeMessageerrorschema1Schema },
-      },
-    ];
-  }
 
   export type ChatPostEphemeralRequest = {
     /** Authentication token. Requires scope: `chat:write` */
@@ -766,20 +667,6 @@ export namespace Chat {
      */
     username?: string;
   };
-
-  export class ChatPostEphemeralError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"chatPostEphemeralerrorschema1", ChatPostEphemeralerrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<ChatPostEphemeralError> = [
-      {
-        on: "default",
-        kind: "chatPostEphemeralerrorschema1",
-        decode: { kind: "json", schema: chatPostEphemeralerrorschema1Schema },
-      },
-    ];
-  }
 
   export type ChatPostMessageRequest = {
     /** Authentication token. Requires scope: `chat:write` */
@@ -841,20 +728,6 @@ export namespace Chat {
     username?: string;
   };
 
-  export class ChatPostMessageError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"chatPostMessageerrorschema1", ChatPostMessageerrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<ChatPostMessageError> = [
-      {
-        on: "default",
-        kind: "chatPostMessageerrorschema1",
-        decode: { kind: "json", schema: chatPostMessageerrorschema1Schema },
-      },
-    ];
-  }
-
   export type ChatScheduleMessageRequest = {
     contentType: ContentType;
     /** Authentication token. Requires scope: `chat:write` */
@@ -903,20 +776,6 @@ export namespace Chat {
     replyBroadcast?: boolean;
   };
 
-  export class ChatScheduleMessageError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"chatScheduleMessageerrorschema1", ChatScheduleMessageerrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<ChatScheduleMessageError> = [
-      {
-        on: "default",
-        kind: "chatScheduleMessageerrorschema1",
-        decode: { kind: "json", schema: chatScheduleMessageerrorschema1Schema },
-      },
-    ];
-  }
-
   export type ChatScheduledMessagesListRequest = {
     /** The channel of the scheduled messages */
     channel?: string;
@@ -935,20 +794,6 @@ export namespace Chat {
     /** Authentication token. Requires scope: `none` */
     token?: string;
   };
-
-  export class ChatScheduledMessagesListError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"chatScheduledMessagesListerrorschema1", ChatScheduledMessagesListerrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<ChatScheduledMessagesListError> = [
-      {
-        on: "default",
-        kind: "chatScheduledMessagesListerrorschema1",
-        decode: { kind: "json", schema: chatScheduledMessagesListerrorschema1Schema },
-      },
-    ];
-  }
 
   export type ChatUnfurlRequest = {
     /** Authentication token. Requires scope: `links:write` */
@@ -979,18 +824,6 @@ export namespace Chat {
      */
     userAuthUrl?: string;
   };
-
-  export class ChatUnfurlError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"chatUnfurlerrorschema1", ChatUnfurlerrorschema1>>;
-
-    static readonly errors: ErrorDecoders<ChatUnfurlError> = [
-      {
-        on: "default",
-        kind: "chatUnfurlerrorschema1",
-        decode: { kind: "json", schema: chatUnfurlerrorschema1Schema },
-      },
-    ];
-  }
 
   export type ChatUpdateRequest = {
     /** Authentication token. Requires scope: `chat:write` */
@@ -1037,16 +870,4 @@ export namespace Chat {
      */
     text?: string;
   };
-
-  export class ChatUpdateError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"chatUpdateerrorschema1", ChatUpdateerrorschema1>>;
-
-    static readonly errors: ErrorDecoders<ChatUpdateError> = [
-      {
-        on: "default",
-        kind: "chatUpdateerrorschema1",
-        decode: { kind: "json", schema: chatUpdateerrorschema1Schema },
-      },
-    ];
-  }
 }

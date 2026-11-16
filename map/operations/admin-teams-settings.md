@@ -2,19 +2,18 @@
 
 # AdminTeamsSettings — operations
 
-Accessor: `client.adminTeamsSettings` · Source: `src/resources/admin-teams-settings.ts` · 6 operations · Request and error types: namespace `AdminTeamsSettings`
+Accessor: `client.adminTeamsSettings` · Source: `src/resources/admin-teams-settings.ts` · 6 operations · Request types: namespace `AdminTeamsSettings`
 
 **Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `slack-web-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### adminTeamsSettingsInfo
 
-- **Signature**: `adminTeamsSettingsInfo(request: AdminTeamsSettings.AdminTeamsSettingsInfoRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, AdminTeamsSettings.AdminTeamsSettingsInfoError>`
+- **Signature**: `adminTeamsSettingsInfo(request: AdminTeamsSettings.AdminTeamsSettingsInfoRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, ApiError>`
 - **Wire**: `GET /admin.teams.settings.info`
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Defaultsuccesstemplate`
-- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `AdminTeamsSettings.AdminTeamsSettingsInfoError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"defaulterrortemplate1"` [default — any status no arm above covers] `Defaulterrortemplate1` · `"undeclared"` [a `default`-matched body that did not fit `Defaulterrortemplate1`] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `AdminTeamsSettings.AdminTeamsSettingsInfoRequest` (3):
 
@@ -28,18 +27,16 @@ Accessor: `client.adminTeamsSettings` · Source: `src/resources/admin-teams-sett
 | --- | --- | --- |
 | `ContentType` | `contentTypeSchema` | `src/models/content-type.ts` |
 | `Defaultsuccesstemplate` | `defaultsuccesstemplateSchema` | `src/models/defaultsuccesstemplate.ts` |
-| `Defaulterrortemplate1` | `defaulterrortemplate1Schema` | `src/models/defaulterrortemplate1.ts` |
 
 ### adminTeamsSettingsSetDefaultChannels
 
-- **Signature**: `adminTeamsSettingsSetDefaultChannels(request: AdminTeamsSettings.AdminTeamsSettingsSetDefaultChannelsRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, AdminTeamsSettings.AdminTeamsSettingsSetDefaultChannelsError>`
+- **Signature**: `adminTeamsSettingsSetDefaultChannels(request: AdminTeamsSettings.AdminTeamsSettingsSetDefaultChannelsRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, ApiError>`
 - **Wire**: `POST /admin.teams.settings.setDefaultChannels`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
 - **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Defaultsuccesstemplate`
-- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `AdminTeamsSettings.AdminTeamsSettingsSetDefaultChannelsError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"defaulterrortemplate1"` [default — any status no arm above covers] `Defaulterrortemplate1` · `"undeclared"` [a `default`-matched body that did not fit `Defaulterrortemplate1`] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `AdminTeamsSettings.AdminTeamsSettingsSetDefaultChannelsRequest` (4):
 
@@ -54,18 +51,16 @@ Accessor: `client.adminTeamsSettings` · Source: `src/resources/admin-teams-sett
 | --- | --- | --- |
 | `ContentType` | `contentTypeSchema` | `src/models/content-type.ts` |
 | `Defaultsuccesstemplate` | `defaultsuccesstemplateSchema` | `src/models/defaultsuccesstemplate.ts` |
-| `Defaulterrortemplate1` | `defaulterrortemplate1Schema` | `src/models/defaulterrortemplate1.ts` |
 
 ### adminTeamsSettingsSetDescription
 
-- **Signature**: `adminTeamsSettingsSetDescription(request: AdminTeamsSettings.AdminTeamsSettingsSetDescriptionRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, AdminTeamsSettings.AdminTeamsSettingsSetDescriptionError>`
+- **Signature**: `adminTeamsSettingsSetDescription(request: AdminTeamsSettings.AdminTeamsSettingsSetDescriptionRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, ApiError>`
 - **Wire**: `POST /admin.teams.settings.setDescription`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
 - **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Defaultsuccesstemplate`
-- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `AdminTeamsSettings.AdminTeamsSettingsSetDescriptionError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"defaulterrortemplate1"` [default — any status no arm above covers] `Defaulterrortemplate1` · `"undeclared"` [a `default`-matched body that did not fit `Defaulterrortemplate1`] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `AdminTeamsSettings.AdminTeamsSettingsSetDescriptionRequest` (4):
 
@@ -80,18 +75,16 @@ Accessor: `client.adminTeamsSettings` · Source: `src/resources/admin-teams-sett
 | --- | --- | --- |
 | `ContentType` | `contentTypeSchema` | `src/models/content-type.ts` |
 | `Defaultsuccesstemplate` | `defaultsuccesstemplateSchema` | `src/models/defaultsuccesstemplate.ts` |
-| `Defaulterrortemplate1` | `defaulterrortemplate1Schema` | `src/models/defaulterrortemplate1.ts` |
 
 ### adminTeamsSettingsSetDiscoverability
 
-- **Signature**: `adminTeamsSettingsSetDiscoverability(request: AdminTeamsSettings.AdminTeamsSettingsSetDiscoverabilityRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, AdminTeamsSettings.AdminTeamsSettingsSetDiscoverabilityError>`
+- **Signature**: `adminTeamsSettingsSetDiscoverability(request: AdminTeamsSettings.AdminTeamsSettingsSetDiscoverabilityRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, ApiError>`
 - **Wire**: `POST /admin.teams.settings.setDiscoverability`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
 - **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Defaultsuccesstemplate`
-- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `AdminTeamsSettings.AdminTeamsSettingsSetDiscoverabilityError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"defaulterrortemplate1"` [default — any status no arm above covers] `Defaulterrortemplate1` · `"undeclared"` [a `default`-matched body that did not fit `Defaulterrortemplate1`] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `AdminTeamsSettings.AdminTeamsSettingsSetDiscoverabilityRequest` (4):
 
@@ -106,18 +99,16 @@ Accessor: `client.adminTeamsSettings` · Source: `src/resources/admin-teams-sett
 | --- | --- | --- |
 | `ContentType` | `contentTypeSchema` | `src/models/content-type.ts` |
 | `Defaultsuccesstemplate` | `defaultsuccesstemplateSchema` | `src/models/defaultsuccesstemplate.ts` |
-| `Defaulterrortemplate1` | `defaulterrortemplate1Schema` | `src/models/defaulterrortemplate1.ts` |
 
 ### adminTeamsSettingsSetIcon
 
-- **Signature**: `adminTeamsSettingsSetIcon(request: AdminTeamsSettings.AdminTeamsSettingsSetIconRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, AdminTeamsSettings.AdminTeamsSettingsSetIconError>`
+- **Signature**: `adminTeamsSettingsSetIcon(request: AdminTeamsSettings.AdminTeamsSettingsSetIconRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, ApiError>`
 - **Wire**: `POST /admin.teams.settings.setIcon`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
 - **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Defaultsuccesstemplate`
-- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `AdminTeamsSettings.AdminTeamsSettingsSetIconError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"defaulterrortemplate1"` [default — any status no arm above covers] `Defaulterrortemplate1` · `"undeclared"` [a `default`-matched body that did not fit `Defaulterrortemplate1`] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `AdminTeamsSettings.AdminTeamsSettingsSetIconRequest` (4):
 
@@ -132,18 +123,16 @@ Accessor: `client.adminTeamsSettings` · Source: `src/resources/admin-teams-sett
 | --- | --- | --- |
 | `ContentType` | `contentTypeSchema` | `src/models/content-type.ts` |
 | `Defaultsuccesstemplate` | `defaultsuccesstemplateSchema` | `src/models/defaultsuccesstemplate.ts` |
-| `Defaulterrortemplate1` | `defaulterrortemplate1Schema` | `src/models/defaulterrortemplate1.ts` |
 
 ### adminTeamsSettingsSetName
 
-- **Signature**: `adminTeamsSettingsSetName(request: AdminTeamsSettings.AdminTeamsSettingsSetNameRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, AdminTeamsSettings.AdminTeamsSettingsSetNameError>`
+- **Signature**: `adminTeamsSettingsSetName(request: AdminTeamsSettings.AdminTeamsSettingsSetNameRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, ApiError>`
 - **Wire**: `POST /admin.teams.settings.setName`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
 - **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Defaultsuccesstemplate`
-- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `AdminTeamsSettings.AdminTeamsSettingsSetNameError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"defaulterrortemplate1"` [default — any status no arm above covers] `Defaulterrortemplate1` · `"undeclared"` [a `default`-matched body that did not fit `Defaulterrortemplate1`] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `AdminTeamsSettings.AdminTeamsSettingsSetNameRequest` (4):
 
@@ -158,5 +147,4 @@ Accessor: `client.adminTeamsSettings` · Source: `src/resources/admin-teams-sett
 | --- | --- | --- |
 | `ContentType` | `contentTypeSchema` | `src/models/content-type.ts` |
 | `Defaultsuccesstemplate` | `defaultsuccesstemplateSchema` | `src/models/defaultsuccesstemplate.ts` |
-| `Defaulterrortemplate1` | `defaulterrortemplate1Schema` | `src/models/defaulterrortemplate1.ts` |
 

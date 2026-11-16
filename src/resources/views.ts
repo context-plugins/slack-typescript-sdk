@@ -1,11 +1,10 @@
 import type { AuthSchemes } from "../auth-schemes.js";
-import { ApiError, type Declared, type ErrorDecoders, type ErrorPayload } from "../core/api-error.js";
+import { ApiError } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import type { RawClient } from "../core/raw-client.js";
 import * as s from "../core/validation/index.js";
 import { contentTypeSchema, type ContentType } from "../models/content-type.js";
-import { defaulterrortemplate1Schema, type Defaulterrortemplate1 } from "../models/defaulterrortemplate1.js";
 import {
   defaultsuccesstemplateSchema,
   type Defaultsuccesstemplate,
@@ -31,8 +30,7 @@ export class Views {
    *
    * @returns Typical success response includes the opened view payload.
    *
-   * @throws {@link Views.ViewsOpenError} when the API answers with an error status — narrow on
-   * `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -41,7 +39,7 @@ export class Views {
   viewsOpen(
     request: Views.ViewsOpenRequest,
     options?: RequestOptions,
-  ): ApiPromise<Defaultsuccesstemplate, Views.ViewsOpenError> {
+  ): ApiPromise<Defaultsuccesstemplate, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -60,7 +58,7 @@ export class Views {
       },
       {
         success: { kind: "json", schema: defaultsuccesstemplateSchema },
-        errorFactory: Views.ViewsOpenError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -74,8 +72,7 @@ export class Views {
    *
    * @returns Typical success response includes the published view payload.
    *
-   * @throws {@link Views.ViewsPublishError} when the API answers with an error status — narrow on
-   * `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -84,7 +81,7 @@ export class Views {
   viewsPublish(
     request: Views.ViewsPublishRequest,
     options?: RequestOptions,
-  ): ApiPromise<Defaultsuccesstemplate, Views.ViewsPublishError> {
+  ): ApiPromise<Defaultsuccesstemplate, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -104,7 +101,7 @@ export class Views {
       },
       {
         success: { kind: "json", schema: defaultsuccesstemplateSchema },
-        errorFactory: Views.ViewsPublishError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -118,8 +115,7 @@ export class Views {
    *
    * @returns Typical success response includes the pushed view payload.
    *
-   * @throws {@link Views.ViewsPushError} when the API answers with an error status — narrow on
-   * `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -128,7 +124,7 @@ export class Views {
   viewsPush(
     request: Views.ViewsPushRequest,
     options?: RequestOptions,
-  ): ApiPromise<Defaultsuccesstemplate, Views.ViewsPushError> {
+  ): ApiPromise<Defaultsuccesstemplate, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -147,7 +143,7 @@ export class Views {
       },
       {
         success: { kind: "json", schema: defaultsuccesstemplateSchema },
-        errorFactory: Views.ViewsPushError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -161,8 +157,7 @@ export class Views {
    *
    * @returns Typical success response includes the updated view payload.
    *
-   * @throws {@link Views.ViewsUpdateError} when the API answers with an error status — narrow on
-   * `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -171,7 +166,7 @@ export class Views {
   viewsUpdate(
     request: Views.ViewsUpdateRequest,
     options?: RequestOptions,
-  ): ApiPromise<Defaultsuccesstemplate, Views.ViewsUpdateError> {
+  ): ApiPromise<Defaultsuccesstemplate, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -192,7 +187,7 @@ export class Views {
       },
       {
         success: { kind: "json", schema: defaultsuccesstemplateSchema },
-        errorFactory: Views.ViewsUpdateError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -210,18 +205,6 @@ export namespace Views {
     contentType: ContentType;
   };
 
-  export class ViewsOpenError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
-
-    static readonly errors: ErrorDecoders<ViewsOpenError> = [
-      {
-        on: "default",
-        kind: "defaulterrortemplate1",
-        decode: { kind: "json", schema: defaulterrortemplate1Schema },
-      },
-    ];
-  }
-
   export type ViewsPublishRequest = {
     /** `id` of the user you want publish a view to. */
     userId: string;
@@ -234,18 +217,6 @@ export namespace Views {
     contentType: ContentType;
   };
 
-  export class ViewsPublishError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
-
-    static readonly errors: ErrorDecoders<ViewsPublishError> = [
-      {
-        on: "default",
-        kind: "defaulterrortemplate1",
-        decode: { kind: "json", schema: defaulterrortemplate1Schema },
-      },
-    ];
-  }
-
   export type ViewsPushRequest = {
     /** Exchange a trigger to post to the user. */
     triggerId: string;
@@ -255,18 +226,6 @@ export namespace Views {
     token: string;
     contentType: ContentType;
   };
-
-  export class ViewsPushError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
-
-    static readonly errors: ErrorDecoders<ViewsPushError> = [
-      {
-        on: "default",
-        kind: "defaulterrortemplate1",
-        decode: { kind: "json", schema: defaulterrortemplate1Schema },
-      },
-    ];
-  }
 
   export type ViewsUpdateRequest = {
     /**
@@ -286,16 +245,4 @@ export namespace Views {
     token: string;
     contentType: ContentType;
   };
-
-  export class ViewsUpdateError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
-
-    static readonly errors: ErrorDecoders<ViewsUpdateError> = [
-      {
-        on: "default",
-        kind: "defaulterrortemplate1",
-        decode: { kind: "json", schema: defaulterrortemplate1Schema },
-      },
-    ];
-  }
 }

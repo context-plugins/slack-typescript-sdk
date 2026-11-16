@@ -1,5 +1,5 @@
 import * as s from "../core/validation/index.js";
-import type { Schema } from "../core/validation/schema.js";
+import type { JsonValue, Schema } from "../core/validation/schema.js";
 import {
   adminConversationsDisconnectSharedErrorEnumSchema,
   type AdminConversationsDisconnectSharedErrorEnum,
@@ -9,10 +9,15 @@ import {
 export type AdminConversationsDisconnectSharederrorschema1 = {
   error: AdminConversationsDisconnectSharedErrorEnum;
   ok: boolean;
+  /** Properties the service sent or accepts beyond those declared. */
+  additionalProperties?: Record<string, JsonValue>;
 };
 
 export const adminConversationsDisconnectSharederrorschema1Schema: Schema<AdminConversationsDisconnectSharederrorschema1> =
-  s.object<AdminConversationsDisconnectSharederrorschema1>({
-    error: adminConversationsDisconnectSharedErrorEnumSchema,
-    ok: s.boolean(),
-  });
+  s.object<AdminConversationsDisconnectSharederrorschema1>(
+    {
+      error: adminConversationsDisconnectSharedErrorEnumSchema,
+      ok: s.boolean(),
+    },
+    { additionalProperties: s.json() },
+  );

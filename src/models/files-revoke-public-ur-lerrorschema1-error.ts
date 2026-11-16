@@ -1,5 +1,5 @@
 import * as s from "../core/validation/index.js";
-import type { Schema } from "../core/validation/schema.js";
+import type { JsonValue, Schema } from "../core/validation/schema.js";
 import {
   filesRevokePublicUrlErrorEnumSchema,
   type FilesRevokePublicUrlErrorEnum,
@@ -11,11 +11,16 @@ export type FilesRevokePublicUrLerrorschema1Error = {
   callstack?: string;
   error: FilesRevokePublicUrlErrorEnum;
   ok: boolean;
+  /** Properties the service sent or accepts beyond those declared. */
+  additionalProperties?: Record<string, JsonValue>;
 };
 
 export const filesRevokePublicUrLerrorschema1ErrorSchema: Schema<FilesRevokePublicUrLerrorschema1Error> =
-  s.object<FilesRevokePublicUrLerrorschema1Error>({
-    callstack: s.optional(s.string()),
-    error: filesRevokePublicUrlErrorEnumSchema,
-    ok: s.boolean(),
-  });
+  s.object<FilesRevokePublicUrLerrorschema1Error>(
+    {
+      callstack: s.optional(s.string()),
+      error: filesRevokePublicUrlErrorEnumSchema,
+      ok: s.boolean(),
+    },
+    { additionalProperties: s.json() },
+  );

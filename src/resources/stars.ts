@@ -1,19 +1,13 @@
 import type { AuthSchemes } from "../auth-schemes.js";
-import { ApiError, type Declared, type ErrorDecoders, type ErrorPayload } from "../core/api-error.js";
+import { ApiError } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import type { RawClient } from "../core/raw-client.js";
 import { uuid } from "../core/uuid.js";
 import * as s from "../core/validation/index.js";
 import { contentTypeSchema, type ContentType } from "../models/content-type.js";
-import { starsAdderrorschema1Schema, type StarsAdderrorschema1 } from "../models/stars-adderrorschema1.js";
 import { starsAddschemaSchema, type StarsAddschema } from "../models/stars-addschema.js";
-import { starsListerrorschema1Schema, type StarsListerrorschema1 } from "../models/stars-listerrorschema1.js";
 import { starsListschemaSchema, type StarsListschema } from "../models/stars-listschema.js";
-import {
-  starsRemoveerrorschema1Schema,
-  type StarsRemoveerrorschema1,
-} from "../models/stars-removeerrorschema1.js";
 import { starsRemoveschemaSchema, type StarsRemoveschema } from "../models/stars-removeschema.js";
 import type { Servers } from "../servers.js";
 
@@ -36,17 +30,13 @@ export class Stars {
    *
    * @returns Typical success response
    *
-   * @throws {@link Stars.StarsAddError} when the API answers with an error status — narrow on
-   * `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
    * could not be obtained
    */
-  starsAdd(
-    request: Stars.StarsAddRequest,
-    options?: RequestOptions,
-  ): ApiPromise<StarsAddschema, Stars.StarsAddError> {
+  starsAdd(request: Stars.StarsAddRequest, options?: RequestOptions): ApiPromise<StarsAddschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -71,7 +61,7 @@ export class Stars {
       },
       {
         success: { kind: "json", schema: starsAddschemaSchema },
-        errorFactory: Stars.StarsAddError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -85,8 +75,7 @@ export class Stars {
    *
    * @returns Typical success response
    *
-   * @throws {@link Stars.StarsListError} when the API answers with an error status — narrow on
-   * `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -95,7 +84,7 @@ export class Stars {
   starsList(
     request: Stars.StarsListRequest,
     options?: RequestOptions,
-  ): ApiPromise<StarsListschema, Stars.StarsListError> {
+  ): ApiPromise<StarsListschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -114,7 +103,7 @@ export class Stars {
       },
       {
         success: { kind: "json", schema: starsListschemaSchema },
-        errorFactory: Stars.StarsListError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -128,8 +117,7 @@ export class Stars {
    *
    * @returns Typical success response
    *
-   * @throws {@link Stars.StarsRemoveError} when the API answers with an error status — narrow on
-   * `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -138,7 +126,7 @@ export class Stars {
   starsRemove(
     request: Stars.StarsRemoveRequest,
     options?: RequestOptions,
-  ): ApiPromise<StarsRemoveschema, Stars.StarsRemoveError> {
+  ): ApiPromise<StarsRemoveschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -163,7 +151,7 @@ export class Stars {
       },
       {
         success: { kind: "json", schema: starsRemoveschemaSchema },
-        errorFactory: Stars.StarsRemoveError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -188,18 +176,6 @@ export namespace Stars {
     timestamp?: string;
   };
 
-  export class StarsAddError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"starsAdderrorschema1", StarsAdderrorschema1>>;
-
-    static readonly errors: ErrorDecoders<StarsAddError> = [
-      {
-        on: "default",
-        kind: "starsAdderrorschema1",
-        decode: { kind: "json", schema: starsAdderrorschema1Schema },
-      },
-    ];
-  }
-
   export type StarsListRequest = {
     /** Authentication token. Requires scope: `stars:read` */
     token?: string;
@@ -219,18 +195,6 @@ export namespace Stars {
     contentType: ContentType;
   };
 
-  export class StarsListError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"starsListerrorschema1", StarsListerrorschema1>>;
-
-    static readonly errors: ErrorDecoders<StarsListError> = [
-      {
-        on: "default",
-        kind: "starsListerrorschema1",
-        decode: { kind: "json", schema: starsListerrorschema1Schema },
-      },
-    ];
-  }
-
   export type StarsRemoveRequest = {
     /** Authentication token. Requires scope: `stars:write` */
     token: string;
@@ -247,16 +211,4 @@ export namespace Stars {
     /** Timestamp of the message to remove star from. */
     timestamp?: string;
   };
-
-  export class StarsRemoveError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"starsRemoveerrorschema1", StarsRemoveerrorschema1>>;
-
-    static readonly errors: ErrorDecoders<StarsRemoveError> = [
-      {
-        on: "default",
-        kind: "starsRemoveerrorschema1",
-        decode: { kind: "json", schema: starsRemoveerrorschema1Schema },
-      },
-    ];
-  }
 }

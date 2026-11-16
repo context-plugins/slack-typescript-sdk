@@ -2,19 +2,18 @@
 
 # Dialog — operations
 
-Accessor: `client.dialog` · Source: `src/resources/dialog.ts` · 1 operation · Request and error types: namespace `Dialog`
+Accessor: `client.dialog` · Source: `src/resources/dialog.ts` · 1 operation · Request types: namespace `Dialog`
 
 **Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `slack-web-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### dialogOpen
 
-- **Signature**: `dialogOpen(request: Dialog.DialogOpenRequest, options?: RequestOptions): ApiPromise<DialogOpenschema, Dialog.DialogOpenError>`
+- **Signature**: `dialogOpen(request: Dialog.DialogOpenRequest, options?: RequestOptions): ApiPromise<DialogOpenschema, ApiError>`
 - **Wire**: `GET /dialog.open`
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `DialogOpenschema`
-- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Dialog.DialogOpenError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"dialogOpenerrorschema1"` [default — any status no arm above covers] `DialogOpenerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `DialogOpenerrorschema1`] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Dialog.DialogOpenRequest` (4):
 
@@ -29,5 +28,4 @@ Accessor: `client.dialog` · Source: `src/resources/dialog.ts` · 1 operation ·
 | --- | --- | --- |
 | `ContentType` | `contentTypeSchema` | `src/models/content-type.ts` |
 | `DialogOpenschema` | `dialogOpenschemaSchema` | `src/models/dialog-openschema.ts` |
-| `DialogOpenerrorschema1` | `dialogOpenerrorschema1Schema` | `src/models/dialog-openerrorschema1.ts` |
 

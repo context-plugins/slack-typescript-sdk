@@ -1,5 +1,5 @@
 import * as s from "../core/validation/index.js";
-import type { Schema } from "../core/validation/schema.js";
+import type { JsonValue, Schema } from "../core/validation/schema.js";
 import { pinsAddErrorEnumSchema, type PinsAddErrorEnum } from "./pins-add-error-enum.js";
 
 /** Schema for error response from pins.add method */
@@ -8,10 +8,15 @@ export type PinsAdderrorschema1 = {
   callstack?: string;
   error: PinsAddErrorEnum;
   ok: boolean;
+  /** Properties the service sent or accepts beyond those declared. */
+  additionalProperties?: Record<string, JsonValue>;
 };
 
-export const pinsAdderrorschema1Schema: Schema<PinsAdderrorschema1> = s.object<PinsAdderrorschema1>({
-  callstack: s.optional(s.string()),
-  error: pinsAddErrorEnumSchema,
-  ok: s.boolean(),
-});
+export const pinsAdderrorschema1Schema: Schema<PinsAdderrorschema1> = s.object<PinsAdderrorschema1>(
+  {
+    callstack: s.optional(s.string()),
+    error: pinsAddErrorEnumSchema,
+    ok: s.boolean(),
+  },
+  { additionalProperties: s.json() },
+);

@@ -1,6 +1,6 @@
 import * as s from "../core/validation/index.js";
-import type { Schema } from "../core/validation/schema.js";
-import { prefsSchema, type Prefs } from "./prefs.js";
+import type { JsonValue, Schema } from "../core/validation/schema.js";
+import { prefsInternalSchema, prefsSchema, type Prefs } from "./prefs.js";
 
 export type SubteamUsergroupObject = {
   autoProvision: boolean;
@@ -24,9 +24,11 @@ export type SubteamUsergroupObject = {
   updatedBy: string;
   userCount?: number;
   users?: string[];
+  /** Properties the service sent or accepts beyond those declared. */
+  additionalProperties?: Record<string, JsonValue>;
 };
 
-export const subteamUsergroupObjectSchema: Schema<SubteamUsergroupObject> = s.object<SubteamUsergroupObject>({
+const subteamUsergroupObjectProperties: s.Shape<SubteamUsergroupObject> = {
   autoProvision: s.boolean(),
   autoType: s.record(s.string(), s.unknown()),
   channelCount: s.optional(s.int()),
@@ -43,7 +45,7 @@ export const subteamUsergroupObjectSchema: Schema<SubteamUsergroupObject> = s.ob
   isSubteam: s.boolean(),
   isUsergroup: s.boolean(),
   name: s.string(),
-  prefs: prefsSchema,
+  prefs: prefsInternalSchema,
   teamId: s.string(),
   updatedBy: s.string(),
   userCount: s.optional(s.int()),
@@ -65,4 +67,22 @@ export const subteamUsergroupObjectSchema: Schema<SubteamUsergroupObject> = s.ob
     updatedBy: "updated_by",
     userCount: "user_count",
   },
-});
+};
+
+export const subteamUsergroupObjectInternalSchema: Schema<SubteamUsergroupObject> =
+  s.object<SubteamUsergroupObject>(subteamUsergroupObjectProperties, { additionalProperties: s.json() });
+
+export const subteamUsergroupObjectSchema: Schema<SubteamUsergroupObject> = s.lazySchema(() =>
+  s.object<SubteamUsergroupObject>(
+    {
+      ...subteamUsergroupObjectProperties,
+      createdBy: s.string().check(s.pattern("^[UW][A-Z0-9]{2,}$")),
+      id: s.string().check(s.pattern("^S[A-Z0-9]{2,}$")),
+      prefs: prefsSchema,
+      teamId: s.string().check(s.pattern("^[T][A-Z0-9]{2,}$")),
+      updatedBy: s.string().check(s.pattern("^[UW][A-Z0-9]{2,}$")),
+      users: s.optional(s.array(s.string().check(s.pattern("^[UW][A-Z0-9]{2,}$")))),
+    },
+    { additionalProperties: s.json() },
+  ),
+);

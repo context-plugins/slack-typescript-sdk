@@ -1,12 +1,11 @@
 import type { AuthSchemes } from "../auth-schemes.js";
-import { ApiError, type Declared, type ErrorDecoders, type ErrorPayload } from "../core/api-error.js";
+import { ApiError } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import type { RawClient } from "../core/raw-client.js";
 import { uuid } from "../core/uuid.js";
 import * as s from "../core/validation/index.js";
 import { contentTypeSchema, type ContentType } from "../models/content-type.js";
-import { defaulterrortemplate1Schema, type Defaulterrortemplate1 } from "../models/defaulterrortemplate1.js";
 import {
   defaultsuccesstemplateSchema,
   type Defaultsuccesstemplate,
@@ -32,8 +31,7 @@ export class FilesRemote {
    *
    * @returns Typical success response
    *
-   * @throws {@link FilesRemote.FilesRemoteAddError} when the API answers with an error status —
-   * narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -42,7 +40,7 @@ export class FilesRemote {
   filesRemoteAdd(
     request: FilesRemote.FilesRemoteAddRequest,
     options?: RequestOptions,
-  ): ApiPromise<Defaultsuccesstemplate, FilesRemote.FilesRemoteAddError> {
+  ): ApiPromise<Defaultsuccesstemplate, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -73,7 +71,7 @@ export class FilesRemote {
       },
       {
         success: { kind: "json", schema: defaultsuccesstemplateSchema },
-        errorFactory: FilesRemote.FilesRemoteAddError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -87,8 +85,7 @@ export class FilesRemote {
    *
    * @returns Typical success response
    *
-   * @throws {@link FilesRemote.FilesRemoteInfoError} when the API answers with an error status —
-   * narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -97,7 +94,7 @@ export class FilesRemote {
   filesRemoteInfo(
     request: FilesRemote.FilesRemoteInfoRequest,
     options?: RequestOptions,
-  ): ApiPromise<Defaultsuccesstemplate, FilesRemote.FilesRemoteInfoError> {
+  ): ApiPromise<Defaultsuccesstemplate, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -114,7 +111,7 @@ export class FilesRemote {
       },
       {
         success: { kind: "json", schema: defaultsuccesstemplateSchema },
-        errorFactory: FilesRemote.FilesRemoteInfoError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -128,8 +125,7 @@ export class FilesRemote {
    *
    * @returns Typical success response
    *
-   * @throws {@link FilesRemote.FilesRemoteListError} when the API answers with an error status —
-   * narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -138,7 +134,7 @@ export class FilesRemote {
   filesRemoteList(
     request: FilesRemote.FilesRemoteListRequest,
     options?: RequestOptions,
-  ): ApiPromise<Defaultsuccesstemplate, FilesRemote.FilesRemoteListError> {
+  ): ApiPromise<Defaultsuccesstemplate, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -158,7 +154,7 @@ export class FilesRemote {
       },
       {
         success: { kind: "json", schema: defaultsuccesstemplateSchema },
-        errorFactory: FilesRemote.FilesRemoteListError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -172,8 +168,7 @@ export class FilesRemote {
    *
    * @returns Typical success response
    *
-   * @throws {@link FilesRemote.FilesRemoteRemoveError} when the API answers with an error status —
-   * narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -182,7 +177,7 @@ export class FilesRemote {
   filesRemoteRemove(
     request: FilesRemote.FilesRemoteRemoveRequest,
     options?: RequestOptions,
-  ): ApiPromise<Defaultsuccesstemplate, FilesRemote.FilesRemoteRemoveError> {
+  ): ApiPromise<Defaultsuccesstemplate, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -205,7 +200,7 @@ export class FilesRemote {
       },
       {
         success: { kind: "json", schema: defaultsuccesstemplateSchema },
-        errorFactory: FilesRemote.FilesRemoteRemoveError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -219,8 +214,7 @@ export class FilesRemote {
    *
    * @returns Typical success response
    *
-   * @throws {@link FilesRemote.FilesRemoteShareError} when the API answers with an error status —
-   * narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -229,7 +223,7 @@ export class FilesRemote {
   filesRemoteShare(
     request: FilesRemote.FilesRemoteShareRequest,
     options?: RequestOptions,
-  ): ApiPromise<Defaultsuccesstemplate, FilesRemote.FilesRemoteShareError> {
+  ): ApiPromise<Defaultsuccesstemplate, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -247,7 +241,7 @@ export class FilesRemote {
       },
       {
         success: { kind: "json", schema: defaultsuccesstemplateSchema },
-        errorFactory: FilesRemote.FilesRemoteShareError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -261,8 +255,7 @@ export class FilesRemote {
    *
    * @returns Typical success response
    *
-   * @throws {@link FilesRemote.FilesRemoteUpdateError} when the API answers with an error status —
-   * narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -271,7 +264,7 @@ export class FilesRemote {
   filesRemoteUpdate(
     request: FilesRemote.FilesRemoteUpdateRequest,
     options?: RequestOptions,
-  ): ApiPromise<Defaultsuccesstemplate, FilesRemote.FilesRemoteUpdateError> {
+  ): ApiPromise<Defaultsuccesstemplate, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -303,7 +296,7 @@ export class FilesRemote {
       },
       {
         success: { kind: "json", schema: defaultsuccesstemplateSchema },
-        errorFactory: FilesRemote.FilesRemoteUpdateError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -332,18 +325,6 @@ export namespace FilesRemote {
     indexableFileContents?: string;
   };
 
-  export class FilesRemoteAddError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
-
-    static readonly errors: ErrorDecoders<FilesRemoteAddError> = [
-      {
-        on: "default",
-        kind: "defaulterrortemplate1",
-        decode: { kind: "json", schema: defaulterrortemplate1Schema },
-      },
-    ];
-  }
-
   export type FilesRemoteInfoRequest = {
     /** Authentication token. Requires scope: `remote_files:read` */
     token?: string;
@@ -353,18 +334,6 @@ export namespace FilesRemote {
     externalId?: string;
     contentType: ContentType;
   };
-
-  export class FilesRemoteInfoError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
-
-    static readonly errors: ErrorDecoders<FilesRemoteInfoError> = [
-      {
-        on: "default",
-        kind: "defaulterrortemplate1",
-        decode: { kind: "json", schema: defaulterrortemplate1Schema },
-      },
-    ];
-  }
 
   export type FilesRemoteListRequest = {
     /** Authentication token. Requires scope: `remote_files:read` */
@@ -386,18 +355,6 @@ export namespace FilesRemote {
     contentType: ContentType;
   };
 
-  export class FilesRemoteListError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
-
-    static readonly errors: ErrorDecoders<FilesRemoteListError> = [
-      {
-        on: "default",
-        kind: "defaulterrortemplate1",
-        decode: { kind: "json", schema: defaulterrortemplate1Schema },
-      },
-    ];
-  }
-
   export type FilesRemoteRemoveRequest = {
     contentType: ContentType;
     /** Authentication token. Requires scope: `remote_files:write` */
@@ -407,18 +364,6 @@ export namespace FilesRemote {
     /** Creator defined GUID for the file. */
     externalId?: string;
   };
-
-  export class FilesRemoteRemoveError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
-
-    static readonly errors: ErrorDecoders<FilesRemoteRemoveError> = [
-      {
-        on: "default",
-        kind: "defaulterrortemplate1",
-        decode: { kind: "json", schema: defaulterrortemplate1Schema },
-      },
-    ];
-  }
 
   export type FilesRemoteShareRequest = {
     /** Authentication token. Requires scope: `remote_files:share` */
@@ -437,18 +382,6 @@ export namespace FilesRemote {
     channels?: string;
     contentType: ContentType;
   };
-
-  export class FilesRemoteShareError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
-
-    static readonly errors: ErrorDecoders<FilesRemoteShareError> = [
-      {
-        on: "default",
-        kind: "defaulterrortemplate1",
-        decode: { kind: "json", schema: defaulterrortemplate1Schema },
-      },
-    ];
-  }
 
   export type FilesRemoteUpdateRequest = {
     contentType: ContentType;
@@ -469,16 +402,4 @@ export namespace FilesRemote {
     /** File containing contents that can be used to improve searchability for the remote file. */
     indexableFileContents?: string;
   };
-
-  export class FilesRemoteUpdateError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
-
-    static readonly errors: ErrorDecoders<FilesRemoteUpdateError> = [
-      {
-        on: "default",
-        kind: "defaulterrortemplate1",
-        decode: { kind: "json", schema: defaulterrortemplate1Schema },
-      },
-    ];
-  }
 }

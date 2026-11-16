@@ -1,10 +1,9 @@
 import type { AuthSchemes } from "../auth-schemes.js";
-import { ApiError, type Declared, type ErrorDecoders, type ErrorPayload } from "../core/api-error.js";
+import { ApiError } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import type { RawClient } from "../core/raw-client.js";
 import * as s from "../core/validation/index.js";
-import { apiTesterrorschema1Schema, type ApiTesterrorschema1 } from "../models/api-testerrorschema1.js";
 import { apiTestsuccessschemaSchema, type ApiTestsuccessschema } from "../models/api-testsuccessschema.js";
 import { contentTypeSchema, type ContentType } from "../models/content-type.js";
 import type { Servers } from "../servers.js";
@@ -28,17 +27,13 @@ export class Api {
    *
    * @returns Standard success response
    *
-   * @throws {@link Api.ApiTestError} when the API answers with an error status — narrow on
-   * `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
    * could not be obtained
    */
-  apiTest(
-    request: Api.ApiTestRequest,
-    options?: RequestOptions,
-  ): ApiPromise<ApiTestsuccessschema, Api.ApiTestError> {
+  apiTest(request: Api.ApiTestRequest, options?: RequestOptions): ApiPromise<ApiTestsuccessschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -54,7 +49,7 @@ export class Api {
       },
       {
         success: { kind: "json", schema: apiTestsuccessschemaSchema },
-        errorFactory: Api.ApiTestError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -69,16 +64,4 @@ export namespace Api {
     foo?: string;
     contentType: ContentType;
   };
-
-  export class ApiTestError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"apiTesterrorschema1", ApiTesterrorschema1>>;
-
-    static readonly errors: ErrorDecoders<ApiTestError> = [
-      {
-        on: "default",
-        kind: "apiTesterrorschema1",
-        decode: { kind: "json", schema: apiTesterrorschema1Schema },
-      },
-    ];
-  }
 }

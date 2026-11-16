@@ -1,14 +1,10 @@
 import type { AuthSchemes } from "../auth-schemes.js";
-import { ApiError, type Declared, type ErrorDecoders, type ErrorPayload } from "../core/api-error.js";
+import { ApiError } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import type { RawClient } from "../core/raw-client.js";
 import * as s from "../core/validation/index.js";
 import { contentTypeSchema, type ContentType } from "../models/content-type.js";
-import {
-  dialogOpenerrorschema1Schema,
-  type DialogOpenerrorschema1,
-} from "../models/dialog-openerrorschema1.js";
 import { dialogOpenschemaSchema, type DialogOpenschema } from "../models/dialog-openschema.js";
 import type { Servers } from "../servers.js";
 
@@ -31,8 +27,7 @@ export class Dialog {
    *
    * @returns Typical success response is quite minimal.
    *
-   * @throws {@link Dialog.DialogOpenError} when the API answers with an error status — narrow on
-   * `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -41,7 +36,7 @@ export class Dialog {
   dialogOpen(
     request: Dialog.DialogOpenRequest,
     options?: RequestOptions,
-  ): ApiPromise<DialogOpenschema, Dialog.DialogOpenError> {
+  ): ApiPromise<DialogOpenschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -60,7 +55,7 @@ export class Dialog {
       },
       {
         success: { kind: "json", schema: dialogOpenschemaSchema },
-        errorFactory: Dialog.DialogOpenError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -77,16 +72,4 @@ export namespace Dialog {
     token: string;
     contentType: ContentType;
   };
-
-  export class DialogOpenError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"dialogOpenerrorschema1", DialogOpenerrorschema1>>;
-
-    static readonly errors: ErrorDecoders<DialogOpenError> = [
-      {
-        on: "default",
-        kind: "dialogOpenerrorschema1",
-        decode: { kind: "json", schema: dialogOpenerrorschema1Schema },
-      },
-    ];
-  }
 }

@@ -1,12 +1,11 @@
 import type { AuthSchemes } from "../auth-schemes.js";
-import { ApiError, type Declared, type ErrorDecoders, type ErrorPayload } from "../core/api-error.js";
+import { ApiError } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import type { RawClient } from "../core/raw-client.js";
 import { uuid } from "../core/uuid.js";
 import * as s from "../core/validation/index.js";
 import { contentTypeSchema, type ContentType } from "../models/content-type.js";
-import { defaulterrortemplate1Schema, type Defaulterrortemplate1 } from "../models/defaulterrortemplate1.js";
 import {
   defaultsuccesstemplateSchema,
   type Defaultsuccesstemplate,
@@ -32,8 +31,7 @@ export class CallsParticipants {
    *
    * @returns Typical success response
    *
-   * @throws {@link CallsParticipants.CallsParticipantsAddError} when the API answers with an error
-   * status — narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -42,7 +40,7 @@ export class CallsParticipants {
   callsParticipantsAdd(
     request: CallsParticipants.CallsParticipantsAddRequest,
     options?: RequestOptions,
-  ): ApiPromise<Defaultsuccesstemplate, CallsParticipants.CallsParticipantsAddError> {
+  ): ApiPromise<Defaultsuccesstemplate, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -65,7 +63,7 @@ export class CallsParticipants {
       },
       {
         success: { kind: "json", schema: defaultsuccesstemplateSchema },
-        errorFactory: CallsParticipants.CallsParticipantsAddError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -79,8 +77,7 @@ export class CallsParticipants {
    *
    * @returns Typical success response
    *
-   * @throws {@link CallsParticipants.CallsParticipantsRemoveError} when the API answers with an
-   * error status — narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -89,7 +86,7 @@ export class CallsParticipants {
   callsParticipantsRemove(
     request: CallsParticipants.CallsParticipantsRemoveRequest,
     options?: RequestOptions,
-  ): ApiPromise<Defaultsuccesstemplate, CallsParticipants.CallsParticipantsRemoveError> {
+  ): ApiPromise<Defaultsuccesstemplate, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -112,7 +109,7 @@ export class CallsParticipants {
       },
       {
         success: { kind: "json", schema: defaultsuccesstemplateSchema },
-        errorFactory: CallsParticipants.CallsParticipantsRemoveError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -133,18 +130,6 @@ export namespace CallsParticipants {
     users: string;
   };
 
-  export class CallsParticipantsAddError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
-
-    static readonly errors: ErrorDecoders<CallsParticipantsAddError> = [
-      {
-        on: "default",
-        kind: "defaulterrortemplate1",
-        decode: { kind: "json", schema: defaulterrortemplate1Schema },
-      },
-    ];
-  }
-
   export type CallsParticipantsRemoveRequest = {
     /** Authentication token. Requires scope: `calls:write` */
     token: string;
@@ -157,16 +142,4 @@ export namespace CallsParticipants {
      */
     users: string;
   };
-
-  export class CallsParticipantsRemoveError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
-
-    static readonly errors: ErrorDecoders<CallsParticipantsRemoveError> = [
-      {
-        on: "default",
-        kind: "defaulterrortemplate1",
-        decode: { kind: "json", schema: defaulterrortemplate1Schema },
-      },
-    ];
-  }
 }

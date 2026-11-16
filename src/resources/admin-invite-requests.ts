@@ -1,12 +1,11 @@
 import type { AuthSchemes } from "../auth-schemes.js";
-import { ApiError, type Declared, type ErrorDecoders, type ErrorPayload } from "../core/api-error.js";
+import { ApiError } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import type { RawClient } from "../core/raw-client.js";
 import { uuid } from "../core/uuid.js";
 import * as s from "../core/validation/index.js";
 import { contentTypeSchema, type ContentType } from "../models/content-type.js";
-import { defaulterrortemplate1Schema, type Defaulterrortemplate1 } from "../models/defaulterrortemplate1.js";
 import {
   defaultsuccesstemplateSchema,
   type Defaultsuccesstemplate,
@@ -32,8 +31,7 @@ export class AdminInviteRequests {
    *
    * @returns Typical success response
    *
-   * @throws {@link AdminInviteRequests.AdminInviteRequestsApproveError} when the API answers with
-   * an error status — narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -42,7 +40,7 @@ export class AdminInviteRequests {
   adminInviteRequestsApprove(
     request: AdminInviteRequests.AdminInviteRequestsApproveRequest,
     options?: RequestOptions,
-  ): ApiPromise<Defaultsuccesstemplate, AdminInviteRequests.AdminInviteRequestsApproveError> {
+  ): ApiPromise<Defaultsuccesstemplate, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -65,7 +63,7 @@ export class AdminInviteRequests {
       },
       {
         success: { kind: "json", schema: defaultsuccesstemplateSchema },
-        errorFactory: AdminInviteRequests.AdminInviteRequestsApproveError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -79,8 +77,7 @@ export class AdminInviteRequests {
    *
    * @returns Typical success response
    *
-   * @throws {@link AdminInviteRequests.AdminInviteRequestsDenyError} when the API answers with an
-   * error status — narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -89,7 +86,7 @@ export class AdminInviteRequests {
   adminInviteRequestsDeny(
     request: AdminInviteRequests.AdminInviteRequestsDenyRequest,
     options?: RequestOptions,
-  ): ApiPromise<Defaultsuccesstemplate, AdminInviteRequests.AdminInviteRequestsDenyError> {
+  ): ApiPromise<Defaultsuccesstemplate, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -112,7 +109,7 @@ export class AdminInviteRequests {
       },
       {
         success: { kind: "json", schema: defaultsuccesstemplateSchema },
-        errorFactory: AdminInviteRequests.AdminInviteRequestsDenyError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -126,8 +123,7 @@ export class AdminInviteRequests {
    *
    * @returns Typical success response
    *
-   * @throws {@link AdminInviteRequests.AdminInviteRequestsListError} when the API answers with an
-   * error status — narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -136,7 +132,7 @@ export class AdminInviteRequests {
   adminInviteRequestsList(
     request: AdminInviteRequests.AdminInviteRequestsListRequest,
     options?: RequestOptions,
-  ): ApiPromise<Defaultsuccesstemplate, AdminInviteRequests.AdminInviteRequestsListError> {
+  ): ApiPromise<Defaultsuccesstemplate, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -156,7 +152,7 @@ export class AdminInviteRequests {
       },
       {
         success: { kind: "json", schema: defaultsuccesstemplateSchema },
-        errorFactory: AdminInviteRequests.AdminInviteRequestsListError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -174,18 +170,6 @@ export namespace AdminInviteRequests {
     teamId?: string;
   };
 
-  export class AdminInviteRequestsApproveError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
-
-    static readonly errors: ErrorDecoders<AdminInviteRequestsApproveError> = [
-      {
-        on: "default",
-        kind: "defaulterrortemplate1",
-        decode: { kind: "json", schema: defaulterrortemplate1Schema },
-      },
-    ];
-  }
-
   export type AdminInviteRequestsDenyRequest = {
     /** Authentication token. Requires scope: `admin.invites:write` */
     token: string;
@@ -195,18 +179,6 @@ export namespace AdminInviteRequests {
     /** ID for the workspace where the invite request was made. */
     teamId?: string;
   };
-
-  export class AdminInviteRequestsDenyError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
-
-    static readonly errors: ErrorDecoders<AdminInviteRequestsDenyError> = [
-      {
-        on: "default",
-        kind: "defaulterrortemplate1",
-        decode: { kind: "json", schema: defaulterrortemplate1Schema },
-      },
-    ];
-  }
 
   export type AdminInviteRequestsListRequest = {
     /** ID for the workspace where the invite requests were made. */
@@ -222,16 +194,4 @@ export namespace AdminInviteRequests {
     token: string;
     contentType: ContentType;
   };
-
-  export class AdminInviteRequestsListError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
-
-    static readonly errors: ErrorDecoders<AdminInviteRequestsListError> = [
-      {
-        on: "default",
-        kind: "defaulterrortemplate1",
-        decode: { kind: "json", schema: defaulterrortemplate1Schema },
-      },
-    ];
-  }
 }

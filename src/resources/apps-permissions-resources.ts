@@ -1,13 +1,9 @@
 import type { AuthSchemes } from "../auth-schemes.js";
-import { ApiError, type Declared, type ErrorDecoders, type ErrorPayload } from "../core/api-error.js";
+import { ApiError } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import type { RawClient } from "../core/raw-client.js";
 import * as s from "../core/validation/index.js";
-import {
-  appsPermissionsResourcesListerrorschema1Schema,
-  type AppsPermissionsResourcesListerrorschema1,
-} from "../models/apps-permissions-resources-listerrorschema1.js";
 import {
   appsPermissionsResourcesListsuccessschemaSchema,
   type AppsPermissionsResourcesListsuccessschema,
@@ -34,8 +30,7 @@ export class AppsPermissionsResources {
    *
    * @returns Typical successful paginated response
    *
-   * @throws {@link AppsPermissionsResources.AppsPermissionsResourcesListError} when the API answers
-   * with an error status — narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -44,10 +39,7 @@ export class AppsPermissionsResources {
   appsPermissionsResourcesList(
     request: AppsPermissionsResources.AppsPermissionsResourcesListRequest,
     options?: RequestOptions,
-  ): ApiPromise<
-    AppsPermissionsResourcesListsuccessschema,
-    AppsPermissionsResources.AppsPermissionsResourcesListError
-  > {
+  ): ApiPromise<AppsPermissionsResourcesListsuccessschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -64,7 +56,7 @@ export class AppsPermissionsResources {
       },
       {
         success: { kind: "json", schema: appsPermissionsResourcesListsuccessschemaSchema },
-        errorFactory: AppsPermissionsResources.AppsPermissionsResourcesListError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -85,18 +77,4 @@ export namespace AppsPermissionsResources {
     limit?: number;
     contentType: ContentType;
   };
-
-  export class AppsPermissionsResourcesListError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"appsPermissionsResourcesListerrorschema1", AppsPermissionsResourcesListerrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<AppsPermissionsResourcesListError> = [
-      {
-        on: "default",
-        kind: "appsPermissionsResourcesListerrorschema1",
-        decode: { kind: "json", schema: appsPermissionsResourcesListerrorschema1Schema },
-      },
-    ];
-  }
 }

@@ -1,11 +1,10 @@
 import type { AuthSchemes } from "../auth-schemes.js";
-import { ApiError, type Declared, type ErrorDecoders, type ErrorPayload } from "../core/api-error.js";
+import { ApiError } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import type { RawClient } from "../core/raw-client.js";
 import * as s from "../core/validation/index.js";
 import { contentTypeSchema, type ContentType } from "../models/content-type.js";
-import { defaulterrortemplate1Schema, type Defaulterrortemplate1 } from "../models/defaulterrortemplate1.js";
 import {
   defaultsuccesstemplateSchema,
   type Defaultsuccesstemplate,
@@ -31,8 +30,7 @@ export class OauthV2 {
    *
    * @returns Successful token request with scopes for both a bot user and a user token
    *
-   * @throws {@link OauthV2.OauthV2AccessError} when the API answers with an error status — narrow
-   * on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -41,7 +39,7 @@ export class OauthV2 {
   oauthV2Access(
     request: OauthV2.OauthV2AccessRequest,
     options?: RequestOptions,
-  ): ApiPromise<Defaultsuccesstemplate, OauthV2.OauthV2AccessError> {
+  ): ApiPromise<Defaultsuccesstemplate, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -59,7 +57,7 @@ export class OauthV2 {
       },
       {
         success: { kind: "json", schema: defaultsuccesstemplateSchema },
-        errorFactory: OauthV2.OauthV2AccessError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -78,16 +76,4 @@ export namespace OauthV2 {
     redirectUri?: string;
     contentType: ContentType;
   };
-
-  export class OauthV2AccessError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
-
-    static readonly errors: ErrorDecoders<OauthV2AccessError> = [
-      {
-        on: "default",
-        kind: "defaulterrortemplate1",
-        decode: { kind: "json", schema: defaulterrortemplate1Schema },
-      },
-    ];
-  }
 }

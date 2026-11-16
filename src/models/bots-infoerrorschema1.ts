@@ -1,5 +1,5 @@
 import * as s from "../core/validation/index.js";
-import type { Schema } from "../core/validation/schema.js";
+import type { JsonValue, Schema } from "../core/validation/schema.js";
 import { botsInfoErrorEnumSchema, type BotsInfoErrorEnum } from "./bots-info-error-enum.js";
 
 /** Schema for error response from bots.info method */
@@ -8,10 +8,15 @@ export type BotsInfoerrorschema1 = {
   callstack?: string;
   error: BotsInfoErrorEnum;
   ok: boolean;
+  /** Properties the service sent or accepts beyond those declared. */
+  additionalProperties?: Record<string, JsonValue>;
 };
 
-export const botsInfoerrorschema1Schema: Schema<BotsInfoerrorschema1> = s.object<BotsInfoerrorschema1>({
-  callstack: s.optional(s.string()),
-  error: botsInfoErrorEnumSchema,
-  ok: s.boolean(),
-});
+export const botsInfoerrorschema1Schema: Schema<BotsInfoerrorschema1> = s.object<BotsInfoerrorschema1>(
+  {
+    callstack: s.optional(s.string()),
+    error: botsInfoErrorEnumSchema,
+    ok: s.boolean(),
+  },
+  { additionalProperties: s.json() },
+);

@@ -2,19 +2,18 @@
 
 # AdminInviteRequestsApproved — operations
 
-Accessor: `client.adminInviteRequestsApproved` · Source: `src/resources/admin-invite-requests-approved.ts` · 1 operation · Request and error types: namespace `AdminInviteRequestsApproved`
+Accessor: `client.adminInviteRequestsApproved` · Source: `src/resources/admin-invite-requests-approved.ts` · 1 operation · Request types: namespace `AdminInviteRequestsApproved`
 
 **Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `slack-web-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### adminInviteRequestsApprovedList
 
-- **Signature**: `adminInviteRequestsApprovedList(request: AdminInviteRequestsApproved.AdminInviteRequestsApprovedListRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, AdminInviteRequestsApproved.AdminInviteRequestsApprovedListError>`
+- **Signature**: `adminInviteRequestsApprovedList(request: AdminInviteRequestsApproved.AdminInviteRequestsApprovedListRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, ApiError>`
 - **Wire**: `GET /admin.inviteRequests.approved.list`
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Defaultsuccesstemplate`
-- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `AdminInviteRequestsApproved.AdminInviteRequestsApprovedListError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"defaulterrortemplate1"` [default — any status no arm above covers] `Defaulterrortemplate1` · `"undeclared"` [a `default`-matched body that did not fit `Defaulterrortemplate1`] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `AdminInviteRequestsApproved.AdminInviteRequestsApprovedListRequest` (5):
 
@@ -30,5 +29,4 @@ Accessor: `client.adminInviteRequestsApproved` · Source: `src/resources/admin-i
 | --- | --- | --- |
 | `ContentType` | `contentTypeSchema` | `src/models/content-type.ts` |
 | `Defaultsuccesstemplate` | `defaultsuccesstemplateSchema` | `src/models/defaultsuccesstemplate.ts` |
-| `Defaulterrortemplate1` | `defaulterrortemplate1Schema` | `src/models/defaulterrortemplate1.ts` |
 

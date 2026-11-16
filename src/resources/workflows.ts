@@ -1,11 +1,10 @@
 import type { AuthSchemes } from "../auth-schemes.js";
-import { ApiError, type Declared, type ErrorDecoders, type ErrorPayload } from "../core/api-error.js";
+import { ApiError } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import type { RawClient } from "../core/raw-client.js";
 import * as s from "../core/validation/index.js";
 import { contentTypeSchema, type ContentType } from "../models/content-type.js";
-import { defaulterrortemplate1Schema, type Defaulterrortemplate1 } from "../models/defaulterrortemplate1.js";
 import {
   defaultsuccesstemplateSchema,
   type Defaultsuccesstemplate,
@@ -31,8 +30,7 @@ export class Workflows {
    *
    * @returns Typical success response
    *
-   * @throws {@link Workflows.WorkflowsStepCompletedError} when the API answers with an error status
-   * — narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -41,7 +39,7 @@ export class Workflows {
   workflowsStepCompleted(
     request: Workflows.WorkflowsStepCompletedRequest,
     options?: RequestOptions,
-  ): ApiPromise<Defaultsuccesstemplate, Workflows.WorkflowsStepCompletedError> {
+  ): ApiPromise<Defaultsuccesstemplate, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -60,7 +58,7 @@ export class Workflows {
       },
       {
         success: { kind: "json", schema: defaultsuccesstemplateSchema },
-        errorFactory: Workflows.WorkflowsStepCompletedError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -74,8 +72,7 @@ export class Workflows {
    *
    * @returns Typical success response
    *
-   * @throws {@link Workflows.WorkflowsStepFailedError} when the API answers with an error status —
-   * narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -84,7 +81,7 @@ export class Workflows {
   workflowsStepFailed(
     request: Workflows.WorkflowsStepFailedRequest,
     options?: RequestOptions,
-  ): ApiPromise<Defaultsuccesstemplate, Workflows.WorkflowsStepFailedError> {
+  ): ApiPromise<Defaultsuccesstemplate, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -103,7 +100,7 @@ export class Workflows {
       },
       {
         success: { kind: "json", schema: defaultsuccesstemplateSchema },
-        errorFactory: Workflows.WorkflowsStepFailedError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -117,8 +114,7 @@ export class Workflows {
    *
    * @returns Typical success response
    *
-   * @throws {@link Workflows.WorkflowsUpdateStepError} when the API answers with an error status —
-   * narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -127,7 +123,7 @@ export class Workflows {
   workflowsUpdateStep(
     request: Workflows.WorkflowsUpdateStepRequest,
     options?: RequestOptions,
-  ): ApiPromise<Defaultsuccesstemplate, Workflows.WorkflowsUpdateStepError> {
+  ): ApiPromise<Defaultsuccesstemplate, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -149,7 +145,7 @@ export class Workflows {
       },
       {
         success: { kind: "json", schema: defaultsuccesstemplateSchema },
-        errorFactory: Workflows.WorkflowsUpdateStepError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -171,18 +167,6 @@ export namespace Workflows {
     contentType: ContentType;
   };
 
-  export class WorkflowsStepCompletedError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
-
-    static readonly errors: ErrorDecoders<WorkflowsStepCompletedError> = [
-      {
-        on: "default",
-        kind: "defaulterrortemplate1",
-        decode: { kind: "json", schema: defaulterrortemplate1Schema },
-      },
-    ];
-  }
-
   export type WorkflowsStepFailedRequest = {
     /** Context identifier that maps to the correct workflow step execution. */
     workflowStepExecuteId: string;
@@ -195,18 +179,6 @@ export namespace Workflows {
     token: string;
     contentType: ContentType;
   };
-
-  export class WorkflowsStepFailedError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
-
-    static readonly errors: ErrorDecoders<WorkflowsStepFailedError> = [
-      {
-        on: "default",
-        kind: "defaulterrortemplate1",
-        decode: { kind: "json", schema: defaulterrortemplate1Schema },
-      },
-    ];
-  }
 
   export type WorkflowsUpdateStepRequest = {
     /**
@@ -241,16 +213,4 @@ export namespace Workflows {
     token: string;
     contentType: ContentType;
   };
-
-  export class WorkflowsUpdateStepError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
-
-    static readonly errors: ErrorDecoders<WorkflowsUpdateStepError> = [
-      {
-        on: "default",
-        kind: "defaulterrortemplate1",
-        decode: { kind: "json", schema: defaulterrortemplate1Schema },
-      },
-    ];
-  }
 }

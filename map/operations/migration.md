@@ -2,19 +2,18 @@
 
 # Migration — operations
 
-Accessor: `client.migration` · Source: `src/resources/migration.ts` · 1 operation · Request and error types: namespace `Migration`
+Accessor: `client.migration` · Source: `src/resources/migration.ts` · 1 operation · Request types: namespace `Migration`
 
 **Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `slack-web-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### migrationExchange
 
-- **Signature**: `migrationExchange(request: Migration.MigrationExchangeRequest, options?: RequestOptions): ApiPromise<MigrationExchangesuccessschema, Migration.MigrationExchangeError>`
+- **Signature**: `migrationExchange(request: Migration.MigrationExchangeRequest, options?: RequestOptions): ApiPromise<MigrationExchangesuccessschema, ApiError>`
 - **Wire**: `GET /migration.exchange`
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `MigrationExchangesuccessschema`
-- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Migration.MigrationExchangeError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"migrationExchangeerrorschema1"` [default — any status no arm above covers] `MigrationExchangeerrorschema1` · `"undeclared"` [a `default`-matched body that did not fit `MigrationExchangeerrorschema1`] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Migration.MigrationExchangeRequest` (5):
 
@@ -30,5 +29,4 @@ Accessor: `client.migration` · Source: `src/resources/migration.ts` · 1 operat
 | --- | --- | --- |
 | `ContentType` | `contentTypeSchema` | `src/models/content-type.ts` |
 | `MigrationExchangesuccessschema` | `migrationExchangesuccessschemaSchema` | `src/models/migration-exchangesuccessschema.ts` |
-| `MigrationExchangeerrorschema1` | `migrationExchangeerrorschema1Schema` | `src/models/migration-exchangeerrorschema1.ts` |
 

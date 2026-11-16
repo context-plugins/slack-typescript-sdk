@@ -1,5 +1,5 @@
 import * as s from "../core/validation/index.js";
-import type { Schema } from "../core/validation/schema.js";
+import type { JsonValue, Schema } from "../core/validation/schema.js";
 import { filesInfoErrorEnumSchema, type FilesInfoErrorEnum } from "./files-info-error-enum.js";
 
 /** Schema for error response from files.info method */
@@ -8,10 +8,15 @@ export type FilesInfoerrorschema1 = {
   callstack?: string;
   error: FilesInfoErrorEnum;
   ok: boolean;
+  /** Properties the service sent or accepts beyond those declared. */
+  additionalProperties?: Record<string, JsonValue>;
 };
 
-export const filesInfoerrorschema1Schema: Schema<FilesInfoerrorschema1> = s.object<FilesInfoerrorschema1>({
-  callstack: s.optional(s.string()),
-  error: filesInfoErrorEnumSchema,
-  ok: s.boolean(),
-});
+export const filesInfoerrorschema1Schema: Schema<FilesInfoerrorschema1> = s.object<FilesInfoerrorschema1>(
+  {
+    callstack: s.optional(s.string()),
+    error: filesInfoErrorEnumSchema,
+    ok: s.boolean(),
+  },
+  { additionalProperties: s.json() },
+);

@@ -1,15 +1,11 @@
 import type { AuthSchemes } from "../auth-schemes.js";
-import { ApiError, type Declared, type ErrorDecoders, type ErrorPayload } from "../core/api-error.js";
+import { ApiError } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import type { RawClient } from "../core/raw-client.js";
 import * as s from "../core/validation/index.js";
 import {
-  chatScheduledMessagesListerrorschema1Schema,
-  type ChatScheduledMessagesListerrorschema1,
-} from "../models/chat-scheduled-messages-listerrorschema1.js";
-import {
-  chatScheduledMessagesListschemaSchema,
+  chatScheduledMessagesListschemaInternalSchema,
   type ChatScheduledMessagesListschema,
 } from "../models/chat-scheduled-messages-listschema.js";
 import { contentTypeSchema, type ContentType } from "../models/content-type.js";
@@ -34,8 +30,7 @@ export class ChatScheduledMessages {
    *
    * @returns Typical success response
    *
-   * @throws {@link ChatScheduledMessages.ChatScheduledMessagesListError} when the API answers with
-   * an error status — narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -44,7 +39,7 @@ export class ChatScheduledMessages {
   chatScheduledMessagesList(
     request: ChatScheduledMessages.ChatScheduledMessagesListRequest,
     options?: RequestOptions,
-  ): ApiPromise<ChatScheduledMessagesListschema, ChatScheduledMessages.ChatScheduledMessagesListError> {
+  ): ApiPromise<ChatScheduledMessagesListschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -65,8 +60,8 @@ export class ChatScheduledMessages {
         body: { kind: "empty" },
       },
       {
-        success: { kind: "json", schema: chatScheduledMessagesListschemaSchema },
-        errorFactory: ChatScheduledMessages.ChatScheduledMessagesListError,
+        success: { kind: "json", schema: chatScheduledMessagesListschemaInternalSchema },
+        errorFactory: ApiError,
       },
       options,
     );
@@ -92,18 +87,4 @@ export namespace ChatScheduledMessages {
     /** Authentication token. Requires scope: `none` */
     token?: string;
   };
-
-  export class ChatScheduledMessagesListError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"chatScheduledMessagesListerrorschema1", ChatScheduledMessagesListerrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<ChatScheduledMessagesListError> = [
-      {
-        on: "default",
-        kind: "chatScheduledMessagesListerrorschema1",
-        decode: { kind: "json", schema: chatScheduledMessagesListerrorschema1Schema },
-      },
-    ];
-  }
 }

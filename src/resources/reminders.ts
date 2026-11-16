@@ -1,39 +1,25 @@
 import type { AuthSchemes } from "../auth-schemes.js";
-import { ApiError, type Declared, type ErrorDecoders, type ErrorPayload } from "../core/api-error.js";
+import { ApiError } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import type { RawClient } from "../core/raw-client.js";
 import { uuid } from "../core/uuid.js";
 import * as s from "../core/validation/index.js";
 import { contentTypeSchema, type ContentType } from "../models/content-type.js";
-import {
-  remindersAdderrorschema1Schema,
-  type RemindersAdderrorschema1,
-} from "../models/reminders-adderrorschema1.js";
-import { remindersAddschemaSchema, type RemindersAddschema } from "../models/reminders-addschema.js";
-import {
-  remindersCompleteerrorschema1Schema,
-  type RemindersCompleteerrorschema1,
-} from "../models/reminders-completeerrorschema1.js";
+import { remindersAddschemaInternalSchema, type RemindersAddschema } from "../models/reminders-addschema.js";
 import {
   remindersCompleteschemaSchema,
   type RemindersCompleteschema,
 } from "../models/reminders-completeschema.js";
-import {
-  remindersDeleteerrorschema1Schema,
-  type RemindersDeleteerrorschema1,
-} from "../models/reminders-deleteerrorschema1.js";
 import { remindersDeleteschemaSchema, type RemindersDeleteschema } from "../models/reminders-deleteschema.js";
 import {
-  remindersInfoerrorschema1Schema,
-  type RemindersInfoerrorschema1,
-} from "../models/reminders-infoerrorschema1.js";
-import { remindersInfoschemaSchema, type RemindersInfoschema } from "../models/reminders-infoschema.js";
+  remindersInfoschemaInternalSchema,
+  type RemindersInfoschema,
+} from "../models/reminders-infoschema.js";
 import {
-  remindersListerrorschema1Schema,
-  type RemindersListerrorschema1,
-} from "../models/reminders-listerrorschema1.js";
-import { remindersListschemaSchema, type RemindersListschema } from "../models/reminders-listschema.js";
+  remindersListschemaInternalSchema,
+  type RemindersListschema,
+} from "../models/reminders-listschema.js";
 import type { Servers } from "../servers.js";
 
 export class Reminders {
@@ -55,8 +41,7 @@ export class Reminders {
    *
    * @returns Typical success response
    *
-   * @throws {@link Reminders.RemindersAddError} when the API answers with an error status — narrow
-   * on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -65,7 +50,7 @@ export class Reminders {
   remindersAdd(
     request: Reminders.RemindersAddRequest,
     options?: RequestOptions,
-  ): ApiPromise<RemindersAddschema, Reminders.RemindersAddError> {
+  ): ApiPromise<RemindersAddschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -88,8 +73,8 @@ export class Reminders {
         },
       },
       {
-        success: { kind: "json", schema: remindersAddschemaSchema },
-        errorFactory: Reminders.RemindersAddError,
+        success: { kind: "json", schema: remindersAddschemaInternalSchema },
+        errorFactory: ApiError,
       },
       options,
     );
@@ -103,8 +88,7 @@ export class Reminders {
    *
    * @returns Typical success response
    *
-   * @throws {@link Reminders.RemindersCompleteError} when the API answers with an error status —
-   * narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -113,7 +97,7 @@ export class Reminders {
   remindersComplete(
     request: Reminders.RemindersCompleteRequest,
     options?: RequestOptions,
-  ): ApiPromise<RemindersCompleteschema, Reminders.RemindersCompleteError> {
+  ): ApiPromise<RemindersCompleteschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -133,7 +117,7 @@ export class Reminders {
       },
       {
         success: { kind: "json", schema: remindersCompleteschemaSchema },
-        errorFactory: Reminders.RemindersCompleteError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -147,8 +131,7 @@ export class Reminders {
    *
    * @returns Typical success response
    *
-   * @throws {@link Reminders.RemindersDeleteError} when the API answers with an error status —
-   * narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -157,7 +140,7 @@ export class Reminders {
   remindersDelete(
     request: Reminders.RemindersDeleteRequest,
     options?: RequestOptions,
-  ): ApiPromise<RemindersDeleteschema, Reminders.RemindersDeleteError> {
+  ): ApiPromise<RemindersDeleteschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -177,7 +160,7 @@ export class Reminders {
       },
       {
         success: { kind: "json", schema: remindersDeleteschemaSchema },
-        errorFactory: Reminders.RemindersDeleteError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -191,8 +174,7 @@ export class Reminders {
    *
    * @returns Typical success response
    *
-   * @throws {@link Reminders.RemindersInfoError} when the API answers with an error status — narrow
-   * on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -201,7 +183,7 @@ export class Reminders {
   remindersInfo(
     request: Reminders.RemindersInfoRequest,
     options?: RequestOptions,
-  ): ApiPromise<RemindersInfoschema, Reminders.RemindersInfoError> {
+  ): ApiPromise<RemindersInfoschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -216,8 +198,8 @@ export class Reminders {
         body: { kind: "empty" },
       },
       {
-        success: { kind: "json", schema: remindersInfoschemaSchema },
-        errorFactory: Reminders.RemindersInfoError,
+        success: { kind: "json", schema: remindersInfoschemaInternalSchema },
+        errorFactory: ApiError,
       },
       options,
     );
@@ -231,8 +213,7 @@ export class Reminders {
    *
    * @returns Typical success response
    *
-   * @throws {@link Reminders.RemindersListError} when the API answers with an error status — narrow
-   * on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -241,7 +222,7 @@ export class Reminders {
   remindersList(
     request: Reminders.RemindersListRequest,
     options?: RequestOptions,
-  ): ApiPromise<RemindersListschema, Reminders.RemindersListError> {
+  ): ApiPromise<RemindersListschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -253,8 +234,8 @@ export class Reminders {
         body: { kind: "empty" },
       },
       {
-        success: { kind: "json", schema: remindersListschemaSchema },
-        errorFactory: Reminders.RemindersListError,
+        success: { kind: "json", schema: remindersListschemaInternalSchema },
+        errorFactory: ApiError,
       },
       options,
     );
@@ -281,18 +262,6 @@ export namespace Reminders {
     user?: string;
   };
 
-  export class RemindersAddError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"remindersAdderrorschema1", RemindersAdderrorschema1>>;
-
-    static readonly errors: ErrorDecoders<RemindersAddError> = [
-      {
-        on: "default",
-        kind: "remindersAdderrorschema1",
-        decode: { kind: "json", schema: remindersAdderrorschema1Schema },
-      },
-    ];
-  }
-
   export type RemindersCompleteRequest = {
     contentType: ContentType;
     /** Authentication token. Requires scope: `reminders:write` */
@@ -300,20 +269,6 @@ export namespace Reminders {
     /** The ID of the reminder to be marked as complete */
     reminder?: string;
   };
-
-  export class RemindersCompleteError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"remindersCompleteerrorschema1", RemindersCompleteerrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<RemindersCompleteError> = [
-      {
-        on: "default",
-        kind: "remindersCompleteerrorschema1",
-        decode: { kind: "json", schema: remindersCompleteerrorschema1Schema },
-      },
-    ];
-  }
 
   export type RemindersDeleteRequest = {
     contentType: ContentType;
@@ -323,20 +278,6 @@ export namespace Reminders {
     reminder?: string;
   };
 
-  export class RemindersDeleteError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"remindersDeleteerrorschema1", RemindersDeleteerrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<RemindersDeleteError> = [
-      {
-        on: "default",
-        kind: "remindersDeleteerrorschema1",
-        decode: { kind: "json", schema: remindersDeleteerrorschema1Schema },
-      },
-    ];
-  }
-
   export type RemindersInfoRequest = {
     /** Authentication token. Requires scope: `reminders:read` */
     token?: string;
@@ -345,33 +286,9 @@ export namespace Reminders {
     contentType: ContentType;
   };
 
-  export class RemindersInfoError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"remindersInfoerrorschema1", RemindersInfoerrorschema1>>;
-
-    static readonly errors: ErrorDecoders<RemindersInfoError> = [
-      {
-        on: "default",
-        kind: "remindersInfoerrorschema1",
-        decode: { kind: "json", schema: remindersInfoerrorschema1Schema },
-      },
-    ];
-  }
-
   export type RemindersListRequest = {
     /** Authentication token. Requires scope: `reminders:read` */
     token?: string;
     contentType: ContentType;
   };
-
-  export class RemindersListError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"remindersListerrorschema1", RemindersListerrorschema1>>;
-
-    static readonly errors: ErrorDecoders<RemindersListError> = [
-      {
-        on: "default",
-        kind: "remindersListerrorschema1",
-        decode: { kind: "json", schema: remindersListerrorschema1Schema },
-      },
-    ];
-  }
 }

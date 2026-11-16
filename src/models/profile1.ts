@@ -1,5 +1,5 @@
 import * as s from "../core/validation/index.js";
-import type { Schema } from "../core/validation/schema.js";
+import type { JsonValue, Schema } from "../core/validation/schema.js";
 
 export type Profile1 = {
   avatarHash: string;
@@ -11,9 +11,11 @@ export type Profile1 = {
   image512: string;
   image72: string;
   imageOriginal: string;
+  /** Properties the service sent or accepts beyond those declared. */
+  additionalProperties?: Record<string, JsonValue>;
 };
 
-export const profile1Schema: Schema<Profile1> = s.object<Profile1>({
+const profile1Properties: s.Shape<Profile1> = {
   avatarHash: s.string(),
   image1024: s.string(),
   image192: s.string(),
@@ -34,4 +36,18 @@ export const profile1Schema: Schema<Profile1> = s.object<Profile1>({
     image72: "image_72",
     imageOriginal: "image_original",
   },
+};
+
+export const profile1InternalSchema: Schema<Profile1> = s.object<Profile1>(profile1Properties, {
+  additionalProperties: s.json(),
 });
+
+export const profile1Schema: Schema<Profile1> = s.lazySchema(() =>
+  s.object<Profile1>(
+    {
+      ...profile1Properties,
+      avatarHash: s.string().check(s.pattern("^[0-9a-f]{12}$")),
+    },
+    { additionalProperties: s.json() },
+  ),
+);

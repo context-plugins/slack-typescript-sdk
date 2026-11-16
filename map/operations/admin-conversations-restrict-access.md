@@ -2,20 +2,19 @@
 
 # AdminConversationsRestrictAccess — operations
 
-Accessor: `client.adminConversationsRestrictAccess` · Source: `src/resources/admin-conversations-restrict-access.ts` · 3 operations · Request and error types: namespace `AdminConversationsRestrictAccess`
+Accessor: `client.adminConversationsRestrictAccess` · Source: `src/resources/admin-conversations-restrict-access.ts` · 3 operations · Request types: namespace `AdminConversationsRestrictAccess`
 
 **Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `slack-web-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### adminConversationsRestrictAccessAddGroup
 
-- **Signature**: `adminConversationsRestrictAccessAddGroup(request: AdminConversationsRestrictAccess.AdminConversationsRestrictAccessAddGroupRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, AdminConversationsRestrictAccess.AdminConversationsRestrictAccessAddGroupError>`
+- **Signature**: `adminConversationsRestrictAccessAddGroup(request: AdminConversationsRestrictAccess.AdminConversationsRestrictAccessAddGroupRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, ApiError>`
 - **Wire**: `POST /admin.conversations.restrictAccess.addGroup`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
 - **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Defaultsuccesstemplate`
-- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `AdminConversationsRestrictAccess.AdminConversationsRestrictAccessAddGroupError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"defaulterrortemplate1"` [default — any status no arm above covers] `Defaulterrortemplate1` · `"undeclared"` [a `default`-matched body that did not fit `Defaulterrortemplate1`] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `AdminConversationsRestrictAccess.AdminConversationsRestrictAccessAddGroupRequest` (5):
 
@@ -31,17 +30,15 @@ Accessor: `client.adminConversationsRestrictAccess` · Source: `src/resources/ad
 | --- | --- | --- |
 | `ContentType` | `contentTypeSchema` | `src/models/content-type.ts` |
 | `Defaultsuccesstemplate` | `defaultsuccesstemplateSchema` | `src/models/defaultsuccesstemplate.ts` |
-| `Defaulterrortemplate1` | `defaulterrortemplate1Schema` | `src/models/defaulterrortemplate1.ts` |
 
 ### adminConversationsRestrictAccessListGroups
 
-- **Signature**: `adminConversationsRestrictAccessListGroups(request: AdminConversationsRestrictAccess.AdminConversationsRestrictAccessListGroupsRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, AdminConversationsRestrictAccess.AdminConversationsRestrictAccessListGroupsError>`
+- **Signature**: `adminConversationsRestrictAccessListGroups(request: AdminConversationsRestrictAccess.AdminConversationsRestrictAccessListGroupsRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, ApiError>`
 - **Wire**: `GET /admin.conversations.restrictAccess.listGroups`
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Defaultsuccesstemplate`
-- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `AdminConversationsRestrictAccess.AdminConversationsRestrictAccessListGroupsError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"defaulterrortemplate1"` [default — any status no arm above covers] `Defaulterrortemplate1` · `"undeclared"` [a `default`-matched body that did not fit `Defaulterrortemplate1`] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `AdminConversationsRestrictAccess.AdminConversationsRestrictAccessListGroupsRequest` (4):
 
@@ -56,18 +53,16 @@ Accessor: `client.adminConversationsRestrictAccess` · Source: `src/resources/ad
 | --- | --- | --- |
 | `ContentType` | `contentTypeSchema` | `src/models/content-type.ts` |
 | `Defaultsuccesstemplate` | `defaultsuccesstemplateSchema` | `src/models/defaultsuccesstemplate.ts` |
-| `Defaulterrortemplate1` | `defaulterrortemplate1Schema` | `src/models/defaulterrortemplate1.ts` |
 
 ### adminConversationsRestrictAccessRemoveGroup
 
-- **Signature**: `adminConversationsRestrictAccessRemoveGroup(request: AdminConversationsRestrictAccess.AdminConversationsRestrictAccessRemoveGroupRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, AdminConversationsRestrictAccess.AdminConversationsRestrictAccessRemoveGroupError>`
+- **Signature**: `adminConversationsRestrictAccessRemoveGroup(request: AdminConversationsRestrictAccess.AdminConversationsRestrictAccessRemoveGroupRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, ApiError>`
 - **Wire**: `POST /admin.conversations.restrictAccess.removeGroup`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
 - **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Defaultsuccesstemplate`
-- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `AdminConversationsRestrictAccess.AdminConversationsRestrictAccessRemoveGroupError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"defaulterrortemplate1"` [default — any status no arm above covers] `Defaulterrortemplate1` · `"undeclared"` [a `default`-matched body that did not fit `Defaulterrortemplate1`] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `AdminConversationsRestrictAccess.AdminConversationsRestrictAccessRemoveGroupRequest` (5):
 
@@ -83,5 +78,4 @@ Accessor: `client.adminConversationsRestrictAccess` · Source: `src/resources/ad
 | --- | --- | --- |
 | `ContentType` | `contentTypeSchema` | `src/models/content-type.ts` |
 | `Defaultsuccesstemplate` | `defaultsuccesstemplateSchema` | `src/models/defaultsuccesstemplate.ts` |
-| `Defaulterrortemplate1` | `defaulterrortemplate1Schema` | `src/models/defaulterrortemplate1.ts` |
 

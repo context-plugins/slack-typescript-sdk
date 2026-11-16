@@ -2,20 +2,19 @@
 
 # AdminApps — operations
 
-Accessor: `client.adminApps` · Source: `src/resources/admin-apps.ts` · 2 operations · Request and error types: namespace `AdminApps`
+Accessor: `client.adminApps` · Source: `src/resources/admin-apps.ts` · 2 operations · Request types: namespace `AdminApps`
 
 **Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `slack-web-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### adminAppsApprove
 
-- **Signature**: `adminAppsApprove(request: AdminApps.AdminAppsApproveRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, AdminApps.AdminAppsApproveError>`
+- **Signature**: `adminAppsApprove(request: AdminApps.AdminAppsApproveRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, ApiError>`
 - **Wire**: `POST /admin.apps.approve`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
 - **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Defaultsuccesstemplate`
-- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `AdminApps.AdminAppsApproveError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"defaulterrortemplate1"` [default — any status no arm above covers] `Defaulterrortemplate1` · `"undeclared"` [a `default`-matched body that did not fit `Defaulterrortemplate1`] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `AdminApps.AdminAppsApproveRequest` (5):
 
@@ -31,18 +30,16 @@ Accessor: `client.adminApps` · Source: `src/resources/admin-apps.ts` · 2 opera
 | --- | --- | --- |
 | `ContentType` | `contentTypeSchema` | `src/models/content-type.ts` |
 | `Defaultsuccesstemplate` | `defaultsuccesstemplateSchema` | `src/models/defaultsuccesstemplate.ts` |
-| `Defaulterrortemplate1` | `defaulterrortemplate1Schema` | `src/models/defaulterrortemplate1.ts` |
 
 ### adminAppsRestrict
 
-- **Signature**: `adminAppsRestrict(request: AdminApps.AdminAppsRestrictRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, AdminApps.AdminAppsRestrictError>`
+- **Signature**: `adminAppsRestrict(request: AdminApps.AdminAppsRestrictRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, ApiError>`
 - **Wire**: `POST /admin.apps.restrict`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
 - **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Defaultsuccesstemplate`
-- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `AdminApps.AdminAppsRestrictError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"defaulterrortemplate1"` [default — any status no arm above covers] `Defaulterrortemplate1` · `"undeclared"` [a `default`-matched body that did not fit `Defaulterrortemplate1`] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `AdminApps.AdminAppsRestrictRequest` (5):
 
@@ -58,5 +55,4 @@ Accessor: `client.adminApps` · Source: `src/resources/admin-apps.ts` · 2 opera
 | --- | --- | --- |
 | `ContentType` | `contentTypeSchema` | `src/models/content-type.ts` |
 | `Defaultsuccesstemplate` | `defaultsuccesstemplateSchema` | `src/models/defaultsuccesstemplate.ts` |
-| `Defaulterrortemplate1` | `defaulterrortemplate1Schema` | `src/models/defaulterrortemplate1.ts` |
 

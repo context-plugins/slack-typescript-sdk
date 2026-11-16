@@ -1,62 +1,34 @@
 import type { AuthSchemes } from "../auth-schemes.js";
-import { ApiError, type Declared, type ErrorDecoders, type ErrorPayload } from "../core/api-error.js";
+import { ApiError } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import type { RawClient } from "../core/raw-client.js";
 import { uuid } from "../core/uuid.js";
 import * as s from "../core/validation/index.js";
 import {
-  adminConversationsArchiveerrorschema1Schema,
-  type AdminConversationsArchiveerrorschema1,
-} from "../models/admin-conversations-archiveerrorschema1.js";
-import {
   adminConversationsArchiveschemaSchema,
   type AdminConversationsArchiveschema,
 } from "../models/admin-conversations-archiveschema.js";
-import {
-  adminConversationsConvertToPrivateerrorschema1Schema,
-  type AdminConversationsConvertToPrivateerrorschema1,
-} from "../models/admin-conversations-convert-to-privateerrorschema1.js";
 import {
   adminConversationsConvertToPrivateschemaSchema,
   type AdminConversationsConvertToPrivateschema,
 } from "../models/admin-conversations-convert-to-privateschema.js";
 import {
-  adminConversationsCreateerrorschema1Schema,
-  type AdminConversationsCreateerrorschema1,
-} from "../models/admin-conversations-createerrorschema1.js";
-import {
-  adminConversationsCreateschemaSchema,
+  adminConversationsCreateschemaInternalSchema,
   type AdminConversationsCreateschema,
 } from "../models/admin-conversations-createschema.js";
-import {
-  adminConversationsDeleteerrorschema1Schema,
-  type AdminConversationsDeleteerrorschema1,
-} from "../models/admin-conversations-deleteerrorschema1.js";
 import {
   adminConversationsDeleteschemaSchema,
   type AdminConversationsDeleteschema,
 } from "../models/admin-conversations-deleteschema.js";
 import {
-  adminConversationsDisconnectSharederrorschema1Schema,
-  type AdminConversationsDisconnectSharederrorschema1,
-} from "../models/admin-conversations-disconnect-sharederrorschema1.js";
-import {
   adminConversationsGetConversationPrefsschemaSchema,
   type AdminConversationsGetConversationPrefsschema,
 } from "../models/admin-conversations-get-conversation-prefsschema.js";
 import {
-  adminConversationsGetTeamserrorschema1Schema,
-  type AdminConversationsGetTeamserrorschema1,
-} from "../models/admin-conversations-get-teamserrorschema1.js";
-import {
-  adminConversationsGetTeamsschemaSchema,
+  adminConversationsGetTeamsschemaInternalSchema,
   type AdminConversationsGetTeamsschema,
 } from "../models/admin-conversations-get-teamsschema.js";
-import {
-  adminConversationsInviteerrorschema1Schema,
-  type AdminConversationsInviteerrorschema1,
-} from "../models/admin-conversations-inviteerrorschema1.js";
 import {
   adminConversationsInviteschemaSchema,
   type AdminConversationsInviteschema,
@@ -70,39 +42,18 @@ import {
   type AdminConversationsRenameschema1,
 } from "../models/admin-conversations-renameschema1.js";
 import {
-  adminConversationsSearcherrorschema1Schema,
-  type AdminConversationsSearcherrorschema1,
-} from "../models/admin-conversations-searcherrorschema1.js";
-import {
-  adminConversationsSearchschemaSchema,
+  adminConversationsSearchschemaInternalSchema,
   type AdminConversationsSearchschema,
 } from "../models/admin-conversations-searchschema.js";
-import {
-  adminConversationsSetConversationPrefserrorschema1Schema,
-  type AdminConversationsSetConversationPrefserrorschema1,
-} from "../models/admin-conversations-set-conversation-prefserrorschema1.js";
 import {
   adminConversationsSetConversationPrefsschemaSchema,
   type AdminConversationsSetConversationPrefsschema,
 } from "../models/admin-conversations-set-conversation-prefsschema.js";
 import {
-  adminConversationsUnarchiveerrorschema1Schema,
-  type AdminConversationsUnarchiveerrorschema1,
-} from "../models/admin-conversations-unarchiveerrorschema1.js";
-import {
-  adminConversationsUnarchiveerrorschema21Schema,
-  type AdminConversationsUnarchiveerrorschema21,
-} from "../models/admin-conversations-unarchiveerrorschema21.js";
-import {
-  adminConversationsUnarchiveerrorschema31Schema,
-  type AdminConversationsUnarchiveerrorschema31,
-} from "../models/admin-conversations-unarchiveerrorschema31.js";
-import {
   adminConversationsUnarchiveschemaSchema,
   type AdminConversationsUnarchiveschema,
 } from "../models/admin-conversations-unarchiveschema.js";
 import { contentTypeSchema, type ContentType } from "../models/content-type.js";
-import { defaulterrortemplate1Schema, type Defaulterrortemplate1 } from "../models/defaulterrortemplate1.js";
 import {
   defaultsuccesstemplateSchema,
   type Defaultsuccesstemplate,
@@ -128,8 +79,7 @@ export class AdminConversations {
    *
    * @returns Typical success response
    *
-   * @throws {@link AdminConversations.AdminConversationsArchiveError} when the API answers with an
-   * error status — narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -138,7 +88,7 @@ export class AdminConversations {
   adminConversationsArchive(
     request: AdminConversations.AdminConversationsArchiveRequest,
     options?: RequestOptions,
-  ): ApiPromise<AdminConversationsArchiveschema, AdminConversations.AdminConversationsArchiveError> {
+  ): ApiPromise<AdminConversationsArchiveschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -158,7 +108,7 @@ export class AdminConversations {
       },
       {
         success: { kind: "json", schema: adminConversationsArchiveschemaSchema },
-        errorFactory: AdminConversations.AdminConversationsArchiveError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -172,8 +122,7 @@ export class AdminConversations {
    *
    * @returns Typical success response
    *
-   * @throws {@link AdminConversations.AdminConversationsConvertToPrivateError} when the API answers
-   * with an error status — narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -182,10 +131,7 @@ export class AdminConversations {
   adminConversationsConvertToPrivate(
     request: AdminConversations.AdminConversationsConvertToPrivateRequest,
     options?: RequestOptions,
-  ): ApiPromise<
-    AdminConversationsConvertToPrivateschema,
-    AdminConversations.AdminConversationsConvertToPrivateError
-  > {
+  ): ApiPromise<AdminConversationsConvertToPrivateschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -205,7 +151,7 @@ export class AdminConversations {
       },
       {
         success: { kind: "json", schema: adminConversationsConvertToPrivateschemaSchema },
-        errorFactory: AdminConversations.AdminConversationsConvertToPrivateError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -219,8 +165,7 @@ export class AdminConversations {
    *
    * @returns Typical success response
    *
-   * @throws {@link AdminConversations.AdminConversationsCreateError} when the API answers with an
-   * error status — narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -229,7 +174,7 @@ export class AdminConversations {
   adminConversationsCreate(
     request: AdminConversations.AdminConversationsCreateRequest,
     options?: RequestOptions,
-  ): ApiPromise<AdminConversationsCreateschema, AdminConversations.AdminConversationsCreateError> {
+  ): ApiPromise<AdminConversationsCreateschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -254,8 +199,8 @@ export class AdminConversations {
         },
       },
       {
-        success: { kind: "json", schema: adminConversationsCreateschemaSchema },
-        errorFactory: AdminConversations.AdminConversationsCreateError,
+        success: { kind: "json", schema: adminConversationsCreateschemaInternalSchema },
+        errorFactory: ApiError,
       },
       options,
     );
@@ -269,8 +214,7 @@ export class AdminConversations {
    *
    * @returns Typical success response
    *
-   * @throws {@link AdminConversations.AdminConversationsDeleteError} when the API answers with an
-   * error status — narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -279,7 +223,7 @@ export class AdminConversations {
   adminConversationsDelete(
     request: AdminConversations.AdminConversationsDeleteRequest,
     options?: RequestOptions,
-  ): ApiPromise<AdminConversationsDeleteschema, AdminConversations.AdminConversationsDeleteError> {
+  ): ApiPromise<AdminConversationsDeleteschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -299,7 +243,7 @@ export class AdminConversations {
       },
       {
         success: { kind: "json", schema: adminConversationsDeleteschemaSchema },
-        errorFactory: AdminConversations.AdminConversationsDeleteError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -313,8 +257,7 @@ export class AdminConversations {
    *
    * @returns Typical success response
    *
-   * @throws {@link AdminConversations.AdminConversationsDisconnectSharedError} when the API answers
-   * with an error status — narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -323,7 +266,7 @@ export class AdminConversations {
   adminConversationsDisconnectShared(
     request: AdminConversations.AdminConversationsDisconnectSharedRequest,
     options?: RequestOptions,
-  ): ApiPromise<AdminConversationsRenameschema, AdminConversations.AdminConversationsDisconnectSharedError> {
+  ): ApiPromise<AdminConversationsRenameschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -346,7 +289,7 @@ export class AdminConversations {
       },
       {
         success: { kind: "json", schema: adminConversationsRenameschemaSchema },
-        errorFactory: AdminConversations.AdminConversationsDisconnectSharedError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -360,8 +303,7 @@ export class AdminConversations {
    *
    * @returns Typical success response
    *
-   * @throws {@link AdminConversations.AdminConversationsGetConversationPrefsError} when the API
-   * answers with an error status — narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -370,10 +312,7 @@ export class AdminConversations {
   adminConversationsGetConversationPrefs(
     request: AdminConversations.AdminConversationsGetConversationPrefsRequest,
     options?: RequestOptions,
-  ): ApiPromise<
-    AdminConversationsGetConversationPrefsschema,
-    AdminConversations.AdminConversationsGetConversationPrefsError
-  > {
+  ): ApiPromise<AdminConversationsGetConversationPrefsschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -389,7 +328,7 @@ export class AdminConversations {
       },
       {
         success: { kind: "json", schema: adminConversationsGetConversationPrefsschemaSchema },
-        errorFactory: AdminConversations.AdminConversationsGetConversationPrefsError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -404,8 +343,7 @@ export class AdminConversations {
    *
    * @returns Typical success response
    *
-   * @throws {@link AdminConversations.AdminConversationsGetTeamsError} when the API answers with an
-   * error status — narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -414,7 +352,7 @@ export class AdminConversations {
   adminConversationsGetTeams(
     request: AdminConversations.AdminConversationsGetTeamsRequest,
     options?: RequestOptions,
-  ): ApiPromise<AdminConversationsGetTeamsschema, AdminConversations.AdminConversationsGetTeamsError> {
+  ): ApiPromise<AdminConversationsGetTeamsschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -433,8 +371,8 @@ export class AdminConversations {
         body: { kind: "empty" },
       },
       {
-        success: { kind: "json", schema: adminConversationsGetTeamsschemaSchema },
-        errorFactory: AdminConversations.AdminConversationsGetTeamsError,
+        success: { kind: "json", schema: adminConversationsGetTeamsschemaInternalSchema },
+        errorFactory: ApiError,
       },
       options,
     );
@@ -448,8 +386,7 @@ export class AdminConversations {
    *
    * @returns Typical success response
    *
-   * @throws {@link AdminConversations.AdminConversationsInviteError} when the API answers with an
-   * error status — narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -458,7 +395,7 @@ export class AdminConversations {
   adminConversationsInvite(
     request: AdminConversations.AdminConversationsInviteRequest,
     options?: RequestOptions,
-  ): ApiPromise<AdminConversationsInviteschema, AdminConversations.AdminConversationsInviteError> {
+  ): ApiPromise<AdminConversationsInviteschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -481,7 +418,7 @@ export class AdminConversations {
       },
       {
         success: { kind: "json", schema: adminConversationsInviteschemaSchema },
-        errorFactory: AdminConversations.AdminConversationsInviteError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -495,8 +432,7 @@ export class AdminConversations {
    *
    * @returns Typical success response
    *
-   * @throws {@link AdminConversations.AdminConversationsRenameError} when the API answers with an
-   * error status — narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -505,7 +441,7 @@ export class AdminConversations {
   adminConversationsRename(
     request: AdminConversations.AdminConversationsRenameRequest,
     options?: RequestOptions,
-  ): ApiPromise<AdminConversationsRenameschema1, AdminConversations.AdminConversationsRenameError> {
+  ): ApiPromise<AdminConversationsRenameschema1, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -528,7 +464,7 @@ export class AdminConversations {
       },
       {
         success: { kind: "json", schema: adminConversationsRenameschema1Schema },
-        errorFactory: AdminConversations.AdminConversationsRenameError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -542,8 +478,7 @@ export class AdminConversations {
    *
    * @returns Typical success response
    *
-   * @throws {@link AdminConversations.AdminConversationsSearchError} when the API answers with an
-   * error status — narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -552,7 +487,7 @@ export class AdminConversations {
   adminConversationsSearch(
     request: AdminConversations.AdminConversationsSearchRequest,
     options?: RequestOptions,
-  ): ApiPromise<AdminConversationsSearchschema, AdminConversations.AdminConversationsSearchError> {
+  ): ApiPromise<AdminConversationsSearchschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -575,8 +510,8 @@ export class AdminConversations {
         body: { kind: "empty" },
       },
       {
-        success: { kind: "json", schema: adminConversationsSearchschemaSchema },
-        errorFactory: AdminConversations.AdminConversationsSearchError,
+        success: { kind: "json", schema: adminConversationsSearchschemaInternalSchema },
+        errorFactory: ApiError,
       },
       options,
     );
@@ -590,8 +525,7 @@ export class AdminConversations {
    *
    * @returns Typical success response
    *
-   * @throws {@link AdminConversations.AdminConversationsSetConversationPrefsError} when the API
-   * answers with an error status — narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -600,10 +534,7 @@ export class AdminConversations {
   adminConversationsSetConversationPrefs(
     request: AdminConversations.AdminConversationsSetConversationPrefsRequest,
     options?: RequestOptions,
-  ): ApiPromise<
-    AdminConversationsSetConversationPrefsschema,
-    AdminConversations.AdminConversationsSetConversationPrefsError
-  > {
+  ): ApiPromise<AdminConversationsSetConversationPrefsschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -626,7 +557,7 @@ export class AdminConversations {
       },
       {
         success: { kind: "json", schema: adminConversationsSetConversationPrefsschemaSchema },
-        errorFactory: AdminConversations.AdminConversationsSetConversationPrefsError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -640,8 +571,7 @@ export class AdminConversations {
    *
    * @returns Typical success response
    *
-   * @throws {@link AdminConversations.AdminConversationsSetTeamsError} when the API answers with an
-   * error status — narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -650,7 +580,7 @@ export class AdminConversations {
   adminConversationsSetTeams(
     request: AdminConversations.AdminConversationsSetTeamsRequest,
     options?: RequestOptions,
-  ): ApiPromise<Defaultsuccesstemplate, AdminConversations.AdminConversationsSetTeamsError> {
+  ): ApiPromise<Defaultsuccesstemplate, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -675,7 +605,7 @@ export class AdminConversations {
       },
       {
         success: { kind: "json", schema: defaultsuccesstemplateSchema },
-        errorFactory: AdminConversations.AdminConversationsSetTeamsError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -689,8 +619,7 @@ export class AdminConversations {
    *
    * @returns Typical success response
    *
-   * @throws {@link AdminConversations.AdminConversationsUnarchiveError} when the API answers with
-   * an error status — narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -699,7 +628,7 @@ export class AdminConversations {
   adminConversationsUnarchive(
     request: AdminConversations.AdminConversationsUnarchiveRequest,
     options?: RequestOptions,
-  ): ApiPromise<AdminConversationsUnarchiveschema, AdminConversations.AdminConversationsUnarchiveError> {
+  ): ApiPromise<AdminConversationsUnarchiveschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -719,7 +648,7 @@ export class AdminConversations {
       },
       {
         success: { kind: "json", schema: adminConversationsUnarchiveschemaSchema },
-        errorFactory: AdminConversations.AdminConversationsUnarchiveError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -735,20 +664,6 @@ export namespace AdminConversations {
     channelId: string;
   };
 
-  export class AdminConversationsArchiveError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"adminConversationsArchiveerrorschema1", AdminConversationsArchiveerrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<AdminConversationsArchiveError> = [
-      {
-        on: "default",
-        kind: "adminConversationsArchiveerrorschema1",
-        decode: { kind: "json", schema: adminConversationsArchiveerrorschema1Schema },
-      },
-    ];
-  }
-
   export type AdminConversationsConvertToPrivateRequest = {
     /** Authentication token. Requires scope: `admin.conversations:write` */
     token: string;
@@ -756,23 +671,6 @@ export namespace AdminConversations {
     /** The channel to convert to private. */
     channelId: string;
   };
-
-  export class AdminConversationsConvertToPrivateError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<
-        "adminConversationsConvertToPrivateerrorschema1",
-        AdminConversationsConvertToPrivateerrorschema1
-      >
-    >;
-
-    static readonly errors: ErrorDecoders<AdminConversationsConvertToPrivateError> = [
-      {
-        on: "default",
-        kind: "adminConversationsConvertToPrivateerrorschema1",
-        decode: { kind: "json", schema: adminConversationsConvertToPrivateerrorschema1Schema },
-      },
-    ];
-  }
 
   export type AdminConversationsCreateRequest = {
     /** Authentication token. Requires scope: `admin.conversations:write` */
@@ -796,20 +694,6 @@ export namespace AdminConversations {
     teamId?: string;
   };
 
-  export class AdminConversationsCreateError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"adminConversationsCreateerrorschema1", AdminConversationsCreateerrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<AdminConversationsCreateError> = [
-      {
-        on: "default",
-        kind: "adminConversationsCreateerrorschema1",
-        decode: { kind: "json", schema: adminConversationsCreateerrorschema1Schema },
-      },
-    ];
-  }
-
   export type AdminConversationsDeleteRequest = {
     /** Authentication token. Requires scope: `admin.conversations:write` */
     token: string;
@@ -817,20 +701,6 @@ export namespace AdminConversations {
     /** The channel to delete. */
     channelId: string;
   };
-
-  export class AdminConversationsDeleteError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"adminConversationsDeleteerrorschema1", AdminConversationsDeleteerrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<AdminConversationsDeleteError> = [
-      {
-        on: "default",
-        kind: "adminConversationsDeleteerrorschema1",
-        decode: { kind: "json", schema: adminConversationsDeleteerrorschema1Schema },
-      },
-    ];
-  }
 
   export type AdminConversationsDisconnectSharedRequest = {
     /** Authentication token. Requires scope: `admin.conversations:write` */
@@ -844,23 +714,6 @@ export namespace AdminConversations {
     leavingTeamIds?: string;
   };
 
-  export class AdminConversationsDisconnectSharedError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<
-        "adminConversationsDisconnectSharederrorschema1",
-        AdminConversationsDisconnectSharederrorschema1
-      >
-    >;
-
-    static readonly errors: ErrorDecoders<AdminConversationsDisconnectSharedError> = [
-      {
-        on: "default",
-        kind: "adminConversationsDisconnectSharederrorschema1",
-        decode: { kind: "json", schema: adminConversationsDisconnectSharederrorschema1Schema },
-      },
-    ];
-  }
-
   export type AdminConversationsGetConversationPrefsRequest = {
     /** The channel to get preferences for. */
     channelId: string;
@@ -868,20 +721,6 @@ export namespace AdminConversations {
     token: string;
     contentType: ContentType;
   };
-
-  export class AdminConversationsGetConversationPrefsError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"adminConversationsUnarchiveerrorschema1", AdminConversationsUnarchiveerrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<AdminConversationsGetConversationPrefsError> = [
-      {
-        on: "default",
-        kind: "adminConversationsUnarchiveerrorschema1",
-        decode: { kind: "json", schema: adminConversationsUnarchiveerrorschema1Schema },
-      },
-    ];
-  }
 
   export type AdminConversationsGetTeamsRequest = {
     /** The channel to determine connected workspaces within the organization for. */
@@ -897,20 +736,6 @@ export namespace AdminConversations {
     contentType: ContentType;
   };
 
-  export class AdminConversationsGetTeamsError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"adminConversationsGetTeamserrorschema1", AdminConversationsGetTeamserrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<AdminConversationsGetTeamsError> = [
-      {
-        on: "default",
-        kind: "adminConversationsGetTeamserrorschema1",
-        decode: { kind: "json", schema: adminConversationsGetTeamserrorschema1Schema },
-      },
-    ];
-  }
-
   export type AdminConversationsInviteRequest = {
     /** Authentication token. Requires scope: `admin.conversations:write` */
     token: string;
@@ -921,20 +746,6 @@ export namespace AdminConversations {
     channelId: string;
   };
 
-  export class AdminConversationsInviteError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"adminConversationsInviteerrorschema1", AdminConversationsInviteerrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<AdminConversationsInviteError> = [
-      {
-        on: "default",
-        kind: "adminConversationsInviteerrorschema1",
-        decode: { kind: "json", schema: adminConversationsInviteerrorschema1Schema },
-      },
-    ];
-  }
-
   export type AdminConversationsRenameRequest = {
     /** Authentication token. Requires scope: `admin.conversations:write` */
     token: string;
@@ -943,20 +754,6 @@ export namespace AdminConversations {
     channelId: string;
     name: string;
   };
-
-  export class AdminConversationsRenameError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"adminConversationsUnarchiveerrorschema21", AdminConversationsUnarchiveerrorschema21>
-    >;
-
-    static readonly errors: ErrorDecoders<AdminConversationsRenameError> = [
-      {
-        on: "default",
-        kind: "adminConversationsUnarchiveerrorschema21",
-        decode: { kind: "json", schema: adminConversationsUnarchiveerrorschema21Schema },
-      },
-    ];
-  }
 
   export type AdminConversationsSearchRequest = {
     /** Comma separated string of team IDs, signifying the workspaces to search through. */
@@ -993,20 +790,6 @@ export namespace AdminConversations {
     contentType: ContentType;
   };
 
-  export class AdminConversationsSearchError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"adminConversationsSearcherrorschema1", AdminConversationsSearcherrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<AdminConversationsSearchError> = [
-      {
-        on: "default",
-        kind: "adminConversationsSearcherrorschema1",
-        decode: { kind: "json", schema: adminConversationsSearcherrorschema1Schema },
-      },
-    ];
-  }
-
   export type AdminConversationsSetConversationPrefsRequest = {
     /** Authentication token. Requires scope: `admin.conversations:write` */
     token: string;
@@ -1016,23 +799,6 @@ export namespace AdminConversations {
     /** The prefs for this channel in a stringified JSON format. */
     prefs: string;
   };
-
-  export class AdminConversationsSetConversationPrefsError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<
-        "adminConversationsSetConversationPrefserrorschema1",
-        AdminConversationsSetConversationPrefserrorschema1
-      >
-    >;
-
-    static readonly errors: ErrorDecoders<AdminConversationsSetConversationPrefsError> = [
-      {
-        on: "default",
-        kind: "adminConversationsSetConversationPrefserrorschema1",
-        decode: { kind: "json", schema: adminConversationsSetConversationPrefserrorschema1Schema },
-      },
-    ];
-  }
 
   export type AdminConversationsSetTeamsRequest = {
     /** Authentication token. Requires scope: `admin.conversations:write` */
@@ -1054,18 +820,6 @@ export namespace AdminConversations {
     orgChannel?: boolean;
   };
 
-  export class AdminConversationsSetTeamsError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
-
-    static readonly errors: ErrorDecoders<AdminConversationsSetTeamsError> = [
-      {
-        on: "default",
-        kind: "defaulterrortemplate1",
-        decode: { kind: "json", schema: defaulterrortemplate1Schema },
-      },
-    ];
-  }
-
   export type AdminConversationsUnarchiveRequest = {
     /** Authentication token. Requires scope: `admin.conversations:write` */
     token: string;
@@ -1073,18 +827,4 @@ export namespace AdminConversations {
     /** The channel to unarchive. */
     channelId: string;
   };
-
-  export class AdminConversationsUnarchiveError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"adminConversationsUnarchiveerrorschema31", AdminConversationsUnarchiveerrorschema31>
-    >;
-
-    static readonly errors: ErrorDecoders<AdminConversationsUnarchiveError> = [
-      {
-        on: "default",
-        kind: "adminConversationsUnarchiveerrorschema31",
-        decode: { kind: "json", schema: adminConversationsUnarchiveerrorschema31Schema },
-      },
-    ];
-  }
 }

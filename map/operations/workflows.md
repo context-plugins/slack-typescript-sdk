@@ -2,19 +2,18 @@
 
 # Workflows — operations
 
-Accessor: `client.workflows` · Source: `src/resources/workflows.ts` · 3 operations · Request and error types: namespace `Workflows`
+Accessor: `client.workflows` · Source: `src/resources/workflows.ts` · 3 operations · Request types: namespace `Workflows`
 
 **Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `slack-web-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### workflowsStepCompleted
 
-- **Signature**: `workflowsStepCompleted(request: Workflows.WorkflowsStepCompletedRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, Workflows.WorkflowsStepCompletedError>`
+- **Signature**: `workflowsStepCompleted(request: Workflows.WorkflowsStepCompletedRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, ApiError>`
 - **Wire**: `GET /workflows.stepCompleted`
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Defaultsuccesstemplate`
-- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Workflows.WorkflowsStepCompletedError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"defaulterrortemplate1"` [default — any status no arm above covers] `Defaulterrortemplate1` · `"undeclared"` [a `default`-matched body that did not fit `Defaulterrortemplate1`] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Workflows.WorkflowsStepCompletedRequest` (4):
 
@@ -29,17 +28,15 @@ Accessor: `client.workflows` · Source: `src/resources/workflows.ts` · 3 operat
 | --- | --- | --- |
 | `ContentType` | `contentTypeSchema` | `src/models/content-type.ts` |
 | `Defaultsuccesstemplate` | `defaultsuccesstemplateSchema` | `src/models/defaultsuccesstemplate.ts` |
-| `Defaulterrortemplate1` | `defaulterrortemplate1Schema` | `src/models/defaulterrortemplate1.ts` |
 
 ### workflowsStepFailed
 
-- **Signature**: `workflowsStepFailed(request: Workflows.WorkflowsStepFailedRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, Workflows.WorkflowsStepFailedError>`
+- **Signature**: `workflowsStepFailed(request: Workflows.WorkflowsStepFailedRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, ApiError>`
 - **Wire**: `GET /workflows.stepFailed`
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Defaultsuccesstemplate`
-- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Workflows.WorkflowsStepFailedError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"defaulterrortemplate1"` [default — any status no arm above covers] `Defaulterrortemplate1` · `"undeclared"` [a `default`-matched body that did not fit `Defaulterrortemplate1`] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Workflows.WorkflowsStepFailedRequest` (4):
 
@@ -54,17 +51,15 @@ Accessor: `client.workflows` · Source: `src/resources/workflows.ts` · 3 operat
 | --- | --- | --- |
 | `ContentType` | `contentTypeSchema` | `src/models/content-type.ts` |
 | `Defaultsuccesstemplate` | `defaultsuccesstemplateSchema` | `src/models/defaultsuccesstemplate.ts` |
-| `Defaulterrortemplate1` | `defaulterrortemplate1Schema` | `src/models/defaulterrortemplate1.ts` |
 
 ### workflowsUpdateStep
 
-- **Signature**: `workflowsUpdateStep(request: Workflows.WorkflowsUpdateStepRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, Workflows.WorkflowsUpdateStepError>`
+- **Signature**: `workflowsUpdateStep(request: Workflows.WorkflowsUpdateStepRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, ApiError>`
 - **Wire**: `GET /workflows.updateStep`
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Defaultsuccesstemplate`
-- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Workflows.WorkflowsUpdateStepError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"defaulterrortemplate1"` [default — any status no arm above covers] `Defaulterrortemplate1` · `"undeclared"` [a `default`-matched body that did not fit `Defaulterrortemplate1`] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Workflows.WorkflowsUpdateStepRequest` (7):
 
@@ -82,5 +77,4 @@ Accessor: `client.workflows` · Source: `src/resources/workflows.ts` · 3 operat
 | --- | --- | --- |
 | `ContentType` | `contentTypeSchema` | `src/models/content-type.ts` |
 | `Defaultsuccesstemplate` | `defaultsuccesstemplateSchema` | `src/models/defaultsuccesstemplate.ts` |
-| `Defaulterrortemplate1` | `defaulterrortemplate1Schema` | `src/models/defaulterrortemplate1.ts` |
 

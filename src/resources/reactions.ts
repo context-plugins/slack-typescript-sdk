@@ -1,29 +1,13 @@
 import type { AuthSchemes } from "../auth-schemes.js";
-import { ApiError, type Declared, type ErrorDecoders, type ErrorPayload } from "../core/api-error.js";
+import { ApiError } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import type { RawClient } from "../core/raw-client.js";
 import { uuid } from "../core/uuid.js";
 import * as s from "../core/validation/index.js";
 import { contentTypeSchema, type ContentType } from "../models/content-type.js";
-import {
-  reactionsAdderrorschema1Schema,
-  type ReactionsAdderrorschema1,
-} from "../models/reactions-adderrorschema1.js";
 import { reactionsAddschemaSchema, type ReactionsAddschema } from "../models/reactions-addschema.js";
-import {
-  reactionsGeterrorschema1Schema,
-  type ReactionsGeterrorschema1,
-} from "../models/reactions-geterrorschema1.js";
-import {
-  reactionsListerrorschema1Schema,
-  type ReactionsListerrorschema1,
-} from "../models/reactions-listerrorschema1.js";
 import { reactionsListschemaSchema, type ReactionsListschema } from "../models/reactions-listschema.js";
-import {
-  reactionsRemoveerrorschema1Schema,
-  type ReactionsRemoveerrorschema1,
-} from "../models/reactions-removeerrorschema1.js";
 import { reactionsRemoveschemaSchema, type ReactionsRemoveschema } from "../models/reactions-removeschema.js";
 import type { Servers } from "../servers.js";
 
@@ -46,8 +30,7 @@ export class Reactions {
    *
    * @returns Typical success response
    *
-   * @throws {@link Reactions.ReactionsAddError} when the API answers with an error status — narrow
-   * on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -56,7 +39,7 @@ export class Reactions {
   reactionsAdd(
     request: Reactions.ReactionsAddRequest,
     options?: RequestOptions,
-  ): ApiPromise<ReactionsAddschema, Reactions.ReactionsAddError> {
+  ): ApiPromise<ReactionsAddschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -80,7 +63,7 @@ export class Reactions {
       },
       {
         success: { kind: "json", schema: reactionsAddschemaSchema },
-        errorFactory: Reactions.ReactionsAddError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -94,8 +77,7 @@ export class Reactions {
    *
    * @returns Typical success response
    *
-   * @throws {@link Reactions.ReactionsGetError} when the API answers with an error status — narrow
-   * on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -104,7 +86,7 @@ export class Reactions {
   reactionsGet(
     request: Reactions.ReactionsGetRequest,
     options?: RequestOptions,
-  ): ApiPromise<Record<string, unknown>, Reactions.ReactionsGetError> {
+  ): ApiPromise<Record<string, unknown>, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -124,7 +106,7 @@ export class Reactions {
       },
       {
         success: { kind: "json", schema: s.record(s.string(), s.unknown()) },
-        errorFactory: Reactions.ReactionsGetError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -138,8 +120,7 @@ export class Reactions {
    *
    * @returns Typical success response
    *
-   * @throws {@link Reactions.ReactionsListError} when the API answers with an error status — narrow
-   * on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -148,7 +129,7 @@ export class Reactions {
   reactionsList(
     request: Reactions.ReactionsListRequest,
     options?: RequestOptions,
-  ): ApiPromise<ReactionsListschema, Reactions.ReactionsListError> {
+  ): ApiPromise<ReactionsListschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -169,7 +150,7 @@ export class Reactions {
       },
       {
         success: { kind: "json", schema: reactionsListschemaSchema },
-        errorFactory: Reactions.ReactionsListError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -183,8 +164,7 @@ export class Reactions {
    *
    * @returns Typical success response
    *
-   * @throws {@link Reactions.ReactionsRemoveError} when the API answers with an error status —
-   * narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -193,7 +173,7 @@ export class Reactions {
   reactionsRemove(
     request: Reactions.ReactionsRemoveRequest,
     options?: RequestOptions,
-  ): ApiPromise<ReactionsRemoveschema, Reactions.ReactionsRemoveError> {
+  ): ApiPromise<ReactionsRemoveschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -219,7 +199,7 @@ export class Reactions {
       },
       {
         success: { kind: "json", schema: reactionsRemoveschemaSchema },
-        errorFactory: Reactions.ReactionsRemoveError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -239,18 +219,6 @@ export namespace Reactions {
     timestamp: string;
   };
 
-  export class ReactionsAddError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"reactionsAdderrorschema1", ReactionsAdderrorschema1>>;
-
-    static readonly errors: ErrorDecoders<ReactionsAddError> = [
-      {
-        on: "default",
-        kind: "reactionsAdderrorschema1",
-        decode: { kind: "json", schema: reactionsAdderrorschema1Schema },
-      },
-    ];
-  }
-
   export type ReactionsGetRequest = {
     /** Authentication token. Requires scope: `reactions:read` */
     token: string;
@@ -266,18 +234,6 @@ export namespace Reactions {
     timestamp?: string;
     contentType: ContentType;
   };
-
-  export class ReactionsGetError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"reactionsGeterrorschema1", ReactionsGeterrorschema1>>;
-
-    static readonly errors: ErrorDecoders<ReactionsGetError> = [
-      {
-        on: "default",
-        kind: "reactionsGeterrorschema1",
-        decode: { kind: "json", schema: reactionsGeterrorschema1Schema },
-      },
-    ];
-  }
 
   export type ReactionsListRequest = {
     /** Authentication token. Requires scope: `reactions:read` */
@@ -302,18 +258,6 @@ export namespace Reactions {
     contentType: ContentType;
   };
 
-  export class ReactionsListError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"reactionsListerrorschema1", ReactionsListerrorschema1>>;
-
-    static readonly errors: ErrorDecoders<ReactionsListError> = [
-      {
-        on: "default",
-        kind: "reactionsListerrorschema1",
-        decode: { kind: "json", schema: reactionsListerrorschema1Schema },
-      },
-    ];
-  }
-
   export type ReactionsRemoveRequest = {
     /** Authentication token. Requires scope: `reactions:write` */
     token: string;
@@ -329,18 +273,4 @@ export namespace Reactions {
     /** Timestamp of the message to remove reaction from. */
     timestamp?: string;
   };
-
-  export class ReactionsRemoveError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"reactionsRemoveerrorschema1", ReactionsRemoveerrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<ReactionsRemoveError> = [
-      {
-        on: "default",
-        kind: "reactionsRemoveerrorschema1",
-        decode: { kind: "json", schema: reactionsRemoveerrorschema1Schema },
-      },
-    ];
-  }
 }

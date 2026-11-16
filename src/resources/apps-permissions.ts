@@ -1,21 +1,13 @@
 import type { AuthSchemes } from "../auth-schemes.js";
-import { ApiError, type Declared, type ErrorDecoders, type ErrorPayload } from "../core/api-error.js";
+import { ApiError } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import type { RawClient } from "../core/raw-client.js";
 import * as s from "../core/validation/index.js";
 import {
-  appsPermissionsInfoerrorschema1Schema,
-  type AppsPermissionsInfoerrorschema1,
-} from "../models/apps-permissions-infoerrorschema1.js";
-import {
   appsPermissionsInfoschemaSchema,
   type AppsPermissionsInfoschema,
 } from "../models/apps-permissions-infoschema.js";
-import {
-  appsPermissionsRequesterrorschema1Schema,
-  type AppsPermissionsRequesterrorschema1,
-} from "../models/apps-permissions-requesterrorschema1.js";
 import {
   appsPermissionsRequestschemaSchema,
   type AppsPermissionsRequestschema,
@@ -42,8 +34,7 @@ export class AppsPermissions {
    *
    * @returns Standard success response when used with a user token
    *
-   * @throws {@link AppsPermissions.AppsPermissionsInfoError} when the API answers with an error
-   * status — narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -52,7 +43,7 @@ export class AppsPermissions {
   appsPermissionsInfo(
     request: AppsPermissions.AppsPermissionsInfoRequest,
     options?: RequestOptions,
-  ): ApiPromise<AppsPermissionsInfoschema, AppsPermissions.AppsPermissionsInfoError> {
+  ): ApiPromise<AppsPermissionsInfoschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -65,7 +56,7 @@ export class AppsPermissions {
       },
       {
         success: { kind: "json", schema: appsPermissionsInfoschemaSchema },
-        errorFactory: AppsPermissions.AppsPermissionsInfoError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -79,8 +70,7 @@ export class AppsPermissions {
    *
    * @returns Standard success response when used with a user token
    *
-   * @throws {@link AppsPermissions.AppsPermissionsRequestError} when the API answers with an error
-   * status — narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -89,7 +79,7 @@ export class AppsPermissions {
   appsPermissionsRequest(
     request: AppsPermissions.AppsPermissionsRequestRequest,
     options?: RequestOptions,
-  ): ApiPromise<AppsPermissionsRequestschema, AppsPermissions.AppsPermissionsRequestError> {
+  ): ApiPromise<AppsPermissionsRequestschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -106,7 +96,7 @@ export class AppsPermissions {
       },
       {
         success: { kind: "json", schema: appsPermissionsRequestschemaSchema },
-        errorFactory: AppsPermissions.AppsPermissionsRequestError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -120,20 +110,6 @@ export namespace AppsPermissions {
     contentType: ContentType;
   };
 
-  export class AppsPermissionsInfoError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"appsPermissionsInfoerrorschema1", AppsPermissionsInfoerrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<AppsPermissionsInfoError> = [
-      {
-        on: "default",
-        kind: "appsPermissionsInfoerrorschema1",
-        decode: { kind: "json", schema: appsPermissionsInfoerrorschema1Schema },
-      },
-    ];
-  }
-
   export type AppsPermissionsRequestRequest = {
     /** Authentication token. Requires scope: `none` */
     token: string;
@@ -143,18 +119,4 @@ export namespace AppsPermissions {
     triggerId: string;
     contentType: ContentType;
   };
-
-  export class AppsPermissionsRequestError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"appsPermissionsRequesterrorschema1", AppsPermissionsRequesterrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<AppsPermissionsRequestError> = [
-      {
-        on: "default",
-        kind: "appsPermissionsRequesterrorschema1",
-        decode: { kind: "json", schema: appsPermissionsRequesterrorschema1Schema },
-      },
-    ];
-  }
 }

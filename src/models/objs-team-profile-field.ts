@@ -1,5 +1,5 @@
 import * as s from "../core/validation/index.js";
-import type { Schema } from "../core/validation/schema.js";
+import type { JsonValue, Schema } from "../core/validation/schema.js";
 import { typeSchema, type Type } from "./type.js";
 
 export type ObjsTeamProfileField = {
@@ -12,9 +12,11 @@ export type ObjsTeamProfileField = {
   ordering: number;
   possibleValues?: string[] | null;
   type: Type;
+  /** Properties the service sent or accepts beyond those declared. */
+  additionalProperties?: Record<string, JsonValue>;
 };
 
-export const objsTeamProfileFieldSchema: Schema<ObjsTeamProfileField> = s.object<ObjsTeamProfileField>({
+const objsTeamProfileFieldProperties: s.Shape<ObjsTeamProfileField> = {
   fieldName: s.optionalNullable(s.string()),
   hint: s.string(),
   id: s.string(),
@@ -29,4 +31,17 @@ export const objsTeamProfileFieldSchema: Schema<ObjsTeamProfileField> = s.object
     isHidden: "is_hidden",
     possibleValues: "possible_values",
   },
-});
+};
+
+export const objsTeamProfileFieldInternalSchema: Schema<ObjsTeamProfileField> =
+  s.object<ObjsTeamProfileField>(objsTeamProfileFieldProperties, { additionalProperties: s.json() });
+
+export const objsTeamProfileFieldSchema: Schema<ObjsTeamProfileField> = s.lazySchema(() =>
+  s.object<ObjsTeamProfileField>(
+    {
+      ...objsTeamProfileFieldProperties,
+      id: s.string().check(s.pattern("^X[a-zA-Z0-9]{9,}$")),
+    },
+    { additionalProperties: s.json() },
+  ),
+);

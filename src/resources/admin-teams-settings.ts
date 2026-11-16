@@ -1,12 +1,11 @@
 import type { AuthSchemes } from "../auth-schemes.js";
-import { ApiError, type Declared, type ErrorDecoders, type ErrorPayload } from "../core/api-error.js";
+import { ApiError } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import type { RawClient } from "../core/raw-client.js";
 import { uuid } from "../core/uuid.js";
 import * as s from "../core/validation/index.js";
 import { contentTypeSchema, type ContentType } from "../models/content-type.js";
-import { defaulterrortemplate1Schema, type Defaulterrortemplate1 } from "../models/defaulterrortemplate1.js";
 import {
   defaultsuccesstemplateSchema,
   type Defaultsuccesstemplate,
@@ -32,8 +31,7 @@ export class AdminTeamsSettings {
    *
    * @returns Typical success response
    *
-   * @throws {@link AdminTeamsSettings.AdminTeamsSettingsInfoError} when the API answers with an
-   * error status — narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -42,7 +40,7 @@ export class AdminTeamsSettings {
   adminTeamsSettingsInfo(
     request: AdminTeamsSettings.AdminTeamsSettingsInfoRequest,
     options?: RequestOptions,
-  ): ApiPromise<Defaultsuccesstemplate, AdminTeamsSettings.AdminTeamsSettingsInfoError> {
+  ): ApiPromise<Defaultsuccesstemplate, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -58,7 +56,7 @@ export class AdminTeamsSettings {
       },
       {
         success: { kind: "json", schema: defaultsuccesstemplateSchema },
-        errorFactory: AdminTeamsSettings.AdminTeamsSettingsInfoError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -72,8 +70,7 @@ export class AdminTeamsSettings {
    *
    * @returns Typical success response
    *
-   * @throws {@link AdminTeamsSettings.AdminTeamsSettingsSetDefaultChannelsError} when the API
-   * answers with an error status — narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -82,7 +79,7 @@ export class AdminTeamsSettings {
   adminTeamsSettingsSetDefaultChannels(
     request: AdminTeamsSettings.AdminTeamsSettingsSetDefaultChannelsRequest,
     options?: RequestOptions,
-  ): ApiPromise<Defaultsuccesstemplate, AdminTeamsSettings.AdminTeamsSettingsSetDefaultChannelsError> {
+  ): ApiPromise<Defaultsuccesstemplate, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -105,7 +102,7 @@ export class AdminTeamsSettings {
       },
       {
         success: { kind: "json", schema: defaultsuccesstemplateSchema },
-        errorFactory: AdminTeamsSettings.AdminTeamsSettingsSetDefaultChannelsError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -119,8 +116,7 @@ export class AdminTeamsSettings {
    *
    * @returns Typical success response
    *
-   * @throws {@link AdminTeamsSettings.AdminTeamsSettingsSetDescriptionError} when the API answers
-   * with an error status — narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -129,7 +125,7 @@ export class AdminTeamsSettings {
   adminTeamsSettingsSetDescription(
     request: AdminTeamsSettings.AdminTeamsSettingsSetDescriptionRequest,
     options?: RequestOptions,
-  ): ApiPromise<Defaultsuccesstemplate, AdminTeamsSettings.AdminTeamsSettingsSetDescriptionError> {
+  ): ApiPromise<Defaultsuccesstemplate, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -152,7 +148,7 @@ export class AdminTeamsSettings {
       },
       {
         success: { kind: "json", schema: defaultsuccesstemplateSchema },
-        errorFactory: AdminTeamsSettings.AdminTeamsSettingsSetDescriptionError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -166,8 +162,7 @@ export class AdminTeamsSettings {
    *
    * @returns Typical success response
    *
-   * @throws {@link AdminTeamsSettings.AdminTeamsSettingsSetDiscoverabilityError} when the API
-   * answers with an error status — narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -176,7 +171,7 @@ export class AdminTeamsSettings {
   adminTeamsSettingsSetDiscoverability(
     request: AdminTeamsSettings.AdminTeamsSettingsSetDiscoverabilityRequest,
     options?: RequestOptions,
-  ): ApiPromise<Defaultsuccesstemplate, AdminTeamsSettings.AdminTeamsSettingsSetDiscoverabilityError> {
+  ): ApiPromise<Defaultsuccesstemplate, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -199,7 +194,7 @@ export class AdminTeamsSettings {
       },
       {
         success: { kind: "json", schema: defaultsuccesstemplateSchema },
-        errorFactory: AdminTeamsSettings.AdminTeamsSettingsSetDiscoverabilityError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -213,8 +208,7 @@ export class AdminTeamsSettings {
    *
    * @returns Typical success response
    *
-   * @throws {@link AdminTeamsSettings.AdminTeamsSettingsSetIconError} when the API answers with an
-   * error status — narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -223,7 +217,7 @@ export class AdminTeamsSettings {
   adminTeamsSettingsSetIcon(
     request: AdminTeamsSettings.AdminTeamsSettingsSetIconRequest,
     options?: RequestOptions,
-  ): ApiPromise<Defaultsuccesstemplate, AdminTeamsSettings.AdminTeamsSettingsSetIconError> {
+  ): ApiPromise<Defaultsuccesstemplate, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -246,7 +240,7 @@ export class AdminTeamsSettings {
       },
       {
         success: { kind: "json", schema: defaultsuccesstemplateSchema },
-        errorFactory: AdminTeamsSettings.AdminTeamsSettingsSetIconError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -260,8 +254,7 @@ export class AdminTeamsSettings {
    *
    * @returns Typical success response
    *
-   * @throws {@link AdminTeamsSettings.AdminTeamsSettingsSetNameError} when the API answers with an
-   * error status — narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -270,7 +263,7 @@ export class AdminTeamsSettings {
   adminTeamsSettingsSetName(
     request: AdminTeamsSettings.AdminTeamsSettingsSetNameRequest,
     options?: RequestOptions,
-  ): ApiPromise<Defaultsuccesstemplate, AdminTeamsSettings.AdminTeamsSettingsSetNameError> {
+  ): ApiPromise<Defaultsuccesstemplate, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -293,7 +286,7 @@ export class AdminTeamsSettings {
       },
       {
         success: { kind: "json", schema: defaultsuccesstemplateSchema },
-        errorFactory: AdminTeamsSettings.AdminTeamsSettingsSetNameError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -308,18 +301,6 @@ export namespace AdminTeamsSettings {
     contentType: ContentType;
   };
 
-  export class AdminTeamsSettingsInfoError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
-
-    static readonly errors: ErrorDecoders<AdminTeamsSettingsInfoError> = [
-      {
-        on: "default",
-        kind: "defaulterrortemplate1",
-        decode: { kind: "json", schema: defaulterrortemplate1Schema },
-      },
-    ];
-  }
-
   export type AdminTeamsSettingsSetDefaultChannelsRequest = {
     contentType: ContentType;
     /** Authentication token. Requires scope: `admin.teams:write` */
@@ -330,18 +311,6 @@ export namespace AdminTeamsSettings {
     channelIds: string;
   };
 
-  export class AdminTeamsSettingsSetDefaultChannelsError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
-
-    static readonly errors: ErrorDecoders<AdminTeamsSettingsSetDefaultChannelsError> = [
-      {
-        on: "default",
-        kind: "defaulterrortemplate1",
-        decode: { kind: "json", schema: defaulterrortemplate1Schema },
-      },
-    ];
-  }
-
   export type AdminTeamsSettingsSetDescriptionRequest = {
     /** Authentication token. Requires scope: `admin.teams:write` */
     token: string;
@@ -351,18 +320,6 @@ export namespace AdminTeamsSettings {
     /** The new description for the workspace. */
     description: string;
   };
-
-  export class AdminTeamsSettingsSetDescriptionError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
-
-    static readonly errors: ErrorDecoders<AdminTeamsSettingsSetDescriptionError> = [
-      {
-        on: "default",
-        kind: "defaulterrortemplate1",
-        decode: { kind: "json", schema: defaulterrortemplate1Schema },
-      },
-    ];
-  }
 
   export type AdminTeamsSettingsSetDiscoverabilityRequest = {
     /** Authentication token. Requires scope: `admin.teams:write` */
@@ -377,18 +334,6 @@ export namespace AdminTeamsSettings {
     discoverability: string;
   };
 
-  export class AdminTeamsSettingsSetDiscoverabilityError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
-
-    static readonly errors: ErrorDecoders<AdminTeamsSettingsSetDiscoverabilityError> = [
-      {
-        on: "default",
-        kind: "defaulterrortemplate1",
-        decode: { kind: "json", schema: defaulterrortemplate1Schema },
-      },
-    ];
-  }
-
   export type AdminTeamsSettingsSetIconRequest = {
     contentType: ContentType;
     /** Authentication token. Requires scope: `admin.teams:write` */
@@ -399,18 +344,6 @@ export namespace AdminTeamsSettings {
     teamId: string;
   };
 
-  export class AdminTeamsSettingsSetIconError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
-
-    static readonly errors: ErrorDecoders<AdminTeamsSettingsSetIconError> = [
-      {
-        on: "default",
-        kind: "defaulterrortemplate1",
-        decode: { kind: "json", schema: defaulterrortemplate1Schema },
-      },
-    ];
-  }
-
   export type AdminTeamsSettingsSetNameRequest = {
     /** Authentication token. Requires scope: `admin.teams:write` */
     token: string;
@@ -420,16 +353,4 @@ export namespace AdminTeamsSettings {
     /** The new name of the workspace. */
     name: string;
   };
-
-  export class AdminTeamsSettingsSetNameError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
-
-    static readonly errors: ErrorDecoders<AdminTeamsSettingsSetNameError> = [
-      {
-        on: "default",
-        kind: "defaulterrortemplate1",
-        decode: { kind: "json", schema: defaulterrortemplate1Schema },
-      },
-    ];
-  }
 }

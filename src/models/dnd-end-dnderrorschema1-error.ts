@@ -1,5 +1,5 @@
 import * as s from "../core/validation/index.js";
-import type { Schema } from "../core/validation/schema.js";
+import type { JsonValue, Schema } from "../core/validation/schema.js";
 import { dndEndDndErrorEnumSchema, type DndEndDndErrorEnum } from "./dnd-end-dnd-error-enum.js";
 
 /** Schema for error response from dnd.endDnd method */
@@ -8,11 +8,16 @@ export type DndEndDnderrorschema1Error = {
   callstack?: string;
   error: DndEndDndErrorEnum;
   ok: boolean;
+  /** Properties the service sent or accepts beyond those declared. */
+  additionalProperties?: Record<string, JsonValue>;
 };
 
 export const dndEndDnderrorschema1ErrorSchema: Schema<DndEndDnderrorschema1Error> =
-  s.object<DndEndDnderrorschema1Error>({
-    callstack: s.optional(s.string()),
-    error: dndEndDndErrorEnumSchema,
-    ok: s.boolean(),
-  });
+  s.object<DndEndDnderrorschema1Error>(
+    {
+      callstack: s.optional(s.string()),
+      error: dndEndDndErrorEnumSchema,
+      ok: s.boolean(),
+    },
+    { additionalProperties: s.json() },
+  );

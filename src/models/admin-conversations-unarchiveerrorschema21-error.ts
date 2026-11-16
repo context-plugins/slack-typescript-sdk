@@ -1,5 +1,5 @@
 import * as s from "../core/validation/index.js";
-import type { Schema } from "../core/validation/schema.js";
+import type { JsonValue, Schema } from "../core/validation/schema.js";
 import {
   adminConversationsRenameErrorEnumSchema,
   type AdminConversationsRenameErrorEnum,
@@ -9,10 +9,15 @@ import {
 export type AdminConversationsUnarchiveerrorschema21Error = {
   error: AdminConversationsRenameErrorEnum;
   ok: boolean;
+  /** Properties the service sent or accepts beyond those declared. */
+  additionalProperties?: Record<string, JsonValue>;
 };
 
 export const adminConversationsUnarchiveerrorschema21ErrorSchema: Schema<AdminConversationsUnarchiveerrorschema21Error> =
-  s.object<AdminConversationsUnarchiveerrorschema21Error>({
-    error: adminConversationsRenameErrorEnumSchema,
-    ok: s.boolean(),
-  });
+  s.object<AdminConversationsUnarchiveerrorschema21Error>(
+    {
+      error: adminConversationsRenameErrorEnumSchema,
+      ok: s.boolean(),
+    },
+    { additionalProperties: s.json() },
+  );

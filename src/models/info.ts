@@ -1,5 +1,5 @@
 import * as s from "../core/validation/index.js";
-import type { Schema } from "../core/validation/schema.js";
+import type { JsonValue, Schema } from "../core/validation/schema.js";
 import { appHomeSchema, type AppHome } from "./app-home.js";
 import { channelSchema, type Channel } from "./channel.js";
 import { groupSchema, type Group } from "./group.js";
@@ -14,16 +14,21 @@ export type Info = {
   im: Im;
   mpim: Mpim;
   team: Team;
+  /** Properties the service sent or accepts beyond those declared. */
+  additionalProperties?: Record<string, JsonValue>;
 };
 
-export const infoSchema: Schema<Info> = s.object<Info>({
-  appHome: appHomeSchema,
-  channel: channelSchema,
-  group: groupSchema,
-  im: imSchema,
-  mpim: mpimSchema,
-  team: teamSchema,
-  _keysMap: {
-    appHome: "app_home",
+export const infoSchema: Schema<Info> = s.object<Info>(
+  {
+    appHome: appHomeSchema,
+    channel: channelSchema,
+    group: groupSchema,
+    im: imSchema,
+    mpim: mpimSchema,
+    team: teamSchema,
+    _keysMap: {
+      appHome: "app_home",
+    },
   },
-});
+  { additionalProperties: s.json() },
+);

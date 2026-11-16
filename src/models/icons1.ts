@@ -1,15 +1,20 @@
 import * as s from "../core/validation/index.js";
-import type { Schema } from "../core/validation/schema.js";
+import type { JsonValue, Schema } from "../core/validation/schema.js";
 
 export type Icons1 = {
   emoji?: string;
   image64?: string;
+  /** Properties the service sent or accepts beyond those declared. */
+  additionalProperties?: Record<string, JsonValue>;
 };
 
-export const icons1Schema: Schema<Icons1> = s.object<Icons1>({
-  emoji: s.optional(s.string()),
-  image64: s.optional(s.string()),
-  _keysMap: {
-    image64: "image_64",
+export const icons1Schema: Schema<Icons1> = s.object<Icons1>(
+  {
+    emoji: s.optional(s.string()),
+    image64: s.optional(s.string()),
+    _keysMap: {
+      image64: "image_64",
+    },
   },
-});
+  { additionalProperties: s.json() },
+);

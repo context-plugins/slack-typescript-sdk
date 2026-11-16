@@ -1,12 +1,11 @@
 import type { AuthSchemes } from "../auth-schemes.js";
-import { ApiError, type Declared, type ErrorDecoders, type ErrorPayload } from "../core/api-error.js";
+import { ApiError } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import type { RawClient } from "../core/raw-client.js";
 import { uuid } from "../core/uuid.js";
 import * as s from "../core/validation/index.js";
 import { contentTypeSchema, type ContentType } from "../models/content-type.js";
-import { defaulterrortemplate1Schema, type Defaulterrortemplate1 } from "../models/defaulterrortemplate1.js";
 import {
   defaultsuccesstemplateSchema,
   type Defaultsuccesstemplate,
@@ -32,8 +31,7 @@ export class AdminConversationsRestrictAccess {
    *
    * @returns Typical success response
    *
-   * @throws {@link AdminConversationsRestrictAccess.AdminConversationsRestrictAccessAddGroupError}
-   * when the API answers with an error status — narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -42,10 +40,7 @@ export class AdminConversationsRestrictAccess {
   adminConversationsRestrictAccessAddGroup(
     request: AdminConversationsRestrictAccess.AdminConversationsRestrictAccessAddGroupRequest,
     options?: RequestOptions,
-  ): ApiPromise<
-    Defaultsuccesstemplate,
-    AdminConversationsRestrictAccess.AdminConversationsRestrictAccessAddGroupError
-  > {
+  ): ApiPromise<Defaultsuccesstemplate, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -69,7 +64,7 @@ export class AdminConversationsRestrictAccess {
       },
       {
         success: { kind: "json", schema: defaultsuccesstemplateSchema },
-        errorFactory: AdminConversationsRestrictAccess.AdminConversationsRestrictAccessAddGroupError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -83,9 +78,7 @@ export class AdminConversationsRestrictAccess {
    *
    * @returns Typical success response
    *
-   * @throws {@link
-   * AdminConversationsRestrictAccess.AdminConversationsRestrictAccessListGroupsError} when the API
-   * answers with an error status — narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -94,10 +87,7 @@ export class AdminConversationsRestrictAccess {
   adminConversationsRestrictAccessListGroups(
     request: AdminConversationsRestrictAccess.AdminConversationsRestrictAccessListGroupsRequest,
     options?: RequestOptions,
-  ): ApiPromise<
-    Defaultsuccesstemplate,
-    AdminConversationsRestrictAccess.AdminConversationsRestrictAccessListGroupsError
-  > {
+  ): ApiPromise<Defaultsuccesstemplate, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -114,7 +104,7 @@ export class AdminConversationsRestrictAccess {
       },
       {
         success: { kind: "json", schema: defaultsuccesstemplateSchema },
-        errorFactory: AdminConversationsRestrictAccess.AdminConversationsRestrictAccessListGroupsError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -128,9 +118,7 @@ export class AdminConversationsRestrictAccess {
    *
    * @returns Typical success response
    *
-   * @throws {@link
-   * AdminConversationsRestrictAccess.AdminConversationsRestrictAccessRemoveGroupError} when the API
-   * answers with an error status — narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -139,10 +127,7 @@ export class AdminConversationsRestrictAccess {
   adminConversationsRestrictAccessRemoveGroup(
     request: AdminConversationsRestrictAccess.AdminConversationsRestrictAccessRemoveGroupRequest,
     options?: RequestOptions,
-  ): ApiPromise<
-    Defaultsuccesstemplate,
-    AdminConversationsRestrictAccess.AdminConversationsRestrictAccessRemoveGroupError
-  > {
+  ): ApiPromise<Defaultsuccesstemplate, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -166,7 +151,7 @@ export class AdminConversationsRestrictAccess {
       },
       {
         success: { kind: "json", schema: defaultsuccesstemplateSchema },
-        errorFactory: AdminConversationsRestrictAccess.AdminConversationsRestrictAccessRemoveGroupError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -193,18 +178,6 @@ export namespace AdminConversationsRestrictAccess {
     teamId?: string;
   };
 
-  export class AdminConversationsRestrictAccessAddGroupError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
-
-    static readonly errors: ErrorDecoders<AdminConversationsRestrictAccessAddGroupError> = [
-      {
-        on: "default",
-        kind: "defaulterrortemplate1",
-        decode: { kind: "json", schema: defaulterrortemplate1Schema },
-      },
-    ];
-  }
-
   export type AdminConversationsRestrictAccessListGroupsRequest = {
     /** Authentication token. Requires scope: `admin.conversations:read` */
     token: string;
@@ -216,18 +189,6 @@ export namespace AdminConversationsRestrictAccess {
     teamId?: string;
     contentType: ContentType;
   };
-
-  export class AdminConversationsRestrictAccessListGroupsError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
-
-    static readonly errors: ErrorDecoders<AdminConversationsRestrictAccessListGroupsError> = [
-      {
-        on: "default",
-        kind: "defaulterrortemplate1",
-        decode: { kind: "json", schema: defaulterrortemplate1Schema },
-      },
-    ];
-  }
 
   export type AdminConversationsRestrictAccessRemoveGroupRequest = {
     contentType: ContentType;
@@ -247,16 +208,4 @@ export namespace AdminConversationsRestrictAccess {
     /** The channel to remove the linked group from. */
     channelId: string;
   };
-
-  export class AdminConversationsRestrictAccessRemoveGroupError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
-
-    static readonly errors: ErrorDecoders<AdminConversationsRestrictAccessRemoveGroupError> = [
-      {
-        on: "default",
-        kind: "defaulterrortemplate1",
-        decode: { kind: "json", schema: defaulterrortemplate1Schema },
-      },
-    ];
-  }
 }

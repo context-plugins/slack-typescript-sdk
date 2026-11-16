@@ -1,5 +1,5 @@
 import * as s from "../core/validation/index.js";
-import type { Schema } from "../core/validation/schema.js";
+import type { JsonValue, Schema } from "../core/validation/schema.js";
 import {
   chatGetPermalinkErrorEnumSchema,
   type ChatGetPermalinkErrorEnum,
@@ -11,11 +11,16 @@ export type ChatGetPermalinkerrorschema1 = {
   callstack?: string;
   error: ChatGetPermalinkErrorEnum;
   ok: boolean;
+  /** Properties the service sent or accepts beyond those declared. */
+  additionalProperties?: Record<string, JsonValue>;
 };
 
 export const chatGetPermalinkerrorschema1Schema: Schema<ChatGetPermalinkerrorschema1> =
-  s.object<ChatGetPermalinkerrorschema1>({
-    callstack: s.optional(s.string()),
-    error: chatGetPermalinkErrorEnumSchema,
-    ok: s.boolean(),
-  });
+  s.object<ChatGetPermalinkerrorschema1>(
+    {
+      callstack: s.optional(s.string()),
+      error: chatGetPermalinkErrorEnumSchema,
+      ok: s.boolean(),
+    },
+    { additionalProperties: s.json() },
+  );

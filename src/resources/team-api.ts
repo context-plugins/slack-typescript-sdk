@@ -1,36 +1,25 @@
 import type { AuthSchemes } from "../auth-schemes.js";
-import { ApiError, type Declared, type ErrorDecoders, type ErrorPayload } from "../core/api-error.js";
+import { ApiError } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import type { RawClient } from "../core/raw-client.js";
 import * as s from "../core/validation/index.js";
 import { contentTypeSchema, type ContentType } from "../models/content-type.js";
-import { defaulterrortemplate1Schema, type Defaulterrortemplate1 } from "../models/defaulterrortemplate1.js";
 import {
   defaultsuccesstemplateSchema,
   type Defaultsuccesstemplate,
 } from "../models/defaultsuccesstemplate.js";
 import {
-  teamAccessLogserrorschema1Schema,
-  type TeamAccessLogserrorschema1,
-} from "../models/team-access-logserrorschema1.js";
-import { teamAccessLogsschemaSchema, type TeamAccessLogsschema } from "../models/team-access-logsschema.js";
-import { teamInfoerrorschema1Schema, type TeamInfoerrorschema1 } from "../models/team-infoerrorschema1.js";
-import { teamInfoschemaSchema, type TeamInfoschema } from "../models/team-infoschema.js";
+  teamAccessLogsschemaInternalSchema,
+  type TeamAccessLogsschema,
+} from "../models/team-access-logsschema.js";
+import { teamInfoschemaInternalSchema, type TeamInfoschema } from "../models/team-infoschema.js";
 import {
-  teamIntegrationLogserrorschema1Schema,
-  type TeamIntegrationLogserrorschema1,
-} from "../models/team-integration-logserrorschema1.js";
-import {
-  teamIntegrationLogsschemaSchema,
+  teamIntegrationLogsschemaInternalSchema,
   type TeamIntegrationLogsschema,
 } from "../models/team-integration-logsschema.js";
 import {
-  teamProfileGeterrorschema1Schema,
-  type TeamProfileGeterrorschema1,
-} from "../models/team-profile-geterrorschema1.js";
-import {
-  teamProfileGetsuccessschemaSchema,
+  teamProfileGetsuccessschemaInternalSchema,
   type TeamProfileGetsuccessschema,
 } from "../models/team-profile-getsuccessschema.js";
 import type { Servers } from "../servers.js";
@@ -54,8 +43,7 @@ export class TeamApi {
    *
    * @returns This response demonstrates pagination and two access log entries.
    *
-   * @throws {@link TeamApi.TeamAccessLogsError} when the API answers with an error status — narrow
-   * on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -64,7 +52,7 @@ export class TeamApi {
   teamAccessLogs(
     request: TeamApi.TeamAccessLogsRequest,
     options?: RequestOptions,
-  ): ApiPromise<TeamAccessLogsschema, TeamApi.TeamAccessLogsError> {
+  ): ApiPromise<TeamAccessLogsschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -81,8 +69,8 @@ export class TeamApi {
         body: { kind: "empty" },
       },
       {
-        success: { kind: "json", schema: teamAccessLogsschemaSchema },
-        errorFactory: TeamApi.TeamAccessLogsError,
+        success: { kind: "json", schema: teamAccessLogsschemaInternalSchema },
+        errorFactory: ApiError,
       },
       options,
     );
@@ -96,8 +84,7 @@ export class TeamApi {
    *
    * @returns Typical success response
    *
-   * @throws {@link TeamApi.TeamBillableInfoError} when the API answers with an error status —
-   * narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -106,7 +93,7 @@ export class TeamApi {
   teamBillableInfo(
     request: TeamApi.TeamBillableInfoRequest,
     options?: RequestOptions,
-  ): ApiPromise<Defaultsuccesstemplate, TeamApi.TeamBillableInfoError> {
+  ): ApiPromise<Defaultsuccesstemplate, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -122,7 +109,7 @@ export class TeamApi {
       },
       {
         success: { kind: "json", schema: defaultsuccesstemplateSchema },
-        errorFactory: TeamApi.TeamBillableInfoError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -136,17 +123,13 @@ export class TeamApi {
    *
    * @returns Typical success response
    *
-   * @throws {@link TeamApi.TeamInfoError} when the API answers with an error status — narrow on
-   * `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
    * could not be obtained
    */
-  teamInfo(
-    request: TeamApi.TeamInfoRequest,
-    options?: RequestOptions,
-  ): ApiPromise<TeamInfoschema, TeamApi.TeamInfoError> {
+  teamInfo(request: TeamApi.TeamInfoRequest, options?: RequestOptions): ApiPromise<TeamInfoschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -161,8 +144,8 @@ export class TeamApi {
         body: { kind: "empty" },
       },
       {
-        success: { kind: "json", schema: teamInfoschemaSchema },
-        errorFactory: TeamApi.TeamInfoError,
+        success: { kind: "json", schema: teamInfoschemaInternalSchema },
+        errorFactory: ApiError,
       },
       options,
     );
@@ -176,8 +159,7 @@ export class TeamApi {
    *
    * @returns Typical success response
    *
-   * @throws {@link TeamApi.TeamIntegrationLogsError} when the API answers with an error status —
-   * narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -186,7 +168,7 @@ export class TeamApi {
   teamIntegrationLogs(
     request: TeamApi.TeamIntegrationLogsRequest,
     options?: RequestOptions,
-  ): ApiPromise<TeamIntegrationLogsschema, TeamApi.TeamIntegrationLogsError> {
+  ): ApiPromise<TeamIntegrationLogsschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -206,8 +188,8 @@ export class TeamApi {
         body: { kind: "empty" },
       },
       {
-        success: { kind: "json", schema: teamIntegrationLogsschemaSchema },
-        errorFactory: TeamApi.TeamIntegrationLogsError,
+        success: { kind: "json", schema: teamIntegrationLogsschemaInternalSchema },
+        errorFactory: ApiError,
       },
       options,
     );
@@ -221,8 +203,7 @@ export class TeamApi {
    *
    * @returns Typical success response
    *
-   * @throws {@link TeamApi.TeamProfileGetError} when the API answers with an error status — narrow
-   * on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -231,7 +212,7 @@ export class TeamApi {
   teamProfileGet(
     request: TeamApi.TeamProfileGetRequest,
     options?: RequestOptions,
-  ): ApiPromise<TeamProfileGetsuccessschema, TeamApi.TeamProfileGetError> {
+  ): ApiPromise<TeamProfileGetsuccessschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -246,8 +227,8 @@ export class TeamApi {
         body: { kind: "empty" },
       },
       {
-        success: { kind: "json", schema: teamProfileGetsuccessschemaSchema },
-        errorFactory: TeamApi.TeamProfileGetError,
+        success: { kind: "json", schema: teamProfileGetsuccessschemaInternalSchema },
+        errorFactory: ApiError,
       },
       options,
     );
@@ -265,20 +246,6 @@ export namespace TeamApi {
     contentType: ContentType;
   };
 
-  export class TeamAccessLogsError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"teamAccessLogserrorschema1", TeamAccessLogserrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<TeamAccessLogsError> = [
-      {
-        on: "default",
-        kind: "teamAccessLogserrorschema1",
-        decode: { kind: "json", schema: teamAccessLogserrorschema1Schema },
-      },
-    ];
-  }
-
   export type TeamBillableInfoRequest = {
     /** Authentication token. Requires scope: `admin` */
     token: string;
@@ -286,18 +253,6 @@ export namespace TeamApi {
     user?: string;
     contentType: ContentType;
   };
-
-  export class TeamBillableInfoError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
-
-    static readonly errors: ErrorDecoders<TeamBillableInfoError> = [
-      {
-        on: "default",
-        kind: "defaulterrortemplate1",
-        decode: { kind: "json", schema: defaulterrortemplate1Schema },
-      },
-    ];
-  }
 
   export type TeamInfoRequest = {
     /** Authentication token. Requires scope: `team:read` */
@@ -309,18 +264,6 @@ export namespace TeamApi {
     team?: string;
     contentType: ContentType;
   };
-
-  export class TeamInfoError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"teamInfoerrorschema1", TeamInfoerrorschema1>>;
-
-    static readonly errors: ErrorDecoders<TeamInfoError> = [
-      {
-        on: "default",
-        kind: "teamInfoerrorschema1",
-        decode: { kind: "json", schema: teamInfoerrorschema1Schema },
-      },
-    ];
-  }
 
   export type TeamIntegrationLogsRequest = {
     /** Authentication token. Requires scope: `admin` */
@@ -338,20 +281,6 @@ export namespace TeamApi {
     contentType: ContentType;
   };
 
-  export class TeamIntegrationLogsError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"teamIntegrationLogserrorschema1", TeamIntegrationLogserrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<TeamIntegrationLogsError> = [
-      {
-        on: "default",
-        kind: "teamIntegrationLogserrorschema1",
-        decode: { kind: "json", schema: teamIntegrationLogserrorschema1Schema },
-      },
-    ];
-  }
-
   export type TeamProfileGetRequest = {
     /** Authentication token. Requires scope: `users.profile:read` */
     token: string;
@@ -359,18 +288,4 @@ export namespace TeamApi {
     visibility?: string;
     contentType: ContentType;
   };
-
-  export class TeamProfileGetError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"teamProfileGeterrorschema1", TeamProfileGeterrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<TeamProfileGetError> = [
-      {
-        on: "default",
-        kind: "teamProfileGeterrorschema1",
-        decode: { kind: "json", schema: teamProfileGeterrorschema1Schema },
-      },
-    ];
-  }
 }

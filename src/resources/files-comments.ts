@@ -1,15 +1,11 @@
 import type { AuthSchemes } from "../auth-schemes.js";
-import { ApiError, type Declared, type ErrorDecoders, type ErrorPayload } from "../core/api-error.js";
+import { ApiError } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import type { RawClient } from "../core/raw-client.js";
 import { uuid } from "../core/uuid.js";
 import * as s from "../core/validation/index.js";
 import { contentTypeSchema, type ContentType } from "../models/content-type.js";
-import {
-  filesCommentsDeleteerrorschema1Schema,
-  type FilesCommentsDeleteerrorschema1,
-} from "../models/files-comments-deleteerrorschema1.js";
 import {
   filesCommentsDeleteschemaSchema,
   type FilesCommentsDeleteschema,
@@ -35,8 +31,7 @@ export class FilesComments {
    *
    * @returns Standard success response is very simple
    *
-   * @throws {@link FilesComments.FilesCommentsDeleteError} when the API answers with an error
-   * status — narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -45,7 +40,7 @@ export class FilesComments {
   filesCommentsDelete(
     request: FilesComments.FilesCommentsDeleteRequest,
     options?: RequestOptions,
-  ): ApiPromise<FilesCommentsDeleteschema, FilesComments.FilesCommentsDeleteError> {
+  ): ApiPromise<FilesCommentsDeleteschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -68,7 +63,7 @@ export class FilesComments {
       },
       {
         success: { kind: "json", schema: filesCommentsDeleteschemaSchema },
-        errorFactory: FilesComments.FilesCommentsDeleteError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -85,18 +80,4 @@ export namespace FilesComments {
     /** The comment to delete. */
     id?: string;
   };
-
-  export class FilesCommentsDeleteError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"filesCommentsDeleteerrorschema1", FilesCommentsDeleteerrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<FilesCommentsDeleteError> = [
-      {
-        on: "default",
-        kind: "filesCommentsDeleteerrorschema1",
-        decode: { kind: "json", schema: filesCommentsDeleteerrorschema1Schema },
-      },
-    ];
-  }
 }

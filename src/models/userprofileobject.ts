@@ -1,5 +1,5 @@
 import * as s from "../core/validation/index.js";
-import type { Schema } from "../core/validation/schema.js";
+import type { JsonValue, Schema } from "../core/validation/schema.js";
 
 export type Userprofileobject = {
   alwaysActive?: boolean;
@@ -46,9 +46,11 @@ export type Userprofileobject = {
   updated?: number;
   userId?: string;
   username?: string | null;
+  /** Properties the service sent or accepts beyond those declared. */
+  additionalProperties?: Record<string, JsonValue>;
 };
 
-export const userprofileobjectSchema: Schema<Userprofileobject> = s.object<Userprofileobject>({
+const userprofileobjectProperties: s.Shape<Userprofileobject> = {
   alwaysActive: s.optional(s.boolean()),
   apiAppId: s.optional(s.string()),
   avatarHash: s.string(),
@@ -129,4 +131,21 @@ export const userprofileobjectSchema: Schema<Userprofileobject> = s.object<Userp
     statusTextCanonical: "status_text_canonical",
     userId: "user_id",
   },
-});
+};
+
+export const userprofileobjectInternalSchema: Schema<Userprofileobject> = s.object<Userprofileobject>(
+  userprofileobjectProperties,
+  { additionalProperties: s.json() },
+);
+
+export const userprofileobjectSchema: Schema<Userprofileobject> = s.lazySchema(() =>
+  s.object<Userprofileobject>(
+    {
+      ...userprofileobjectProperties,
+      apiAppId: s.optional(s.string().check(s.pattern("^(A[A-Z0-9]{1,})?$"))),
+      botId: s.optional(s.string().check(s.pattern("^B[A-Z0-9]{8,}$"))),
+      team: s.optional(s.string().check(s.pattern("^[TE][A-Z0-9]{8,}$"))),
+    },
+    { additionalProperties: s.json() },
+  ),
+);

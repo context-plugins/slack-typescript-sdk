@@ -1,5 +1,5 @@
 import * as s from "../core/validation/index.js";
-import type { Schema } from "../core/validation/schema.js";
+import type { JsonValue, Schema } from "../core/validation/schema.js";
 import {
   remindersCompleteErrorEnumSchema,
   type RemindersCompleteErrorEnum,
@@ -11,11 +11,16 @@ export type RemindersCompleteerrorschema1Error = {
   callstack?: string;
   error: RemindersCompleteErrorEnum;
   ok: boolean;
+  /** Properties the service sent or accepts beyond those declared. */
+  additionalProperties?: Record<string, JsonValue>;
 };
 
 export const remindersCompleteerrorschema1ErrorSchema: Schema<RemindersCompleteerrorschema1Error> =
-  s.object<RemindersCompleteerrorschema1Error>({
-    callstack: s.optional(s.string()),
-    error: remindersCompleteErrorEnumSchema,
-    ok: s.boolean(),
-  });
+  s.object<RemindersCompleteerrorschema1Error>(
+    {
+      callstack: s.optional(s.string()),
+      error: remindersCompleteErrorEnumSchema,
+      ok: s.boolean(),
+    },
+    { additionalProperties: s.json() },
+  );

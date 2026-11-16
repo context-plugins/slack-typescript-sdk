@@ -2,20 +2,19 @@
 
 # Calls — operations
 
-Accessor: `client.calls` · Source: `src/resources/calls.ts` · 6 operations · Request and error types: namespace `Calls`
+Accessor: `client.calls` · Source: `src/resources/calls.ts` · 6 operations · Request types: namespace `Calls`
 
 **Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `slack-web-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### callsAdd
 
-- **Signature**: `callsAdd(request: Calls.CallsAddRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, Calls.CallsAddError>`
+- **Signature**: `callsAdd(request: Calls.CallsAddRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, ApiError>`
 - **Wire**: `POST /calls.add`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
 - **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Defaultsuccesstemplate`
-- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Calls.CallsAddError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"defaulterrortemplate1"` [default — any status no arm above covers] `Defaulterrortemplate1` · `"undeclared"` [a `default`-matched body that did not fit `Defaulterrortemplate1`] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Calls.CallsAddRequest` (10):
 
@@ -36,18 +35,16 @@ Accessor: `client.calls` · Source: `src/resources/calls.ts` · 6 operations · 
 | --- | --- | --- |
 | `ContentType` | `contentTypeSchema` | `src/models/content-type.ts` |
 | `Defaultsuccesstemplate` | `defaultsuccesstemplateSchema` | `src/models/defaultsuccesstemplate.ts` |
-| `Defaulterrortemplate1` | `defaulterrortemplate1Schema` | `src/models/defaulterrortemplate1.ts` |
 
 ### callsEnd
 
-- **Signature**: `callsEnd(request: Calls.CallsEndRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, Calls.CallsEndError>`
+- **Signature**: `callsEnd(request: Calls.CallsEndRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, ApiError>`
 - **Wire**: `POST /calls.end`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
 - **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Defaultsuccesstemplate`
-- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Calls.CallsEndError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"defaulterrortemplate1"` [default — any status no arm above covers] `Defaulterrortemplate1` · `"undeclared"` [a `default`-matched body that did not fit `Defaulterrortemplate1`] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Calls.CallsEndRequest` (4):
 
@@ -62,17 +59,15 @@ Accessor: `client.calls` · Source: `src/resources/calls.ts` · 6 operations · 
 | --- | --- | --- |
 | `ContentType` | `contentTypeSchema` | `src/models/content-type.ts` |
 | `Defaultsuccesstemplate` | `defaultsuccesstemplateSchema` | `src/models/defaultsuccesstemplate.ts` |
-| `Defaulterrortemplate1` | `defaulterrortemplate1Schema` | `src/models/defaulterrortemplate1.ts` |
 
 ### callsInfo
 
-- **Signature**: `callsInfo(request: Calls.CallsInfoRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, Calls.CallsInfoError>`
+- **Signature**: `callsInfo(request: Calls.CallsInfoRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, ApiError>`
 - **Wire**: `GET /calls.info`
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Defaultsuccesstemplate`
-- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Calls.CallsInfoError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"defaulterrortemplate1"` [default — any status no arm above covers] `Defaulterrortemplate1` · `"undeclared"` [a `default`-matched body that did not fit `Defaulterrortemplate1`] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Calls.CallsInfoRequest` (3):
 
@@ -86,18 +81,16 @@ Accessor: `client.calls` · Source: `src/resources/calls.ts` · 6 operations · 
 | --- | --- | --- |
 | `ContentType` | `contentTypeSchema` | `src/models/content-type.ts` |
 | `Defaultsuccesstemplate` | `defaultsuccesstemplateSchema` | `src/models/defaultsuccesstemplate.ts` |
-| `Defaulterrortemplate1` | `defaulterrortemplate1Schema` | `src/models/defaulterrortemplate1.ts` |
 
 ### callsParticipantsAdd
 
-- **Signature**: `callsParticipantsAdd(request: Calls.CallsParticipantsAddRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, Calls.CallsParticipantsAddError>`
+- **Signature**: `callsParticipantsAdd(request: Calls.CallsParticipantsAddRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, ApiError>`
 - **Wire**: `POST /calls.participants.add`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
 - **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Defaultsuccesstemplate`
-- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Calls.CallsParticipantsAddError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"defaulterrortemplate1"` [default — any status no arm above covers] `Defaulterrortemplate1` · `"undeclared"` [a `default`-matched body that did not fit `Defaulterrortemplate1`] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Calls.CallsParticipantsAddRequest` (4):
 
@@ -112,18 +105,16 @@ Accessor: `client.calls` · Source: `src/resources/calls.ts` · 6 operations · 
 | --- | --- | --- |
 | `ContentType` | `contentTypeSchema` | `src/models/content-type.ts` |
 | `Defaultsuccesstemplate` | `defaultsuccesstemplateSchema` | `src/models/defaultsuccesstemplate.ts` |
-| `Defaulterrortemplate1` | `defaulterrortemplate1Schema` | `src/models/defaulterrortemplate1.ts` |
 
 ### callsParticipantsRemove
 
-- **Signature**: `callsParticipantsRemove(request: Calls.CallsParticipantsRemoveRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, Calls.CallsParticipantsRemoveError>`
+- **Signature**: `callsParticipantsRemove(request: Calls.CallsParticipantsRemoveRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, ApiError>`
 - **Wire**: `POST /calls.participants.remove`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
 - **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Defaultsuccesstemplate`
-- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Calls.CallsParticipantsRemoveError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"defaulterrortemplate1"` [default — any status no arm above covers] `Defaulterrortemplate1` · `"undeclared"` [a `default`-matched body that did not fit `Defaulterrortemplate1`] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Calls.CallsParticipantsRemoveRequest` (4):
 
@@ -138,18 +129,16 @@ Accessor: `client.calls` · Source: `src/resources/calls.ts` · 6 operations · 
 | --- | --- | --- |
 | `ContentType` | `contentTypeSchema` | `src/models/content-type.ts` |
 | `Defaultsuccesstemplate` | `defaultsuccesstemplateSchema` | `src/models/defaultsuccesstemplate.ts` |
-| `Defaulterrortemplate1` | `defaulterrortemplate1Schema` | `src/models/defaulterrortemplate1.ts` |
 
 ### callsUpdate
 
-- **Signature**: `callsUpdate(request: Calls.CallsUpdateRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, Calls.CallsUpdateError>`
+- **Signature**: `callsUpdate(request: Calls.CallsUpdateRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, ApiError>`
 - **Wire**: `POST /calls.update`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
 - **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Defaultsuccesstemplate`
-- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Calls.CallsUpdateError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"defaulterrortemplate1"` [default — any status no arm above covers] `Defaulterrortemplate1` · `"undeclared"` [a `default`-matched body that did not fit `Defaulterrortemplate1`] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Calls.CallsUpdateRequest` (6):
 
@@ -166,5 +155,4 @@ Accessor: `client.calls` · Source: `src/resources/calls.ts` · 6 operations · 
 | --- | --- | --- |
 | `ContentType` | `contentTypeSchema` | `src/models/content-type.ts` |
 | `Defaultsuccesstemplate` | `defaultsuccesstemplateSchema` | `src/models/defaultsuccesstemplate.ts` |
-| `Defaulterrortemplate1` | `defaulterrortemplate1Schema` | `src/models/defaulterrortemplate1.ts` |
 

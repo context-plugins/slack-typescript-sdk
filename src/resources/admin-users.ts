@@ -1,12 +1,11 @@
 import type { AuthSchemes } from "../auth-schemes.js";
-import { ApiError, type Declared, type ErrorDecoders, type ErrorPayload } from "../core/api-error.js";
+import { ApiError } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import type { RawClient } from "../core/raw-client.js";
 import { uuid } from "../core/uuid.js";
 import * as s from "../core/validation/index.js";
 import { contentTypeSchema, type ContentType } from "../models/content-type.js";
-import { defaulterrortemplate1Schema, type Defaulterrortemplate1 } from "../models/defaulterrortemplate1.js";
 import {
   defaultsuccesstemplateSchema,
   type Defaultsuccesstemplate,
@@ -32,8 +31,7 @@ export class AdminUsers {
    *
    * @returns Typical success response
    *
-   * @throws {@link AdminUsers.AdminUsersAssignError} when the API answers with an error status —
-   * narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -42,7 +40,7 @@ export class AdminUsers {
   adminUsersAssign(
     request: AdminUsers.AdminUsersAssignRequest,
     options?: RequestOptions,
-  ): ApiPromise<Defaultsuccesstemplate, AdminUsers.AdminUsersAssignError> {
+  ): ApiPromise<Defaultsuccesstemplate, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -72,7 +70,7 @@ export class AdminUsers {
       },
       {
         success: { kind: "json", schema: defaultsuccesstemplateSchema },
-        errorFactory: AdminUsers.AdminUsersAssignError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -86,8 +84,7 @@ export class AdminUsers {
    *
    * @returns Typical success response
    *
-   * @throws {@link AdminUsers.AdminUsersInviteError} when the API answers with an error status —
-   * narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -96,7 +93,7 @@ export class AdminUsers {
   adminUsersInvite(
     request: AdminUsers.AdminUsersInviteRequest,
     options?: RequestOptions,
-  ): ApiPromise<Defaultsuccesstemplate, AdminUsers.AdminUsersInviteError> {
+  ): ApiPromise<Defaultsuccesstemplate, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -130,7 +127,7 @@ export class AdminUsers {
       },
       {
         success: { kind: "json", schema: defaultsuccesstemplateSchema },
-        errorFactory: AdminUsers.AdminUsersInviteError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -144,8 +141,7 @@ export class AdminUsers {
    *
    * @returns Typical success response
    *
-   * @throws {@link AdminUsers.AdminUsersListError} when the API answers with an error status —
-   * narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -154,7 +150,7 @@ export class AdminUsers {
   adminUsersList(
     request: AdminUsers.AdminUsersListRequest,
     options?: RequestOptions,
-  ): ApiPromise<Defaultsuccesstemplate, AdminUsers.AdminUsersListError> {
+  ): ApiPromise<Defaultsuccesstemplate, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -174,7 +170,7 @@ export class AdminUsers {
       },
       {
         success: { kind: "json", schema: defaultsuccesstemplateSchema },
-        errorFactory: AdminUsers.AdminUsersListError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -188,8 +184,7 @@ export class AdminUsers {
    *
    * @returns Typical success response
    *
-   * @throws {@link AdminUsers.AdminUsersRemoveError} when the API answers with an error status —
-   * narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -198,7 +193,7 @@ export class AdminUsers {
   adminUsersRemove(
     request: AdminUsers.AdminUsersRemoveRequest,
     options?: RequestOptions,
-  ): ApiPromise<Defaultsuccesstemplate, AdminUsers.AdminUsersRemoveError> {
+  ): ApiPromise<Defaultsuccesstemplate, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -221,7 +216,7 @@ export class AdminUsers {
       },
       {
         success: { kind: "json", schema: defaultsuccesstemplateSchema },
-        errorFactory: AdminUsers.AdminUsersRemoveError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -235,8 +230,7 @@ export class AdminUsers {
    *
    * @returns Typical success response
    *
-   * @throws {@link AdminUsers.AdminUsersSetAdminError} when the API answers with an error status —
-   * narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -245,7 +239,7 @@ export class AdminUsers {
   adminUsersSetAdmin(
     request: AdminUsers.AdminUsersSetAdminRequest,
     options?: RequestOptions,
-  ): ApiPromise<Defaultsuccesstemplate, AdminUsers.AdminUsersSetAdminError> {
+  ): ApiPromise<Defaultsuccesstemplate, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -268,7 +262,7 @@ export class AdminUsers {
       },
       {
         success: { kind: "json", schema: defaultsuccesstemplateSchema },
-        errorFactory: AdminUsers.AdminUsersSetAdminError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -282,8 +276,7 @@ export class AdminUsers {
    *
    * @returns Typical success response
    *
-   * @throws {@link AdminUsers.AdminUsersSetExpirationError} when the API answers with an error
-   * status — narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -292,7 +285,7 @@ export class AdminUsers {
   adminUsersSetExpiration(
     request: AdminUsers.AdminUsersSetExpirationRequest,
     options?: RequestOptions,
-  ): ApiPromise<Defaultsuccesstemplate, AdminUsers.AdminUsersSetExpirationError> {
+  ): ApiPromise<Defaultsuccesstemplate, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -316,7 +309,7 @@ export class AdminUsers {
       },
       {
         success: { kind: "json", schema: defaultsuccesstemplateSchema },
-        errorFactory: AdminUsers.AdminUsersSetExpirationError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -330,8 +323,7 @@ export class AdminUsers {
    *
    * @returns Typical success response
    *
-   * @throws {@link AdminUsers.AdminUsersSetOwnerError} when the API answers with an error status —
-   * narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -340,7 +332,7 @@ export class AdminUsers {
   adminUsersSetOwner(
     request: AdminUsers.AdminUsersSetOwnerRequest,
     options?: RequestOptions,
-  ): ApiPromise<Defaultsuccesstemplate, AdminUsers.AdminUsersSetOwnerError> {
+  ): ApiPromise<Defaultsuccesstemplate, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -363,7 +355,7 @@ export class AdminUsers {
       },
       {
         success: { kind: "json", schema: defaultsuccesstemplateSchema },
-        errorFactory: AdminUsers.AdminUsersSetOwnerError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -377,8 +369,7 @@ export class AdminUsers {
    *
    * @returns Typical success response
    *
-   * @throws {@link AdminUsers.AdminUsersSetRegularError} when the API answers with an error status
-   * — narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -387,7 +378,7 @@ export class AdminUsers {
   adminUsersSetRegular(
     request: AdminUsers.AdminUsersSetRegularRequest,
     options?: RequestOptions,
-  ): ApiPromise<Defaultsuccesstemplate, AdminUsers.AdminUsersSetRegularError> {
+  ): ApiPromise<Defaultsuccesstemplate, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -410,7 +401,7 @@ export class AdminUsers {
       },
       {
         success: { kind: "json", schema: defaultsuccesstemplateSchema },
-        errorFactory: AdminUsers.AdminUsersSetRegularError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -433,18 +424,6 @@ export namespace AdminUsers {
     /** Comma separated values of channel IDs to add user in the new workspace. */
     channelIds?: string;
   };
-
-  export class AdminUsersAssignError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
-
-    static readonly errors: ErrorDecoders<AdminUsersAssignError> = [
-      {
-        on: "default",
-        kind: "defaulterrortemplate1",
-        decode: { kind: "json", schema: defaulterrortemplate1Schema },
-      },
-    ];
-  }
 
   export type AdminUsersInviteRequest = {
     /** Authentication token. Requires scope: `admin.users:write` */
@@ -479,18 +458,6 @@ export namespace AdminUsers {
     guestExpirationTs?: string;
   };
 
-  export class AdminUsersInviteError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
-
-    static readonly errors: ErrorDecoders<AdminUsersInviteError> = [
-      {
-        on: "default",
-        kind: "defaulterrortemplate1",
-        decode: { kind: "json", schema: defaulterrortemplate1Schema },
-      },
-    ];
-  }
-
   export type AdminUsersListRequest = {
     /** The ID (`T1234`) of the workspace. */
     teamId: string;
@@ -505,18 +472,6 @@ export namespace AdminUsers {
     contentType: ContentType;
   };
 
-  export class AdminUsersListError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
-
-    static readonly errors: ErrorDecoders<AdminUsersListError> = [
-      {
-        on: "default",
-        kind: "defaulterrortemplate1",
-        decode: { kind: "json", schema: defaulterrortemplate1Schema },
-      },
-    ];
-  }
-
   export type AdminUsersRemoveRequest = {
     /** Authentication token. Requires scope: `admin.users:write` */
     token: string;
@@ -527,18 +482,6 @@ export namespace AdminUsers {
     userId: string;
   };
 
-  export class AdminUsersRemoveError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
-
-    static readonly errors: ErrorDecoders<AdminUsersRemoveError> = [
-      {
-        on: "default",
-        kind: "defaulterrortemplate1",
-        decode: { kind: "json", schema: defaulterrortemplate1Schema },
-      },
-    ];
-  }
-
   export type AdminUsersSetAdminRequest = {
     /** Authentication token. Requires scope: `admin.users:write` */
     token: string;
@@ -548,18 +491,6 @@ export namespace AdminUsers {
     /** The ID of the user to designate as an admin. */
     userId: string;
   };
-
-  export class AdminUsersSetAdminError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
-
-    static readonly errors: ErrorDecoders<AdminUsersSetAdminError> = [
-      {
-        on: "default",
-        kind: "defaulterrortemplate1",
-        decode: { kind: "json", schema: defaulterrortemplate1Schema },
-      },
-    ];
-  }
 
   export type AdminUsersSetExpirationRequest = {
     /** Authentication token. Requires scope: `admin.users:write` */
@@ -573,18 +504,6 @@ export namespace AdminUsers {
     expirationTs: number;
   };
 
-  export class AdminUsersSetExpirationError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
-
-    static readonly errors: ErrorDecoders<AdminUsersSetExpirationError> = [
-      {
-        on: "default",
-        kind: "defaulterrortemplate1",
-        decode: { kind: "json", schema: defaulterrortemplate1Schema },
-      },
-    ];
-  }
-
   export type AdminUsersSetOwnerRequest = {
     /** Authentication token. Requires scope: `admin.users:write` */
     token: string;
@@ -595,18 +514,6 @@ export namespace AdminUsers {
     userId: string;
   };
 
-  export class AdminUsersSetOwnerError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
-
-    static readonly errors: ErrorDecoders<AdminUsersSetOwnerError> = [
-      {
-        on: "default",
-        kind: "defaulterrortemplate1",
-        decode: { kind: "json", schema: defaulterrortemplate1Schema },
-      },
-    ];
-  }
-
   export type AdminUsersSetRegularRequest = {
     /** Authentication token. Requires scope: `admin.users:write` */
     token: string;
@@ -616,16 +523,4 @@ export namespace AdminUsers {
     /** The ID of the user to designate as a regular user. */
     userId: string;
   };
-
-  export class AdminUsersSetRegularError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
-
-    static readonly errors: ErrorDecoders<AdminUsersSetRegularError> = [
-      {
-        on: "default",
-        kind: "defaulterrortemplate1",
-        decode: { kind: "json", schema: defaulterrortemplate1Schema },
-      },
-    ];
-  }
 }

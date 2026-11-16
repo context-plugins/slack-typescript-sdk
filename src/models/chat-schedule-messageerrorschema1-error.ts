@@ -1,5 +1,5 @@
 import * as s from "../core/validation/index.js";
-import type { Schema } from "../core/validation/schema.js";
+import type { JsonValue, Schema } from "../core/validation/schema.js";
 import {
   chatScheduleMessageErrorEnumSchema,
   type ChatScheduleMessageErrorEnum,
@@ -11,11 +11,16 @@ export type ChatScheduleMessageerrorschema1Error = {
   callstack?: string;
   error: ChatScheduleMessageErrorEnum;
   ok: boolean;
+  /** Properties the service sent or accepts beyond those declared. */
+  additionalProperties?: Record<string, JsonValue>;
 };
 
 export const chatScheduleMessageerrorschema1ErrorSchema: Schema<ChatScheduleMessageerrorschema1Error> =
-  s.object<ChatScheduleMessageerrorschema1Error>({
-    callstack: s.optional(s.string()),
-    error: chatScheduleMessageErrorEnumSchema,
-    ok: s.boolean(),
-  });
+  s.object<ChatScheduleMessageerrorschema1Error>(
+    {
+      callstack: s.optional(s.string()),
+      error: chatScheduleMessageErrorEnumSchema,
+      ok: s.boolean(),
+    },
+    { additionalProperties: s.json() },
+  );

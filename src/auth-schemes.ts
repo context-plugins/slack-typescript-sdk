@@ -19,8 +19,8 @@ export function buildAuthSchemes(
       options.slackAuth,
       options.slackAuthStrategy ??
         oauth2AuthorizationCodeStrategy({
-          authorizationUrl: servers.default("/authorize"),
-          tokenUrl: servers.default("/oauth.access"),
+          authorizationUrl: servers.authServer("/authorize"),
+          tokenUrl: servers.default("/oauth.v2.access"),
           rawClient,
           placement: "header",
         }),

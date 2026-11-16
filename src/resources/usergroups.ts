@@ -1,5 +1,5 @@
 import type { AuthSchemes } from "../auth-schemes.js";
-import { ApiError, type Declared, type ErrorDecoders, type ErrorPayload } from "../core/api-error.js";
+import { ApiError } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import type { RawClient } from "../core/raw-client.js";
@@ -7,56 +7,31 @@ import { uuid } from "../core/uuid.js";
 import * as s from "../core/validation/index.js";
 import { contentTypeSchema, type ContentType } from "../models/content-type.js";
 import {
-  usergroupsCreateerrorschema1Schema,
-  type UsergroupsCreateerrorschema1,
-} from "../models/usergroups-createerrorschema1.js";
-import {
-  usergroupsCreateschemaSchema,
+  usergroupsCreateschemaInternalSchema,
   type UsergroupsCreateschema,
 } from "../models/usergroups-createschema.js";
 import {
-  usergroupsDisableerrorschema1Schema,
-  type UsergroupsDisableerrorschema1,
-} from "../models/usergroups-disableerrorschema1.js";
-import {
-  usergroupsDisableschemaSchema,
+  usergroupsDisableschemaInternalSchema,
   type UsergroupsDisableschema,
 } from "../models/usergroups-disableschema.js";
 import {
-  usergroupsEnableerrorschema1Schema,
-  type UsergroupsEnableerrorschema1,
-} from "../models/usergroups-enableerrorschema1.js";
-import {
-  usergroupsEnableschemaSchema,
+  usergroupsEnableschemaInternalSchema,
   type UsergroupsEnableschema,
 } from "../models/usergroups-enableschema.js";
 import {
-  usergroupsListerrorschema1Schema,
-  type UsergroupsListerrorschema1,
-} from "../models/usergroups-listerrorschema1.js";
-import { usergroupsListschemaSchema, type UsergroupsListschema } from "../models/usergroups-listschema.js";
+  usergroupsListschemaInternalSchema,
+  type UsergroupsListschema,
+} from "../models/usergroups-listschema.js";
 import {
-  usergroupsUpdateerrorschema1Schema,
-  type UsergroupsUpdateerrorschema1,
-} from "../models/usergroups-updateerrorschema1.js";
-import {
-  usergroupsUpdateschemaSchema,
+  usergroupsUpdateschemaInternalSchema,
   type UsergroupsUpdateschema,
 } from "../models/usergroups-updateschema.js";
 import {
-  usergroupsUsersListerrorschema1Schema,
-  type UsergroupsUsersListerrorschema1,
-} from "../models/usergroups-users-listerrorschema1.js";
-import {
-  usergroupsUsersListschemaSchema,
+  usergroupsUsersListschemaInternalSchema,
   type UsergroupsUsersListschema,
 } from "../models/usergroups-users-listschema.js";
 import {
-  usergroupsUsersUpdateerrorschema1Schema,
-  type UsergroupsUsersUpdateerrorschema1,
-} from "../models/usergroups-users-updateerrorschema1.js";
-import {
-  usergroupsUsersUpdateschemaSchema,
+  usergroupsUsersUpdateschemaInternalSchema,
   type UsergroupsUsersUpdateschema,
 } from "../models/usergroups-users-updateschema.js";
 import type { Servers } from "../servers.js";
@@ -80,8 +55,7 @@ export class Usergroups {
    *
    * @returns Typical success response
    *
-   * @throws {@link Usergroups.UsergroupsCreateError} when the API answers with an error status —
-   * narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -90,7 +64,7 @@ export class Usergroups {
   usergroupsCreate(
     request: Usergroups.UsergroupsCreateRequest,
     options?: RequestOptions,
-  ): ApiPromise<UsergroupsCreateschema, Usergroups.UsergroupsCreateError> {
+  ): ApiPromise<UsergroupsCreateschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -115,8 +89,8 @@ export class Usergroups {
         },
       },
       {
-        success: { kind: "json", schema: usergroupsCreateschemaSchema },
-        errorFactory: Usergroups.UsergroupsCreateError,
+        success: { kind: "json", schema: usergroupsCreateschemaInternalSchema },
+        errorFactory: ApiError,
       },
       options,
     );
@@ -130,8 +104,7 @@ export class Usergroups {
    *
    * @returns Typical success response
    *
-   * @throws {@link Usergroups.UsergroupsDisableError} when the API answers with an error status —
-   * narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -140,7 +113,7 @@ export class Usergroups {
   usergroupsDisable(
     request: Usergroups.UsergroupsDisableRequest,
     options?: RequestOptions,
-  ): ApiPromise<UsergroupsDisableschema, Usergroups.UsergroupsDisableError> {
+  ): ApiPromise<UsergroupsDisableschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -162,8 +135,8 @@ export class Usergroups {
         },
       },
       {
-        success: { kind: "json", schema: usergroupsDisableschemaSchema },
-        errorFactory: Usergroups.UsergroupsDisableError,
+        success: { kind: "json", schema: usergroupsDisableschemaInternalSchema },
+        errorFactory: ApiError,
       },
       options,
     );
@@ -177,8 +150,7 @@ export class Usergroups {
    *
    * @returns Typical success response
    *
-   * @throws {@link Usergroups.UsergroupsEnableError} when the API answers with an error status —
-   * narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -187,7 +159,7 @@ export class Usergroups {
   usergroupsEnable(
     request: Usergroups.UsergroupsEnableRequest,
     options?: RequestOptions,
-  ): ApiPromise<UsergroupsEnableschema, Usergroups.UsergroupsEnableError> {
+  ): ApiPromise<UsergroupsEnableschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -209,8 +181,8 @@ export class Usergroups {
         },
       },
       {
-        success: { kind: "json", schema: usergroupsEnableschemaSchema },
-        errorFactory: Usergroups.UsergroupsEnableError,
+        success: { kind: "json", schema: usergroupsEnableschemaInternalSchema },
+        errorFactory: ApiError,
       },
       options,
     );
@@ -224,8 +196,7 @@ export class Usergroups {
    *
    * @returns Typical success response
    *
-   * @throws {@link Usergroups.UsergroupsListError} when the API answers with an error status —
-   * narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -234,7 +205,7 @@ export class Usergroups {
   usergroupsList(
     request: Usergroups.UsergroupsListRequest,
     options?: RequestOptions,
-  ): ApiPromise<UsergroupsListschema, Usergroups.UsergroupsListError> {
+  ): ApiPromise<UsergroupsListschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -251,8 +222,8 @@ export class Usergroups {
         body: { kind: "empty" },
       },
       {
-        success: { kind: "json", schema: usergroupsListschemaSchema },
-        errorFactory: Usergroups.UsergroupsListError,
+        success: { kind: "json", schema: usergroupsListschemaInternalSchema },
+        errorFactory: ApiError,
       },
       options,
     );
@@ -266,8 +237,7 @@ export class Usergroups {
    *
    * @returns Typical success response
    *
-   * @throws {@link Usergroups.UsergroupsUpdateError} when the API answers with an error status —
-   * narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -276,7 +246,7 @@ export class Usergroups {
   usergroupsUpdate(
     request: Usergroups.UsergroupsUpdateRequest,
     options?: RequestOptions,
-  ): ApiPromise<UsergroupsUpdateschema, Usergroups.UsergroupsUpdateError> {
+  ): ApiPromise<UsergroupsUpdateschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -302,8 +272,8 @@ export class Usergroups {
         },
       },
       {
-        success: { kind: "json", schema: usergroupsUpdateschemaSchema },
-        errorFactory: Usergroups.UsergroupsUpdateError,
+        success: { kind: "json", schema: usergroupsUpdateschemaInternalSchema },
+        errorFactory: ApiError,
       },
       options,
     );
@@ -317,8 +287,7 @@ export class Usergroups {
    *
    * @returns Standard success response when used with a user token
    *
-   * @throws {@link Usergroups.UsergroupsUsersListError} when the API answers with an error status —
-   * narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -327,7 +296,7 @@ export class Usergroups {
   usergroupsUsersList(
     request: Usergroups.UsergroupsUsersListRequest,
     options?: RequestOptions,
-  ): ApiPromise<UsergroupsUsersListschema, Usergroups.UsergroupsUsersListError> {
+  ): ApiPromise<UsergroupsUsersListschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -343,8 +312,8 @@ export class Usergroups {
         body: { kind: "empty" },
       },
       {
-        success: { kind: "json", schema: usergroupsUsersListschemaSchema },
-        errorFactory: Usergroups.UsergroupsUsersListError,
+        success: { kind: "json", schema: usergroupsUsersListschemaInternalSchema },
+        errorFactory: ApiError,
       },
       options,
     );
@@ -358,8 +327,7 @@ export class Usergroups {
    *
    * @returns Typical success response
    *
-   * @throws {@link Usergroups.UsergroupsUsersUpdateError} when the API answers with an error status
-   * — narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -368,7 +336,7 @@ export class Usergroups {
   usergroupsUsersUpdate(
     request: Usergroups.UsergroupsUsersUpdateRequest,
     options?: RequestOptions,
-  ): ApiPromise<UsergroupsUsersUpdateschema, Usergroups.UsergroupsUsersUpdateError> {
+  ): ApiPromise<UsergroupsUsersUpdateschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -391,8 +359,8 @@ export class Usergroups {
         },
       },
       {
-        success: { kind: "json", schema: usergroupsUsersUpdateschemaSchema },
-        errorFactory: Usergroups.UsergroupsUsersUpdateError,
+        success: { kind: "json", schema: usergroupsUsersUpdateschemaInternalSchema },
+        errorFactory: ApiError,
       },
       options,
     );
@@ -418,20 +386,6 @@ export namespace Usergroups {
     includeCount?: boolean;
   };
 
-  export class UsergroupsCreateError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"usergroupsCreateerrorschema1", UsergroupsCreateerrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<UsergroupsCreateError> = [
-      {
-        on: "default",
-        kind: "usergroupsCreateerrorschema1",
-        decode: { kind: "json", schema: usergroupsCreateerrorschema1Schema },
-      },
-    ];
-  }
-
   export type UsergroupsDisableRequest = {
     /** Authentication token. Requires scope: `usergroups:write` */
     token: string;
@@ -442,20 +396,6 @@ export namespace Usergroups {
     includeCount?: boolean;
   };
 
-  export class UsergroupsDisableError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"usergroupsDisableerrorschema1", UsergroupsDisableerrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<UsergroupsDisableError> = [
-      {
-        on: "default",
-        kind: "usergroupsDisableerrorschema1",
-        decode: { kind: "json", schema: usergroupsDisableerrorschema1Schema },
-      },
-    ];
-  }
-
   export type UsergroupsEnableRequest = {
     /** Authentication token. Requires scope: `usergroups:write` */
     token: string;
@@ -465,20 +405,6 @@ export namespace Usergroups {
     /** Include the number of users in the User Group. */
     includeCount?: boolean;
   };
-
-  export class UsergroupsEnableError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"usergroupsEnableerrorschema1", UsergroupsEnableerrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<UsergroupsEnableError> = [
-      {
-        on: "default",
-        kind: "usergroupsEnableerrorschema1",
-        decode: { kind: "json", schema: usergroupsEnableerrorschema1Schema },
-      },
-    ];
-  }
 
   export type UsergroupsListRequest = {
     /** Authentication token. Requires scope: `usergroups:read` */
@@ -491,20 +417,6 @@ export namespace Usergroups {
     includeDisabled?: boolean;
     contentType: ContentType;
   };
-
-  export class UsergroupsListError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"usergroupsListerrorschema1", UsergroupsListerrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<UsergroupsListError> = [
-      {
-        on: "default",
-        kind: "usergroupsListerrorschema1",
-        decode: { kind: "json", schema: usergroupsListerrorschema1Schema },
-      },
-    ];
-  }
 
   export type UsergroupsUpdateRequest = {
     /** Authentication token. Requires scope: `usergroups:write` */
@@ -526,20 +438,6 @@ export namespace Usergroups {
     name?: string;
   };
 
-  export class UsergroupsUpdateError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"usergroupsUpdateerrorschema1", UsergroupsUpdateerrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<UsergroupsUpdateError> = [
-      {
-        on: "default",
-        kind: "usergroupsUpdateerrorschema1",
-        decode: { kind: "json", schema: usergroupsUpdateerrorschema1Schema },
-      },
-    ];
-  }
-
   export type UsergroupsUsersListRequest = {
     /** Authentication token. Requires scope: `usergroups:read` */
     token: string;
@@ -549,20 +447,6 @@ export namespace Usergroups {
     includeDisabled?: boolean;
     contentType: ContentType;
   };
-
-  export class UsergroupsUsersListError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"usergroupsUsersListerrorschema1", UsergroupsUsersListerrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<UsergroupsUsersListError> = [
-      {
-        on: "default",
-        kind: "usergroupsUsersListerrorschema1",
-        decode: { kind: "json", schema: usergroupsUsersListerrorschema1Schema },
-      },
-    ];
-  }
 
   export type UsergroupsUsersUpdateRequest = {
     /** Authentication token. Requires scope: `usergroups:write` */
@@ -578,18 +462,4 @@ export namespace Usergroups {
     /** Include the number of users in the User Group. */
     includeCount?: boolean;
   };
-
-  export class UsergroupsUsersUpdateError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"usergroupsUsersUpdateerrorschema1", UsergroupsUsersUpdateerrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<UsergroupsUsersUpdateError> = [
-      {
-        on: "default",
-        kind: "usergroupsUsersUpdateerrorschema1",
-        decode: { kind: "json", schema: usergroupsUsersUpdateerrorschema1Schema },
-      },
-    ];
-  }
 }

@@ -1,5 +1,5 @@
 import * as s from "../core/validation/index.js";
-import type { Schema } from "../core/validation/schema.js";
+import type { JsonValue, Schema } from "../core/validation/schema.js";
 import {
   usersLookupByEmailErrorEnumSchema,
   type UsersLookupByEmailErrorEnum,
@@ -11,11 +11,16 @@ export type UsersLookupByEmailerrorschema1Error = {
   callstack?: string;
   error: UsersLookupByEmailErrorEnum;
   ok: boolean;
+  /** Properties the service sent or accepts beyond those declared. */
+  additionalProperties?: Record<string, JsonValue>;
 };
 
 export const usersLookupByEmailerrorschema1ErrorSchema: Schema<UsersLookupByEmailerrorschema1Error> =
-  s.object<UsersLookupByEmailerrorschema1Error>({
-    callstack: s.optional(s.string()),
-    error: usersLookupByEmailErrorEnumSchema,
-    ok: s.boolean(),
-  });
+  s.object<UsersLookupByEmailerrorschema1Error>(
+    {
+      callstack: s.optional(s.string()),
+      error: usersLookupByEmailErrorEnumSchema,
+      ok: s.boolean(),
+    },
+    { additionalProperties: s.json() },
+  );

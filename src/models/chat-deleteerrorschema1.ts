@@ -1,5 +1,5 @@
 import * as s from "../core/validation/index.js";
-import type { Schema } from "../core/validation/schema.js";
+import type { JsonValue, Schema } from "../core/validation/schema.js";
 import { chatDeleteErrorEnumSchema, type ChatDeleteErrorEnum } from "./chat-delete-error-enum.js";
 
 /** Schema for error response from chat.delete method */
@@ -8,10 +8,15 @@ export type ChatDeleteerrorschema1 = {
   callstack?: string;
   error: ChatDeleteErrorEnum;
   ok: boolean;
+  /** Properties the service sent or accepts beyond those declared. */
+  additionalProperties?: Record<string, JsonValue>;
 };
 
-export const chatDeleteerrorschema1Schema: Schema<ChatDeleteerrorschema1> = s.object<ChatDeleteerrorschema1>({
-  callstack: s.optional(s.string()),
-  error: chatDeleteErrorEnumSchema,
-  ok: s.boolean(),
-});
+export const chatDeleteerrorschema1Schema: Schema<ChatDeleteerrorschema1> = s.object<ChatDeleteerrorschema1>(
+  {
+    callstack: s.optional(s.string()),
+    error: chatDeleteErrorEnumSchema,
+    ok: s.boolean(),
+  },
+  { additionalProperties: s.json() },
+);

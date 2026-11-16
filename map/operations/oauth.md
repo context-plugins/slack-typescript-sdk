@@ -2,19 +2,18 @@
 
 # Oauth — operations
 
-Accessor: `client.oauth` · Source: `src/resources/oauth.ts` · 3 operations · Request and error types: namespace `Oauth`
+Accessor: `client.oauth` · Source: `src/resources/oauth.ts` · 3 operations · Request types: namespace `Oauth`
 
 **Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `slack-web-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### oauthAccess
 
-- **Signature**: `oauthAccess(request: Oauth.OauthAccessRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, Oauth.OauthAccessError>`
+- **Signature**: `oauthAccess(request: Oauth.OauthAccessRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, ApiError>`
 - **Wire**: `GET /oauth.access`
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Defaultsuccesstemplate`
-- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Oauth.OauthAccessError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"defaulterrortemplate1"` [default — any status no arm above covers] `Defaulterrortemplate1` · `"undeclared"` [a `default`-matched body that did not fit `Defaulterrortemplate1`] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Oauth.OauthAccessRequest` (6):
 
@@ -31,17 +30,15 @@ Accessor: `client.oauth` · Source: `src/resources/oauth.ts` · 3 operations · 
 | --- | --- | --- |
 | `ContentType` | `contentTypeSchema` | `src/models/content-type.ts` |
 | `Defaultsuccesstemplate` | `defaultsuccesstemplateSchema` | `src/models/defaultsuccesstemplate.ts` |
-| `Defaulterrortemplate1` | `defaulterrortemplate1Schema` | `src/models/defaulterrortemplate1.ts` |
 
 ### oauthToken
 
-- **Signature**: `oauthToken(request: Oauth.OauthTokenRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, Oauth.OauthTokenError>`
+- **Signature**: `oauthToken(request: Oauth.OauthTokenRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, ApiError>`
 - **Wire**: `GET /oauth.token`
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Defaultsuccesstemplate`
-- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Oauth.OauthTokenError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"defaulterrortemplate1"` [default — any status no arm above covers] `Defaulterrortemplate1` · `"undeclared"` [a `default`-matched body that did not fit `Defaulterrortemplate1`] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Oauth.OauthTokenRequest` (6):
 
@@ -58,17 +55,15 @@ Accessor: `client.oauth` · Source: `src/resources/oauth.ts` · 3 operations · 
 | --- | --- | --- |
 | `ContentType` | `contentTypeSchema` | `src/models/content-type.ts` |
 | `Defaultsuccesstemplate` | `defaultsuccesstemplateSchema` | `src/models/defaultsuccesstemplate.ts` |
-| `Defaulterrortemplate1` | `defaulterrortemplate1Schema` | `src/models/defaulterrortemplate1.ts` |
 
 ### oauthV2Access
 
-- **Signature**: `oauthV2Access(request: Oauth.OauthV2AccessRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, Oauth.OauthV2AccessError>`
+- **Signature**: `oauthV2Access(request: Oauth.OauthV2AccessRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, ApiError>`
 - **Wire**: `GET /oauth.v2.access`
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Defaultsuccesstemplate`
-- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `Oauth.OauthV2AccessError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"defaulterrortemplate1"` [default — any status no arm above covers] `Defaulterrortemplate1` · `"undeclared"` [a `default`-matched body that did not fit `Defaulterrortemplate1`] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Oauth.OauthV2AccessRequest` (5):
 
@@ -84,5 +79,4 @@ Accessor: `client.oauth` · Source: `src/resources/oauth.ts` · 3 operations · 
 | --- | --- | --- |
 | `ContentType` | `contentTypeSchema` | `src/models/content-type.ts` |
 | `Defaultsuccesstemplate` | `defaultsuccesstemplateSchema` | `src/models/defaultsuccesstemplate.ts` |
-| `Defaulterrortemplate1` | `defaulterrortemplate1Schema` | `src/models/defaulterrortemplate1.ts` |
 

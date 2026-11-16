@@ -1,13 +1,25 @@
 import * as s from "../core/validation/index.js";
-import type { Schema } from "../core/validation/schema.js";
+import type { JsonValue, Schema } from "../core/validation/schema.js";
 import { attachmentSchema, type Attachment } from "./attachment.js";
 import { blockKitblockSchema, type BlockKitblock } from "./block-kitblock.js";
-import { botProfileObjectSchema, type BotProfileObject } from "./bot-profile-object.js";
-import { fileCommentObjectSchema, type FileCommentObject } from "./file-comment-object.js";
-import { fileobjectSchema, type Fileobject } from "./fileobject.js";
+import {
+  botProfileObjectInternalSchema,
+  botProfileObjectSchema,
+  type BotProfileObject,
+} from "./bot-profile-object.js";
+import {
+  fileCommentObjectInternalSchema,
+  fileCommentObjectSchema,
+  type FileCommentObject,
+} from "./file-comment-object.js";
+import { fileobjectInternalSchema, fileobjectSchema, type Fileobject } from "./fileobject.js";
 import { icons1Schema, type Icons1 } from "./icons1.js";
-import { objsUserProfileShortSchema, type ObjsUserProfileShort } from "./objs-user-profile-short.js";
-import { reactionobjectSchema, type Reactionobject } from "./reactionobject.js";
+import {
+  objsUserProfileShortInternalSchema,
+  objsUserProfileShortSchema,
+  type ObjsUserProfileShort,
+} from "./objs-user-profile-short.js";
+import { reactionobjectInternalSchema, reactionobjectSchema, type Reactionobject } from "./reactionobject.js";
 
 export type Messageobject = {
   attachments?: Attachment[];
@@ -55,18 +67,20 @@ export type Messageobject = {
   userProfile?: ObjsUserProfileShort;
   userTeam?: string;
   username?: string;
+  /** Properties the service sent or accepts beyond those declared. */
+  additionalProperties?: Record<string, JsonValue>;
 };
 
-export const messageobjectSchema: Schema<Messageobject> = s.object<Messageobject>({
+const messageobjectProperties: s.Shape<Messageobject> = {
   attachments: s.optional(s.array(s.lazy(() => attachmentSchema))),
   blocks: s.optional(s.array(s.lazy(() => blockKitblockSchema))),
   botId: s.optional(s.record(s.string(), s.unknown())),
-  botProfile: s.optional(s.lazy(() => botProfileObjectSchema)),
+  botProfile: s.optional(s.lazy(() => botProfileObjectInternalSchema)),
   clientMsgId: s.optional(s.string()),
-  comment: s.optional(s.lazy(() => fileCommentObjectSchema)),
+  comment: s.optional(s.lazy(() => fileCommentObjectInternalSchema)),
   displayAsBot: s.optional(s.boolean()),
-  file: s.optional(s.lazy(() => fileobjectSchema)),
-  files: s.optional(s.array(s.lazy(() => fileobjectSchema))),
+  file: s.optional(s.lazy(() => fileobjectInternalSchema)),
+  files: s.optional(s.array(s.lazy(() => fileobjectInternalSchema))),
   icons: s.optional(s.lazy(() => icons1Schema)),
   inviter: s.optional(s.string()),
   isDelayedMessage: s.optional(s.boolean()),
@@ -80,7 +94,7 @@ export const messageobjectSchema: Schema<Messageobject> = s.object<Messageobject
   permalink: s.optional(s.string()),
   pinnedTo: s.optional(s.array(s.string())),
   purpose: s.optional(s.string()),
-  reactions: s.optional(s.array(s.lazy(() => reactionobjectSchema))),
+  reactions: s.optional(s.array(s.lazy(() => reactionobjectInternalSchema))),
   replyCount: s.optional(s.int()),
   replyUsers: s.optional(s.array(s.string())),
   replyUsersCount: s.optional(s.int()),
@@ -96,7 +110,7 @@ export const messageobjectSchema: Schema<Messageobject> = s.object<Messageobject
   unreadCount: s.optional(s.int()),
   upload: s.optional(s.boolean()),
   user: s.optional(s.string()),
-  userProfile: s.optional(s.lazy(() => objsUserProfileShortSchema)),
+  userProfile: s.optional(s.lazy(() => objsUserProfileShortInternalSchema)),
   userTeam: s.optional(s.string()),
   username: s.optional(s.string()),
   _keysMap: {
@@ -121,4 +135,39 @@ export const messageobjectSchema: Schema<Messageobject> = s.object<Messageobject
     userProfile: "user_profile",
     userTeam: "user_team",
   },
-});
+};
+
+export const messageobjectInternalSchema: Schema<Messageobject> = s.object<Messageobject>(
+  messageobjectProperties,
+  { additionalProperties: s.json() },
+);
+
+export const messageobjectSchema: Schema<Messageobject> = s.lazySchema(() =>
+  s.object<Messageobject>(
+    {
+      ...messageobjectProperties,
+      attachments: s.optional(s.array(s.lazy(() => attachmentSchema)).check(s.minLength(1), s.uniqueItems())),
+      botProfile: s.optional(s.lazy(() => botProfileObjectSchema)),
+      comment: s.optional(s.lazy(() => fileCommentObjectSchema)),
+      file: s.optional(s.lazy(() => fileobjectSchema)),
+      files: s.optional(s.array(s.lazy(() => fileobjectSchema)).check(s.minLength(1), s.uniqueItems())),
+      inviter: s.optional(s.string().check(s.pattern("^[UW][A-Z0-9]{2,}$"))),
+      lastRead: s.optional(s.string().check(s.pattern("^\\d{10}\\.\\d{6}$"))),
+      latestReply: s.optional(s.string().check(s.pattern("^\\d{10}\\.\\d{6}$"))),
+      parentUserId: s.optional(s.string().check(s.pattern("^[UW][A-Z0-9]{2,}$"))),
+      pinnedTo: s.optional(s.array(s.string().check(s.pattern("^[CGD][A-Z0-9]{8,}$")))),
+      reactions: s.optional(s.array(s.lazy(() => reactionobjectSchema))),
+      replyUsers: s.optional(
+        s.array(s.string().check(s.pattern("^[UW][A-Z0-9]{2,}$"))).check(s.minLength(1), s.uniqueItems()),
+      ),
+      sourceTeam: s.optional(s.string().check(s.pattern("^[TE][A-Z0-9]{8,}$"))),
+      team: s.optional(s.string().check(s.pattern("^[TE][A-Z0-9]{8,}$"))),
+      threadTs: s.optional(s.string().check(s.pattern("^\\d{10}\\.\\d{6}$"))),
+      ts: s.string().check(s.pattern("^\\d{10}\\.\\d{6}$")),
+      user: s.optional(s.string().check(s.pattern("^[UW][A-Z0-9]{2,}$"))),
+      userProfile: s.optional(s.lazy(() => objsUserProfileShortSchema)),
+      userTeam: s.optional(s.string().check(s.pattern("^[TE][A-Z0-9]{8,}$"))),
+    },
+    { additionalProperties: s.json() },
+  ),
+);

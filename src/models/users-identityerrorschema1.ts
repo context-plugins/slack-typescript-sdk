@@ -1,5 +1,5 @@
 import * as s from "../core/validation/index.js";
-import type { Schema } from "../core/validation/schema.js";
+import type { JsonValue, Schema } from "../core/validation/schema.js";
 import {
   appsPermissionsInfoErrorEnumSchema,
   type AppsPermissionsInfoErrorEnum,
@@ -11,11 +11,16 @@ export type UsersIdentityerrorschema1 = {
   callstack?: string;
   error: AppsPermissionsInfoErrorEnum;
   ok: boolean;
+  /** Properties the service sent or accepts beyond those declared. */
+  additionalProperties?: Record<string, JsonValue>;
 };
 
 export const usersIdentityerrorschema1Schema: Schema<UsersIdentityerrorschema1> =
-  s.object<UsersIdentityerrorschema1>({
-    callstack: s.optional(s.string()),
-    error: appsPermissionsInfoErrorEnumSchema,
-    ok: s.boolean(),
-  });
+  s.object<UsersIdentityerrorschema1>(
+    {
+      callstack: s.optional(s.string()),
+      error: appsPermissionsInfoErrorEnumSchema,
+      ok: s.boolean(),
+    },
+    { additionalProperties: s.json() },
+  );

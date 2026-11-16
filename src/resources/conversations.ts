@@ -1,5 +1,5 @@
 import type { AuthSchemes } from "../auth-schemes.js";
-import { ApiError, type Declared, type ErrorDecoders, type ErrorPayload } from "../core/api-error.js";
+import { ApiError } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import type { RawClient } from "../core/raw-client.js";
@@ -7,41 +7,21 @@ import { uuid } from "../core/uuid.js";
 import * as s from "../core/validation/index.js";
 import { contentTypeSchema, type ContentType } from "../models/content-type.js";
 import {
-  conversationsArchiveerrorschema1Schema,
-  type ConversationsArchiveerrorschema1,
-} from "../models/conversations-archiveerrorschema1.js";
-import {
   conversationsArchivesuccessschemaSchema,
   type ConversationsArchivesuccessschema,
 } from "../models/conversations-archivesuccessschema.js";
-import {
-  conversationsCloseerrorschema1Schema,
-  type ConversationsCloseerrorschema1,
-} from "../models/conversations-closeerrorschema1.js";
 import {
   conversationsClosesuccessschemaSchema,
   type ConversationsClosesuccessschema,
 } from "../models/conversations-closesuccessschema.js";
 import {
-  conversationsCreateerrorschema1Schema,
-  type ConversationsCreateerrorschema1,
-} from "../models/conversations-createerrorschema1.js";
-import {
   conversationsCreatesuccessschemaSchema,
   type ConversationsCreatesuccessschema,
 } from "../models/conversations-createsuccessschema.js";
 import {
-  conversationsHistoryerrorschema1Schema,
-  type ConversationsHistoryerrorschema1,
-} from "../models/conversations-historyerrorschema1.js";
-import {
-  conversationsHistorysuccessschemaSchema,
+  conversationsHistorysuccessschemaInternalSchema,
   type ConversationsHistorysuccessschema,
 } from "../models/conversations-historysuccessschema.js";
-import {
-  conversationsInfoerrorschema1Schema,
-  type ConversationsInfoerrorschema1,
-} from "../models/conversations-infoerrorschema1.js";
 import {
   conversationsInfosuccessschemaSchema,
   type ConversationsInfosuccessschema,
@@ -51,101 +31,49 @@ import {
   type ConversationsInviteerrorschema,
 } from "../models/conversations-inviteerrorschema.js";
 import {
-  conversationsInviteerrorschema11Schema,
-  type ConversationsInviteerrorschema11,
-} from "../models/conversations-inviteerrorschema11.js";
-import {
-  conversationsJoinerrorschema1Schema,
-  type ConversationsJoinerrorschema1,
-} from "../models/conversations-joinerrorschema1.js";
-import {
-  conversationsJoinsuccessschemaSchema,
+  conversationsJoinsuccessschemaInternalSchema,
   type ConversationsJoinsuccessschema,
 } from "../models/conversations-joinsuccessschema.js";
-import {
-  conversationsKickerrorschema1Schema,
-  type ConversationsKickerrorschema1,
-} from "../models/conversations-kickerrorschema1.js";
 import {
   conversationsKicksuccessschemaSchema,
   type ConversationsKicksuccessschema,
 } from "../models/conversations-kicksuccessschema.js";
 import {
-  conversationsLeaveerrorschema1Schema,
-  type ConversationsLeaveerrorschema1,
-} from "../models/conversations-leaveerrorschema1.js";
-import {
   conversationsLeavesuccessschemaSchema,
   type ConversationsLeavesuccessschema,
 } from "../models/conversations-leavesuccessschema.js";
 import {
-  conversationsListerrorschema1Schema,
-  type ConversationsListerrorschema1,
-} from "../models/conversations-listerrorschema1.js";
-import {
-  conversationsListsuccessschemaSchema,
+  conversationsListsuccessschemaInternalSchema,
   type ConversationsListsuccessschema,
 } from "../models/conversations-listsuccessschema.js";
-import {
-  conversationsMarkerrorschema1Schema,
-  type ConversationsMarkerrorschema1,
-} from "../models/conversations-markerrorschema1.js";
 import {
   conversationsMarksuccessschemaSchema,
   type ConversationsMarksuccessschema,
 } from "../models/conversations-marksuccessschema.js";
 import {
-  conversationsMemberserrorschema1Schema,
-  type ConversationsMemberserrorschema1,
-} from "../models/conversations-memberserrorschema1.js";
-import {
-  conversationsMemberssuccessschemaSchema,
+  conversationsMemberssuccessschemaInternalSchema,
   type ConversationsMemberssuccessschema,
 } from "../models/conversations-memberssuccessschema.js";
-import {
-  conversationsOpenerrorschema1Schema,
-  type ConversationsOpenerrorschema1,
-} from "../models/conversations-openerrorschema1.js";
 import {
   conversationsOpensuccessschemaSchema,
   type ConversationsOpensuccessschema,
 } from "../models/conversations-opensuccessschema.js";
 import {
-  conversationsRenameerrorschema1Schema,
-  type ConversationsRenameerrorschema1,
-} from "../models/conversations-renameerrorschema1.js";
-import {
   conversationsRenamesuccessschemaSchema,
   type ConversationsRenamesuccessschema,
 } from "../models/conversations-renamesuccessschema.js";
-import {
-  conversationsReplieserrorschema1Schema,
-  type ConversationsReplieserrorschema1,
-} from "../models/conversations-replieserrorschema1.js";
 import {
   conversationsRepliessuccessschemaSchema,
   type ConversationsRepliessuccessschema,
 } from "../models/conversations-repliessuccessschema.js";
 import {
-  conversationsSetPurposeerrorschema1Schema,
-  type ConversationsSetPurposeerrorschema1,
-} from "../models/conversations-set-purposeerrorschema1.js";
-import {
   conversationsSetPurposesuccessschemaSchema,
   type ConversationsSetPurposesuccessschema,
 } from "../models/conversations-set-purposesuccessschema.js";
 import {
-  conversationsSetTopicerrorschema1Schema,
-  type ConversationsSetTopicerrorschema1,
-} from "../models/conversations-set-topicerrorschema1.js";
-import {
   conversationsSetTopicsuccessschemaSchema,
   type ConversationsSetTopicsuccessschema,
 } from "../models/conversations-set-topicsuccessschema.js";
-import {
-  conversationsUnarchiveerrorschema1Schema,
-  type ConversationsUnarchiveerrorschema1,
-} from "../models/conversations-unarchiveerrorschema1.js";
 import {
   conversationsUnarchivesuccessschemaSchema,
   type ConversationsUnarchivesuccessschema,
@@ -171,8 +99,7 @@ export class Conversations {
    *
    * @returns Typical success response
    *
-   * @throws {@link Conversations.ConversationsArchiveError} when the API answers with an error
-   * status — narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -181,7 +108,7 @@ export class Conversations {
   conversationsArchive(
     request: Conversations.ConversationsArchiveRequest,
     options?: RequestOptions,
-  ): ApiPromise<ConversationsArchivesuccessschema, Conversations.ConversationsArchiveError> {
+  ): ApiPromise<ConversationsArchivesuccessschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -201,7 +128,7 @@ export class Conversations {
       },
       {
         success: { kind: "json", schema: conversationsArchivesuccessschemaSchema },
-        errorFactory: Conversations.ConversationsArchiveError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -215,8 +142,7 @@ export class Conversations {
    *
    * @returns Typical success response
    *
-   * @throws {@link Conversations.ConversationsCloseError} when the API answers with an error status
-   * — narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -225,7 +151,7 @@ export class Conversations {
   conversationsClose(
     request: Conversations.ConversationsCloseRequest,
     options?: RequestOptions,
-  ): ApiPromise<ConversationsClosesuccessschema, Conversations.ConversationsCloseError> {
+  ): ApiPromise<ConversationsClosesuccessschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -245,7 +171,7 @@ export class Conversations {
       },
       {
         success: { kind: "json", schema: conversationsClosesuccessschemaSchema },
-        errorFactory: Conversations.ConversationsCloseError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -260,8 +186,7 @@ export class Conversations {
    * @returns If successful, the command returns a rather stark [conversation
    * object](/types/conversation)
    *
-   * @throws {@link Conversations.ConversationsCreateError} when the API answers with an error
-   * status — narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -270,7 +195,7 @@ export class Conversations {
   conversationsCreate(
     request: Conversations.ConversationsCreateRequest,
     options?: RequestOptions,
-  ): ApiPromise<ConversationsCreatesuccessschema, Conversations.ConversationsCreateError> {
+  ): ApiPromise<ConversationsCreatesuccessschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -293,7 +218,7 @@ export class Conversations {
       },
       {
         success: { kind: "json", schema: conversationsCreatesuccessschemaSchema },
-        errorFactory: Conversations.ConversationsCreateError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -307,8 +232,7 @@ export class Conversations {
    *
    * @returns Typical success response containing a channel's messages
    *
-   * @throws {@link Conversations.ConversationsHistoryError} when the API answers with an error
-   * status — narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -317,7 +241,7 @@ export class Conversations {
   conversationsHistory(
     request: Conversations.ConversationsHistoryRequest,
     options?: RequestOptions,
-  ): ApiPromise<ConversationsHistorysuccessschema, Conversations.ConversationsHistoryError> {
+  ): ApiPromise<ConversationsHistorysuccessschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -337,8 +261,8 @@ export class Conversations {
         body: { kind: "empty" },
       },
       {
-        success: { kind: "json", schema: conversationsHistorysuccessschemaSchema },
-        errorFactory: Conversations.ConversationsHistoryError,
+        success: { kind: "json", schema: conversationsHistorysuccessschemaInternalSchema },
+        errorFactory: ApiError,
       },
       options,
     );
@@ -353,8 +277,7 @@ export class Conversations {
    * @returns Typical success response for a public channel. (Also, a response from a private
    * channel and a multi-party IM is very similar to this example.)
    *
-   * @throws {@link Conversations.ConversationsInfoError} when the API answers with an error status
-   * — narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -363,7 +286,7 @@ export class Conversations {
   conversationsInfo(
     request: Conversations.ConversationsInfoRequest,
     options?: RequestOptions,
-  ): ApiPromise<ConversationsInfosuccessschema, Conversations.ConversationsInfoError> {
+  ): ApiPromise<ConversationsInfosuccessschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -381,7 +304,7 @@ export class Conversations {
       },
       {
         success: { kind: "json", schema: conversationsInfosuccessschemaSchema },
-        errorFactory: Conversations.ConversationsInfoError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -395,8 +318,7 @@ export class Conversations {
    *
    * @returns Typical success response when an invitation is extended
    *
-   * @throws {@link Conversations.ConversationsInviteError} when the API answers with an error
-   * status — narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -405,7 +327,7 @@ export class Conversations {
   conversationsInvite(
     request: Conversations.ConversationsInviteRequest,
     options?: RequestOptions,
-  ): ApiPromise<ConversationsInviteerrorschema, Conversations.ConversationsInviteError> {
+  ): ApiPromise<ConversationsInviteerrorschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -428,7 +350,7 @@ export class Conversations {
       },
       {
         success: { kind: "json", schema: conversationsInviteerrorschemaSchema },
-        errorFactory: Conversations.ConversationsInviteError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -442,8 +364,7 @@ export class Conversations {
    *
    * @returns Typical success response
    *
-   * @throws {@link Conversations.ConversationsJoinError} when the API answers with an error status
-   * — narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -452,7 +373,7 @@ export class Conversations {
   conversationsJoin(
     request: Conversations.ConversationsJoinRequest,
     options?: RequestOptions,
-  ): ApiPromise<ConversationsJoinsuccessschema, Conversations.ConversationsJoinError> {
+  ): ApiPromise<ConversationsJoinsuccessschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -471,8 +392,8 @@ export class Conversations {
         },
       },
       {
-        success: { kind: "json", schema: conversationsJoinsuccessschemaSchema },
-        errorFactory: Conversations.ConversationsJoinError,
+        success: { kind: "json", schema: conversationsJoinsuccessschemaInternalSchema },
+        errorFactory: ApiError,
       },
       options,
     );
@@ -486,8 +407,7 @@ export class Conversations {
    *
    * @returns Typical success response
    *
-   * @throws {@link Conversations.ConversationsKickError} when the API answers with an error status
-   * — narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -496,7 +416,7 @@ export class Conversations {
   conversationsKick(
     request: Conversations.ConversationsKickRequest,
     options?: RequestOptions,
-  ): ApiPromise<ConversationsKicksuccessschema, Conversations.ConversationsKickError> {
+  ): ApiPromise<ConversationsKicksuccessschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -519,7 +439,7 @@ export class Conversations {
       },
       {
         success: { kind: "json", schema: conversationsKicksuccessschemaSchema },
-        errorFactory: Conversations.ConversationsKickError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -533,8 +453,7 @@ export class Conversations {
    *
    * @returns Typical success response
    *
-   * @throws {@link Conversations.ConversationsLeaveError} when the API answers with an error status
-   * — narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -543,7 +462,7 @@ export class Conversations {
   conversationsLeave(
     request: Conversations.ConversationsLeaveRequest,
     options?: RequestOptions,
-  ): ApiPromise<ConversationsLeavesuccessschema, Conversations.ConversationsLeaveError> {
+  ): ApiPromise<ConversationsLeavesuccessschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -563,7 +482,7 @@ export class Conversations {
       },
       {
         success: { kind: "json", schema: conversationsLeavesuccessschemaSchema },
-        errorFactory: Conversations.ConversationsLeaveError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -577,8 +496,7 @@ export class Conversations {
    *
    * @returns Typical success response with only public channels
    *
-   * @throws {@link Conversations.ConversationsListError} when the API answers with an error status
-   * — narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -587,7 +505,7 @@ export class Conversations {
   conversationsList(
     request: Conversations.ConversationsListRequest,
     options?: RequestOptions,
-  ): ApiPromise<ConversationsListsuccessschema, Conversations.ConversationsListError> {
+  ): ApiPromise<ConversationsListsuccessschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -605,8 +523,8 @@ export class Conversations {
         body: { kind: "empty" },
       },
       {
-        success: { kind: "json", schema: conversationsListsuccessschemaSchema },
-        errorFactory: Conversations.ConversationsListError,
+        success: { kind: "json", schema: conversationsListsuccessschemaInternalSchema },
+        errorFactory: ApiError,
       },
       options,
     );
@@ -620,8 +538,7 @@ export class Conversations {
    *
    * @returns Typical success response
    *
-   * @throws {@link Conversations.ConversationsMarkError} when the API answers with an error status
-   * — narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -630,7 +547,7 @@ export class Conversations {
   conversationsMark(
     request: Conversations.ConversationsMarkRequest,
     options?: RequestOptions,
-  ): ApiPromise<ConversationsMarksuccessschema, Conversations.ConversationsMarkError> {
+  ): ApiPromise<ConversationsMarksuccessschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -653,7 +570,7 @@ export class Conversations {
       },
       {
         success: { kind: "json", schema: conversationsMarksuccessschemaSchema },
-        errorFactory: Conversations.ConversationsMarkError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -667,8 +584,7 @@ export class Conversations {
    *
    * @returns Typical paginated success response
    *
-   * @throws {@link Conversations.ConversationsMembersError} when the API answers with an error
-   * status — narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -677,7 +593,7 @@ export class Conversations {
   conversationsMembers(
     request: Conversations.ConversationsMembersRequest,
     options?: RequestOptions,
-  ): ApiPromise<ConversationsMemberssuccessschema, Conversations.ConversationsMembersError> {
+  ): ApiPromise<ConversationsMemberssuccessschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -694,8 +610,8 @@ export class Conversations {
         body: { kind: "empty" },
       },
       {
-        success: { kind: "json", schema: conversationsMemberssuccessschemaSchema },
-        errorFactory: Conversations.ConversationsMembersError,
+        success: { kind: "json", schema: conversationsMemberssuccessschemaInternalSchema },
+        errorFactory: ApiError,
       },
       options,
     );
@@ -709,8 +625,7 @@ export class Conversations {
    *
    * @returns Typical success response
    *
-   * @throws {@link Conversations.ConversationsOpenError} when the API answers with an error status
-   * — narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -719,7 +634,7 @@ export class Conversations {
   conversationsOpen(
     request: Conversations.ConversationsOpenRequest,
     options?: RequestOptions,
-  ): ApiPromise<ConversationsOpensuccessschema, Conversations.ConversationsOpenError> {
+  ): ApiPromise<ConversationsOpensuccessschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -743,7 +658,7 @@ export class Conversations {
       },
       {
         success: { kind: "json", schema: conversationsOpensuccessschemaSchema },
-        errorFactory: Conversations.ConversationsOpenError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -757,8 +672,7 @@ export class Conversations {
    *
    * @returns Typical success response
    *
-   * @throws {@link Conversations.ConversationsRenameError} when the API answers with an error
-   * status — narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -767,7 +681,7 @@ export class Conversations {
   conversationsRename(
     request: Conversations.ConversationsRenameRequest,
     options?: RequestOptions,
-  ): ApiPromise<ConversationsRenamesuccessschema, Conversations.ConversationsRenameError> {
+  ): ApiPromise<ConversationsRenamesuccessschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -790,7 +704,7 @@ export class Conversations {
       },
       {
         success: { kind: "json", schema: conversationsRenamesuccessschemaSchema },
-        errorFactory: Conversations.ConversationsRenameError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -804,8 +718,7 @@ export class Conversations {
    *
    * @returns Typical success response
    *
-   * @throws {@link Conversations.ConversationsRepliesError} when the API answers with an error
-   * status — narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -814,7 +727,7 @@ export class Conversations {
   conversationsReplies(
     request: Conversations.ConversationsRepliesRequest,
     options?: RequestOptions,
-  ): ApiPromise<ConversationsRepliessuccessschema, Conversations.ConversationsRepliesError> {
+  ): ApiPromise<ConversationsRepliessuccessschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -836,7 +749,7 @@ export class Conversations {
       },
       {
         success: { kind: "json", schema: conversationsRepliessuccessschemaSchema },
-        errorFactory: Conversations.ConversationsRepliesError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -850,8 +763,7 @@ export class Conversations {
    *
    * @returns Typical success response
    *
-   * @throws {@link Conversations.ConversationsSetPurposeError} when the API answers with an error
-   * status — narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -860,7 +772,7 @@ export class Conversations {
   conversationsSetPurpose(
     request: Conversations.ConversationsSetPurposeRequest,
     options?: RequestOptions,
-  ): ApiPromise<ConversationsSetPurposesuccessschema, Conversations.ConversationsSetPurposeError> {
+  ): ApiPromise<ConversationsSetPurposesuccessschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -883,7 +795,7 @@ export class Conversations {
       },
       {
         success: { kind: "json", schema: conversationsSetPurposesuccessschemaSchema },
-        errorFactory: Conversations.ConversationsSetPurposeError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -897,8 +809,7 @@ export class Conversations {
    *
    * @returns Typical success response
    *
-   * @throws {@link Conversations.ConversationsSetTopicError} when the API answers with an error
-   * status — narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -907,7 +818,7 @@ export class Conversations {
   conversationsSetTopic(
     request: Conversations.ConversationsSetTopicRequest,
     options?: RequestOptions,
-  ): ApiPromise<ConversationsSetTopicsuccessschema, Conversations.ConversationsSetTopicError> {
+  ): ApiPromise<ConversationsSetTopicsuccessschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -930,7 +841,7 @@ export class Conversations {
       },
       {
         success: { kind: "json", schema: conversationsSetTopicsuccessschemaSchema },
-        errorFactory: Conversations.ConversationsSetTopicError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -944,8 +855,7 @@ export class Conversations {
    *
    * @returns Typical success response
    *
-   * @throws {@link Conversations.ConversationsUnarchiveError} when the API answers with an error
-   * status — narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -954,7 +864,7 @@ export class Conversations {
   conversationsUnarchive(
     request: Conversations.ConversationsUnarchiveRequest,
     options?: RequestOptions,
-  ): ApiPromise<ConversationsUnarchivesuccessschema, Conversations.ConversationsUnarchiveError> {
+  ): ApiPromise<ConversationsUnarchivesuccessschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -974,7 +884,7 @@ export class Conversations {
       },
       {
         success: { kind: "json", schema: conversationsUnarchivesuccessschemaSchema },
-        errorFactory: Conversations.ConversationsUnarchiveError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -990,20 +900,6 @@ export namespace Conversations {
     channel?: string;
   };
 
-  export class ConversationsArchiveError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"conversationsArchiveerrorschema1", ConversationsArchiveerrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<ConversationsArchiveError> = [
-      {
-        on: "default",
-        kind: "conversationsArchiveerrorschema1",
-        decode: { kind: "json", schema: conversationsArchiveerrorschema1Schema },
-      },
-    ];
-  }
-
   export type ConversationsCloseRequest = {
     contentType: ContentType;
     /** Authentication token. Requires scope: `conversations:write` */
@@ -1011,20 +907,6 @@ export namespace Conversations {
     /** Conversation to close. */
     channel?: string;
   };
-
-  export class ConversationsCloseError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"conversationsCloseerrorschema1", ConversationsCloseerrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<ConversationsCloseError> = [
-      {
-        on: "default",
-        kind: "conversationsCloseerrorschema1",
-        decode: { kind: "json", schema: conversationsCloseerrorschema1Schema },
-      },
-    ];
-  }
 
   export type ConversationsCreateRequest = {
     contentType: ContentType;
@@ -1035,20 +917,6 @@ export namespace Conversations {
     /** Create a private channel instead of a public one */
     isPrivate?: boolean;
   };
-
-  export class ConversationsCreateError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"conversationsCreateerrorschema1", ConversationsCreateerrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<ConversationsCreateError> = [
-      {
-        on: "default",
-        kind: "conversationsCreateerrorschema1",
-        decode: { kind: "json", schema: conversationsCreateerrorschema1Schema },
-      },
-    ];
-  }
 
   export type ConversationsHistoryRequest = {
     /** Authentication token. Requires scope: `conversations:history` */
@@ -1078,20 +946,6 @@ export namespace Conversations {
     contentType: ContentType;
   };
 
-  export class ConversationsHistoryError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"conversationsHistoryerrorschema1", ConversationsHistoryerrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<ConversationsHistoryError> = [
-      {
-        on: "default",
-        kind: "conversationsHistoryerrorschema1",
-        decode: { kind: "json", schema: conversationsHistoryerrorschema1Schema },
-      },
-    ];
-  }
-
   export type ConversationsInfoRequest = {
     /** Authentication token. Requires scope: `conversations:read` */
     token?: string;
@@ -1106,20 +960,6 @@ export namespace Conversations {
     contentType: ContentType;
   };
 
-  export class ConversationsInfoError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"conversationsInfoerrorschema1", ConversationsInfoerrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<ConversationsInfoError> = [
-      {
-        on: "default",
-        kind: "conversationsInfoerrorschema1",
-        decode: { kind: "json", schema: conversationsInfoerrorschema1Schema },
-      },
-    ];
-  }
-
   export type ConversationsInviteRequest = {
     contentType: ContentType;
     /** Authentication token. Requires scope: `conversations:write` */
@@ -1130,20 +970,6 @@ export namespace Conversations {
     users?: string;
   };
 
-  export class ConversationsInviteError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"conversationsInviteerrorschema11", ConversationsInviteerrorschema11>
-    >;
-
-    static readonly errors: ErrorDecoders<ConversationsInviteError> = [
-      {
-        on: "default",
-        kind: "conversationsInviteerrorschema11",
-        decode: { kind: "json", schema: conversationsInviteerrorschema11Schema },
-      },
-    ];
-  }
-
   export type ConversationsJoinRequest = {
     contentType: ContentType;
     /** Authentication token. Requires scope: `channels:write` */
@@ -1151,20 +977,6 @@ export namespace Conversations {
     /** ID of conversation to join */
     channel?: string;
   };
-
-  export class ConversationsJoinError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"conversationsJoinerrorschema1", ConversationsJoinerrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<ConversationsJoinError> = [
-      {
-        on: "default",
-        kind: "conversationsJoinerrorschema1",
-        decode: { kind: "json", schema: conversationsJoinerrorschema1Schema },
-      },
-    ];
-  }
 
   export type ConversationsKickRequest = {
     contentType: ContentType;
@@ -1176,20 +988,6 @@ export namespace Conversations {
     user?: string;
   };
 
-  export class ConversationsKickError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"conversationsKickerrorschema1", ConversationsKickerrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<ConversationsKickError> = [
-      {
-        on: "default",
-        kind: "conversationsKickerrorschema1",
-        decode: { kind: "json", schema: conversationsKickerrorschema1Schema },
-      },
-    ];
-  }
-
   export type ConversationsLeaveRequest = {
     contentType: ContentType;
     /** Authentication token. Requires scope: `conversations:write` */
@@ -1197,20 +995,6 @@ export namespace Conversations {
     /** Conversation to leave */
     channel?: string;
   };
-
-  export class ConversationsLeaveError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"conversationsLeaveerrorschema1", ConversationsLeaveerrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<ConversationsLeaveError> = [
-      {
-        on: "default",
-        kind: "conversationsLeaveerrorschema1",
-        decode: { kind: "json", schema: conversationsLeaveerrorschema1Schema },
-      },
-    ];
-  }
 
   export type ConversationsListRequest = {
     /** Authentication token. Requires scope: `conversations:read` */
@@ -1237,20 +1021,6 @@ export namespace Conversations {
     contentType: ContentType;
   };
 
-  export class ConversationsListError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"conversationsListerrorschema1", ConversationsListerrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<ConversationsListError> = [
-      {
-        on: "default",
-        kind: "conversationsListerrorschema1",
-        decode: { kind: "json", schema: conversationsListerrorschema1Schema },
-      },
-    ];
-  }
-
   export type ConversationsMarkRequest = {
     contentType: ContentType;
     /** Authentication token. Requires scope: `conversations:write` */
@@ -1260,20 +1030,6 @@ export namespace Conversations {
     /** Unique identifier of message you want marked as most recently seen in this conversation. */
     ts?: number;
   };
-
-  export class ConversationsMarkError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"conversationsMarkerrorschema1", ConversationsMarkerrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<ConversationsMarkError> = [
-      {
-        on: "default",
-        kind: "conversationsMarkerrorschema1",
-        decode: { kind: "json", schema: conversationsMarkerrorschema1Schema },
-      },
-    ];
-  }
 
   export type ConversationsMembersRequest = {
     /** Authentication token. Requires scope: `conversations:read` */
@@ -1294,20 +1050,6 @@ export namespace Conversations {
     contentType: ContentType;
   };
 
-  export class ConversationsMembersError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"conversationsMemberserrorschema1", ConversationsMemberserrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<ConversationsMembersError> = [
-      {
-        on: "default",
-        kind: "conversationsMemberserrorschema1",
-        decode: { kind: "json", schema: conversationsMemberserrorschema1Schema },
-      },
-    ];
-  }
-
   export type ConversationsOpenRequest = {
     contentType: ContentType;
     /** Authentication token. Requires scope: `conversations:write` */
@@ -1327,20 +1069,6 @@ export namespace Conversations {
     returnIm?: boolean;
   };
 
-  export class ConversationsOpenError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"conversationsOpenerrorschema1", ConversationsOpenerrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<ConversationsOpenError> = [
-      {
-        on: "default",
-        kind: "conversationsOpenerrorschema1",
-        decode: { kind: "json", schema: conversationsOpenerrorschema1Schema },
-      },
-    ];
-  }
-
   export type ConversationsRenameRequest = {
     contentType: ContentType;
     /** Authentication token. Requires scope: `conversations:write` */
@@ -1350,20 +1078,6 @@ export namespace Conversations {
     /** New name for conversation. */
     name?: string;
   };
-
-  export class ConversationsRenameError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"conversationsRenameerrorschema1", ConversationsRenameerrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<ConversationsRenameError> = [
-      {
-        on: "default",
-        kind: "conversationsRenameerrorschema1",
-        decode: { kind: "json", schema: conversationsRenameerrorschema1Schema },
-      },
-    ];
-  }
 
   export type ConversationsRepliesRequest = {
     /** Authentication token. Requires scope: `conversations:history` */
@@ -1399,20 +1113,6 @@ export namespace Conversations {
     contentType: ContentType;
   };
 
-  export class ConversationsRepliesError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"conversationsReplieserrorschema1", ConversationsReplieserrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<ConversationsRepliesError> = [
-      {
-        on: "default",
-        kind: "conversationsReplieserrorschema1",
-        decode: { kind: "json", schema: conversationsReplieserrorschema1Schema },
-      },
-    ];
-  }
-
   export type ConversationsSetPurposeRequest = {
     contentType: ContentType;
     /** Authentication token. Requires scope: `conversations:write` */
@@ -1422,20 +1122,6 @@ export namespace Conversations {
     /** A new, specialer purpose */
     purpose?: string;
   };
-
-  export class ConversationsSetPurposeError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"conversationsSetPurposeerrorschema1", ConversationsSetPurposeerrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<ConversationsSetPurposeError> = [
-      {
-        on: "default",
-        kind: "conversationsSetPurposeerrorschema1",
-        decode: { kind: "json", schema: conversationsSetPurposeerrorschema1Schema },
-      },
-    ];
-  }
 
   export type ConversationsSetTopicRequest = {
     contentType: ContentType;
@@ -1447,20 +1133,6 @@ export namespace Conversations {
     topic?: string;
   };
 
-  export class ConversationsSetTopicError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"conversationsSetTopicerrorschema1", ConversationsSetTopicerrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<ConversationsSetTopicError> = [
-      {
-        on: "default",
-        kind: "conversationsSetTopicerrorschema1",
-        decode: { kind: "json", schema: conversationsSetTopicerrorschema1Schema },
-      },
-    ];
-  }
-
   export type ConversationsUnarchiveRequest = {
     contentType: ContentType;
     /** Authentication token. Requires scope: `conversations:write` */
@@ -1468,18 +1140,4 @@ export namespace Conversations {
     /** ID of conversation to unarchive */
     channel?: string;
   };
-
-  export class ConversationsUnarchiveError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"conversationsUnarchiveerrorschema1", ConversationsUnarchiveerrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<ConversationsUnarchiveError> = [
-      {
-        on: "default",
-        kind: "conversationsUnarchiveerrorschema1",
-        decode: { kind: "json", schema: conversationsUnarchiveerrorschema1Schema },
-      },
-    ];
-  }
 }

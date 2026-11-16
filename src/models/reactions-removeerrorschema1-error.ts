@@ -1,5 +1,5 @@
 import * as s from "../core/validation/index.js";
-import type { Schema } from "../core/validation/schema.js";
+import type { JsonValue, Schema } from "../core/validation/schema.js";
 import {
   reactionsRemoveErrorEnumSchema,
   type ReactionsRemoveErrorEnum,
@@ -11,11 +11,16 @@ export type ReactionsRemoveerrorschema1Error = {
   callstack?: string;
   error: ReactionsRemoveErrorEnum;
   ok: boolean;
+  /** Properties the service sent or accepts beyond those declared. */
+  additionalProperties?: Record<string, JsonValue>;
 };
 
 export const reactionsRemoveerrorschema1ErrorSchema: Schema<ReactionsRemoveerrorschema1Error> =
-  s.object<ReactionsRemoveerrorschema1Error>({
-    callstack: s.optional(s.string()),
-    error: reactionsRemoveErrorEnumSchema,
-    ok: s.boolean(),
-  });
+  s.object<ReactionsRemoveerrorschema1Error>(
+    {
+      callstack: s.optional(s.string()),
+      error: reactionsRemoveErrorEnumSchema,
+      ok: s.boolean(),
+    },
+    { additionalProperties: s.json() },
+  );

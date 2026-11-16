@@ -5,10 +5,15 @@ import type { Schema } from "../core/validation/schema.js";
 export type UsersCountserrorschema1 = {
   error: string;
   ok: boolean;
+  /** Properties the service sent or accepts beyond those declared. */
+  additionalProperties?: Record<string, unknown>;
 };
 
 export const usersCountserrorschema1Schema: Schema<UsersCountserrorschema1> =
-  s.object<UsersCountserrorschema1>({
-    error: s.string(),
-    ok: s.boolean(),
-  });
+  s.object<UsersCountserrorschema1>(
+    {
+      error: s.string(),
+      ok: s.boolean(),
+    },
+    { additionalProperties: s.unknown() },
+  );

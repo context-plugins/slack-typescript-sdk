@@ -1,15 +1,11 @@
 import type { AuthSchemes } from "../auth-schemes.js";
-import { ApiError, type Declared, type ErrorDecoders, type ErrorPayload } from "../core/api-error.js";
+import { ApiError } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import type { RawClient } from "../core/raw-client.js";
 import * as s from "../core/validation/index.js";
 import { contentTypeSchema, type ContentType } from "../models/content-type.js";
-import {
-  rtmConnecterrorschema1Schema,
-  type RtmConnecterrorschema1,
-} from "../models/rtm-connecterrorschema1.js";
-import { rtmConnectschemaSchema, type RtmConnectschema } from "../models/rtm-connectschema.js";
+import { rtmConnectschemaInternalSchema, type RtmConnectschema } from "../models/rtm-connectschema.js";
 import type { Servers } from "../servers.js";
 
 export class Rtm {
@@ -31,8 +27,7 @@ export class Rtm {
    *
    * @returns Typical success response
    *
-   * @throws {@link Rtm.RtmConnectError} when the API answers with an error status — narrow on
-   * `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -41,7 +36,7 @@ export class Rtm {
   rtmConnect(
     request: Rtm.RtmConnectRequest,
     options?: RequestOptions,
-  ): ApiPromise<RtmConnectschema, Rtm.RtmConnectError> {
+  ): ApiPromise<RtmConnectschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -61,8 +56,8 @@ export class Rtm {
         body: { kind: "empty" },
       },
       {
-        success: { kind: "json", schema: rtmConnectschemaSchema },
-        errorFactory: Rtm.RtmConnectError,
+        success: { kind: "json", schema: rtmConnectschemaInternalSchema },
+        errorFactory: ApiError,
       },
       options,
     );
@@ -82,16 +77,4 @@ export namespace Rtm {
     presenceSub?: boolean;
     contentType: ContentType;
   };
-
-  export class RtmConnectError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"rtmConnecterrorschema1", RtmConnecterrorschema1>>;
-
-    static readonly errors: ErrorDecoders<RtmConnectError> = [
-      {
-        on: "default",
-        kind: "rtmConnecterrorschema1",
-        decode: { kind: "json", schema: rtmConnecterrorschema1Schema },
-      },
-    ];
-  }
 }

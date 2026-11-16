@@ -1,16 +1,12 @@
 import type { AuthSchemes } from "../auth-schemes.js";
-import { ApiError, type Declared, type ErrorDecoders, type ErrorPayload } from "../core/api-error.js";
+import { ApiError } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import type { RawClient } from "../core/raw-client.js";
 import * as s from "../core/validation/index.js";
 import { contentTypeSchema, type ContentType } from "../models/content-type.js";
 import {
-  migrationExchangeerrorschema1Schema,
-  type MigrationExchangeerrorschema1,
-} from "../models/migration-exchangeerrorschema1.js";
-import {
-  migrationExchangesuccessschemaSchema,
+  migrationExchangesuccessschemaInternalSchema,
   type MigrationExchangesuccessschema,
 } from "../models/migration-exchangesuccessschema.js";
 import type { Servers } from "../servers.js";
@@ -34,8 +30,7 @@ export class Migration {
    *
    * @returns Typical success response when mappings exist for the specified user IDs
    *
-   * @throws {@link Migration.MigrationExchangeError} when the API answers with an error status —
-   * narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -44,7 +39,7 @@ export class Migration {
   migrationExchange(
     request: Migration.MigrationExchangeRequest,
     options?: RequestOptions,
-  ): ApiPromise<MigrationExchangesuccessschema, Migration.MigrationExchangeError> {
+  ): ApiPromise<MigrationExchangesuccessschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -61,8 +56,8 @@ export class Migration {
         body: { kind: "empty" },
       },
       {
-        success: { kind: "json", schema: migrationExchangesuccessschemaSchema },
-        errorFactory: Migration.MigrationExchangeError,
+        success: { kind: "json", schema: migrationExchangesuccessschemaInternalSchema },
+        errorFactory: ApiError,
       },
       options,
     );
@@ -84,18 +79,4 @@ export namespace Migration {
     toOld?: boolean;
     contentType: ContentType;
   };
-
-  export class MigrationExchangeError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"migrationExchangeerrorschema1", MigrationExchangeerrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<MigrationExchangeError> = [
-      {
-        on: "default",
-        kind: "migrationExchangeerrorschema1",
-        decode: { kind: "json", schema: migrationExchangeerrorschema1Schema },
-      },
-    ];
-  }
 }

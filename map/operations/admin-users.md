@@ -2,20 +2,19 @@
 
 # AdminUsers — operations
 
-Accessor: `client.adminUsers` · Source: `src/resources/admin-users.ts` · 8 operations · Request and error types: namespace `AdminUsers`
+Accessor: `client.adminUsers` · Source: `src/resources/admin-users.ts` · 8 operations · Request types: namespace `AdminUsers`
 
 **Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `slack-web-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### adminUsersAssign
 
-- **Signature**: `adminUsersAssign(request: AdminUsers.AdminUsersAssignRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, AdminUsers.AdminUsersAssignError>`
+- **Signature**: `adminUsersAssign(request: AdminUsers.AdminUsersAssignRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, ApiError>`
 - **Wire**: `POST /admin.users.assign`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
 - **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Defaultsuccesstemplate`
-- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `AdminUsers.AdminUsersAssignError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"defaulterrortemplate1"` [default — any status no arm above covers] `Defaulterrortemplate1` · `"undeclared"` [a `default`-matched body that did not fit `Defaulterrortemplate1`] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `AdminUsers.AdminUsersAssignRequest` (7):
 
@@ -33,18 +32,16 @@ Accessor: `client.adminUsers` · Source: `src/resources/admin-users.ts` · 8 ope
 | --- | --- | --- |
 | `ContentType` | `contentTypeSchema` | `src/models/content-type.ts` |
 | `Defaultsuccesstemplate` | `defaultsuccesstemplateSchema` | `src/models/defaultsuccesstemplate.ts` |
-| `Defaulterrortemplate1` | `defaulterrortemplate1Schema` | `src/models/defaulterrortemplate1.ts` |
 
 ### adminUsersInvite
 
-- **Signature**: `adminUsersInvite(request: AdminUsers.AdminUsersInviteRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, AdminUsers.AdminUsersInviteError>`
+- **Signature**: `adminUsersInvite(request: AdminUsers.AdminUsersInviteRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, ApiError>`
 - **Wire**: `POST /admin.users.invite`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
 - **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Defaultsuccesstemplate`
-- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `AdminUsers.AdminUsersInviteError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"defaulterrortemplate1"` [default — any status no arm above covers] `Defaulterrortemplate1` · `"undeclared"` [a `default`-matched body that did not fit `Defaulterrortemplate1`] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `AdminUsers.AdminUsersInviteRequest` (11):
 
@@ -66,17 +63,15 @@ Accessor: `client.adminUsers` · Source: `src/resources/admin-users.ts` · 8 ope
 | --- | --- | --- |
 | `ContentType` | `contentTypeSchema` | `src/models/content-type.ts` |
 | `Defaultsuccesstemplate` | `defaultsuccesstemplateSchema` | `src/models/defaultsuccesstemplate.ts` |
-| `Defaulterrortemplate1` | `defaulterrortemplate1Schema` | `src/models/defaulterrortemplate1.ts` |
 
 ### adminUsersList
 
-- **Signature**: `adminUsersList(request: AdminUsers.AdminUsersListRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, AdminUsers.AdminUsersListError>`
+- **Signature**: `adminUsersList(request: AdminUsers.AdminUsersListRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, ApiError>`
 - **Wire**: `GET /admin.users.list`
 - **Auth**: `slackAuth`
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Defaultsuccesstemplate`
-- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `AdminUsers.AdminUsersListError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"defaulterrortemplate1"` [default — any status no arm above covers] `Defaulterrortemplate1` · `"undeclared"` [a `default`-matched body that did not fit `Defaulterrortemplate1`] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `AdminUsers.AdminUsersListRequest` (5):
 
@@ -92,18 +87,16 @@ Accessor: `client.adminUsers` · Source: `src/resources/admin-users.ts` · 8 ope
 | --- | --- | --- |
 | `ContentType` | `contentTypeSchema` | `src/models/content-type.ts` |
 | `Defaultsuccesstemplate` | `defaultsuccesstemplateSchema` | `src/models/defaultsuccesstemplate.ts` |
-| `Defaulterrortemplate1` | `defaulterrortemplate1Schema` | `src/models/defaulterrortemplate1.ts` |
 
 ### adminUsersRemove
 
-- **Signature**: `adminUsersRemove(request: AdminUsers.AdminUsersRemoveRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, AdminUsers.AdminUsersRemoveError>`
+- **Signature**: `adminUsersRemove(request: AdminUsers.AdminUsersRemoveRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, ApiError>`
 - **Wire**: `POST /admin.users.remove`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
 - **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Defaultsuccesstemplate`
-- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `AdminUsers.AdminUsersRemoveError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"defaulterrortemplate1"` [default — any status no arm above covers] `Defaulterrortemplate1` · `"undeclared"` [a `default`-matched body that did not fit `Defaulterrortemplate1`] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `AdminUsers.AdminUsersRemoveRequest` (4):
 
@@ -118,18 +111,16 @@ Accessor: `client.adminUsers` · Source: `src/resources/admin-users.ts` · 8 ope
 | --- | --- | --- |
 | `ContentType` | `contentTypeSchema` | `src/models/content-type.ts` |
 | `Defaultsuccesstemplate` | `defaultsuccesstemplateSchema` | `src/models/defaultsuccesstemplate.ts` |
-| `Defaulterrortemplate1` | `defaulterrortemplate1Schema` | `src/models/defaulterrortemplate1.ts` |
 
 ### adminUsersSetAdmin
 
-- **Signature**: `adminUsersSetAdmin(request: AdminUsers.AdminUsersSetAdminRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, AdminUsers.AdminUsersSetAdminError>`
+- **Signature**: `adminUsersSetAdmin(request: AdminUsers.AdminUsersSetAdminRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, ApiError>`
 - **Wire**: `POST /admin.users.setAdmin`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
 - **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Defaultsuccesstemplate`
-- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `AdminUsers.AdminUsersSetAdminError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"defaulterrortemplate1"` [default — any status no arm above covers] `Defaulterrortemplate1` · `"undeclared"` [a `default`-matched body that did not fit `Defaulterrortemplate1`] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `AdminUsers.AdminUsersSetAdminRequest` (4):
 
@@ -144,18 +135,16 @@ Accessor: `client.adminUsers` · Source: `src/resources/admin-users.ts` · 8 ope
 | --- | --- | --- |
 | `ContentType` | `contentTypeSchema` | `src/models/content-type.ts` |
 | `Defaultsuccesstemplate` | `defaultsuccesstemplateSchema` | `src/models/defaultsuccesstemplate.ts` |
-| `Defaulterrortemplate1` | `defaulterrortemplate1Schema` | `src/models/defaulterrortemplate1.ts` |
 
 ### adminUsersSetExpiration
 
-- **Signature**: `adminUsersSetExpiration(request: AdminUsers.AdminUsersSetExpirationRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, AdminUsers.AdminUsersSetExpirationError>`
+- **Signature**: `adminUsersSetExpiration(request: AdminUsers.AdminUsersSetExpirationRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, ApiError>`
 - **Wire**: `POST /admin.users.setExpiration`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
 - **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Defaultsuccesstemplate`
-- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `AdminUsers.AdminUsersSetExpirationError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"defaulterrortemplate1"` [default — any status no arm above covers] `Defaulterrortemplate1` · `"undeclared"` [a `default`-matched body that did not fit `Defaulterrortemplate1`] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `AdminUsers.AdminUsersSetExpirationRequest` (5):
 
@@ -171,18 +160,16 @@ Accessor: `client.adminUsers` · Source: `src/resources/admin-users.ts` · 8 ope
 | --- | --- | --- |
 | `ContentType` | `contentTypeSchema` | `src/models/content-type.ts` |
 | `Defaultsuccesstemplate` | `defaultsuccesstemplateSchema` | `src/models/defaultsuccesstemplate.ts` |
-| `Defaulterrortemplate1` | `defaulterrortemplate1Schema` | `src/models/defaulterrortemplate1.ts` |
 
 ### adminUsersSetOwner
 
-- **Signature**: `adminUsersSetOwner(request: AdminUsers.AdminUsersSetOwnerRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, AdminUsers.AdminUsersSetOwnerError>`
+- **Signature**: `adminUsersSetOwner(request: AdminUsers.AdminUsersSetOwnerRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, ApiError>`
 - **Wire**: `POST /admin.users.setOwner`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
 - **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Defaultsuccesstemplate`
-- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `AdminUsers.AdminUsersSetOwnerError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"defaulterrortemplate1"` [default — any status no arm above covers] `Defaulterrortemplate1` · `"undeclared"` [a `default`-matched body that did not fit `Defaulterrortemplate1`] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `AdminUsers.AdminUsersSetOwnerRequest` (4):
 
@@ -197,18 +184,16 @@ Accessor: `client.adminUsers` · Source: `src/resources/admin-users.ts` · 8 ope
 | --- | --- | --- |
 | `ContentType` | `contentTypeSchema` | `src/models/content-type.ts` |
 | `Defaultsuccesstemplate` | `defaultsuccesstemplateSchema` | `src/models/defaultsuccesstemplate.ts` |
-| `Defaulterrortemplate1` | `defaulterrortemplate1Schema` | `src/models/defaulterrortemplate1.ts` |
 
 ### adminUsersSetRegular
 
-- **Signature**: `adminUsersSetRegular(request: AdminUsers.AdminUsersSetRegularRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, AdminUsers.AdminUsersSetRegularError>`
+- **Signature**: `adminUsersSetRegular(request: AdminUsers.AdminUsersSetRegularRequest, options?: RequestOptions): ApiPromise<Defaultsuccesstemplate, ApiError>`
 - **Wire**: `POST /admin.users.setRegular`
 - **Auth**: `slackAuth`
 - **Request body**: `application/x-www-form-urlencoded;charset=UTF-8` — every field marked `form`
 - **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Defaultsuccesstemplate`
-- **Error**: `SlackWebApiError` with `kind: "api"`, an instance of `AdminUsers.AdminUsersSetRegularError` — **typed arms**, narrowed on `err.payload.kind`
-- **Error arms**: `"defaulterrortemplate1"` [default — any status no arm above covers] `Defaulterrortemplate1` · `"undeclared"` [a `default`-matched body that did not fit `Defaulterrortemplate1`] `rawBody: ArrayBuffer`
+- **Error**: `SlackWebApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `AdminUsers.AdminUsersSetRegularRequest` (4):
 
@@ -223,5 +208,4 @@ Accessor: `client.adminUsers` · Source: `src/resources/admin-users.ts` · 8 ope
 | --- | --- | --- |
 | `ContentType` | `contentTypeSchema` | `src/models/content-type.ts` |
 | `Defaultsuccesstemplate` | `defaultsuccesstemplateSchema` | `src/models/defaultsuccesstemplate.ts` |
-| `Defaulterrortemplate1` | `defaulterrortemplate1Schema` | `src/models/defaulterrortemplate1.ts` |
 

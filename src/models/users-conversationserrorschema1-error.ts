@@ -1,5 +1,5 @@
 import * as s from "../core/validation/index.js";
-import type { Schema } from "../core/validation/schema.js";
+import type { JsonValue, Schema } from "../core/validation/schema.js";
 import {
   usersConversationsErrorEnumSchema,
   type UsersConversationsErrorEnum,
@@ -11,11 +11,16 @@ export type UsersConversationserrorschema1Error = {
   callstack?: string;
   error: UsersConversationsErrorEnum;
   ok: boolean;
+  /** Properties the service sent or accepts beyond those declared. */
+  additionalProperties?: Record<string, JsonValue>;
 };
 
 export const usersConversationserrorschema1ErrorSchema: Schema<UsersConversationserrorschema1Error> =
-  s.object<UsersConversationserrorschema1Error>({
-    callstack: s.optional(s.string()),
-    error: usersConversationsErrorEnumSchema,
-    ok: s.boolean(),
-  });
+  s.object<UsersConversationserrorschema1Error>(
+    {
+      callstack: s.optional(s.string()),
+      error: usersConversationsErrorEnumSchema,
+      ok: s.boolean(),
+    },
+    { additionalProperties: s.json() },
+  );

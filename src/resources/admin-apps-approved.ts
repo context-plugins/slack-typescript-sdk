@@ -1,11 +1,10 @@
 import type { AuthSchemes } from "../auth-schemes.js";
-import { ApiError, type Declared, type ErrorDecoders, type ErrorPayload } from "../core/api-error.js";
+import { ApiError } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import type { RawClient } from "../core/raw-client.js";
 import * as s from "../core/validation/index.js";
 import { contentTypeSchema, type ContentType } from "../models/content-type.js";
-import { defaulterrortemplate1Schema, type Defaulterrortemplate1 } from "../models/defaulterrortemplate1.js";
 import {
   defaultsuccesstemplateSchema,
   type Defaultsuccesstemplate,
@@ -31,8 +30,7 @@ export class AdminAppsApproved {
    *
    * @returns Typical success response
    *
-   * @throws {@link AdminAppsApproved.AdminAppsApprovedListError} when the API answers with an error
-   * status — narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -41,7 +39,7 @@ export class AdminAppsApproved {
   adminAppsApprovedList(
     request: AdminAppsApproved.AdminAppsApprovedListRequest,
     options?: RequestOptions,
-  ): ApiPromise<Defaultsuccesstemplate, AdminAppsApproved.AdminAppsApprovedListError> {
+  ): ApiPromise<Defaultsuccesstemplate, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -60,7 +58,7 @@ export class AdminAppsApproved {
       },
       {
         success: { kind: "json", schema: defaultsuccesstemplateSchema },
-        errorFactory: AdminAppsApproved.AdminAppsApprovedListError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -81,16 +79,4 @@ export namespace AdminAppsApproved {
     enterpriseId?: string;
     contentType: ContentType;
   };
-
-  export class AdminAppsApprovedListError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
-
-    static readonly errors: ErrorDecoders<AdminAppsApprovedListError> = [
-      {
-        on: "default",
-        kind: "defaulterrortemplate1",
-        decode: { kind: "json", schema: defaulterrortemplate1Schema },
-      },
-    ];
-  }
 }

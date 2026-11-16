@@ -1,5 +1,5 @@
 import * as s from "../core/validation/index.js";
-import type { Schema } from "../core/validation/schema.js";
+import type { JsonValue, Schema } from "../core/validation/schema.js";
 import {
   filesSharedPublicUrlErrorEnumSchema,
   type FilesSharedPublicUrlErrorEnum,
@@ -11,11 +11,16 @@ export type FilesSharedPublicUrLerrorschema1Error = {
   callstack?: string;
   error: FilesSharedPublicUrlErrorEnum;
   ok: boolean;
+  /** Properties the service sent or accepts beyond those declared. */
+  additionalProperties?: Record<string, JsonValue>;
 };
 
 export const filesSharedPublicUrLerrorschema1ErrorSchema: Schema<FilesSharedPublicUrLerrorschema1Error> =
-  s.object<FilesSharedPublicUrLerrorschema1Error>({
-    callstack: s.optional(s.string()),
-    error: filesSharedPublicUrlErrorEnumSchema,
-    ok: s.boolean(),
-  });
+  s.object<FilesSharedPublicUrLerrorschema1Error>(
+    {
+      callstack: s.optional(s.string()),
+      error: filesSharedPublicUrlErrorEnumSchema,
+      ok: s.boolean(),
+    },
+    { additionalProperties: s.json() },
+  );

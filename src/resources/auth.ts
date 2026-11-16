@@ -1,16 +1,14 @@
 import type { AuthSchemes } from "../auth-schemes.js";
-import { ApiError, type Declared, type ErrorDecoders, type ErrorPayload } from "../core/api-error.js";
+import { ApiError } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import type { RawClient } from "../core/raw-client.js";
 import * as s from "../core/validation/index.js";
-import {
-  authRevokeerrorschema1Schema,
-  type AuthRevokeerrorschema1,
-} from "../models/auth-revokeerrorschema1.js";
 import { authRevokeschemaSchema, type AuthRevokeschema } from "../models/auth-revokeschema.js";
-import { authTesterrorschema1Schema, type AuthTesterrorschema1 } from "../models/auth-testerrorschema1.js";
-import { authTestsuccessschemaSchema, type AuthTestsuccessschema } from "../models/auth-testsuccessschema.js";
+import {
+  authTestsuccessschemaInternalSchema,
+  type AuthTestsuccessschema,
+} from "../models/auth-testsuccessschema.js";
 import { contentTypeSchema, type ContentType } from "../models/content-type.js";
 import type { Servers } from "../servers.js";
 
@@ -33,8 +31,7 @@ export class Auth {
    *
    * @returns Typical success response
    *
-   * @throws {@link Auth.AuthRevokeError} when the API answers with an error status — narrow on
-   * `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -43,7 +40,7 @@ export class Auth {
   authRevoke(
     request: Auth.AuthRevokeRequest,
     options?: RequestOptions,
-  ): ApiPromise<AuthRevokeschema, Auth.AuthRevokeError> {
+  ): ApiPromise<AuthRevokeschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -59,7 +56,7 @@ export class Auth {
       },
       {
         success: { kind: "json", schema: authRevokeschemaSchema },
-        errorFactory: Auth.AuthRevokeError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -73,8 +70,7 @@ export class Auth {
    *
    * @returns Standard success response when used with a user token
    *
-   * @throws {@link Auth.AuthTestError} when the API answers with an error status — narrow on
-   * `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -83,7 +79,7 @@ export class Auth {
   authTest(
     request: Auth.AuthTestRequest,
     options?: RequestOptions,
-  ): ApiPromise<AuthTestsuccessschema, Auth.AuthTestError> {
+  ): ApiPromise<AuthTestsuccessschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -98,8 +94,8 @@ export class Auth {
         body: { kind: "empty" },
       },
       {
-        success: { kind: "json", schema: authTestsuccessschemaSchema },
-        errorFactory: Auth.AuthTestError,
+        success: { kind: "json", schema: authTestsuccessschemaInternalSchema },
+        errorFactory: ApiError,
       },
       options,
     );
@@ -118,33 +114,9 @@ export namespace Auth {
     contentType: ContentType;
   };
 
-  export class AuthRevokeError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"authRevokeerrorschema1", AuthRevokeerrorschema1>>;
-
-    static readonly errors: ErrorDecoders<AuthRevokeError> = [
-      {
-        on: "default",
-        kind: "authRevokeerrorschema1",
-        decode: { kind: "json", schema: authRevokeerrorschema1Schema },
-      },
-    ];
-  }
-
   export type AuthTestRequest = {
     /** Authentication token. Requires scope: `none` */
     token: string;
     contentType: ContentType;
   };
-
-  export class AuthTestError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"authTesterrorschema1", AuthTesterrorschema1>>;
-
-    static readonly errors: ErrorDecoders<AuthTestError> = [
-      {
-        on: "default",
-        kind: "authTesterrorschema1",
-        decode: { kind: "json", schema: authTesterrorschema1Schema },
-      },
-    ];
-  }
 }

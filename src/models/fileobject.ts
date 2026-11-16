@@ -1,6 +1,6 @@
 import * as s from "../core/validation/index.js";
-import type { Schema } from "../core/validation/schema.js";
-import { reactionobjectSchema, type Reactionobject } from "./reactionobject.js";
+import type { JsonValue, Schema } from "../core/validation/schema.js";
+import { reactionobjectInternalSchema, reactionobjectSchema, type Reactionobject } from "./reactionobject.js";
 import { sharesSchema, type Shares } from "./shares.js";
 
 export type Fileobject = {
@@ -74,9 +74,11 @@ export type Fileobject = {
   user?: string;
   userTeam?: string;
   username?: string;
+  /** Properties the service sent or accepts beyond those declared. */
+  additionalProperties?: Record<string, JsonValue>;
 };
 
-export const fileobjectSchema: Schema<Fileobject> = s.object<Fileobject>({
+const fileobjectProperties: s.Shape<Fileobject> = {
   channels: s.optional(s.array(s.string())),
   commentsCount: s.optional(s.int()),
   created: s.optional(s.int()),
@@ -112,7 +114,7 @@ export const fileobjectSchema: Schema<Fileobject> = s.object<Fileobject>({
   prettyType: s.optional(s.string()),
   preview: s.optional(s.string()),
   publicUrlShared: s.optional(s.boolean()),
-  reactions: s.optional(s.array(s.lazy(() => reactionobjectSchema))),
+  reactions: s.optional(s.array(s.lazy(() => reactionobjectInternalSchema))),
   shares: s.optional(s.lazy(() => sharesSchema)),
   size: s.optional(s.int()),
   sourceTeam: s.optional(s.string()),
@@ -197,4 +199,27 @@ export const fileobjectSchema: Schema<Fileobject> = s.object<Fileobject>({
     urlPrivateDownload: "url_private_download",
     userTeam: "user_team",
   },
+};
+
+export const fileobjectInternalSchema: Schema<Fileobject> = s.object<Fileobject>(fileobjectProperties, {
+  additionalProperties: s.json(),
 });
+
+export const fileobjectSchema: Schema<Fileobject> = s.lazySchema(() =>
+  s.object<Fileobject>(
+    {
+      ...fileobjectProperties,
+      channels: s.optional(s.array(s.string().check(s.pattern("^[C][A-Z0-9]{2,}$"))).check(s.uniqueItems())),
+      editor: s.optional(s.string().check(s.pattern("^[UW][A-Z0-9]{2,}$"))),
+      groups: s.optional(s.array(s.string().check(s.pattern("^[G][A-Z0-9]{8,}$"))).check(s.uniqueItems())),
+      id: s.optional(s.string().check(s.pattern("^[F][A-Z0-9]{8,}$"))),
+      ims: s.optional(s.array(s.string().check(s.pattern("^[D][A-Z0-9]{8,}$"))).check(s.uniqueItems())),
+      lastEditor: s.optional(s.string().check(s.pattern("^[UW][A-Z0-9]{2,}$"))),
+      pinnedTo: s.optional(s.array(s.string().check(s.pattern("^[CGD][A-Z0-9]{8,}$")))),
+      reactions: s.optional(s.array(s.lazy(() => reactionobjectSchema))),
+      sourceTeam: s.optional(s.string().check(s.pattern("^[T][A-Z0-9]{2,}$"))),
+      userTeam: s.optional(s.string().check(s.pattern("^[T][A-Z0-9]{2,}$"))),
+    },
+    { additionalProperties: s.json() },
+  ),
+);

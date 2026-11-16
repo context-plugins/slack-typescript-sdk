@@ -1,11 +1,10 @@
 import type { AuthSchemes } from "../auth-schemes.js";
-import { ApiError, type Declared, type ErrorDecoders, type ErrorPayload } from "../core/api-error.js";
+import { ApiError } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import type { RawClient } from "../core/raw-client.js";
 import * as s from "../core/validation/index.js";
-import { botsInfoerrorschema1Schema, type BotsInfoerrorschema1 } from "../models/bots-infoerrorschema1.js";
-import { botsInfoschemaSchema, type BotsInfoschema } from "../models/bots-infoschema.js";
+import { botsInfoschemaInternalSchema, type BotsInfoschema } from "../models/bots-infoschema.js";
 import { contentTypeSchema, type ContentType } from "../models/content-type.js";
 import type { Servers } from "../servers.js";
 
@@ -28,17 +27,13 @@ export class Bots {
    *
    * @returns When successful, returns bot info by bot ID.
    *
-   * @throws {@link Bots.BotsInfoError} when the API answers with an error status — narrow on
-   * `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
    * could not be obtained
    */
-  botsInfo(
-    request: Bots.BotsInfoRequest,
-    options?: RequestOptions,
-  ): ApiPromise<BotsInfoschema, Bots.BotsInfoError> {
+  botsInfo(request: Bots.BotsInfoRequest, options?: RequestOptions): ApiPromise<BotsInfoschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -53,8 +48,8 @@ export class Bots {
         body: { kind: "empty" },
       },
       {
-        success: { kind: "json", schema: botsInfoschemaSchema },
-        errorFactory: Bots.BotsInfoError,
+        success: { kind: "json", schema: botsInfoschemaInternalSchema },
+        errorFactory: ApiError,
       },
       options,
     );
@@ -69,16 +64,4 @@ export namespace Bots {
     bot?: string;
     contentType: ContentType;
   };
-
-  export class BotsInfoError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"botsInfoerrorschema1", BotsInfoerrorschema1>>;
-
-    static readonly errors: ErrorDecoders<BotsInfoError> = [
-      {
-        on: "default",
-        kind: "botsInfoerrorschema1",
-        decode: { kind: "json", schema: botsInfoerrorschema1Schema },
-      },
-    ];
-  }
 }

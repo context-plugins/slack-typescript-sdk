@@ -1,5 +1,5 @@
 import * as s from "../core/validation/index.js";
-import type { Schema } from "../core/validation/schema.js";
+import type { JsonValue, Schema } from "../core/validation/schema.js";
 
 export type ObjsUserProfileShort = {
   avatarHash: string;
@@ -13,9 +13,11 @@ export type ObjsUserProfileShort = {
   realName: string;
   realNameNormalized?: string;
   team: string;
+  /** Properties the service sent or accepts beyond those declared. */
+  additionalProperties?: Record<string, JsonValue>;
 };
 
-export const objsUserProfileShortSchema: Schema<ObjsUserProfileShort> = s.object<ObjsUserProfileShort>({
+const objsUserProfileShortProperties: s.Shape<ObjsUserProfileShort> = {
   avatarHash: s.string(),
   displayName: s.string(),
   displayNameNormalized: s.optional(s.string()),
@@ -38,4 +40,17 @@ export const objsUserProfileShortSchema: Schema<ObjsUserProfileShort> = s.object
     realName: "real_name",
     realNameNormalized: "real_name_normalized",
   },
-});
+};
+
+export const objsUserProfileShortInternalSchema: Schema<ObjsUserProfileShort> =
+  s.object<ObjsUserProfileShort>(objsUserProfileShortProperties, { additionalProperties: s.json() });
+
+export const objsUserProfileShortSchema: Schema<ObjsUserProfileShort> = s.lazySchema(() =>
+  s.object<ObjsUserProfileShort>(
+    {
+      ...objsUserProfileShortProperties,
+      team: s.string().check(s.pattern("^[TE][A-Z0-9]{8,}$")),
+    },
+    { additionalProperties: s.json() },
+  ),
+);

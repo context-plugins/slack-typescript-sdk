@@ -1,5 +1,5 @@
 import * as s from "../core/validation/index.js";
-import type { Schema } from "../core/validation/schema.js";
+import type { JsonValue, Schema } from "../core/validation/schema.js";
 
 /**
  * Schema for successful response from conversations.open method when opening channels, ims, mpims
@@ -9,16 +9,21 @@ export type ConversationsOpensuccessschema = {
   channel: Record<string, unknown>;
   noOp?: boolean;
   ok: boolean;
+  /** Properties the service sent or accepts beyond those declared. */
+  additionalProperties?: Record<string, JsonValue>;
 };
 
 export const conversationsOpensuccessschemaSchema: Schema<ConversationsOpensuccessschema> =
-  s.object<ConversationsOpensuccessschema>({
-    alreadyOpen: s.optional(s.boolean()),
-    channel: s.record(s.string(), s.unknown()),
-    noOp: s.optional(s.boolean()),
-    ok: s.boolean(),
-    _keysMap: {
-      alreadyOpen: "already_open",
-      noOp: "no_op",
+  s.object<ConversationsOpensuccessschema>(
+    {
+      alreadyOpen: s.optional(s.boolean()),
+      channel: s.record(s.string(), s.unknown()),
+      noOp: s.optional(s.boolean()),
+      ok: s.boolean(),
+      _keysMap: {
+        alreadyOpen: "already_open",
+        noOp: "no_op",
+      },
     },
-  });
+    { additionalProperties: s.json() },
+  );

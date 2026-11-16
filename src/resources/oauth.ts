@@ -1,11 +1,10 @@
 import type { AuthSchemes } from "../auth-schemes.js";
-import { ApiError, type Declared, type ErrorDecoders, type ErrorPayload } from "../core/api-error.js";
+import { ApiError } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import type { RawClient } from "../core/raw-client.js";
 import * as s from "../core/validation/index.js";
 import { contentTypeSchema, type ContentType } from "../models/content-type.js";
-import { defaulterrortemplate1Schema, type Defaulterrortemplate1 } from "../models/defaulterrortemplate1.js";
 import {
   defaultsuccesstemplateSchema,
   type Defaultsuccesstemplate,
@@ -31,8 +30,7 @@ export class Oauth {
    *
    * @returns Successful user token negotiation for a single scope
    *
-   * @throws {@link Oauth.OauthAccessError} when the API answers with an error status — narrow on
-   * `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -41,7 +39,7 @@ export class Oauth {
   oauthAccess(
     request: Oauth.OauthAccessRequest,
     options?: RequestOptions,
-  ): ApiPromise<Defaultsuccesstemplate, Oauth.OauthAccessError> {
+  ): ApiPromise<Defaultsuccesstemplate, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -60,7 +58,7 @@ export class Oauth {
       },
       {
         success: { kind: "json", schema: defaultsuccesstemplateSchema },
-        errorFactory: Oauth.OauthAccessError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -74,8 +72,7 @@ export class Oauth {
    *
    * @returns Success example using a workspace app produces a very different kind of response
    *
-   * @throws {@link Oauth.OauthTokenError} when the API answers with an error status — narrow on
-   * `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -84,7 +81,7 @@ export class Oauth {
   oauthToken(
     request: Oauth.OauthTokenRequest,
     options?: RequestOptions,
-  ): ApiPromise<Defaultsuccesstemplate, Oauth.OauthTokenError> {
+  ): ApiPromise<Defaultsuccesstemplate, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -103,7 +100,7 @@ export class Oauth {
       },
       {
         success: { kind: "json", schema: defaultsuccesstemplateSchema },
-        errorFactory: Oauth.OauthTokenError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -117,8 +114,7 @@ export class Oauth {
    *
    * @returns Successful token request with scopes for both a bot user and a user token
    *
-   * @throws {@link Oauth.OauthV2AccessError} when the API answers with an error status — narrow on
-   * `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -127,7 +123,7 @@ export class Oauth {
   oauthV2Access(
     request: Oauth.OauthV2AccessRequest,
     options?: RequestOptions,
-  ): ApiPromise<Defaultsuccesstemplate, Oauth.OauthV2AccessError> {
+  ): ApiPromise<Defaultsuccesstemplate, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -145,7 +141,7 @@ export class Oauth {
       },
       {
         success: { kind: "json", schema: defaultsuccesstemplateSchema },
-        errorFactory: Oauth.OauthV2AccessError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -170,18 +166,6 @@ export namespace Oauth {
     contentType: ContentType;
   };
 
-  export class OauthAccessError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
-
-    static readonly errors: ErrorDecoders<OauthAccessError> = [
-      {
-        on: "default",
-        kind: "defaulterrortemplate1",
-        decode: { kind: "json", schema: defaulterrortemplate1Schema },
-      },
-    ];
-  }
-
   export type OauthTokenRequest = {
     /** Issued when you created your application. */
     clientId?: string;
@@ -196,18 +180,6 @@ export namespace Oauth {
     contentType: ContentType;
   };
 
-  export class OauthTokenError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
-
-    static readonly errors: ErrorDecoders<OauthTokenError> = [
-      {
-        on: "default",
-        kind: "defaulterrortemplate1",
-        decode: { kind: "json", schema: defaulterrortemplate1Schema },
-      },
-    ];
-  }
-
   export type OauthV2AccessRequest = {
     /** The `code` param returned via the OAuth callback. */
     code: string;
@@ -219,16 +191,4 @@ export namespace Oauth {
     redirectUri?: string;
     contentType: ContentType;
   };
-
-  export class OauthV2AccessError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"defaulterrortemplate1", Defaulterrortemplate1>>;
-
-    static readonly errors: ErrorDecoders<OauthV2AccessError> = [
-      {
-        on: "default",
-        kind: "defaulterrortemplate1",
-        decode: { kind: "json", schema: defaulterrortemplate1Schema },
-      },
-    ];
-  }
 }

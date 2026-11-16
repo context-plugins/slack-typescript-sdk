@@ -1,5 +1,5 @@
 import type { AuthSchemes } from "../auth-schemes.js";
-import { ApiError, type Declared, type ErrorDecoders, type ErrorPayload } from "../core/api-error.js";
+import { ApiError } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import type { RawClient } from "../core/raw-client.js";
@@ -11,74 +11,35 @@ import {
 } from "../models/ap-imethodusers-get-presence.js";
 import { contentTypeSchema, type ContentType } from "../models/content-type.js";
 import {
-  usersConversationserrorschema1Schema,
-  type UsersConversationserrorschema1,
-} from "../models/users-conversationserrorschema1.js";
-import {
-  usersConversationssuccessschemaSchema,
+  usersConversationssuccessschemaInternalSchema,
   type UsersConversationssuccessschema,
 } from "../models/users-conversationssuccessschema.js";
-import {
-  usersCountserrorschema1Schema,
-  type UsersCountserrorschema1,
-} from "../models/users-countserrorschema1.js";
-import {
-  usersDeletePhotoerrorschema1Schema,
-  type UsersDeletePhotoerrorschema1,
-} from "../models/users-delete-photoerrorschema1.js";
 import {
   usersDeletePhotoschemaSchema,
   type UsersDeletePhotoschema,
 } from "../models/users-delete-photoschema.js";
 import {
-  usersIdentityerrorschema1Schema,
-  type UsersIdentityerrorschema1,
-} from "../models/users-identityerrorschema1.js";
-import { usersInfoerrorschema1Schema, type UsersInfoerrorschema1 } from "../models/users-infoerrorschema1.js";
-import {
   usersInfosuccessschemaSchema,
   type UsersInfosuccessschema,
 } from "../models/users-infosuccessschema.js";
-import { usersListerrorschema1Schema, type UsersListerrorschema1 } from "../models/users-listerrorschema1.js";
-import { usersListschemaSchema, type UsersListschema } from "../models/users-listschema.js";
-import {
-  usersLookupByEmailerrorschema1Schema,
-  type UsersLookupByEmailerrorschema1,
-} from "../models/users-lookup-by-emailerrorschema1.js";
+import { usersListschemaInternalSchema, type UsersListschema } from "../models/users-listschema.js";
 import {
   usersLookupByEmailsuccessschemaSchema,
   type UsersLookupByEmailsuccessschema,
 } from "../models/users-lookup-by-emailsuccessschema.js";
 import {
-  usersProfileGeterrorschema1Schema,
-  type UsersProfileGeterrorschema1,
-} from "../models/users-profile-geterrorschema1.js";
-import {
-  usersProfileGetschemaSchema,
+  usersProfileGetschemaInternalSchema,
   type UsersProfileGetschema,
 } from "../models/users-profile-getschema.js";
 import {
-  usersProfileSeterrorschema1Schema,
-  type UsersProfileSeterrorschema1,
-} from "../models/users-profile-seterrorschema1.js";
-import {
-  usersProfileSetschemaSchema,
+  usersProfileSetschemaInternalSchema,
   type UsersProfileSetschema,
 } from "../models/users-profile-setschema.js";
-import {
-  usersSetActiveerrorschema1Schema,
-  type UsersSetActiveerrorschema1,
-} from "../models/users-set-activeerrorschema1.js";
 import { usersSetActiveschemaSchema, type UsersSetActiveschema } from "../models/users-set-activeschema.js";
 import {
-  usersSetPhotoerrorschema1Schema,
-  type UsersSetPhotoerrorschema1,
-} from "../models/users-set-photoerrorschema1.js";
-import { usersSetPhotoschemaSchema, type UsersSetPhotoschema } from "../models/users-set-photoschema.js";
-import {
-  usersSetPresenceerrorschema1Schema,
-  type UsersSetPresenceerrorschema1,
-} from "../models/users-set-presenceerrorschema1.js";
+  usersSetPhotoschemaInternalSchema,
+  type UsersSetPhotoschema,
+} from "../models/users-set-photoschema.js";
 import {
   usersSetPresenceschemaSchema,
   type UsersSetPresenceschema,
@@ -105,8 +66,7 @@ export class Users {
    * @returns Typical success response with only public channels. Note how `num_members` and
    * `is_member` are not returned like typical `conversations` objects.
    *
-   * @throws {@link Users.UsersConversationsError} when the API answers with an error status —
-   * narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -115,7 +75,7 @@ export class Users {
   usersConversations(
     request: Users.UsersConversationsRequest,
     options?: RequestOptions,
-  ): ApiPromise<UsersConversationssuccessschema, Users.UsersConversationsError> {
+  ): ApiPromise<UsersConversationssuccessschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -134,8 +94,8 @@ export class Users {
         body: { kind: "empty" },
       },
       {
-        success: { kind: "json", schema: usersConversationssuccessschemaSchema },
-        errorFactory: Users.UsersConversationsError,
+        success: { kind: "json", schema: usersConversationssuccessschemaInternalSchema },
+        errorFactory: ApiError,
       },
       options,
     );
@@ -149,8 +109,7 @@ export class Users {
    *
    * @returns Typical success response
    *
-   * @throws {@link Users.UsersDeletePhotoError} when the API answers with an error status — narrow
-   * on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -159,7 +118,7 @@ export class Users {
   usersDeletePhoto(
     request: Users.UsersDeletePhotoRequest,
     options?: RequestOptions,
-  ): ApiPromise<UsersDeletePhotoschema, Users.UsersDeletePhotoError> {
+  ): ApiPromise<UsersDeletePhotoschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -178,7 +137,7 @@ export class Users {
       },
       {
         success: { kind: "json", schema: usersDeletePhotoschemaSchema },
-        errorFactory: Users.UsersDeletePhotoError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -193,8 +152,7 @@ export class Users {
    * @returns When requesting information for a different user, this method just returns the current
    * presence (either `active` or `away`).
    *
-   * @throws {@link Users.UsersGetPresenceError} when the API answers with an error status — narrow
-   * on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -203,7 +161,7 @@ export class Users {
   usersGetPresence(
     request: Users.UsersGetPresenceRequest,
     options?: RequestOptions,
-  ): ApiPromise<ApImethodusersGetPresence, Users.UsersGetPresenceError> {
+  ): ApiPromise<ApImethodusersGetPresence, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -219,7 +177,7 @@ export class Users {
       },
       {
         success: { kind: "json", schema: apImethodusersGetPresenceSchema },
-        errorFactory: Users.UsersGetPresenceError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -233,8 +191,7 @@ export class Users {
    *
    * @returns You will receive at a minimum the following information:
    *
-   * @throws {@link Users.UsersIdentityError} when the API answers with an error status — narrow on
-   * `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -243,7 +200,7 @@ export class Users {
   usersIdentity(
     request: Users.UsersIdentityRequest,
     options?: RequestOptions,
-  ): ApiPromise<Record<string, unknown>, Users.UsersIdentityError> {
+  ): ApiPromise<Record<string, unknown>, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -256,7 +213,7 @@ export class Users {
       },
       {
         success: { kind: "json", schema: s.record(s.string(), s.unknown()) },
-        errorFactory: Users.UsersIdentityError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -270,8 +227,7 @@ export class Users {
    *
    * @returns Typical success response
    *
-   * @throws {@link Users.UsersInfoError} when the API answers with an error status — narrow on
-   * `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -280,7 +236,7 @@ export class Users {
   usersInfo(
     request: Users.UsersInfoRequest,
     options?: RequestOptions,
-  ): ApiPromise<UsersInfosuccessschema, Users.UsersInfoError> {
+  ): ApiPromise<UsersInfosuccessschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -297,7 +253,7 @@ export class Users {
       },
       {
         success: { kind: "json", schema: usersInfosuccessschemaSchema },
-        errorFactory: Users.UsersInfoError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -311,8 +267,7 @@ export class Users {
    *
    * @returns Typical success response
    *
-   * @throws {@link Users.UsersListError} when the API answers with an error status — narrow on
-   * `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -321,7 +276,7 @@ export class Users {
   usersList(
     request: Users.UsersListRequest,
     options?: RequestOptions,
-  ): ApiPromise<UsersListschema, Users.UsersListError> {
+  ): ApiPromise<UsersListschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -338,8 +293,8 @@ export class Users {
         body: { kind: "empty" },
       },
       {
-        success: { kind: "json", schema: usersListschemaSchema },
-        errorFactory: Users.UsersListError,
+        success: { kind: "json", schema: usersListschemaInternalSchema },
+        errorFactory: ApiError,
       },
       options,
     );
@@ -353,8 +308,7 @@ export class Users {
    *
    * @returns Typical success response
    *
-   * @throws {@link Users.UsersLookupByEmailError} when the API answers with an error status —
-   * narrow on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -363,7 +317,7 @@ export class Users {
   usersLookupByEmail(
     request: Users.UsersLookupByEmailRequest,
     options?: RequestOptions,
-  ): ApiPromise<UsersLookupByEmailsuccessschema, Users.UsersLookupByEmailError> {
+  ): ApiPromise<UsersLookupByEmailsuccessschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -379,7 +333,7 @@ export class Users {
       },
       {
         success: { kind: "json", schema: usersLookupByEmailsuccessschemaSchema },
-        errorFactory: Users.UsersLookupByEmailError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -393,8 +347,7 @@ export class Users {
    *
    * @returns Typical success response
    *
-   * @throws {@link Users.UsersProfileGetError} when the API answers with an error status — narrow
-   * on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -403,7 +356,7 @@ export class Users {
   usersProfileGet(
     request: Users.UsersProfileGetRequest,
     options?: RequestOptions,
-  ): ApiPromise<UsersProfileGetschema, Users.UsersProfileGetError> {
+  ): ApiPromise<UsersProfileGetschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "GET",
@@ -419,8 +372,8 @@ export class Users {
         body: { kind: "empty" },
       },
       {
-        success: { kind: "json", schema: usersProfileGetschemaSchema },
-        errorFactory: Users.UsersProfileGetError,
+        success: { kind: "json", schema: usersProfileGetschemaInternalSchema },
+        errorFactory: ApiError,
       },
       options,
     );
@@ -434,8 +387,7 @@ export class Users {
    *
    * @returns Typical success response
    *
-   * @throws {@link Users.UsersProfileSetError} when the API answers with an error status — narrow
-   * on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -444,7 +396,7 @@ export class Users {
   usersProfileSet(
     request: Users.UsersProfileSetRequest,
     options?: RequestOptions,
-  ): ApiPromise<UsersProfileSetschema, Users.UsersProfileSetError> {
+  ): ApiPromise<UsersProfileSetschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -468,8 +420,8 @@ export class Users {
         },
       },
       {
-        success: { kind: "json", schema: usersProfileSetschemaSchema },
-        errorFactory: Users.UsersProfileSetError,
+        success: { kind: "json", schema: usersProfileSetschemaInternalSchema },
+        errorFactory: ApiError,
       },
       options,
     );
@@ -483,8 +435,7 @@ export class Users {
    *
    * @returns Typical success response
    *
-   * @throws {@link Users.UsersSetActiveError} when the API answers with an error status — narrow on
-   * `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -493,7 +444,7 @@ export class Users {
   usersSetActive(
     request: Users.UsersSetActiveRequest,
     options?: RequestOptions,
-  ): ApiPromise<UsersSetActiveschema, Users.UsersSetActiveError> {
+  ): ApiPromise<UsersSetActiveschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -510,7 +461,7 @@ export class Users {
       },
       {
         success: { kind: "json", schema: usersSetActiveschemaSchema },
-        errorFactory: Users.UsersSetActiveError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -524,8 +475,7 @@ export class Users {
    *
    * @returns Typical success response
    *
-   * @throws {@link Users.UsersSetPhotoError} when the API answers with an error status — narrow on
-   * `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -534,7 +484,7 @@ export class Users {
   usersSetPhoto(
     request: Users.UsersSetPhotoRequest,
     options?: RequestOptions,
-  ): ApiPromise<UsersSetPhotoschema, Users.UsersSetPhotoError> {
+  ): ApiPromise<UsersSetPhotoschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -558,8 +508,8 @@ export class Users {
         },
       },
       {
-        success: { kind: "json", schema: usersSetPhotoschemaSchema },
-        errorFactory: Users.UsersSetPhotoError,
+        success: { kind: "json", schema: usersSetPhotoschemaInternalSchema },
+        errorFactory: ApiError,
       },
       options,
     );
@@ -573,8 +523,7 @@ export class Users {
    *
    * @returns Typical success response
    *
-   * @throws {@link Users.UsersSetPresenceError} when the API answers with an error status — narrow
-   * on `err.payload.kind`
+   * @throws {@link ApiError} when the API answers with an error status
    *
    * @throws {@link SlackWebApiError} when no usable response was produced: a connection failure, a
    * timeout, a body that would not decode, a value that would not encode, or a credential that
@@ -583,7 +532,7 @@ export class Users {
   usersSetPresence(
     request: Users.UsersSetPresenceRequest,
     options?: RequestOptions,
-  ): ApiPromise<UsersSetPresenceschema, Users.UsersSetPresenceError> {
+  ): ApiPromise<UsersSetPresenceschema, ApiError> {
     return this.#rawClient.execute(
       {
         method: "POST",
@@ -603,7 +552,7 @@ export class Users {
       },
       {
         success: { kind: "json", schema: usersSetPresenceschemaSchema },
-        errorFactory: Users.UsersSetPresenceError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -641,39 +590,11 @@ export namespace Users {
     contentType: ContentType;
   };
 
-  export class UsersConversationsError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"usersConversationserrorschema1", UsersConversationserrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<UsersConversationsError> = [
-      {
-        on: "default",
-        kind: "usersConversationserrorschema1",
-        decode: { kind: "json", schema: usersConversationserrorschema1Schema },
-      },
-    ];
-  }
-
   export type UsersDeletePhotoRequest = {
     contentType: ContentType;
     /** Authentication token. Requires scope: `users.profile:write` */
     token: string;
   };
-
-  export class UsersDeletePhotoError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"usersDeletePhotoerrorschema1", UsersDeletePhotoerrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<UsersDeletePhotoError> = [
-      {
-        on: "default",
-        kind: "usersDeletePhotoerrorschema1",
-        decode: { kind: "json", schema: usersDeletePhotoerrorschema1Schema },
-      },
-    ];
-  }
 
   export type UsersGetPresenceRequest = {
     /** Authentication token. Requires scope: `users:read` */
@@ -683,35 +604,11 @@ export namespace Users {
     contentType: ContentType;
   };
 
-  export class UsersGetPresenceError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"usersCountserrorschema1", UsersCountserrorschema1>>;
-
-    static readonly errors: ErrorDecoders<UsersGetPresenceError> = [
-      {
-        on: "default",
-        kind: "usersCountserrorschema1",
-        decode: { kind: "json", schema: usersCountserrorschema1Schema },
-      },
-    ];
-  }
-
   export type UsersIdentityRequest = {
     /** Authentication token. Requires scope: `identity.basic` */
     token?: string;
     contentType: ContentType;
   };
-
-  export class UsersIdentityError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"usersIdentityerrorschema1", UsersIdentityerrorschema1>>;
-
-    static readonly errors: ErrorDecoders<UsersIdentityError> = [
-      {
-        on: "default",
-        kind: "usersIdentityerrorschema1",
-        decode: { kind: "json", schema: usersIdentityerrorschema1Schema },
-      },
-    ];
-  }
 
   export type UsersInfoRequest = {
     /** Authentication token. Requires scope: `users:read` */
@@ -722,18 +619,6 @@ export namespace Users {
     user?: string;
     contentType: ContentType;
   };
-
-  export class UsersInfoError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"usersInfoerrorschema1", UsersInfoerrorschema1>>;
-
-    static readonly errors: ErrorDecoders<UsersInfoError> = [
-      {
-        on: "default",
-        kind: "usersInfoerrorschema1",
-        decode: { kind: "json", schema: usersInfoerrorschema1Schema },
-      },
-    ];
-  }
 
   export type UsersListRequest = {
     /** Authentication token. Requires scope: `users:read` */
@@ -756,18 +641,6 @@ export namespace Users {
     contentType: ContentType;
   };
 
-  export class UsersListError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"usersListerrorschema1", UsersListerrorschema1>>;
-
-    static readonly errors: ErrorDecoders<UsersListError> = [
-      {
-        on: "default",
-        kind: "usersListerrorschema1",
-        decode: { kind: "json", schema: usersListerrorschema1Schema },
-      },
-    ];
-  }
-
   export type UsersLookupByEmailRequest = {
     /** Authentication token. Requires scope: `users:read.email` */
     token: string;
@@ -775,20 +648,6 @@ export namespace Users {
     email: string;
     contentType: ContentType;
   };
-
-  export class UsersLookupByEmailError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"usersLookupByEmailerrorschema1", UsersLookupByEmailerrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<UsersLookupByEmailError> = [
-      {
-        on: "default",
-        kind: "usersLookupByEmailerrorschema1",
-        decode: { kind: "json", schema: usersLookupByEmailerrorschema1Schema },
-      },
-    ];
-  }
 
   export type UsersProfileGetRequest = {
     /** Authentication token. Requires scope: `users.profile:read` */
@@ -799,20 +658,6 @@ export namespace Users {
     user?: string;
     contentType: ContentType;
   };
-
-  export class UsersProfileGetError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"usersProfileGeterrorschema1", UsersProfileGeterrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<UsersProfileGetError> = [
-      {
-        on: "default",
-        kind: "usersProfileGeterrorschema1",
-        decode: { kind: "json", schema: usersProfileGeterrorschema1Schema },
-      },
-    ];
-  }
 
   export type UsersProfileSetRequest = {
     /** Authentication token. Requires scope: `users.profile:write` */
@@ -831,39 +676,11 @@ export namespace Users {
     value?: string;
   };
 
-  export class UsersProfileSetError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"usersProfileSeterrorschema1", UsersProfileSeterrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<UsersProfileSetError> = [
-      {
-        on: "default",
-        kind: "usersProfileSeterrorschema1",
-        decode: { kind: "json", schema: usersProfileSeterrorschema1Schema },
-      },
-    ];
-  }
-
   export type UsersSetActiveRequest = {
     /** Authentication token. Requires scope: `users:write` */
     token: string;
     contentType: ContentType;
   };
-
-  export class UsersSetActiveError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"usersSetActiveerrorschema1", UsersSetActiveerrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<UsersSetActiveError> = [
-      {
-        on: "default",
-        kind: "usersSetActiveerrorschema1",
-        decode: { kind: "json", schema: usersSetActiveerrorschema1Schema },
-      },
-    ];
-  }
 
   export type UsersSetPhotoRequest = {
     contentType: ContentType;
@@ -879,18 +696,6 @@ export namespace Users {
     image?: string;
   };
 
-  export class UsersSetPhotoError extends ApiError {
-    declare readonly payload: ErrorPayload<Declared<"usersSetPhotoerrorschema1", UsersSetPhotoerrorschema1>>;
-
-    static readonly errors: ErrorDecoders<UsersSetPhotoError> = [
-      {
-        on: "default",
-        kind: "usersSetPhotoerrorschema1",
-        decode: { kind: "json", schema: usersSetPhotoerrorschema1Schema },
-      },
-    ];
-  }
-
   export type UsersSetPresenceRequest = {
     /** Authentication token. Requires scope: `users:write` */
     token: string;
@@ -898,18 +703,4 @@ export namespace Users {
     /** Either `auto` or `away` */
     presence: string;
   };
-
-  export class UsersSetPresenceError extends ApiError {
-    declare readonly payload: ErrorPayload<
-      Declared<"usersSetPresenceerrorschema1", UsersSetPresenceerrorschema1>
-    >;
-
-    static readonly errors: ErrorDecoders<UsersSetPresenceError> = [
-      {
-        on: "default",
-        kind: "usersSetPresenceerrorschema1",
-        decode: { kind: "json", schema: usersSetPresenceerrorschema1Schema },
-      },
-    ];
-  }
 }

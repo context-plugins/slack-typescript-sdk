@@ -1,5 +1,5 @@
 import * as s from "../core/validation/index.js";
-import type { Schema } from "../core/validation/schema.js";
+import type { JsonValue, Schema } from "../core/validation/schema.js";
 import {
   conversationsUnarchiveErrorEnumSchema,
   type ConversationsUnarchiveErrorEnum,
@@ -13,13 +13,18 @@ export type ConversationsUnarchiveerrorschema1Error = {
   needed?: string;
   ok: boolean;
   provided?: string;
+  /** Properties the service sent or accepts beyond those declared. */
+  additionalProperties?: Record<string, JsonValue>;
 };
 
 export const conversationsUnarchiveerrorschema1ErrorSchema: Schema<ConversationsUnarchiveerrorschema1Error> =
-  s.object<ConversationsUnarchiveerrorschema1Error>({
-    callstack: s.optional(s.string()),
-    error: conversationsUnarchiveErrorEnumSchema,
-    needed: s.optional(s.string()),
-    ok: s.boolean(),
-    provided: s.optional(s.string()),
-  });
+  s.object<ConversationsUnarchiveerrorschema1Error>(
+    {
+      callstack: s.optional(s.string()),
+      error: conversationsUnarchiveErrorEnumSchema,
+      needed: s.optional(s.string()),
+      ok: s.boolean(),
+      provided: s.optional(s.string()),
+    },
+    { additionalProperties: s.json() },
+  );

@@ -1,5 +1,5 @@
 import * as s from "../core/validation/index.js";
-import type { Schema } from "../core/validation/schema.js";
+import type { JsonValue, Schema } from "../core/validation/schema.js";
 import {
   usergroupsUpdateErrorEnumSchema,
   type UsergroupsUpdateErrorEnum,
@@ -11,11 +11,16 @@ export type UsergroupsUsersUpdateerrorschema1Error = {
   callstack?: string;
   error: UsergroupsUpdateErrorEnum;
   ok: boolean;
+  /** Properties the service sent or accepts beyond those declared. */
+  additionalProperties?: Record<string, JsonValue>;
 };
 
 export const usergroupsUsersUpdateerrorschema1ErrorSchema: Schema<UsergroupsUsersUpdateerrorschema1Error> =
-  s.object<UsergroupsUsersUpdateerrorschema1Error>({
-    callstack: s.optional(s.string()),
-    error: usergroupsUpdateErrorEnumSchema,
-    ok: s.boolean(),
-  });
+  s.object<UsergroupsUsersUpdateerrorschema1Error>(
+    {
+      callstack: s.optional(s.string()),
+      error: usergroupsUpdateErrorEnumSchema,
+      ok: s.boolean(),
+    },
+    { additionalProperties: s.json() },
+  );
